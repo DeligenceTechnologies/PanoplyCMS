@@ -1,0 +1,70 @@
+<template name="addMenu">
+  <div class="panel panel-black">
+    <div class="panel-heading"><span class="lead"> Add Menu </span></div>
+    
+   <div class="panel-body">
+     <div id="notification"></div>
+<form id="non-editable" class = "form-horizontal" role = "form" >
+  <div class = "form-group">
+      <label for = "firstname" class = "col-sm-2 control-label">Menu Title</label>
+    
+      <div class = "col-sm-10">
+         <input type = "text" name="title" id="title"  class = "form-control"  placeholder = "Enter title" required/>
+      </div>
+   </div>
+   <div class = "form-group">
+      <label for = "lastname" class = "col-sm-2 control-label">Alias</label>
+    
+      <div class = "col-sm-10">
+         <input type = "text" name="alias" id="alias" class = "form-control"  placeholder = "Enter alias">
+      </div>
+   </div>
+   <div class = "form-group">
+      <label for = "lastname" class = "col-sm-2 control-label">Parent</label>
+    
+      <div class = "col-sm-2">
+        <!-- <select selected="article" id="parent_select" class="parent form-control ">
+          <option value=''>Root Level</option>
+           {{#each list_of_menu}}
+            <option value="{{_id}}"> -{{title}}</option>
+           {{/each}}
+        </select> -->
+        <select id="parent_select" class="parent form-control ">
+          <option selected=true >Root Level</option>
+           <!-- {{list list_of_menu}} -->
+           {{testHelper menus }}
+        </select>
+      </div>
+   <div class = "form-group">
+      <label for = "lastname" class = "col-sm-2 control-label">menu Item type</label>
+    
+      <div class = "col-sm-2">
+        <select selected="article" id="myselect" class="article_category form-control ">
+          <option>Categories</option>
+          <option>Articles</option>
+        </select>
+      </div>
+      <div class = "col-sm-2">
+        <select selected="SELECT" id="myselect_category" class="form-control" style="display:none">
+          {{#each list_of_category}}
+            <option value="{{_id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <select selected="SELECT" id="myselect_articles" class="form-control" style="display:none" >
+          {{#each list_of_articles}}
+            <option value="{{_id}}">{{title}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <div class = "col-sm-offset-2 col-sm-10">
+         <button class="btn btn-primary" >Save</button>
+      </div>
+   </div> 
+    </div>
+ </form>
+</div>
+</div>
+</template>

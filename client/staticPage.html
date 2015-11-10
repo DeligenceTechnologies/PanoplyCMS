@@ -1,0 +1,27 @@
+<template name="staticPage">
+	<section>
+		<div class="container">
+			<br/>
+			{{#each article}}
+			<script type="text/javascript">document.title = '{{title}}';</script>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+                    <h2>{{title}}</h2>
+                    <small>{{alias}}</small>
+                    <hr class="star-primary">
+                </div>
+            </div>
+			<div class="row">
+				<blockquote>
+					<footer><em>Created By: </em> <span class="text-capitalize">{{username}}</span></footer>
+				</blockquote>
+				<div>
+					{{{articleData}}}
+					<em><strong>Meta Keywords:</strong> {{metaKey}}</em>
+					<em><strong>Meta Description:</strong> {{metaDesc}}</em>
+				</div>				
+			</div>
+			{{/each}}
+		</div>
+	</section>
+</template>

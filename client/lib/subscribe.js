@@ -1,0 +1,10 @@
+Meteor.subscribe('menus');
+Meteor.subscribe('show_category');
+Meteor.subscribe('find_category');
+Meteor.subscribe('find_articles');
+Meteor.subscribe('show_menu');
+Meteor.subscribe('show_articles');
+Meteor.subscribe('menus_under_category');
+Meteor.subscribe('show_html_blocks');
+Meteor.subscribe('show_tags');
+Meteor.subscribe('project_name');

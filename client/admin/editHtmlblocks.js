@@ -6,10 +6,10 @@ Template.editHtmlblocks.events({
        event.preventDefault();
        var sub_menus=[];
        var html_block=$('textarea').val();
-       var position=$("#select_position option:selected").text();
+       var position=$("#select_position option:selected").val();
         $.each($("input[name='checkbox']:checked"), function(){ 
           if($(this).val()=='on') 
-            sub_menus.push(' ');
+            sub_menus.push('');
           else
             sub_menus.push($(this).val());
         });

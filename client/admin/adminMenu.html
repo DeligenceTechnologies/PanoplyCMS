@@ -40,11 +40,11 @@
                   <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-television"></i> Menus</a>
                  </h4>
               </div>
-              <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+              <div id="collapseOne" class="panel-collapse collapse {{menu_path}} " role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                   <ul class="nav nav-pills nav-stacked" >
-                  <li><a href="{{pathFor route='add_menu'}}"><i class="fa fa-plus"></i> Add Menu</a></li>
-                  <li><a href="{{pathFor route='menu'}}"><i class="fa fa-university"></i> List Of Menus</a></li>
+                  <li class="{{setActiveClass 'add_menu'}}" ><a href="{{pathFor route='add_menu'}}"><i class="fa fa-plus"></i> Add Menu</a></li>
+                  <li class="{{setActiveClass 'menu'}}" ><a href="{{pathFor route='menu'}}"><i class="fa fa-university"></i> List Of Menus</a></li>
                   </ul>
                 </div>
               </div>
@@ -60,8 +60,8 @@
               <div id="collapseTwo" class="panel-collapse collapse {{articles_path}}" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
                   <ul class="nav nav-pills nav-stacked" >
-                  <li><a href="{{pathFor route='add_articles'}}"><i class="fa fa-plus"></i> Add New Article</a></li>
-                  <li><a href="{{pathFor route='articles'}}"><i class="fa fa-university"></i> List of Article</a></li>
+                  <li class="{{setActiveClass 'add_articles'}}" ><a href="{{pathFor route='add_articles'}}"><i class="fa fa-plus"></i> Add New Article</a></li>
+                  <li class="{{setActiveClass 'articles'}}" ><a href="{{pathFor route='articles'}}"><i class="fa fa-university"></i> List of Article</a></li>
                   </ul>
                 </div>
               </div>
@@ -76,8 +76,8 @@
             <div id="collapseThree" class="panel-collapse collapse {{category_path}}" role="tabpanel" aria-labelledby="headingThree">
               <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked" >
-                <li><a href="{{pathFor route='add_category'}}"> <i class="fa fa-plus"></i> Add Categories</a></li>
-                <li><a  href="{{pathFor route='category'}}"><i class="fa fa-university"></i> List of Categories</a></li>
+                <li class="{{setActiveClass 'add_category'}}" ><a href="{{pathFor route='add_category'}}"> <i class="fa fa-plus"></i> Add Categories</a></li>
+                <li class="{{setActiveClass 'category'}}" ><a  href="{{pathFor route='category'}}"><i class="fa fa-university"></i> List of Categories</a></li>
                 </ul>
               </div>
             </div>
@@ -92,8 +92,8 @@
               <div id="collapseFour" class="panel-collapse collapse {{htmlblocks_path}}" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                   <ul class="nav nav-pills nav-stacked" >
-                  <li><a href="{{pathFor route='add_htmlblocks'}}"> <i class="fa fa-plus"></i> Add Html blocks</a></li>
-                  <li><a href="{{pathFor route='htmlblocks'}}"><i class="fa fa-university"></i> List of Html Blocks</a></li>
+                  <li class="{{setActiveClass 'add_htmlblocks' }}"><a href="{{pathFor route='add_htmlblocks'}}"> <i class="fa fa-plus"></i> Add Html blocks</a></li>
+                  <li class="{{setActiveClass 'htmlblocks' }}" ><a href="{{pathFor route='htmlblocks'}}"><i class="fa fa-university"></i> List of Html Blocks</a></li>
                   </ul>
                 </div>
               </div>
@@ -108,8 +108,8 @@
     <div id="collapseFive" class="panel-collapse collapse {{tag_path}}" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
-        <li><a href="{{pathFor route='add_tags'}}"> <i class="fa fa-plus"></i> Add Tags</a></li>
-        <li><a href="{{pathFor route='tags'}}"><i class="fa fa-university"></i> List of Tags</a></li>
+        <li class="{{setActiveClass 'add_tags'}}" ><a href="{{pathFor route='add_tags'}}"> <i class="fa fa-plus"></i> Add Tags</a></li>
+        <li class="{{setActiveClass 'tags'}}" ><a href="{{pathFor route='tags'}}"><i class="fa fa-university"></i> List of Tags</a></li>
         </ul>
       </div>
     </div>

@@ -77,7 +77,7 @@ Template.addArticles.events({
         }
     },
      'click #token':function(event){
-        var length=tags.find().count();
+        var length=tags.find({status:1,trash:0}).count();
         var data=tags.find().fetch();
         var local1 = new Array();
         console.log(data,length);
@@ -118,5 +118,5 @@ Template.addArticles.helpers({
     }
 });
 function show_editor(){
-  CKEDITOR.replace( 'editor1' );  
+    CKEDITOR.replace( 'editor1' );  
 }

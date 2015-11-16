@@ -61,6 +61,19 @@ Template.addMenu.events({
            $('#myselect_articles').hide();
         }
     },
+    'focusout input':function(){
+        if($(this).val()){
+            $('.glyphicon').addClass('glyphicon-ok');
+            $('.glyphicon').removeClass('glyphicon-remove');
+            $('.has-feedback').removeClass('has-error');
+            $('.has-feedback').addClass('has-success');
+        }else{
+            $('.glyphicon').addClass('glyphicon-remove');
+             $('.glyphicon').removeClass('glyphicon-ok');
+             $('.has-feedback').addClass('has-error');
+            $('.has-feedback').removeClass('has-success');
+        }
+    }
 
 });
 

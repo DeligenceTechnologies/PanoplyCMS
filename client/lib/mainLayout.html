@@ -464,9 +464,17 @@
 			margin-top: 0;
 		}
 
+		ul.dashed.list-unstyled li:before{
+			content: "- "
+		}
+
+		ul.dashed.list-unstyled{
+			font-size: x-large;
+		}
+
 		body section > .container * {
 			transition-delay: 1s;
-		    transition: all 5s ease;
+		    transition: all 1s ease;
 		}
 	</style>
 	{{> mainMenu}}

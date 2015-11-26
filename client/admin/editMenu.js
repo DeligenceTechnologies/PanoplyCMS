@@ -5,7 +5,7 @@ Template.editMenu.events({
         var alias = ($('[name=alias]').val())?$('[name=alias]').val():createAlias(menu);
         var parent_id='';
         if(menu && alias){
-            var menu_Item_type=$( "#myselect option:selected" ).text();
+            var menu_Item_type=$( "#myselect option:selected" ).val();
             if(menu_Item_type=='Articles'){
                 Meteor.call('find_article');
                 var menu_Item_sub_type=$( "#myselect_articles option:selected" ).val();
@@ -17,7 +17,7 @@ Template.editMenu.events({
                 parent_id='';
                 Meteor.call('update_menu',Router.current().params._id,menu,alias,menu_Item_type,menu_Item_sub_type,function(err,data){
                     if(err){
-                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong>Alias are already exist.</div>');
                     
                     }else{
                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully!</strong> update menu.</div>');
@@ -25,6 +25,7 @@ Template.editMenu.events({
                     }
                 });
             }else{
+                console.log($( "#parent_select option:selected" ).val(),'$( "#parent_select option:selected" ).val()');
                 Meteor.call('update_menu',Router.current().params._id,menu,alias,menu_Item_type,menu_Item_sub_type,$( "#parent_select option:selected" ).val(),function(err,data){
                     if(err){
                         $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
@@ -36,12 +37,9 @@ Template.editMenu.events({
                 });
                 
             }
-            //Meteor.call('add_menu',menu,alias,menu_Item_type,menu_Item_sub_type);
+           
             
         }
-        
-        //alert('Succesfully inserted');
-
     },
     'click .article_category':function(event){
         var menu_Item_type=$( "#myselect option:selected" ).text();
@@ -93,7 +91,6 @@ Template.editMenu.helpers({
            } 
           
         });
-        //console.log(element,'element');
         return element;
        }   
       }
@@ -147,13 +144,6 @@ Handlebars.registerHelper('testHelper', function(menus,parent){
 });   
 
 Handlebars.registerHelper('parent_select', function(obj){
-   /* var id= Router.current().params._id;
-    var db_obj= menus.find(id).fetch();
-    if(db_obj[0].menuItem.type==obj){
-        return 'block';
-    }else{
-       return 'none'; 
-  }*/
 });
 Handlebars.registerHelper('menuItemType', function(obj){
      var id= Router.current().params._id;

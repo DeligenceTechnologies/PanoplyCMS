@@ -5,10 +5,6 @@ Template.adminSetting.events({
         if(project){
         	 Meteor.call('update_project_name',project,$('.form-control').attr('id'));
         	 $('[name=project_name]').val('');
-        }else{
-        	bootbox.alert("Please fill all the field.", function() {
-                console.log("Alert Callback");
-            });
         }
     }
    

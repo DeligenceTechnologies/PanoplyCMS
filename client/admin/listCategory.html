@@ -7,8 +7,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Serial No.</th>
-                <th>Category name</th>
+                <th>Category Name</th>
                 <th>Alias</th>
                 <th></th>
                 <th></th>
@@ -19,8 +18,8 @@
                 <tr id="{{_id}}">	
                   <td>{{name}}</td>
                   <td>{{alias}}</td>
-                  <td id="delete_category"><button id="{{_id}}" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
-                  <td id="edit_category"><button class="btn btn-warning"  id="{{_id}}" ><i class="fa fa-pencil-square-o"></i> Edit</button></td>
+                  <td id="delete_category"><div id="{{_id}}" class="delete_btn"> <i class="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> </div></td>
+                  <td id="edit_category"><div class="edit_btn"  id="{{_id}}" ><i class="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i> </div></td>
                 </tr>
                 {{else}}
                <tr >
@@ -34,6 +33,11 @@
           </table>
         </div>
       </div>
-     </div> 
+      <div class="panel-footer">
+        <ul class="pagination">
+           {{paginationStyleCategory}}
+        </ul>
+    </div>    
+  </div> 
   </div>
 </template>

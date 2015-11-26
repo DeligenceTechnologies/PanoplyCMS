@@ -5,7 +5,7 @@ Template.addMenu.events({
         var alias = ($('[name=alias]').val())?$('[name=alias]').val():createAlias(menu);
         var parent_id='';
         if(menu && alias && $( "#parent_select option:selected" ).val()){
-            var menu_Item_type=$( "#myselect option:selected" ).text();
+            var menu_Item_type=$( "#myselect option:selected" ).val();
             if(menu_Item_type=='Articles'){
                 Meteor.call('find_article');
                 var menu_Item_sub_type=$( "#myselect_articles option:selected" ).val();
@@ -13,65 +13,59 @@ Template.addMenu.events({
               Meteor.call('find_category');
               var menu_Item_sub_type=$( "#myselect_category option:selected" ).val();
             }
-            if($( "#parent_select option:selected" ).val()=='Root Level'){
+            if($( "#parent_select option:selected" ).val()=='Root Level' && $( "#myselect option:selected" ).text()!='Option'){
                 parent_id='';
                 Meteor.call('add_menu',menu,alias,menu_Item_type,menu_Item_sub_type,function(err,data){
                     if(err){
-                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
                     
                     }else{
                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully!</strong> saved menu.</div>');
-                   
+                        $('#myselect_category').hide();
+                        $('#myselect_articles').hide(); 
+                        $("form")[0].reset();
                     }
                 });
-                $("form")[0].reset();
-            }else{
+               
+            }else if($( "#myselect option:selected" ).text()!='Option') {
                 Meteor.call('add_menu',menu,alias,menu_Item_type,menu_Item_sub_type,$( "#parent_select option:selected" ).val(),function(err,data){
                   if(err){
-                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
                     
                     }else{
                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully!</strong> saved menu.</div>');
                    
                     }
                 });
-                $("form")[0].reset();
+               
+            }else{
+             $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Option is not a menu item type.</div>');
+                    
             }
-            //Meteor.call('add_menu',menu,alias,menu_Item_type,menu_Item_sub_type);
-            $('[name=title]').val('');
-            $('[name=alias]').val('');
+            
         }else{
           $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Please!</strong> fill all the requirements field.</div>');
                    
         }
-        
-        //alert('Succesfully inserted');
 
     },
     'click .article_category':function(event){
         var menu_Item_type=$( "#myselect option:selected" ).text();
-        
         if(menu_Item_type=='Articles'){
             Meteor.call('find_article');
             $('#myselect_articles').show();
             $('#myselect_category').hide();
+            $('#disabled').hide();
         }else if(menu_Item_type=='Categories'){
             Meteor.call('find_category');
            $('#myselect_category').show();
            $('#myselect_articles').hide();
+          $('#disabled').hide();
         }
-    },
-    'focusout input':function(){
-        if($(this).val()){
-            $('.glyphicon').addClass('glyphicon-ok');
-            $('.glyphicon').removeClass('glyphicon-remove');
-            $('.has-feedback').removeClass('has-error');
-            $('.has-feedback').addClass('has-success');
-        }else{
-            $('.glyphicon').addClass('glyphicon-remove');
-             $('.glyphicon').removeClass('glyphicon-ok');
-             $('.has-feedback').addClass('has-error');
-            $('.has-feedback').removeClass('has-success');
+        else{
+           $('#myselect_category').hide();
+           $('#myselect_articles').hide(); 
+           $('#disabled').show();
         }
     }
 
@@ -107,7 +101,7 @@ Template.addMenu.helpers({
            } 
           
         });
-        //console.log(element,'element');
+       
         return element;
        }   
       }
@@ -126,33 +120,4 @@ Template.addMenu.helpers({
       }
       return getElements();
     }
-}); 
-Handlebars.registerHelper('testHelper', function(menus){
-  function getElem(submenu, alias){
-      var list='';
-      var index=0;
-
-      if(submenu && alias){
-        var menuArr = submenu;
-      } else {
-         var menuArr = menus;
-         
-      }
-
-      menuArr.forEach(function (menu) {
-         list += '<option>';
-         if(submenu){
-          list += '--';
-         }
-         list += ' ' + menu.title + '</option>';
-         if(menu.child){
-            list += getElem(menu.child, menu.alias, index);
-         }
-         index++;
-        });
-        return list;
-    }
-     
-   var list = getElem();
-   return Spacebars.SafeString(list);
-});   
+});

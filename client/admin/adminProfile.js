@@ -16,7 +16,7 @@ Template.adminProfile.events({
 
 Template.adminProfile.helpers({
   admin_email:function(){
-    return Meteor.user().emails.address;
+    return Meteor.user().emails[0].address;
   },
   admin_username:function(){
     return Meteor.user().username;

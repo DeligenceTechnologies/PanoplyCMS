@@ -1,7 +1,5 @@
 Template.editArticles.rendered= function(){
-  //CKEDITOR.replace( 'editor1' );
-  setTimeout(show_editor,1000); 
-    
+  setTimeout(show_editor,1000);     
 }
 
 Template.editArticles.helpers({
@@ -14,9 +12,7 @@ Template.editArticles.helpers({
     },
     tags_list:function(){
 
-    }
-
-     
+    }     
 });
 
 Template.editArticles.events({
@@ -30,7 +26,7 @@ Template.editArticles.events({
             local1.push({'value':data[i].tag});
         }
         
-       //var local1=[{value: 'red'}, {value: 'blue'}, {value: 'green'} , {value: 'yellow'}, {value: 'violet'}, {value: 'brown'}, {value: 'purple'}, {value: 'black'}, {value: 'white'}];
+      
         var engine = new Bloodhound({
         local: local1,
         datumTokenizer: function(d) {
@@ -50,9 +46,6 @@ Template.editArticles.events({
         CKEDITOR.replace( 'editor1' );
      },
      'submit form': function(event){
-       /* event.preventDefault();
-        var form_data=($("form").serialize()).split('&');
-        console.log('data of form',form_data);*/
         event.preventDefault();
         var form_data=($("form").serialize()).split('&');
         var flag=1;
@@ -86,12 +79,13 @@ Template.editArticles.events({
                 flag=1;
             }
             
-            if(new_tags[0]){ console.log(new_tags,'new tags');
+            if(new_tags[0]){ 
                 var count=0;
                 for(var i=0;i<new_tags.length;i++){
                     Meteor.call('add_tags',new_tags[i],function(err,data){
                         if(err){
-                            console.log(err);
+                          $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Success!</strong> Article not updated succesfully.</div>');
+                                        
                         }else{
             
                             old_tags_obj.push(data);
@@ -99,35 +93,28 @@ Template.editArticles.events({
                            
                             if(count==new_tags.length){ 
                                Meteor.call('update_article',Router.current().params._id,title,alias,category,meta_keyword,desc,editor_value,old_tags_obj,function(err){
-                                    if(!err){console.log(3);
+                                    if(!err){
                                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Success!</strong> Article Updated Succesfully.</div>');
                                             
-                                    }else{console.log(4);
-                                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                                    }else{
+                                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
                                     }
                                });
                             }
                         }
                     });
                     
-                }
-               
-                
-
+                }       
             }else{ 
                Meteor.call('update_article',Router.current().params._id,title,alias,category,meta_keyword,desc,editor_value,old_tags_obj,function(err){
-                    if(!err){ console.log(1,$("#notification"));
-                        $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Success!</strong> Article Updated Succesfully.</div>');
-                        //Router.go('articles');
+                    if(!err){
+                        $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Success!</strong> Article Updated Succesfully.</div>');    
                     }else{
-                                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
-                                    }
-
+                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong>Alias are already exist.</div>');
                     }
-               );  
+                });  
             }
                
-        }else{
         }
     }
 });
@@ -147,8 +134,7 @@ UI.registerHelper('create', function(tag){
         }
 
     }
-    if(count==tag.length){
-        
+    if(count==tag.length){      
         $('#tokenfield-typeahead').val(value_of_tags);
         return value_of_tags;
     }

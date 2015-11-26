@@ -1,15 +1,14 @@
 <template name="editHtmlblocks">
 	<div class="panel panel-black ">
     <div class="panel-heading "><span class="lead"> Update Html </span><span onclick="Router.go('htmlblocks');"  class="lead pull-right" style="color: red" ><i class="fa fa-times-circle-o icon-4x"></i></span></div>
-    
-   <div class="panel-body">
-       <div id="notification"></div>
+    <div class="panel-body">
+      <div id="notification"></div>
    		<form class = "form-horizontal">
    			{{#each selected_htmlblocks}}
-          <div class = "form-group">
-            <label  class = "col-sm-2 control-label">Article</label>
+         <div class = "form-group">
+            <label  class = "col-sm-2 control-label" >Title</label>
             <div class = "col-sm-10">
-                <textarea id="editor" name="editor1">{{html}}</textarea>
+                <input type="text" class="form-control" id="title" value="{{title}}" required/>
             </div>
           </div>
           <div class = "form-group">
@@ -25,21 +24,28 @@
                 <option value="footer-3" selected="{{set_selected position 'footer-3'}}" >Footer 3</option>
               </select>
             </div>
+          </div>  
+          <div class = "form-group">
+            <label  class = "col-sm-2 control-label" >Article</label>
+            <div class = "col-sm-10">
+                <textarea id="editor" name="editor1" required>{{html}}</textarea>
+            </div>
           </div>
           <div class = "form-group">
             <label  class = "col-sm-2 control-label">Menu</label>
             <div class = "col-sm-10">
-               <label><input type="checkbox" name="checkbox" checked="{{set_checked ''}}" >Home</label>
+               <ul><li><input type="checkbox" name="checkbox" checked="{{set_checked ''}}" >Home</li>
                 {{#each list_of_menus_of_category}}
-                  <label><input type="checkbox" name="checkbox" id={{title}} value="{{alias}}" checked="{{set_checked alias}}" >{{title}}</label>
+                  <li><input type="checkbox" name="checkbox" id={{title}} value="{{alias}}" checked="{{set_checked alias}}" >{{title}}</li>
                 {{/each}}
+                </ul>
             </div>
           </div>
           
           <div class = "form-group">
               <div class = "col-sm-offset-2 col-sm-10">
                 <button id="update" class="btn btn-success" ><i class="fa fa-floppy-o"></i> Update</button>
-               <a href="/admin/htmlblocks" id="cancel" class="btn btn-danger" onclick="Router.go('htmlblocks');" ><i class="fa fa-times"></i> Cancel</a>
+               <a href="/admin/htmlblocks/1" id="cancel" class="btn btn-danger" onclick="Router.go('htmlblocks');" ><i class="fa fa-times"></i> Cancel</a>
               </div>
         </div> 
         {{/each}}

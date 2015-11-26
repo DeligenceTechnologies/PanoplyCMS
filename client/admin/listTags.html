@@ -21,8 +21,8 @@
                 <td>{{desc}}</td>
                 <td>{{metaKeyword}}</td>
                 <td>{{metaDesc}}</td>
-                <td id="delete_tags"><button id="{{_id}}" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
-                <td id="edit_tags"><button  id="{{_id}}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
+                <td id="delete_tags"><div id="{{_id}}" class="delete_btn"><i class="fa fa-trash-o"  data-toggle="tooltip" title="Delete" ></i> </div></td>
+                <td id="edit_tags"><div  id="{{_id}}" class="edit_btn"><i class="fa fa-pencil-square-o"  data-toggle="tooltip" title="Edit" ></i> </div></td>
               </tr>
               {{else}}
                <tr>
@@ -34,6 +34,11 @@
           </tbody>
         </table>
       </div>
+      <div class="panel-footer">
+        <ul class="pagination">
+           {{paginationStyleTag}}
+        </ul>
     </div>
   </div>
+</div>
 </template>

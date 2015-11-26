@@ -1,7 +1,5 @@
 Template.addArticles.rendered= function(){
-  //CKEDITOR.replace( 'editor1' );
-  setTimeout(show_editor,1000); 
-    
+  setTimeout(show_editor,1000);   
 }
 Template.addArticles.events({
     'submit form': function(event){
@@ -9,6 +7,7 @@ Template.addArticles.events({
         var form_data=($("form").serialize()).split('&');
         var flag=1;
         var index=0;
+        var tag=$('#tokenfield-typeahead').val();
         var old_tags_obj=new Array();
         var new_tags=new Array();
         var editor_value = $('textarea').val();
@@ -18,11 +17,9 @@ Template.addArticles.events({
         console.log(meta_keyword,'meta_keyword');
         var desc=$('#desc').val();
         var category=$("#myselect option:selected" ).val();
-        /*console.log(editor_value,title,meta_keyword,desc);*/
-        if(editor_value && alias && title && meta_keyword && desc){/*console.log('under if');*/
+        if(editor_value && alias && title && meta_keyword && desc && category && tag){
             var length=tags.find().count();
             var data=tags.find().fetch();
-            var tag=$('#tokenfield-typeahead').val();
             var tag=tag.split(',');
             var length=tags.find().count();
             var data=tags.find().fetch();
@@ -41,7 +38,7 @@ Template.addArticles.events({
                 flag=1;                
             }
             
-            if(new_tags.length){ /*console.log('under new tags',new_tags.length,'new_tags.length');*/
+            if(new_tags.length){ 
                 var count=0;
                 for(var i=0;i<new_tags.length;i++){
                     Meteor.call('add_tags',new_tags[i],function(err,data){
@@ -53,62 +50,49 @@ Template.addArticles.events({
                             if(count==new_tags.length){console.log(99,title,alias,category,meta_keyword,desc,editor_value,old_tags_obj);
                                 Meteor.call('add_article',title,alias,category,meta_keyword,desc,editor_value,old_tags_obj,function(err,data){
                                     if(err){
-                                         $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                                        $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
                                     }else{
                                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully!</strong> Saved Article.</div>');
-                                            $("form")[0].reset();
+                                        $("form")[0].reset();
+                                        CKEDITOR.instances.editor1.setData("")
+                                        $('#tokenfield-typeahead').tokenfield('setTokens','');
                                     }
                                 });
                             }
                         }
                     });
                 }
-            }else{/* console.log('new_tags.length==0');*/
-               
+            }else{console.log(editor_value,tag,category);
                 Meteor.call('add_article',title,alias,category,meta_keyword,desc,editor_value,old_tags_obj,function(err,data){
                     if(err){
-                         $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
+                         $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
                     }else{
                         $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully!</strong>  Saved Article.</div>');
                         $("form")[0].reset();
+                        CKEDITOR.instances.editor1.setData("")
+                        $('#tokenfield-typeahead').tokenfield('setTokens','');
                     }
                 });   
             }
-        }
-    },
-     'click #token':function(event){
-        var length=tags.find({status:1,trash:0}).count();
-        var data=tags.find().fetch();
-        var local1 = new Array();
-        console.log(data,length);
-        for(i=0;i<length; i++){
-            local1.push({'value':data[i].tag});
-        }
-          //var local1=[{value: 'red'}, {value: 'blue'}, {value: 'green'} , {value: 'yellow'}, {value: 'violet'}, {value: 'brown'}, {value: 'purple'}, {value: 'black'}, {value: 'white'}];
-        var engine = new Bloodhound({
-        local: local1,
-        datumTokenizer: function(d) {
-          return Bloodhound.tokenizers.whitespace(d.value);
-        },
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-      });
-
-      engine.initialize();
-
-      $('#tokenfield-typeahead').tokenfield({
-        typeahead: [null, { source: engine.ttAdapter() }]
-      });
-
-     }
-   
-
+        }else if(editor_value==''){
+            $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Please fill the article field.</div>');
+                   
+        }else if(tag==''){
+            console.log(tag);
+            $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Please fill the Tags field.</div>');
+                   
+        }else{
+             console.log(tag);
+            $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Option is not a category..</div>');
+                   
+        }        
+    }
 }); 
 
 
 Template.addArticles.helpers({
-  list_of_category: function () {
-    
-      return category.find({status: 1, trash: 0}).fetch();
+    list_of_category: function () {
+        return category.find({status: 1, trash: 0}).fetch();
     },
     list_of_articles: function () {
       return article.find({status: 1, trash: 0});
@@ -118,5 +102,28 @@ Template.addArticles.helpers({
     }
 });
 function show_editor(){
-    CKEDITOR.replace( 'editor1' );  
+    CKEDITOR.replace( 'editor1' );
+
+    var length=tags.find({status:1,trash:0}).count();
+    var data=tags.find({status:1,trash:0}).fetch();
+    var local1 = new Array();
+    
+    for(i=0;i<length; i++){
+        local1.push({'value':data[i].tag});
+    }
+    var engine = new Bloodhound({
+        local: local1,
+        datumTokenizer: function(d) {
+            return Bloodhound.tokenizers.whitespace(d.value);
+        },
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+    });
+
+    engine.initialize();
+
+    $('#tokenfield-typeahead').tokenfield({
+        showAutocompleteOnFocus: true,
+        createTokensOnBlur: true,
+        typeahead: [null, { source: engine.ttAdapter() }]
+    });
 }

@@ -1,79 +1,64 @@
 <template name="addArticles">
-
-  <div class="panel panel-black">
+ <div class="panel panel-black">
     <div class="panel-heading"><span class="lead"> Add Articles </span></div>
-    
-   <div class="panel-body">
-     <div id="notification"></div>
-
-<form id="non-editable" class = "form-horizontal" role = "form" >
-  <div class = "form-group">
-      <label for = "firstname" class = "col-sm-2 control-label">Title</label>
-    
-      <div class = "col-sm-10">
-         <input type = "text" name="title" id="title"  class = "form-control"  placeholder = "Enter title" required/>
-      </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Alias</label>
-    
-      <div class = "col-sm-10">
-         <input type = "text" name="alias" id="alias" class = "form-control"  placeholder = "Enter alias">
-      </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Category</label>
-    
-      <div class = "col-sm-10">
-        <select selected="select" id="myselect" class="selectpicker form-control " data-style="btn-primary" >
+    <div class="panel-body">
+    <div id="notification"></div>
+      <form id="non-editable" class = "form-horizontal" role = "form" >
+        <div class = "form-group">
+          <label for = "firstname" class = "col-sm-2 control-label">Title</label>
+          <div class = "col-sm-10">
+            <input type = "text" name="title" id="title"  class = "form-control"  placeholder = "Enter title" required/>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Alias</label>
+          <div class = "col-sm-10">
+            <input type = "text" name="alias" id="alias" class = "form-control"  placeholder = "Enter alias">
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Category</label>
+          <div class = "col-sm-10">
+            <select selected="select" id="myselect" class="selectpicker form-control " data-style="btn-primary" >
+              <option value="">Option</option>
               {{#each list_of_category}}
-              <option value="{{_id}}">{{name}}</option>
+                <option value="{{_id}}">{{name}}</option>
               {{/each}}
-              </select>
+            </select>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Tags</label>
+          <div class = "col-sm-10" id="token" > 
+            <input type="text" class="form-control" id="tokenfield-typeahead" value="" />
+          </div>
+       </div>
+      <div class = "form-group">
+        <label for = "lastname" class = "col-sm-2 control-label">Article</label>
+        <div class = "col-sm-10">
+          <div class="summernote">
+            <textarea name="editor1"></textarea>
+          </div>
+        </div>
       </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Tags</label>
-    
-      <div class = "col-sm-10" id="token" > 
-      <input type="text" class="form-control" id="tokenfield-typeahead" value="" />
-        <!-- <input type="text" class="form-control" id="tokenfield" value="red,green,blue" /> -->
+      <div class = "form-group">
+        <label for = "lastname" class = "col-sm-2 control-label">Meta Keyword</label>
+        <div class = "col-sm-10">
+           <input type = "text" name="keyword" id="keyword" class = "form-control" required/>
+        </div>
       </div>
-   </div>
-
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Article</label>
-    
-      <div class = "col-sm-10">
-         <div class="summernote">
-          <textarea name="editor1"></textarea>
-      <!-- <textarea id="summernote" rows="3" cols="50">Hello Summernote</textarea> -->
-    </div>
+      <div class = "form-group">
+        <label for = "lastname" class = "col-sm-2 control-label">Meta Description</label>
+        <div class = "col-sm-10">
+          <input type="textarea" name="desc" id="desc" class="form-control" required/>
+        </div>
       </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Meta Keyword</label>
-    
-      <div class = "col-sm-10">
-         <input type = "text" name="keyword" id="keyword" class = "form-control" required/>
-      </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Meta Description</label>
-    
-      <div class = "col-sm-10">
-        <input type="textarea" name="desc" id="desc" class="form-control" >
-      </div>
-   </div>
-   
-    <div class="form-group">
-            
-      <div class = "col-sm-offset-2 col-sm-10">
-         <button class="btn btn-primary btn-lg" >Save</button>
-      </div>
-   </div>  
-      
- </form>
-</div>
+      <div class="form-group">
+        <div class = "col-sm-offset-2 col-sm-10">
+          <button class="btn btn-primary btn-lg" >Save</button>
+        </div>
+      </div>  
+    </form>
+  </div>
 </div>
 </template>

@@ -6,6 +6,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
+               <th>Title</th>
               <th>Position </th>
               <th>Menu</th>
             </tr>
@@ -13,10 +14,11 @@
           <tbody>
             {{#each list_of_htmlblocks}}
               <tr id="{{_id}}">
+                <td>{{title}}</td>
                 <td>{{position}}</td>
                 <td>{{menu}}</td> 
-                <td id="delete_htmlblocks"><button  id="{{_id}}" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
-                <td id="edit_htmlblocks"><button  class="btn btn-warning"  id="{{_id}}"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
+                <td id="delete_htmlblocks"><div  id="{{_id}}" class="delete_btn"><i class="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> </div></td>
+                <td id="edit_htmlblocks"><div  class="edit_btn"  id="{{_id}}"><i class="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </div></td>
               </tr>{{else}}
               <tr >
                 <td colspan="4">
@@ -27,6 +29,11 @@
           </tbody>
         </table>
       </div>
+      <div class="panel-footer">
+        <ul class="pagination">
+           {{paginationStyleHtmlblock}}
+        </ul>
+    </div>    
     </div>
-  </div>
+    </div>
 </template>

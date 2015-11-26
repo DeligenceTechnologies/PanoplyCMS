@@ -1,57 +1,52 @@
 <template name="addHtmlblocks">
-
   <div class="panel panel-black">
     <div class="panel-heading"><span class="lead"> Add Html Blocks </span></div>
-    
-   <div class="panel-body">
-     <div id="notification"></div>
-<form id="non-editable" class = "form-horizontal" role = "form" >
-	<div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Html</label>
-    
-      <div class = "col-sm-10">
-         
-         <textarea id="editor" name="editor1"></textarea>
-    
-      </div>
-   </div>
-  <div class = "form-group">
-      <label for = "firstname" class = "col-sm-2 control-label">Position</label>
-    
-      <div class = "col-sm-10">
-        <select id="select_position" class="form-control" >
-          <option value="homePageHead">Home Page Head</option>
-          <option value="homeBlock1">Home Block 1</option>
-          <option value="homeBlock2">Home Block 2</option>
-          <option value="copyright">Copyright</option>
-          <option value="footer-1">Footer 1</option>
-          <option value="footer-2">Footer 2</option>
-          <option value="footer-3">Footer 3</option>
-        </select>
-      </div>
-   </div>
-   <div class = "form-group">
-      <label for = "lastname" class = "col-sm-2 control-label">Menu</label>
-    
-      <div class = "col-sm-10">
-        <p class="checkbox">Menu
-  		<div >
-        <label><input type="checkbox" name="checkbox" value="" >Home</label>
-  			{{#each list_of_menus_of_category}}
-  			<label><input type="checkbox" name="checkbox" value="{{alias}}" >{{title}}</label>
-  			{{/each}}
-  		</div>	
-  	</p>
-      </div>
-   </div>
-   <div class = "form-group">
-      <div class = "col-sm-offset-2 col-sm-10">
-         <button class="btn btn-success " >Save</button>
-      </div>
-   </div>  
-   
-      
- </form>
-</div>
-</div>
+    <div class="panel-body">
+      <div id="notification"></div>
+      <form id="non-editable" class = "form-horizontal" role = "form" >
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Title</label>
+          <div class = "col-sm-10">
+            <input type="text" name="title" id="title" class="form-control" required/>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "firstname" class = "col-sm-2 control-label">Position</label>
+          <div class = "col-sm-10">
+            <select id="select_position" class="form-control" >
+                <option value="">Option</option>
+                <option value="homePageHead">Home Page Head</option>
+                <option value="homeBlock1">Home Block 1</option>
+                <option value="homeBlock2">Home Block 2</option>
+                <option value="copyright">Copyright</option>
+                <option value="footer-1">Footer 1</option>
+                <option value="footer-2">Footer 2</option>
+                <option value="footer-3">Footer 3</option>
+            </select>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Html</label>
+          <div class = "col-sm-10">
+            <textarea id="editor1" name="editor1"></textarea>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "lastname" class = "col-sm-2 control-label">Menu</label>
+          <div class = "col-sm-10">
+            <div class="checkbox">
+        		  <div>
+                <ul><li><input type="checkbox" name="checkbox" value="" >Home</li> {{listCheckMenu list_of_menus_of_category}}</ul>
+              </div>	
+      	   </div>
+          </div>
+        </div>
+        <div class = "form-group">
+          <div class = "col-sm-offset-2 col-sm-10">
+          <button class="btn btn-success " >Save</button>
+          </div>
+        </div>  
+      </form>
+    </div>
+  </div>
 </template>	

@@ -1,3 +1,6 @@
+Template.listArticles.rendered= function(){
+     setTimeout(activeli,1000);
+}
 Template.listArticles.events({
     'click #delete_article':function(event,template){
         event.preventDefault();
@@ -10,35 +13,7 @@ Template.listArticles.events({
 
     'click #edit_article':function(event){
         event.preventDefault();
-        Router.go('edit_articles', {_id:this._id });
-        /*
-        var value_of_tags=new Array();
-        var count=0;
-        $("#editable").attr("class",this._id );
-        $('#non-editable').hide();
-        $('#t').val(this.title);
-        $('#a').val(this.alias);
-        $('#key').val(this.metaKeyword);
-        $('#des').val(this.metaDesc);
-        $("#editable").attr("class",this._id );
-        $( "#myselect_type option:selected" ).text(this.category);
-        $('#editor').html(this.articleData);
-        $('#cke_1_contents').html(this.articleData);
-        var data=tags.find().fetch();
-        var length=tags.find().count();
-        
-        for(var i=0;i<(this.tags).length;i++){
-            for(var j=0;j<length;j++){
-                if(this.tags[i]==data[j]._id){
-                    count++;
-                    value_of_tags.push(data[j].tag);
-                    $('#tokenfield-typeahead').val(value_of_tags);
-                }
-
-            }            
-        }
-        */
-        
+        Router.go('edit_articles', {_id:this._id }); 
      },
      'click #token':function(event){
         var length=tags.find().count();
@@ -110,7 +85,6 @@ Template.listArticles.events({
                             old_tags_obj.push(data);
                             count++;
                             if(count==new_tags.length){
-                                //Meteor.call('add_article',menu,alias,category,meta_keyword,desc,editor_value,old_tags_obj);
                                 Meteor.call('update_article',$("#editable").attr("class"),name,alias,category,meta_keyword,desc,editor_value,old_tags_obj);   
 
                             }
@@ -123,7 +97,6 @@ Template.listArticles.events({
             }
 
             if(name==''|| alias=='' ){
-              alert('please fill the value');
             }else{
                 Meteor.call('update_article',$("#editable").attr("class"),name,alias,category,meta_keyword,desc,editor_value,old_tags_obj);
                 alert('Succesfully updated');
@@ -136,23 +109,28 @@ Template.listArticles.events({
         }
         
     },
-    'click #cancel':function(event){
-        if (confirm("Do You Want To Cancel!") == true) {
-            $('#editable').hide();
-        $('#non-editable').show();
-        } else {
-             
-        }
+    'click .panel-footer>ul.pagination li':function(event){
+        event.preventDefault();
+        $('.panel-footer>ul.pagination li').removeClass('active');
+        $('#'+event.currentTarget.id).addClass('active');
+        Router.go('articlesPage', { page:parseInt(event.currentTarget.id)});
     }          
 });
 
 Template.listArticles.helpers({
-  list_of_category: function () {
+    list_of_category: function () {
       return category.find({status:1,trash:0});
     },
     list_of_articles: function () {
+        length= Router.current().url.split('/').length;
+        if(Router.current().url.split('/')[length-1]!=undefined){
+            var x=Router.current().url.split('/')[length-1];
+            var x=(x-1)*10;
+            return articles.find({status:1,trash:0},{skip:x,limit:10}).fetch();
+        }else{
+             return articles.find({status:1,trash:0},{skip:0,limit:10}).fetch();
+        }
         
-      return articles.find({status:1,trash:0}).fetch();
     }
 });
 
@@ -166,4 +144,24 @@ UI.registerHelper('categoryName', function(id){
         }
 
     }
+});
+
+function activeli(){ 
+  length= Router.current().url.split('/').length;
+  page = Router.current().url.split('/')[length-1];
+  $('#'+Router.current().url.split('/')[length-1]).addClass('active');
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
+UI.registerHelper('paginationStyleArticles', function(){  
+  var total=articles.find({status:1,trash:0}).count()/10;
+  var html='';
+  if(total<10 && total>1){ 
+    for(var i=1;i<=Math.ceil(total);i++){
+        html=html+"<li id="+i+"><a href='#' >"+i+"</a></li>";
+    }
+   return Spacebars.SafeString(html);
+  }else{
+     return Spacebars.SafeString(html);
+  }
 });

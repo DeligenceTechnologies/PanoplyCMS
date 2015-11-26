@@ -4,42 +4,40 @@ Template.adminMenu.helpers({
 		return name;
 	},
 	project_name:function(){
-		console.log(settings.find().fetch(),'settings.find().fetch();');
 		return settings.find().fetch();
 	},
 	'articles_path':function(){
       var path = Iron.Location.get().path;
-      if(path=="/admin/articles" || path=="/admin/add_articles"){
-       console.log(1);
+      if(path=="/admin/articles/1" || path=="/admin/add_articles"){
        return 'in';
      }
   },
   'menu_path':function(){
       var path = Iron.Location.get().path;
-      if(path=="/admin/menu" || path== "/admin/add_menu"){
+      if(path=="/admin/menu/1" || path== "/admin/add_menu"){
         return 'in';
         console.log(2);
       }
   },
   'tag_path':function(){
     var path = Iron.Location.get().path;
-      if(path=="/admin/add_tags" || path=="/admin/tags"){
+      if(path=="/admin/add_tags/1" || path=="/admin/tags"){
          return 'in';
        
     }
   },
   'htmlblocks_path':function(){
 	    var path = Iron.Location.get().path;
-	      if(path=="/admin/add_htmlblocks" || path=="/admin/htmlblocks"){
+	      if(path=="/admin/add_htmlblocks/1" || path=="/admin/htmlblocks"){
 	         return 'in';
 	        
 	    }
 	},
   'category_path':function(){
     var path = Iron.Location.get().path;
-      if(path=="/admin/category" || path=="/admin/add_category" || path=="/admin/edit/category"){
+      if(path=="/admin/category/1" || path=="/admin/add_category" || path=="/admin/edit/category"){
          return 'in';
-        console.log(5);
+        
     }
 
   }

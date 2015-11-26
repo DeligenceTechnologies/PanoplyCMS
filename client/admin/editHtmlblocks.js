@@ -5,6 +5,7 @@ Template.editHtmlblocks.events({
     'submit form': function(event){
        event.preventDefault();
        var sub_menus=[];
+       var title=$('#title').val();
        var html_block=$('textarea').val();
        var position=$("#select_position option:selected").val();
         $.each($("input[name='checkbox']:checked"), function(){ 
@@ -13,17 +14,25 @@ Template.editHtmlblocks.events({
           else
             sub_menus.push($(this).val());
         });
-      console.log(sub_menus.join(","));
-      Meteor.call('update_htmlblocks',Router.current().params._id,html_block,position,sub_menus,function(err){
-        if(err){
-             $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> '+err+'.</div>');
-                                    
-        }else{
-           $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully</strong> Updated htmlblocks.</div>');
-                                    
-        }
+  
+      if( title && html_block && position &&  sub_menus[0]){
+        Meteor.call('update_htmlblocks',Router.current().params._id,title,html_block,position,sub_menus,function(err){
+          if(err){
+               $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');
+                                      
+          }else{
+            $("#notification").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Succesfully</strong> Updated htmlblocks.</div>');                                  
+          }
 
-      });
+        });
+     }else if(html_block==''){
+          $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Please fill Html field.</div>');
+
+       }else{
+          $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Please check the menu.</div>');
+
+       }
+      
            
        }
   

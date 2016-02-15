@@ -39,12 +39,16 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
   api.addFiles('admin/settings/settings.jsx',['client'])
+
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
   api.addFiles('admin/extension/modules/addModules.jsx',['client'])
+  api.addFiles('admin/extension/modules/editModule.jsx',['client'])
+
   api.addFiles('admin/lib/router/router.js',['client','server'])
   api.addFiles('admin/lib/method/collection.js',['client','server'])
   api.addFiles('admin/lib/method/module.js',['client','server'])
   api.addFiles('admin/lib/method/sidebar.js',['client','server'])
+
   api.addFiles('admin/server/publisher.js',['server'])
   api.addFiles('admin/server/settings.js',['server'])
   api.addFiles('admin/styles/admin.css',['client'])

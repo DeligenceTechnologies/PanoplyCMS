@@ -6,26 +6,26 @@ AddModule = React.createClass({
   	},
     handleSubmit(event) {
       event.preventDefault();
-
-      var title = ReactDOM.findDOMNode(this.refs.titleRaw).value.trim();
-      var htmlValue=tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).getContent().trim();
-      var position =  $(ReactDOM.findDOMNode(this.refs.position)).val();
-      var menuArr = [];
-      $('input[name="menuGroup"]:checked').each(function() {
-         menuArr.push(this.value);
-      });
-      var publish =  $(ReactDOM.findDOMNode(this.refs.publish)).val();
-      console.log("message ==>",title, htmlValue, position, menuArr, publish);
-
-      Meteor.call("addModule", title, htmlValue, position, menuArr, publish);
+      insert = {
+        "title":ReactDOM.findDOMNode(this.refs.titleRaw).value.trim(),
+        "modDesc":{
+          "type":'htmlBlock',
+          "value": tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).getContent().trim(),
+        },
+        "position": $(ReactDOM.findDOMNode(this.refs.position)).val(),
+        "menu": $(ReactDOM.findDOMNode(this.refs.menus)).val(),
+        "status": $(ReactDOM.findDOMNode(this.refs.publish)).val(),
+        "owner":'browser-user'
+      }
+      Meteor.call("addModule", insert);
 
       ReactDOM.findDOMNode(this.refs.titleRaw).value = "";
-      // ReactDOM.findDOMNode(this.refs.htmlValue).value = "";
+      tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).setContent('');
       ReactDOM.findDOMNode(this.refs.position).value = "";
-      $('input[name="menuGroup"]:checked').attr('checked', false);
+      ReactDOM.findDOMNode(this.refs.menus).value = "";
       ReactDOM.findDOMNode(this.refs.publish).value = "";
-
-
+      FlowRouter.go('modulesManager');
+      // return false;
     },
     render() {
         return (
@@ -61,12 +61,14 @@ AddModule = React.createClass({
                     </div>
                   </div>
                   <div className="">
-                    <label htmlFor="menu" className="" ref="menu" >Menu</label>
+                    <label htmlFor="menu" className="" >Menu</label>
                     <div className="">
-                      <ul>
-                        <li><input type="checkbox" name="menuGroup" value="home" />Home</li>
-                        <li><input type="checkbox" name="menuGroup" value="side" />Side</li>
-                      </ul>
+                      <select id="select_menus" ref="menus" multiple>
+                        <option value="main-menu">Home</option>
+                        <option value="left-side">Left</option>
+                        <option value="right-side">Right</option>
+                        <option value="footer-menu">Bottom</option>
+                      </select>
                     </div>
                   </div>
                   <div className="">
@@ -80,7 +82,7 @@ AddModule = React.createClass({
                     </div>
                   </div>
                   <div className="">
-                    <button className="" onClick={this.handleSubmit}>Save</button>
+                    <button className="btn btn-success" onClick={this.handleSubmit}>Save</button>
                   </div>
                 </form>
             </div>

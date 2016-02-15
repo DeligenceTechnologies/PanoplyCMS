@@ -8,6 +8,9 @@ ModulesLayout = React.createClass({
       mod: Modules.find({trash:false},{sort:{createdAt:-1}}).fetch(),
     };
   },
+  componentDidMount: function(){
+    document.title = "Module Manager";
+  },
   insertSidebar() {},
   renderModules() {
     return this.data.mod.map((module) => {
@@ -43,6 +46,9 @@ ModuleListing = React.createClass({
   trashThisModule(){
     Meteor.call("removeModule", this.props.module._id)
   },
+  renderAModule(){
+    FlowRouter.go('EditModule',{_id:this.props.module._id});
+  },
   render(){
     return(
       <tr className="" >
@@ -53,7 +59,7 @@ ModuleListing = React.createClass({
 			<td className="small hidden-phone">{this.props.module.modDesc.type}</td>
 			<td className="small hidden-phone">{this.props.module._id}</td>
 			<td className="small hidden-phone">
-        <button type="button" className="btn-edit-module btn btn-primary btn-xs">
+        <button type="button" onClick={this.renderAModule} className="btn-edit-module btn btn-primary btn-xs">
           <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>
         </button>
       </td>
@@ -68,12 +74,12 @@ ModuleListing = React.createClass({
 
 });
 
-FlowRouter.route('/admin/Modules', {
+FlowRouter.route('/admin/modules', {
   name: 'modulesManager',
   subscriptions: function(params){
     this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')) ,
     this.register('Sites',Meteor.subscribe('siteName')),
-    this.register('AddModules',Meteor.subscribe('moduleList'))
+    this.register('ShowModules',Meteor.subscribe('moduleList'))
   },
   action: function(params) {
     ReactLayout.render(AdminLayout, {content:<ModulesLayout />});

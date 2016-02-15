@@ -2,25 +2,25 @@
 
 	render(){
 		return(
-		<nav className="navbar navbar-default navbar-static-top">
-		    <div className="container-fluid">
-				<div className="navbar-header col-md-2">
-					<Logo />
-				</div>
-				<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<form className="navbar-form navbar-left" method="GET" role="search">
-						<div className="form-group">
-							<input type="text" name="q" className="form-control" placeholder="Search" />
-						</div>
-						<button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
-					</form>
-			        <div className="btn-group pull-right">
-              			<Usersettings />
-            	</div>
+      <nav className="navbar navbar-default navbar-static-top">
+        <div className="container-fluid">
+          <div className="navbar-header col-md-2">
+            <Logo />
+          </div>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form className="navbar-form navbar-left" method="GET" role="search">
+              <div className="form-group">
+                <input type="text" name="q" className="form-control" placeholder="Search" />
+              </div>
+              <button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
+            </form>
+            <div className="btn-group pull-right">
+              <Usersettings />
             </div>
-		</div>
-	</nav>
-	)
+          </div>
+        </div>
+      </nav>
+  	)
 	}
 
 })
@@ -48,7 +48,7 @@ Logo=React.createClass({
 	mixins:[ReactMeteorData],
   	getMeteorData(){
       return {
-     	results: Sites.find().fetch()
+        results: Sites.find().fetch()
       }
 
   },

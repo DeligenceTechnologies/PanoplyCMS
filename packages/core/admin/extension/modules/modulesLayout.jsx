@@ -85,6 +85,6 @@ FlowRouter.route('/admin/modules', {
     ReactLayout.render(AdminLayout, {content:<ModulesLayout />});
   },
   triggersEnter: [function(context, redirect){
-    console.log('..007..');
+    // console.log('..007..');
   }]
 });

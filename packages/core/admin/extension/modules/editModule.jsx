@@ -50,67 +50,66 @@ EditModule = React.createClass({
     FlowRouter.go('modulesManager');
   },
   render() {
-    // console.log(this.data.ready);
+  if (this.data.ready) {
     console.log(this.data.aModule[0]);
-    if (this.data.ready) {
-      return (
-        <div className="col-md-10 sidebar">
-          <span className=""> Add HTML Blocks </span>
-            <form id="non-editable" className="form-horizontal" role="form" >
-              <div className="form-group">
-                <label htmlFor="title" className="col-sm-1 control-label">Title</label>
-                <div className="col-sm-9">
-                  <input type="text" name="title" ref="titleRaw" id="title" className="col-sm-6 form-control" defaultValue={this.data.aModule[0].title} required/>
-                </div>
+    return (
+      <div className="col-md-10 sidebar">
+        <span className=""> Add HTML Blocks </span>
+          <form id="non-editable" className="form-horizontal" role="form" >
+            <div className="form-group">
+              <label htmlFor="title" className="col-sm-1 control-label">Title</label>
+              <div className="col-sm-9">
+                <input type="text" name="title" ref="titleRaw" id="title" className="col-sm-6 form-control" defaultValue={this.data.aModule[0].title} required/>
               </div>
-              <div className="form-group">
-                <label htmlFor="html" className="col-sm-1 control-label">HTML</label>
-                <div className="col-sm-11">
-                  <textarea defaultValue={this.data.aModule[0].modDesc.value} id="editor1" ref="htmlValue" name="editor1" width="800px"></textarea>
-                </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="html" className="col-sm-1 control-label">HTML</label>
+              <div className="col-sm-11">
+                <textarea defaultValue={this.data.aModule[0].modDesc.value} id="editor1" ref="htmlValue" name="editor1" width="800px"></textarea>
               </div>
-              <div className="form-group">
-                <label htmlFor="position" className="col-sm-1 control-label">Position</label>
-                <div className="col-sm-6">
-                  <select id="select_position" defaultValue={this.data.aModule[0].position} ref="position" className="form-control" >
-                      <option value="">-- Select --</option>
-                      <option value="home-page-head">Home Page Head</option>
-                      <option value="home-block-1">Home Block 1</option>
-                      <option value="home-block-2">Home Block 2</option>
-                      <option value="copyright">Copyright</option>
-                      <option value="footer-1">Footer 1</option>
-                      <option value="footer-2">Footer 2</option>
-                      <option value="footer-3">Footer 3</option>
-                  </select>
-                </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="position" className="col-sm-1 control-label">Position</label>
+              <div className="col-sm-6">
+                <select id="select_position" defaultValue={this.data.aModule[0].position} ref="position" className="form-control" >
+                    <option value="">-- Select --</option>
+                    <option value="home-page-head">Home Page Head</option>
+                    <option value="home-block-1">Home Block 1</option>
+                    <option value="home-block-2">Home Block 2</option>
+                    <option value="copyright">Copyright</option>
+                    <option value="footer-1">Footer 1</option>
+                    <option value="footer-2">Footer 2</option>
+                    <option value="footer-3">Footer 3</option>
+                </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="menu" className="col-sm-1 control-label" ref="menu" >Menu</label>
-                <div className="col-sm-6">
-                  <select id="select_menus" defaultValue={this.data.aModule[0].menu} ref="menus" className="form-control" multiple>
-                    <option value="main-menu">Home</option>
-                    <option value="left-side">Left</option>
-                    <option value="right-side">Right</option>
-                    <option value="footer-menu">Bottom</option>
-                  </select>
-                </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="menu" className="col-sm-1 control-label" ref="menu" >Menu</label>
+              <div className="col-sm-6">
+                <select id="select_menus" defaultValue={this.data.aModule[0].menu} ref="menus" className="form-control" multiple>
+                  <option value="main-menu">Home</option>
+                  <option value="left-side">Left</option>
+                  <option value="right-side">Right</option>
+                  <option value="footer-menu">Bottom</option>
+                </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="" className="col-sm-1 control-label">Status</label>
-                <div className="col-sm-6">
-                  <select id="select_publish" defaultValue={this.data.aModule[0].status} ref="publish" className="form-control" >
-                      <option value="">-- Select --</option>
-                      <option value="true">Published</option>
-                      <option value="false">Unpublished</option>
-                  </select>
-                </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="" className="col-sm-1 control-label">Status</label>
+              <div className="col-sm-6">
+                <select id="select_publish" defaultValue={this.data.aModule[0].status} ref="publish" className="form-control" >
+                    <option value="">-- Select --</option>
+                    <option value="true">Published</option>
+                    <option value="false">Unpublished</option>
+                </select>
               </div>
-              <div className="btn-toolbar">
-                <button className="btn btn-success" onClick={this.handleSubmit}>Save & Close</button>
-                {/*<button className="btn btn-warning" onClick={this.trashThisModule}>Trash</button>*/}
-                <button className="btn btn-danger" onClick={this.cancelSubmit}>Cancel</button>
-              </div>
-            </form>
+            </div>
+            <div className="btn-toolbar">
+              <button className="btn btn-success" onClick={this.handleSubmit}>Save & Close</button>
+              {/*<button className="btn btn-warning" onClick={this.trashThisModule}>Trash</button>*/}
+              <button className="btn btn-danger" onClick={this.cancelSubmit}>Cancel</button>
+            </div>
+          </form>
         </div>
       );
     }else {

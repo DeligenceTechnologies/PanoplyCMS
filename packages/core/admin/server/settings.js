@@ -40,7 +40,7 @@
 			desc:'',
 			alias:'',
 			icon:'fa fa-puzzle-piece',
-			param:[{label:'Modules',routeName:'Modules',template:'',providers:''},{label:'Plugins',routeName:'plugins',template:'',providers:''},{label:'Language',routeName:'language',template:'',providers:''},{label:'Templates',routeName:'templates',template:'',providers:''}]
+			param:[{label:'Modules',routeName:'modules',template:'',providers:''},{label:'Plugins',routeName:'plugins',template:'',providers:''},{label:'Language',routeName:'language',template:'',providers:''},{label:'Templates',routeName:'templates',template:'',providers:''}]
 		},
 		{
 			title:'HELP',
@@ -52,10 +52,10 @@
 
 		]
 		_.each(sidebarList,function(list){
-			AdminSidebarMenu.insert(list);	
+			AdminSidebarMenu.insert(list);
 		})
-		
-	    
+
+
 	} else {
 		console.log('SideBar already  exists');
 	}
@@ -64,6 +64,6 @@
 	}else{
 		console.log('Site name already  exists');
 	}
-	
-	
+
+
 });

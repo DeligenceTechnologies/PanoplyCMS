@@ -25,7 +25,6 @@ AddModule = React.createClass({
     ReactDOM.findDOMNode(this.refs.menus).value = "";
     ReactDOM.findDOMNode(this.refs.publish).value = "";
     FlowRouter.go('modulesManager');
-    // return false;
   },
   cancelSubmit(){
     FlowRouter.go('modulesManager');
@@ -51,14 +50,14 @@ AddModule = React.createClass({
               <label htmlFor="position" className="col-sm-1 control-label">Position</label>
               <div className="col-sm-11">
                 <select id="select_position" ref="position" className="form-control" >
-                    <option value="">-- Select --</option>
-                    <option value="home-page-head">Home Page Head</option>
-                    <option value="home-block-1">Home Block 1</option>
-                    <option value="home-block-2">Home Block 2</option>
-                    <option value="copyright">Copyright</option>
-                    <option value="footer-1">Footer 1</option>
-                    <option value="footer-2">Footer 2</option>
-                    <option value="footer-3">Footer 3</option>
+                  <option value="">-- Select --</option>
+                  <option value="home-page-head">Home Page Head</option>
+                  <option value="home-block-1">Home Block 1</option>
+                  <option value="home-block-2">Home Block 2</option>
+                  <option value="copyright">Copyright</option>
+                  <option value="footer-1">Footer 1</option>
+                  <option value="footer-2">Footer 2</option>
+                  <option value="footer-3">Footer 3</option>
                 </select>
               </div>
             </div>
@@ -99,7 +98,7 @@ FlowRouter.route('/admin/modules/add', {
     this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')) ,
     this.register('Sites',Meteor.subscribe('siteName'))
   },
-  action: function(params) {
+  action: function(params, queryParams) {
     ReactLayout.render(AdminLayout, {content:<AddModule />});
   },
   triggersEnter: [function(context, redirect){ console.log('Add Module Form') }]

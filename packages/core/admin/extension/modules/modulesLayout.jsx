@@ -20,7 +20,24 @@ ModulesLayout = React.createClass({
   render() {
       return (
         <div className="col-md-10" id="container">
-        <a href={FlowRouter.path("AddModules")} className="btn btn-success">Add Module</a>
+        {/*<a href={FlowRouter.path("AddModules")} className="btn btn-success">Add Module</a>*/}
+        <button type="button" className="btn btn-sm btn-success" data-toggle="modal" data-target="#moduleTypeForm">Add Module</button>
+        <div id="moduleTypeForm" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                <h4 className="modal-title">Select your module type</h4>
+              </div>
+              <div className="modal-body">
+                <p>Some text in the modal.</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <table className="table table-striped" >
           <thead>
             <tr>
@@ -85,6 +102,6 @@ FlowRouter.route('/admin/modules', {
     ReactLayout.render(AdminLayout, {content:<ModulesLayout />});
   },
   triggersEnter: [function(context, redirect){
-    // console.log('..007..');
+    //do something
   }]
 });

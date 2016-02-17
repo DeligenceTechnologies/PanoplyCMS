@@ -53,10 +53,3 @@ Package.onUse(function(api) {
   api.addFiles('admin/server/settings.js',['server'])
   api.addFiles('admin/styles/admin.css',['client'])
 });
-
-// Package.onTest(function(api) {
-//   api.use('ecmascript');
-//   api.use('tinytest');
-//   api.use('mplatts:simple');
-
-// });

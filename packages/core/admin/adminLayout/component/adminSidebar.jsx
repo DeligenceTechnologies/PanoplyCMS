@@ -3,7 +3,7 @@ mixins:[ReactMeteorData],
   getMeteorData(){
     return {
       results: AdminSidebarMenu.find().fetch()
-    }
+    } 
   },
   render() {
   	style={'display': 'block'};
@@ -14,10 +14,10 @@ mixins:[ReactMeteorData],
   				<ul className="nav navbar-nav">
             {this.data.results.map(function(result) {
                return <LiItem key={result._id} data={result}/>;
-            })}
+            })}                  
   				</ul>
   			</div>
-  		</nav>
+  		</nav>    
     </div>
     );
   }
@@ -26,25 +26,24 @@ mixins:[ReactMeteorData],
 
 var LiItem = React.createClass({
   render: function() {
-  	//console.log(this.props.data);
   	var c=0;
     return (
     <li className="panel panel-default" id="dropdown">
 			<a  data-toggle="collapse" href={'#'+this.props.data.title} >
-				<span className={this.props.data.icon}></span> {this.props.data.title}
+				<span className={this.props.data.icon}></span> {this.props.data.title} 
 				<span className="caret"></span>
 			</a>
 			<div id={this.props.data.title}  className="panel-collapse collapse">
-  			<div className="panel-body">
+  			<div className="panel-body">			
          	<ul className="nav-children" style={style}>
-         		{this.props.data.param.map(function(p){ {/*console.log(p);*/}
-         			return	 <li key={c++}><a href={p.routeName}>{p.label}</a></li>
-         		}) }
+         		{this.props.data.param.map(function(p){
+         			return	 <li key={c++}><a href={FlowRouter.path(p.routeName)}>{p.label}</a></li>
+         		}) }    
           </ul>
   			</div>
 			</div>
     </li>
     )
-
+    
   }
 });

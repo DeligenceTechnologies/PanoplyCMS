@@ -1,33 +1,49 @@
 SystemLayout = React.createClass({
-  insertSidebar(){
-
+  handleChange: function(event) {
+    this.setState({name: event.target.value});
+  },
+  mixins:[ReactMeteorData],
+    getMeteorData(){
+       var handle = Meteor.subscribe('siteName')
+    return {
+      pageLoading: ! handle.ready(), 
+      results: Sites.findOne()
+    };
+      // Meteor.subscribe('siteName')
+      // return {
+      // results: Sites.findOne()
+      // }
+    
   },
   submitForm(event){
   	event.preventDefault();
-    var name=React.findDOMNode(this.refs.sitename).value.trim();
-    //console.log(name);
-    //Sites.update({name:name});
+    var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
+    var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
+    Meteor.call('updateSiteName',id,name,function(err,data){
+      if(err)
+        console.log(err);
+      else
+        console.log(data);
+    });
+    
   },
   render() {
-  	this.insertSidebar();
-    return (
-    <div>
-        <button>Global Configuration</button>
-        <form onSubmit={this.submitForm} >
-            <input type="text" name="sitename" ref="sitename" />
-            <input type="submit" value="Change"/>
-        </form>
+      if (this.data.pageLoading) {
+      return <LoadingSpinner />;
+    }
+    return (<div>
+    	<button>Global Configuration</button>
+    	<form onSubmit={this.submitForm} >
+    	<input type="text" name={this.data.results._id} ref="sitename" defaultValue={this.data.results.name}/>
+    	<input type="submit" value="Change"/>
+    	</form>
     </div>
     );
   }
 });
 
-FlowRouter.route('/admin/settings', {
-  name: 'systemConfig',
-   subscriptions: function(params){
-    this.register('AdminSidebarMenu',Meteor.subscribe('sidebar'))
-  },
-  action: function(params) {
-    ReactLayout.render(AdminLayout,{content:<SystemLayout />});
+LoadingSpinner=React.createClass({
+  render:function(){
+    return <div>Loading....</div>
   }
-});
+})

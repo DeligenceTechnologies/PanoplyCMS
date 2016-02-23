@@ -27,29 +27,66 @@ Package.onUse(function(api) {
   api.use('insecure');
   api.use('underscore');
   api.use('accounts-password');
+  api.use('alanning:roles@1.2.14');
   api.use("http");
   api.use('kadira:flow-router');
   api.use('kadira:react-layout');
   api.use('teamon:tinymce');
+  api.use('cfs:standard-packages');
+  api.use('cfs:gridfs');
+  api.use('cfs:filesystem');
+  api.use('cfs:s3');
+  //api.use('rosh93:dataset-filter');
+  //api.use('ajduke:bootstrap-tokenfield');
 
-
+  /*--------------------------------Client------------------------------------- */
 
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
   api.addFiles('admin/settings/settings.jsx',['client'])
-
-  api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
-  api.addFiles('admin/extension/modules/addModules.jsx',['client'])
-  api.addFiles('admin/extension/modules/editModule.jsx',['client'])
-
-  api.addFiles('admin/lib/router/router.js',['client','server'])
-  api.addFiles('admin/lib/method/collection.js',['client','server'])
-  api.addFiles('admin/lib/method/module.js',['client','server'])
-  api.addFiles('admin/lib/method/sidebar.js',['client','server'])
-
-  api.addFiles('admin/server/publisher.js',['server'])
-  api.addFiles('admin/server/settings.js',['server'])
   api.addFiles('admin/styles/admin.css',['client'])
+  api.addFiles('admin/content/article/addArticle.jsx',['client'])
+  api.addFiles('admin/content/article/editArticle.jsx',['client'])
+  api.addFiles('admin/content/article/listArticles.jsx',['client'])
+  api.addFiles('admin/login/login.jsx',['client'])
+  api.addFiles('admin/login/adminEdit.jsx',['client'])
+  api.addFiles('admin/extension/modules/addModule.jsx',['client'])
+  api.addFiles('admin/extension/modules/editModule.jsx',['client'])
+  api.addFiles('admin/extension/modules/modulesLayout.jsx')
+  //api.addFiles('admin/lib/metheod/bootstrap-tokenfield.js',['client'])
+  //api.addFiles('admin/lib/metheod/bootstrap-tokenfield.min.js',['client'])
+  api.addFiles('admin/content/category/addCategory.jsx',['client'])
+  api.addFiles('admin/content/category/editCategory.jsx',['client'])
+  api.addFiles('admin/content/category/listCategories.jsx',['client'])
+
+  /*--------------------------------Server------------------------------------- */
+
+  api.addFiles([
+    'admin/server/articles.js',
+    'admin/server/settings.js',
+    'admin/server/sidebar.js',
+    'admin/server/startup.js',
+    'admin/server/module.js',
+    'admin/server/category.js',
+    'admin/server/users.js'
+    ],['server'])
+
+  /*--------------------------------Client Server---------------------------------*/
+
+  api.addFiles([
+    'admin/lib/metheod/collection.js',
+    'admin/lib/metheod/articles.js',
+    'admin/lib/metheod/settings.js',
+    'admin/lib/router/router.jsx',
+    'admin/lib/common.js',
+    'admin/lib/metheod/user.js',
+    'admin/lib/metheod/module.js',
+     'admin/lib/metheod/categories.js'
+    ],['client','server'])
+  
+  
 });
+
+

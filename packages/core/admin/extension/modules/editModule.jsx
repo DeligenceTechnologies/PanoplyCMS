@@ -120,19 +120,3 @@ EditModule = React.createClass({
   }
 });
 
-FlowRouter.route('/admin/modules/edit/:_id', {
- name: 'EditModule',
-  subscriptions: function(params){
-    this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')),
-    // this.register('AllModules',Meteor.subscribe('moduleList')),
-    this.register('Sites',Meteor.subscribe('siteName')),
-    this.register('editmodules',Meteor.subscribe('findAModule', params._id))
- },
- action: function(params) {
-   ReactLayout.render(AdminLayout,{content:<EditModule _id={params._id}/>
-   });
- },
- triggersEnter: [function(context, redirect){
-   console.log('Edit Module Form');
- }]
-});

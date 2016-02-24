@@ -40,7 +40,7 @@
 			desc:'',
 			alias:'',
 			icon:'fa fa-puzzle-piece',
-			param:[{label:'Modules',routeName:'Modules',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
+			param:[{label:'Modules',routeName:'modulesManager',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
 		},
 		{
 			title:'HELP',
@@ -67,7 +67,7 @@
 	if ( Meteor.users.find().count() === 0 ) {
 	    id=Accounts.createUser({
 	        username: 'deligence',
-	        email: 'info@deligence.com',
+	        email   : 'info@deligence.com',
 	        password: 'Pass@123'
 	    });
 	   	console.log('********************************************');

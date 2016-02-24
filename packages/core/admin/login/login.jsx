@@ -15,8 +15,8 @@ Login = React.createClass({
   },
   render() {
     return (<div>
-       <div className="container-fluid main-container">
-       <div classNamee="col-md-10 content">
+      <div className="container-fluid main-container">
+        <div classNamee="col-md-10 content">
           <div className="panel panel-default">
             <section>
               <div className="container">

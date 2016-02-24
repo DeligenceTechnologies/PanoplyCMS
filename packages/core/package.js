@@ -38,7 +38,7 @@ Package.onUse(function(api) {
   api.use('cfs:s3');
   //api.use('rosh93:dataset-filter');
   //api.use('ajduke:bootstrap-tokenfield');
-
+  api.use("deligence:html-block");
   /*--------------------------------Client------------------------------------- */
 
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
@@ -54,9 +54,10 @@ Package.onUse(function(api) {
   api.addFiles('admin/login/adminEdit.jsx',['client'])
   api.addFiles('admin/extension/modules/addModule.jsx',['client'])
   api.addFiles('admin/extension/modules/editModule.jsx',['client'])
-  api.addFiles('admin/extension/modules/modulesLayout.jsx')
-  //api.addFiles('admin/lib/metheod/bootstrap-tokenfield.js',['client'])
-  //api.addFiles('admin/lib/metheod/bootstrap-tokenfield.min.js',['client'])
+  api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
+  api.addFiles('admin/extension/modules/htmlBlock.jsx',['client'])
+  //api.addFiles('admin/lib/method/bootstrap-tokenfield.js',['client'])
+  //api.addFiles('admin/lib/method/bootstrap-tokenfield.min.js',['client'])
   api.addFiles('admin/content/category/addCategory.jsx',['client'])
   api.addFiles('admin/content/category/editCategory.jsx',['client'])
   api.addFiles('admin/content/category/listCategories.jsx',['client'])
@@ -76,14 +77,14 @@ Package.onUse(function(api) {
   /*--------------------------------Client Server---------------------------------*/
 
   api.addFiles([
-    'admin/lib/metheod/collection.js',
-    'admin/lib/metheod/articles.js',
-    'admin/lib/metheod/settings.js',
+    'admin/lib/method/collection.js',
+    'admin/lib/method/articles.js',
+    'admin/lib/method/settings.js',
     'admin/lib/router/router.jsx',
     'admin/lib/common.js',
-    'admin/lib/metheod/user.js',
-    'admin/lib/metheod/module.js',
-     'admin/lib/metheod/categories.js'
+    'admin/lib/method/user.js',
+    'admin/lib/method/module.js',
+     'admin/lib/method/categories.js'
     ],['client','server'])
   
   

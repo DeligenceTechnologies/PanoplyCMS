@@ -33,7 +33,7 @@ AddModule = React.createClass({
   render() {
     return (
       <div className="col-md-10 sidebar">
-        <span className=""> Add HTML Blocks </span>
+        <span className="alert"> Add HTML Blocks </span>
           <form id="non-editable" className="form-horizontal" role="form" >
             <div className="form-group">
               <label htmlFor="lastname" className="col-sm-1 control-label">Title</label>

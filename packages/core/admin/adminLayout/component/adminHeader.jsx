@@ -28,10 +28,6 @@
  Usersettings=React.createClass({
  	mixins:[ReactMeteorData],
   getMeteorData(){
-    // return {
-    //   results: Images.findOne(),
-    //   user: Meteor.users.findOne(),
-    // } 
     var handle = Meteor.subscribe('usersProfile')
     return {
       pageLoading: ! handle.ready(), 
@@ -41,7 +37,7 @@
   },
  	logout(event){
  		event.preventDefault();
- 		console.log('User logout');
+ 		// console.log('User logout');
  		Meteor.logout();
  		FlowRouter.go('login');
  	},
@@ -49,11 +45,12 @@
 		if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
-		console.log(this.data.results,'-------');
+		// console.log(this.data.results,'-------');
+		// console.log(this.data.user.emails[0].address,'<== User profile');
 		return( <div>
   			<button type="button" className="btn btn-logged" data-toggle="dropdown">
     			<img src={this.data.results?"/"+this.data.results.copies.images.key:''} alt="" />
-    				{this.data.user.profile.username}
+    				{/*{this.data.user.profile.username}*/}{this.data.user.emails[0].address}
     				<span className="caret"></span>
   			</button>
 	  		<ul className="dropdown-menu pull-right">
@@ -81,7 +78,7 @@ Logo=React.createClass({
 		if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
-		console.log(this.data.results,'+++++++++++++++++++');
+		// console.log(this.data.results.name,'+++++++++++++++++++');
 		return( <div>
 			<a className="navbar-brand" href="#">
 			{this.data.results?this.data.results.name:''}

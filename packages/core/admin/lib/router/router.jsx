@@ -5,12 +5,10 @@ var adminRoutes = FlowRouter.group({
   subscriptions: function(params){
     this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')) 
     this.register('Sites',Meteor.subscribe('siteName')) 
-     this.register('Sites1',Meteor.subscribe('imagepic'))
+    this.register('Sites1',Meteor.subscribe('imagepic'))
   },
   triggersEnter: [function(context, redirect) {
     console.log(Meteor.user());
-    
-
   }]
 });
 
@@ -20,11 +18,8 @@ adminRoutes.route('/', {
   },
   action: function(params) {
     if (Meteor.userId()) {
-          ReactLayout.render(AdminLayout);
-        
-    }else
-       FlowRouter.go('login');
-    
+      ReactLayout.render(AdminLayout);        
+    }else FlowRouter.go('login');    
   }
 });
 
@@ -38,8 +33,7 @@ FlowRouter.route('/login', {
     FlowRouter.go('home');
    }else{
      ReactLayout.render(Login);
-   }
-   
+   }   
   }
 });
 
@@ -117,27 +111,25 @@ adminRoutes.route('/articles', {
     this.register('Articles',Meteor.subscribe('articlesFind')) 
   },
   action: function(params) {
-     if (Meteor.userId()) {
-          ReactLayout.render(AdminLayout,{
-      content:<ListArticles />
-      });
-   }else{
-     FlowRouter.go('Login');
-   }
-    
+    if (Meteor.userId()) {
+        ReactLayout.render(AdminLayout,{content:<ListArticles />});
+    }else{
+      FlowRouter.go('Login');
+    }
   }
 });
 
 /*-------------------------extension/modules Routing------------------------------------*/
 
-adminRoutes.route('/modules/add', {
+adminRoutes.route('/modules/add/:type', {
   name: 'AddModules',
   subscriptions: function(params){
     this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')) ,
     this.register('Sites',Meteor.subscribe('siteName'))
   },
   action: function(params) {
-    ReactLayout.render(AdminLayout, {content:<AddModule />});
+    console.log(params.type,"<== console log");
+    ReactLayout.render(AdminLayout, {content:<AddModule><params.type /></AddModule>});
   },
   triggersEnter: [function(context, redirect){ console.log('Add Module Form') }]
 });
@@ -169,7 +161,7 @@ adminRoutes.route('/modules', {
     ReactLayout.render(AdminLayout, {content:<ModulesLayout />});
   },
   triggersEnter: [function(context, redirect){
-    console.log(666);
+    console.log();
   }]
 });
 

@@ -8,10 +8,15 @@ ModulesLayout = React.createClass({
       mod: Modules.find({trash:false},{sort:{createdAt:-1}}).fetch(),
     };
   },
-  componentDidMount: function(){
+  componentDidMount: function() {
+    $
     document.title = "Module Manager";
   },
-  insertSidebar() {},
+  submitModForm() {
+    FlowRouter.go("AddModules",{'type':'htmlBlock'});
+  },
+  insertSidebar() {
+  },
   renderModules() {
     return this.data.mod.map((module) => {
       return <ModuleListing key={module._id} module={module} />;
@@ -20,7 +25,15 @@ ModulesLayout = React.createClass({
   render() {
       return (
         <div className="col-md-10" id="container">
-        <a href={FlowRouter.path("AddModules")} className="btn btn-success">Add Module</a>
+        <div className="dropdown">
+          <button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
+          <span className="caret"></span></button>
+          <ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li><a role="menuitem" tabIndex="0" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>HTML Block</a></li>
+            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>Hello World!</a></li>
+            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>Banner</a></li>
+          </ul>
+        </div>
         <table className="table table-striped" >
           <thead>
             <tr>
@@ -50,11 +63,11 @@ ModuleListing = React.createClass({
     FlowRouter.go('EditModule',{_id:this.props.module._id});
   },
   render(){
-    console.log('1111');
+    // console.log('1111');
     return(
       <tr className="" >
-      <td className=" hidden-phone">{this.props.module.title}</td>
-			<td className=" hidden-phone">
+      <td className="hidden-phone">{this.props.module.title}</td>
+			<td className="hidden-phone">
 			   <span className="label label-info">{this.props.module.position}</span>
 			</td>
 			<td className="small hidden-phone">{this.props.module.modDesc.type}</td>
@@ -72,7 +85,4 @@ ModuleListing = React.createClass({
 		</tr>
     );
   }
-
 });
-
-

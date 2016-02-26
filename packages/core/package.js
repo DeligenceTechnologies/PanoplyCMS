@@ -55,7 +55,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/extension/modules/addModule.jsx',['client'])
   api.addFiles('admin/extension/modules/editModule.jsx',['client'])
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
-  api.addFiles('admin/extension/modules/htmlBlock.jsx',['client'])
+  api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
   //api.addFiles('admin/lib/method/bootstrap-tokenfield.js',['client'])
   //api.addFiles('admin/lib/method/bootstrap-tokenfield.min.js',['client'])
   api.addFiles('admin/content/category/addCategory.jsx',['client'])

@@ -1,7 +1,11 @@
 AddModule = React.createClass({
+  propTypes: {
+    type: React.PropTypes.string,
+    modtypeform: React.PropTypes.object
+  },
   insertSidebar() { },
   componentDidMount: function(){
-		document.title = "Add Module"
+		document.title = "Add Module";
 		tinymce.init({ selector: '#editor1' });
 	},
   handleSubmit(event) {
@@ -25,7 +29,17 @@ AddModule = React.createClass({
     ReactDOM.findDOMNode(this.refs.menus).value = "";
     ReactDOM.findDOMNode(this.refs.publish).value = "";
     FlowRouter.go('modulesManager');
-    // return false;
+  },
+  renderHBform(){
+    console.log(this.props.type, "<= Calling from props");
+    return (
+      <div className="form-group">
+        <label htmlFor="html" className="col-sm-1 control-label">HTML</label>
+        <div className="col-sm-11">
+          <textarea id="editor1" ref="htmlValue" name="editor1" ></textarea>
+        </div>
+      </div>
+    );
   },
   cancelSubmit(){
     FlowRouter.go('modulesManager');
@@ -41,24 +55,21 @@ AddModule = React.createClass({
                 <input type="text" name="title" ref="titleRaw" id="title" className="form-control" required/>
               </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="html" className="col-sm-1 control-label">HTML</label>
-              <div className="col-sm-11">
-                <textarea id="editor1" ref="htmlValue" name="editor1" ></textarea>
-              </div>
-            </div>
+            <div id="module"></div>
+            {this.props.type == _('Htmlblock').capitalize()?this.renderHBform():''}
+            {/*{this.props.children}*/}
             <div className="form-group">
               <label htmlFor="position" className="col-sm-1 control-label">Position</label>
               <div className="col-sm-11">
                 <select id="select_position" ref="position" className="form-control" >
                     <option value="">-- Select --</option>
-                    <option value="home-page-head">Home Page Head</option>
-                    <option value="home-block-1">Home Block 1</option>
-                    <option value="home-block-2">Home Block 2</option>
-                    <option value="copyright">Copyright</option>
-                    <option value="footer-1">Footer 1</option>
-                    <option value="footer-2">Footer 2</option>
-                    <option value="footer-3">Footer 3</option>
+                    <option value="home-page-head"> Home Page Header </option>
+                    <option value="home-block-1">   Home Block 1     </option>
+                    <option value="home-block-2">   Home Block 2     </option>
+                    <option value="copyright">      Copyright Block  </option>
+                    <option value="footer-1">       Footer Block1    </option>
+                    <option value="footer-2">       Footer Block2    </option>
+                    <option value="footer-3">       Footer Block3    </option>
                 </select>
               </div>
             </div>
@@ -66,9 +77,9 @@ AddModule = React.createClass({
               <label htmlFor="menu" className="col-sm-1 control-label" >Menu</label>
               <div className="col-sm-11">
                 <select id="select_menus" ref="menus" className="form-control" multiple>
-                  <option value="main-menu">Home</option>
-                  <option value="left-side">Left</option>
-                  <option value="right-side">Right</option>
+                  <option value="main-menu">  Home  </option>
+                  <option value="left-side">  Left  </option>
+                  <option value="right-side"> Right </option>
                   <option value="footer-menu">Bottom</option>
                 </select>
               </div>
@@ -78,8 +89,8 @@ AddModule = React.createClass({
               <div className="col-sm-11">
                 <select id="select_publish" ref="publish" className="form-control" >
                     <option value="">-- Select --</option>
-                    <option value="true">Published</option>
-                    <option value="false">Unpublished</option>
+                    <option value="true"> Published   </option>
+                    <option value="false">Unpublished </option>
                 </select>
               </div>
             </div>
@@ -93,4 +104,4 @@ AddModule = React.createClass({
   }
 });
 
-
+// ReactLayout.render(AddModule, {modtypeform:<Htmlblock />})

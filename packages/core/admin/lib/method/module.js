@@ -23,3 +23,8 @@ Meteor.methods({
     // console.log("Remove", modId);
   }
 });
+_.mixin({
+  capitalize: function(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+  }
+});

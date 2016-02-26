@@ -1,3 +1,5 @@
+/*---------------- MODULES LAYOUT ---------------*/
+
 ModulesLayout = React.createClass({
 
   // This mixin makes the getMeteorData method work
@@ -9,7 +11,6 @@ ModulesLayout = React.createClass({
     };
   },
   componentDidMount: function() {
-    $
     document.title = "Module Manager";
   },
   submitModForm() {
@@ -20,6 +21,7 @@ ModulesLayout = React.createClass({
   renderModules() {
     return this.data.mod.map((module) => {
       return <ModuleListing key={module._id} module={module} />;
+      // ReactLayout.render(ModuleListing, {module:module});
     });
   },
   render() {
@@ -29,7 +31,7 @@ ModulesLayout = React.createClass({
           <button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
           <span className="caret"></span></button>
           <ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li><a role="menuitem" tabIndex="0" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>HTML Block</a></li>
+            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>HTML Block</a></li>
             <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>Hello World!</a></li>
             <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>Banner</a></li>
           </ul>
@@ -52,6 +54,8 @@ ModulesLayout = React.createClass({
   }
 });
 
+/*---------------- MODULE LISTING ---------------*/
+
 ModuleListing = React.createClass({
   propTypes: {
     module: React.PropTypes.object.isRequired,
@@ -63,7 +67,6 @@ ModuleListing = React.createClass({
     FlowRouter.go('EditModule',{_id:this.props.module._id});
   },
   render(){
-    // console.log('1111');
     return(
       <tr className="" >
       <td className="hidden-phone">{this.props.module.title}</td>

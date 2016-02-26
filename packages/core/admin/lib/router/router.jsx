@@ -8,7 +8,7 @@ var adminRoutes = FlowRouter.group({
     this.register('Sites1',Meteor.subscribe('imagepic'))
   },
   triggersEnter: [function(context, redirect) {
-    console.log(Meteor.user());
+    // console.log(Meteor.user());
   }]
 });
 
@@ -71,6 +71,7 @@ adminRoutes.route('/settings', {
     
   }
 });
+
 /*-------------------------Articles Routing------------------------------------*/
 adminRoutes.route('/articles/add', {
   name: 'addArticle',
@@ -120,7 +121,6 @@ adminRoutes.route('/articles', {
 });
 
 /*-------------------------extension/modules Routing------------------------------------*/
-
 adminRoutes.route('/modules/add/:type', {
   name: 'AddModules',
   subscriptions: function(params){
@@ -128,10 +128,12 @@ adminRoutes.route('/modules/add/:type', {
     this.register('Sites',Meteor.subscribe('siteName'))
   },
   action: function(params) {
-    console.log(params.type,"<== console log");
-    ReactLayout.render(AdminLayout, {content:<AddModule><params.type /></AddModule>});
+    // console.log(params.type,"<== console log");
+    ReactLayout.render(AdminLayout, {content:<AddModule type={_(params.type).capitalize()}/>});
   },
-  triggersEnter: [function(context, redirect){ console.log('Add Module Form') }]
+  triggersEnter: [function(context, redirect){ 
+    console.log() 
+  }]
 });
 
 adminRoutes.route('/modules/edit/:_id', {

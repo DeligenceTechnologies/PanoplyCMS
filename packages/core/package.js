@@ -92,18 +92,18 @@ Package.onUse(function(api) {
   /*--------------------------------Client Server---------------------------------*/
 
   api.addFiles([
-    'admin/lib/metheod/collection.js',
-    'admin/lib/metheod/articles.js',
-    'admin/lib/metheod/settings.js',
+    'admin/lib/method/collection.js',
+    'admin/lib/method/articles.js',
+    'admin/lib/method/settings.js',
     'admin/lib/router/router.jsx',
     'admin/lib/common.js',
     'admin/lib/startup.js',
-    'admin/lib/metheod/user.js',
-    'admin/lib/metheod/module.js',
-    'admin/lib/metheod/categories.js',
-    'admin/lib/metheod/menu.js',
-    'admin/lib/metheod/tags.js',
-    'admin/lib/metheod/search.js'
+    'admin/lib/method/user.js',
+    'admin/lib/method/module.js',
+    'admin/lib/method/categories.js',
+    'admin/lib/method/menu.js',
+    'admin/lib/method/tags.js',
+    'admin/lib/method/search.js'
     ],['client','server'])
   
   

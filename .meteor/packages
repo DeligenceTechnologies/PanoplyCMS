@@ -16,6 +16,20 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-iron:router
-accounts-ui
+kadira:flow-router
+kadira:react-layout
+react
+fortawesome:fontawesome
+twbs:bootstrap
+deligence:panoplycore
+teamon:tinymce
 accounts-password
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
+cfs:s3
+rosh93:dataset-filter
+ajduke:bootstrap-tokenfield
+mizzao:autocomplete
+mizzao:jquery-ui
+anti:i18n

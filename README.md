@@ -1,4 +1,4 @@
-# PanoplyCMS 1.0
+# PanoplyCMS 1.1
 PanoplyCMS is opensource CMS based on Meteor Framework. In current version it provides basic functionality like adding articles and categoies and assigning them to menu. It uses Bootstrap3 as its css framework.
 
 # Installation

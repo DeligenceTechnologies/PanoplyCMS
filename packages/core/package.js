@@ -36,28 +36,32 @@ Package.onUse(function(api) {
   api.use('cfs:gridfs');
   api.use('cfs:filesystem');
   api.use('cfs:s3');
-  //api.use('rosh93:dataset-filter');
-  //api.use('ajduke:bootstrap-tokenfield');
-  api.use("deligence:html-block");
+  api.export("Sites");
+  api.export("Modules");
   /*--------------------------------Client------------------------------------- */
+
+  api.addFiles('admin/styles/admin.css',['client'])
+
+  api.addFiles('admin/login/login.jsx',['client'])
+  api.addFiles('admin/login/adminEdit.jsx',['client'])
 
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
+
   api.addFiles('admin/settings/settings.jsx',['client'])
-  api.addFiles('admin/styles/admin.css',['client'])
+  
   api.addFiles('admin/content/article/addArticle.jsx',['client'])
   api.addFiles('admin/content/article/editArticle.jsx',['client'])
   api.addFiles('admin/content/article/listArticles.jsx',['client'])
-  api.addFiles('admin/login/login.jsx',['client'])
-  api.addFiles('admin/login/adminEdit.jsx',['client'])
+
   api.addFiles('admin/extension/modules/addModule.jsx',['client'])
   api.addFiles('admin/extension/modules/editModule.jsx',['client'])
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
   api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
-  //api.addFiles('admin/lib/method/bootstrap-tokenfield.js',['client'])
-  //api.addFiles('admin/lib/method/bootstrap-tokenfield.min.js',['client'])
+  api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
+
   api.addFiles('admin/content/category/addCategory.jsx',['client'])
   api.addFiles('admin/content/category/editCategory.jsx',['client'])
   api.addFiles('admin/content/category/listCategories.jsx',['client'])
@@ -84,10 +88,8 @@ Package.onUse(function(api) {
     'admin/lib/common.js',
     'admin/lib/method/user.js',
     'admin/lib/method/module.js',
-     'admin/lib/method/categories.js'
-    ],['client','server'])
-  
-  
+    'admin/lib/method/categories.js'],
+    ['client','server'])  
 });
 
 

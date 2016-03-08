@@ -31,3 +31,5 @@ cfs:s3
 rosh93:dataset-filter
 
 deligence:panoplycore
+deligence:default-template
+coniel:react-form-handler

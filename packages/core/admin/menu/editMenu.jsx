@@ -36,36 +36,33 @@ EditMenu=React.createClass({
       return <LoadingSpinner />;
     }
     return (
-       <div className="col-md-10 content">
-    <div className="panel-heading"><span className="lead"> Edit Menu </span></div>
-    <div className="panel-body">
-    <div id="notification"></div>
-      <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
-        <div className = "form-group">
-          <label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
-          <div className = "col-sm-10">
-            <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuData.title} required/>
-          </div>
-        </div>
-        <div className = "form-group">
-          <label htmlFor = "lastname" className = "col-sm-2 control-label">Description</label>
-          <div className = "col-sm-10" id="token" > 
-            <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuData.title} id="desc" />
-          </div>
-       </div>
-      <div className="form-group">
-        <div className = "col-sm-offset-2 col-sm-10">
-          <button className="btn btn-primary btn-lg" >Update</button>
-        </div>
-      </div> 
-      <div className="form-group">
-        <div className = "col-sm-offset-2 col-sm-10">
-          <a className="btn btn-success btn-lg"  href={FlowRouter.path('manageMenu')}>Cancel</a>
-        </div>
-      </div>   
-    </form>
+      <div className="col-md-10 content">
+        <Heading  data={i18n('ADMIN_MENU_EDITMENU')} />
+        <div className="panel-body">
+        <div id="notification"></div>
+          <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+            <div className = "form-group">
+              <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</label>
+              <div className = "col-sm-10">
+                <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuData.title} required/>
+              </div>
+            </div>
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</label>
+              <div className = "col-sm-10" id="token" > 
+                <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuData.title} id="desc" />
+              </div>
+           </div>
+          <div className="form-group">
+            <div className = "col-sm-offset-2 col-sm-10">
+              <button className="btn btn-success " >{i18n('ADMIN_MENU_ADDMENU_FORM_SAVE')}</button>
+              &nbsp;&nbsp;
+              <a className="btn btn-danger "  href={FlowRouter.path('manageMenu')}>{i18n('ADMIN_MENU_ADDMENU_FORM_CANCEL')}</a>
+            </div>
+          </div> 
+        </form>
+      </div>
   </div>
-</div>
     )
   }
 

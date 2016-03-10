@@ -29,36 +29,22 @@ EditCategory = React.createClass({
 
     return (
        <div className="col-md-10 content">
-           <div className="panel-heading">
-            <span className="lead"> 
-              Edit Category
-            </span>
+       <Heading  data= {i18n('ADMIN_COTNENTS_CATEGORY_EDITCATEGORY')} />
             <form className = "form-horizontal" role = "form" onSubmit={this.submitData}>
                 <div className="form-group">
-                  <label className="col-sm-2 control-label">Category name</label>
+                  <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</label>
                   <div className="col-sm-10">
                     <input type = "text" ref="title" id="title"  onChange={this.handleChange} className="form-control" defaultValue={this.data.categoryData.title}  placeholder = "Enter title" required />
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="col-sm-2 control-label">Alias</label>
-                  <div className="col-sm-10">
-                    <input type = "text" ref="alias" id="alias" onChange={this.handleChange} className="form-control"  defaultValue={this.data.categoryData.alias} placeholder = "Enter alias" />
-                  </div>
-                </div>
-                <div className="form-group">
                   <div className="col-sm-offset-2 col-sm-10">
-                    <input type = "submit" className="btn btn-success" value="Save" />
-                   
-                    <a href={FlowRouter.path('listCategories')} className="btn btn-danger">Cancel</a>
+                    <input type = "submit" className="btn btn-success" value={i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_SAVE')} />
+                    &nbsp;&nbsp;
+                    <a href={FlowRouter.path('listCategories')} className="btn btn-danger">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CANCEL')}</a>
                   </div>
                 </div>
             </form>
-           </div>
-            <div className="panel-body">
-              <div id="notification"></div>
-              
-            </div>
         </div>
     )
   }

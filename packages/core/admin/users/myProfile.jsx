@@ -19,34 +19,33 @@ MyProfile = React.createClass({
     console.log(this.data.image.copies.images.key);
       return(
               <div className="col-md-10 content">
-                <h2 className="sub-header">My Profile</h2>
-                 
-              
-                  <div className = "form-group">
-                    <label htmlFor = "firstname" className = "col-sm-2 control-label">Username</label>
-                    <div className = "col-sm-10">
-                      {this.data.user.profile.username} 
-                    </div>
-                  </div> 
-                  <div className = "form-group">
-                    <label htmlFor = "firstname" className = "col-sm-2 control-label" >Email</label>
-                    <div className = "col-sm-10">
-                    {this.data.user.emails[0].address}
-                    </div>
-                  </div> 
-                  <img src={"/"+this.data.image.copies.images.key} className="img-rounded" />
-                  <div className = "form-group">
-                    <div className = "col-sm-10">
-                      <a className = "btn btn-primary" href={FlowRouter.path('edit')}>Edit</a>
-                    </div>
-                  </div> 
-                  <div className = "form-group">
-                    <div className = "col-sm-10">
-                      <a className = "btn btn-success" href={FlowRouter.path('home')}>Cancel</a>
-                    </div>
-                  </div> 
-             
-            </div>
+              <Heading  data={i18n('ADMIN_USERS_PROFILE')} />
+              <div className="panel-body">
+                <div className="panel">
+                  <div className="table-responsive" id="non-editable">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>{i18n('ADMIN_USERS_PROFILE_PICTURE')}</th>
+                          <th>{i18n('ADMIN_USERS_EDIT_USERNAME')}</th>
+                          <th>{i18n('ADMIN_USERS_EDIT_EMAIL')}</th>
+                          
+                          <th>{i18n('ADMIN_USERS_PROFILE_EDIT')}</th>
+                          <th>{i18n('ADMIN_USERS_EDIT_CANCEL')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <td><img src={this.data.image?this.data.image.url():''} className="img-circle" alt="Cinque Terre" width="50" height="50" /></td>
+                      <td>{this.data.user.profile.username}</td>
+                      <td>{this.data.user.emails[0].address}</td>
+                      <td><a className = "btn btn-primary" href={FlowRouter.path('edit')}>{i18n('ADMIN_USERS_PROFILE_EDIT')}</a></td>
+                      <td><a className = "btn btn-success" href={FlowRouter.path('home')}>{i18n('ADMIN_USERS_EDIT_CANCEL')}</a></td>  
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div> 
+            </div>     
       )  
   }
 

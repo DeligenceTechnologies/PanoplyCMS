@@ -142,55 +142,52 @@ EditMenuItem=React.createClass({
       itemType=this.data.menuItemData.MenuItemType
     }
     return (
-       <div className="col-md-10 content">
-    <div className="panel-heading"><span className="lead"> Edit Menu Item</span></div>
-    <div className="panel-body">
-    <div id="notification"></div>
-      <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
-        <div className = "form-group">
-          <label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
-          <div className = "col-sm-10">
-            <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuItemData.title} required/>
+    <div className="col-md-10 content">
+      <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
+      <div className="panel-body">
+      <div id="notification"></div>
+        <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+          <div className = "form-group">
+            <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
+            <div className = "col-sm-10">
+              <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuItemData.title} required/>
+            </div>
           </div>
-        </div>
-        <div className = "form-group">
-          <label htmlFor = "lastname" className = "col-sm-2 control-label">Description</label>
-          <div className = "col-sm-10" id="token" > 
-            <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuItemData.title} id="desc" />
-          </div>
-       </div>
-       <div className = "form-group">
-          <label htmlFor = "lastname" className = "col-sm-2 control-label">Menu Item type</label>
-          <select className = "col-sm-10" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
-            <option className="form-control" value="" >Select </option>
-            <option className="form-control"  value="category"  >Category</option>
-            <option className="form-control" value="article" >Article</option>
-          </select>
-       </div>
-       <div className = "form-group">
-          <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
-          {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
+          <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_DESCRIPTION')}</label>
+            <div className = "col-sm-10" id="token" > 
+              <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuItemData.title} id="desc" />
+            </div>
+         </div>
+         <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
+            <select className = "col-sm-10" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
+              <option className="form-control" value="" >Select </option>
+              <option className="form-control"  value="category"  >Category</option>
+              <option className="form-control" value="article" >Article</option>
+            </select>
+         </div>
+         <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
+            {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
 
-         
-          
-       </div>
-        <div className = "form-group">
-          <label htmlFor = "lastname" className = "col-sm-2 control-label">Parent</label>
-          <select className="col-sm-10" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
-       </div>
-      <div className="form-group">
-        <div className = "col-sm-offset-2 col-sm-10">
-          <button className="btn btn-primary btn-lg" >Update</button>
-        </div>
-      </div> 
-      <div className="form-group">
-        <div className = "col-sm-offset-2 col-sm-10">
-          <a className="btn btn-success btn-lg"  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId
-})}>Cancel</a>
-        </div>
-      </div>   
-    </form>
-  </div>
+           
+            
+         </div>
+          <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
+            <select className="col-sm-10" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
+         </div>
+        <div className="form-group">
+          <div className = "col-sm-offset-2 col-sm-10">
+            <button className="btn btn-success " >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_SAVE')}</button>
+            &nbsp;&nbsp;
+             <a className="btn btn-danger "  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId
+  })}>{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_CANCEL')}</a>
+          </div>
+        </div>  
+      </form>
+    </div>
 </div>
     )
   }

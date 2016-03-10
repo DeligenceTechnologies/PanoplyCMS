@@ -10,15 +10,22 @@ ListMenus = React.createClass({
     
     return (
       <div className="col-md-10 content">
-        <div className="panel-heading"><span className="lead"> Menu </span></div>
-        <div className="panel-heading"> <a  className="btn btn-success" href={FlowRouter.path('addMenu')} >Add Menus</a></div>
+        <Heading  data={i18n('ADMIN_MENU')} />
+        <div className="panel-heading"> 
+          <a  className="btn btn-success" href={FlowRouter.path('addMenu')} >
+            <i className="fa fa-plus-circle "></i>
+            {i18n('ADMIN_MENU_ADDMENU')}
+          </a>
+        </div>
         <div className="panel-body">
           <div className="table-responsive" id="non-editable">
-            <table className="table table-striped table-hover ">
+            <table className="table table-bordered">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Desc</th>
+                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
+                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
+                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DELETE')}</th>
+                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_EDIT')}</th>
                 </tr>
               </thead>
               <tbody>

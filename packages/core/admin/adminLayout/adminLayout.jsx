@@ -3,7 +3,8 @@ AdminLayout = React.createClass({
     
   },
   render() {
-    return (<div>
+    return (
+      <div>
        <AdminHeader />
        <div className="container-fluid main-container">
         <div className="col-md-2 sidebar">
@@ -13,18 +14,17 @@ AdminLayout = React.createClass({
               </div>  
           </div>
         </div> 
-       <div classNamee="col-md-10 content">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-        
-            </div>
-            <div className="panel-body">
+       <div className="col-md-10 content">
+          
+           
+          
                 {this.props.content}
-            </div>
-          </div>
+         
+         
         </div>
-        <AdminFooter />  
+          
       </div>
+      <AdminFooter />
     </div>
     );
   }

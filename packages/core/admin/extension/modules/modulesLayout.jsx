@@ -1,5 +1,3 @@
-/*---------------- MODULES LAYOUT ---------------*/
-
 ModulesLayout = React.createClass({
 
   // This mixin makes the getMeteorData method work
@@ -10,14 +8,10 @@ ModulesLayout = React.createClass({
       mod: Modules.find({trash:false},{sort:{createdAt:-1}}).fetch(),
     };
   },
-  componentDidMount: function() {
+  componentDidMount: function(){
     document.title = "Module Manager";
   },
-  submitModForm() {
-    FlowRouter.go("AddModules",{'type':'htmlBlock'});
-  },
-  insertSidebar() {
-  },
+  insertSidebar() {},
   renderModules() {
     return this.data.mod.map((module) => {
       return <ModuleListing key={module._id} module={module} />;
@@ -26,25 +20,16 @@ ModulesLayout = React.createClass({
   render() {
       return (
         <div className="col-md-10" id="container">
-        <div className="dropdown">
-          <button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
-            <span className="caret"></span>
-          </button>
-          <ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>HTML Block</a></li>
-            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'menuModule'})}>Menu Module</a></li>
-            <li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>Banner</a></li>
-          </ul>
-        </div>
+        <a href={FlowRouter.path("AddModules")} className="btn btn-success">{i18n('ADMIN_EXTENSION_MODULES_ADDHTMLBLOCKS')}</a>
         <table className="table table-striped" >
           <thead>
             <tr>
-              <th className="">Title</th>
-              <th className="">Position</th>
-              <th className="">Type</th>
-              <th className="">ID</th>
-        			<th className="">Update</th>
-        			<th className="">Remove</th>
+              <th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_TITLE')}</th>
+              <th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_HTML')}</th>
+              <th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_TYPE')}</th>
+              <th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_ID')}</th>
+        			<th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_UPDATE')}</th>
+        			<th className="">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_REMOVE')}</th>
             </tr>
           </thead>
           <tbody>{this.renderModules()}</tbody>
@@ -53,8 +38,6 @@ ModulesLayout = React.createClass({
       );
   }
 });
-
-/*---------------- MODULE LISTING ---------------*/
 
 ModuleListing = React.createClass({
   propTypes: {
@@ -67,15 +50,11 @@ ModuleListing = React.createClass({
     FlowRouter.go('EditModule',{_id:this.props.module._id});
   },
   render(){
+   
     return(
       <tr className="" >
-      <td className="hidden-phone">
-      <a href={FlowRouter.path('EditModule',{_id:this.props.module._id})}>
-        <large>{this.props.module.title}&nbsp;</large>
-        <small><em>({this.props.module.alias})</em></small>
-      </a>
-      </td>
-			<td className="hidden-phone">
+      <td className=" hidden-phone">{this.props.module.title}</td>
+			<td className=" hidden-phone">
 			   <span className="label label-info">{this.props.module.position}</span>
 			</td>
 			<td className="small hidden-phone">{this.props.module.modDesc.type}</td>
@@ -93,4 +72,7 @@ ModuleListing = React.createClass({
 		</tr>
     );
   }
+
 });
+
+

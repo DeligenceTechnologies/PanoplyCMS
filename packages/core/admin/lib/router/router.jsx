@@ -408,3 +408,22 @@ adminRoutes.route('/language', {
     
   }
 });
+
+/*-------------------------Extension/Language/language routing------------------------------------*/
+
+adminRoutes.route('/changePassword', {
+  name: 'changePassword',
+   subscriptions: function(params){
+    //this.register('Articles',Meteor.subscribe('articlesFind')) 
+  },
+  action: function(params) {
+     if (Meteor.userId()) {
+          ReactLayout.render(AdminLayout,{
+      content:<ChangePassword />
+      });
+   }else{
+     FlowRouter.go('Login');
+   }
+    
+  }
+});

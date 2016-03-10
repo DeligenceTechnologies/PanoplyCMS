@@ -30,6 +30,7 @@
               			<Usersettings />
             	</div>
             </div>
+
 		</div>
 	</nav>
 	)  	
@@ -60,10 +61,11 @@
 		if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
-		
+		console.log(this.data.results.url());
 		return( <div>
-  			<button type="button" className="btn btn-logged" data-toggle="dropdown">
-    			<img src={this.data.results?"/"+this.data.results.copies.images.key:''} alt="" />
+
+  			 <button type="button" className="btn btn-logged" data-toggle="dropdown">
+    			<span className="custom-span" >{Meteor.user().profile.username}</span><img src={this.data.results?this.data.results.url():''} alt="Cinque Terre" width="50" height="20" />
     				
     				<span className="caret"></span>
   			</button>
@@ -95,8 +97,9 @@ Logo=React.createClass({
 		
 		return( <div>
 			<a className="navbar-brand" href="#">
-			{this.data.results?this.data.results.name:''}
+			{this.data.results.name.length>10?this.data.results.name.substring(0,9)+'...':this.data.results.name}
 			</a>
+
 		</div>
 		)
 	}

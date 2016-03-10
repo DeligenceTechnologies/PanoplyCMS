@@ -12,7 +12,7 @@
 			desc:'',
 			alias:'',
 			icon:'fa fa-user',
-			param:[{label:'Edit',routeName:'edit',template:'EditUser',providers:''}]
+			param:[{label:'Edit',routeName:'edit',template:'EditUser',providers:''},{label:'Change Password',routeName:'changePassword',template:'ChangePassword',providers:''}]
 		},
 		{
 			title:'CONTENT',
@@ -60,7 +60,7 @@
 		
 	}
 	if(Sites.find().count() === 0){
-		Sites.insert({name:'PanoplyCMS'});
+		Sites.insert({name:'PanoplyCMS',siteMetaKeyword:'',siteMetaDesc:'',siteOffline:''});
 	}else{
 		
 	}

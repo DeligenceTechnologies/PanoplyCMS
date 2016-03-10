@@ -98,8 +98,9 @@ console.log('deleteMenuItem call')
       var m=this.listOfMenu();
     return (
       <div className="col-md-10 content">
-        <div className="panel-heading"><span className="lead"> Menu Items</span></div>
-        <div className="panel-heading"> <a  className="btn btn-success" href={FlowRouter.path('addMenuItem',{_id:FlowRouter.getParam("_id")})} >Add Menu Item</a></div>
+        <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
+        <div className="panel-heading"><span className="lead"></span></div>
+        <div className="panel-heading"> <a  className="btn btn-success" href={FlowRouter.path('addMenuItem',{_id:FlowRouter.getParam("_id")})} >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}</a></div>
         <Trvalue key={1} level={0} menus={m}/>
         </div>    
       

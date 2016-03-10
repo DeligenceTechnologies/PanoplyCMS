@@ -12,13 +12,12 @@ ListTags = React.createClass({
   },
   render() {
     return (<div>
-             <div className="panel panel-black">
-              <div className="panel-heading"><span className="lead"> {i18n('ADMIN_COMPONENTS_TAGS')} </span></div>
-              <a href={FlowRouter.path('addTag')} className="btn btn-success">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')}</a>
+             <div className="col-md-10 content">
+             <Heading  data={i18n('ADMIN_COMPONENTS_TAGS')} />
+              <a href={FlowRouter.path('addTag')} className="btn btn-success"><i className="fa fa-plus-circle "></i>{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')}</a>
               <div className="panel-body">
-                <div className="panel">
                   <div className="table-responsive" id="non-editable">
-                    <table className="table table-striped">
+                    <table className="table table-bordered">
                       <thead>
                         <tr>
                           <th>{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_TAGNAME')}</th>
@@ -35,7 +34,6 @@ ListTags = React.createClass({
                          
                       </tbody>
                     </table>
-                  </div>
                 </div>
               </div> 
             </div>

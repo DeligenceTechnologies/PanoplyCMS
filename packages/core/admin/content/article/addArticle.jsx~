@@ -9,11 +9,6 @@ AddArticle=React.createClass({
       tags:Tags.find({trash:false}).fetch()
     } 
   },
-	getInitialState(){
-	 return {
-			language:i18n.getLanguage()
-		}
-	},
 	componentDidMount: function(){
 		document.title = "Add Article"
 		tinymce.init({ selector: 'textarea' });  

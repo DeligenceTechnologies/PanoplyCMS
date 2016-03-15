@@ -13,18 +13,7 @@ body {
 		color: #555;
 }
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-weight: normal;
 		color: #333;
@@ -67,8 +56,7 @@ h6,
 		color: #cdddeb;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.nav-link:hover,.nav-link:focus {
 		color: #fff;
 		background-color: transparent;
 }
@@ -131,8 +119,8 @@ h6,
 /* Sidebar modules for boxing content */
 
 .sidebar-module {
-		padding: 1rem;
-		/*margin: 0 -1rem 1rem;*/
+		padding: 0.5rem;
+		margin: 0.2rem;
 }
 
 .sidebar-module-inset {
@@ -187,9 +175,9 @@ h6,
  */
 
 .blog-footer {
-		padding: 2.5rem 0;
+		padding: 0.5rem 0;
 		color: #999;
-		text-align: center;
+		/*text-align: center;*/
 		background-color: #f9f9f9;
 		border-top: .05rem solid #e5e5e5;
 }
@@ -199,7 +187,6 @@ h6,
 }
 
 .blog-sidebar {
-		/*background-color: #999;*/
 		border-radius: 9px;
 		border: #999 solid 1px;
 }

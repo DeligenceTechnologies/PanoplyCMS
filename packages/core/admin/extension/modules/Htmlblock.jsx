@@ -1,4 +1,14 @@
-Htmlblock = React.createClass({
+HtmlBlock = React.createClass({
+	componentDidMount: function(){
+		tinymce.init({
+			selector: '#editor1',
+			resize: 'both',
+			min_height: 250
+		});
+	},
+	getHTML(){
+		return tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).getContent().trim();
+	},
 	render(){
 		return(
 			<div className="form-group">

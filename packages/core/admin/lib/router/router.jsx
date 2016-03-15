@@ -58,9 +58,8 @@ adminRoutes.route('/settings', {
 	},
 	action: function(params) {
 		if (Meteor.userId()) {
-				ReactLayout.render(AdminLayout,{
-			content:<SystemLayout />
-			});
+				ReactLayout.render(AdminLayout,{content:<SystemLayout />}
+		);
 	 }
 	 else{
 			FlowRouter.go('Login');
@@ -122,11 +121,12 @@ adminRoutes.route('/modules/add/:type', {
 	name: 'AddModules',
 	subscriptions: function(params){
 		this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')) ,
-		this.register('Sites',Meteor.subscribe('siteName'))
+		this.register('Sites',Meteor.subscribe('siteName')),
+		this.register('Menus',Meteor.subscribe('menuList'))
 	},
 	action: function(params) {
 		// console.log(params.type,"<== console log");
-		ReactLayout.render(AdminLayout, {content:<AddModule type={_(params.type).capitalize()}/>});
+		ReactLayout.render(AdminLayout, {content:<AddModule type={params.type}/>});
 	},
 	triggersEnter: [function(context, redirect){ 
 		console.log() 
@@ -139,6 +139,7 @@ adminRoutes.route('/modules/edit/:_id', {
 		this.register('AdminSidebarMenu',Meteor.subscribe('sidebar')),
 		// this.register('AllModules',Meteor.subscribe('moduleList')),
 		this.register('Sites',Meteor.subscribe('siteName')),
+		this.register('Menus',Meteor.subscribe('menuList')),
 		this.register('editmodules',Meteor.subscribe('findAModule', params._id))
  },
  action: function(params) {

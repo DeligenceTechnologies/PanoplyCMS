@@ -13,9 +13,9 @@ ModulesLayout = React.createClass({
 	componentDidMount: function() {
 		document.title = "Module Manager";
 	},
-	submitModForm() {
+	/*submitModForm() {
 		FlowRouter.go("AddModules",{'type':'htmlBlock'});
-	},
+	},*/
 	insertSidebar() {
 	},
 	renderModules() {
@@ -24,33 +24,33 @@ ModulesLayout = React.createClass({
 		});
 	},
 	render() {
-			return (
-				<div className="col-md-10" id="container">
-				<div className="dropdown">
-					<button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
-						<span className="caret"></span>
-					</button>
-					<ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
-						<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'htmlBlock'})}>HTML Block</a></li>
-						<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'menuModule'})}>Menu Module</a></li>
-						<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'banners'})}>Banner</a></li>
-					</ul>
-				</div>
-				<table className="table table-striped" >
-					<thead>
-						<tr>
-							<th className="">Title</th>
-							<th className="">Position</th>
-							<th className="">Type</th>
-							<th className="">ID</th>
-							<th className="">Update</th>
-							<th className="">Remove</th>
-						</tr>
-					</thead>
-					<tbody>{this.renderModules()}</tbody>
-				</table>
-				</div>
-			);
+		return (
+			<div className="col-md-10" id="container">
+			<div className="dropdown">
+				<button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
+					<span className="caret"></span>
+				</button>
+				<ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
+					<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'HtmlBlock'})}>HTML Block</a></li>
+					<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'MenuModule'})}>Menu Module</a></li>
+					<li><a role="menuitem" tabIndex="-1" href={FlowRouter.path("AddModules",{'type':'Banners'})}>Banner</a></li>
+				</ul>
+			</div>
+			<table className="table table-striped" >
+				<thead>
+					<tr>
+						<th className="">Title</th>
+						<th className="">Position</th>
+						<th className="">Type</th>
+						<th className="">ID</th>
+						<th className="">Update</th>
+						<th className="">Remove</th>
+					</tr>
+				</thead>
+				<tbody>{this.renderModules()}</tbody>
+			</table>
+			</div>
+		);
 	}
 });
 

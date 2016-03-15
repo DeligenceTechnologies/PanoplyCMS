@@ -1,29 +1,31 @@
 AddModule = React.createClass({
+	
 	propTypes: {
 		type: React.PropTypes.string
 	},
 	insertSidebar() { },
 	componentDidMount: function(){
 		document.title = "Add Module";
-		tinymce.init({
-			selector: '#editor1',
-			resize: 'both',
-			min_height: 250,
-			image_advtab: true,
-			content_css: [
-				'//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-				'//www.tinymce.com/css/codepen.min.css'
-			]
-		});
 	},
 	handleSubmit(event) {
 		event.preventDefault();
+		// console.log(event.target.querySelector('[name="menu"]').value);
+
+		var modValue = '';
+		if (this.props.type == 'HtmlBlock') {
+			modValue = this.refs.htmlvalue.getHTML();
+		}
+		else if (this.props.type == 'MenuModule') {
+			// console.log(this.refs.whichmenu.getMenu(),"Buena Salud!!")
+			modValue =  this.refs.whichmenu.getMenu();
+		}
+
 		var insert = {
 			"title":ReactDOM.findDOMNode(this.refs.titleRaw).value.trim(),
 			"showTitle": $('input:radio[name=showTitle]:checked').val(),
 			"modDesc":{
-				"type":'htmlBlock',
-				"value": tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).getContent().trim(),
+				"type": this.props.type,
+				"value": modValue
 			},
 			"position": $(ReactDOM.findDOMNode(this.refs.position)).val(),
 			"menu": $(ReactDOM.findDOMNode(this.refs.menus)).val(),
@@ -31,9 +33,12 @@ AddModule = React.createClass({
 			"owner":'browser-user'
 		}
 
-		console.log($('input:radio[name=showTitle]:checked').val());
+		// console.log($('input:radio[name=showTitle]:checked').val());
 
-		Meteor.call("addModule", insert);
+		Meteor.call("addModule", insert, function(err,res){
+			// console.log(err,res)
+		});
+		FlowRouter.go('modulesManager');
 /*
 		ReactDOM.findDOMNode(this.refs.titleRaw).value = "";
 		tinyMCE.get(ReactDOM.findDOMNode(this.refs.htmlValue).id).setContent('');
@@ -41,11 +46,15 @@ AddModule = React.createClass({
 		ReactDOM.findDOMNode(this.refs.menus).value = "";
 		ReactDOM.findDOMNode(this.refs.publish).value = "";
 */
-		FlowRouter.go('modulesManager');
 	},
-	renderHBform(){
-		// console.log(this.props.type, "<= Calling from props");
-		return (
+/*	renderHBform(){
+		console.log(this.props.type, "<= Calling from props");
+		// let formType = this.props.type;
+		// let ModTemplate = window[this.props.type];
+		// return ModTemplate;
+
+		if (this.props.type == 'HtmlBlock') {
+			return(
 			<div className="form-group">
 				<label htmlFor="html" className="col-sm-1 control-label">HTML</label>
 				<div className="col-sm-11">
@@ -53,7 +62,18 @@ AddModule = React.createClass({
 				</div>
 			</div>
 		);
-	},
+		}
+		else if (this.props.type == 'MenuModule') {
+			return(
+			<div className="form-group">
+				<label htmlFor="html" className="col-sm-1 control-label">Select Menu</label>
+				<div className="col-sm-6"> 
+					<input name="abcd" type="text" placeholder="Kavish..."></input>
+				</div>
+			</div>
+		);
+		}
+	},*/
 	cancelSubmit(){
 		FlowRouter.go('modulesManager');
 	},
@@ -63,36 +83,36 @@ AddModule = React.createClass({
 				<span className="alert"> Add {this.props.type} </span>
 					<form id="non-editable" className="form-horizontal" role="form" >
 						<div className="form-group">
-							<label htmlFor="lastname" className="col-sm-1 control-label">Title</label>
+							<label htmlFor="title" className="col-sm-1 control-label">Title</label>
 							<div className="col-sm-5">
 								<input type="text" name="title" ref="titleRaw" id="title" className="form-control" required/>
 							</div>
-							<label htmlFor="lastname" className="col-sm-1 control-label">Show Title</label>
+							<label htmlFor="show-title" className="col-sm-1 control-label">Show Title</label>
 							<div className="col-sm-5">
 								<div className="btn-group" data-toggle="buttons">
 									<label className='active option btn btn-primary' ref="showTitleToggle" >
-										<input type="radio" className="form-control" name="showTitle" ref="showTitle" id="show" value="true" defaultChecked/>Show
+										<input type="radio" className="form-control" name="showTitle" ref="showTitle" id="show" value="true" defaultChecked/>Yes
 									</label>
 									<label className='option btn btn-primary' ref="showTitleToggle" >
-										<input type="radio" className="form-control" name="showTitle" ref="showTitle" id="hide" value="false" />Hide
+										<input type="radio" className="form-control" name="showTitle" ref="showTitle" id="hide" value="false" />No
 									</label>
 								</div>
 							</div>
 						</div>
-						{this.props.type == _('Htmlblock').capitalize()?this.renderHBform():''}            
-						{/*<Menumodule /> // {this.props.children}*/}
+						{/*this.renderHBform()*/}
+						{this.props.type == 'MenuModule'?<MenuModule ref="whichmenu"/>:<HtmlBlock ref="htmlvalue" />}
 						<div className="form-group">
 							<label htmlFor="position" className="col-sm-1 control-label">Position</label>
 							<div className="col-sm-11">
 								<select id="select_position" ref="position" name="position" className="form-control" >
-										<option value="">-- Select --</option>
-										<option value="home-page-head"> Home Page Header </option>
-										<option value="home-block-1">   Home Block 1     </option>
-										<option value="home-block-2">   Home Block 2     </option>
-										<option value="copyright">      Copyright Block  </option>
-										<option value="footer-1">       Footer Block1    </option>
-										<option value="footer-2">       Footer Block2    </option>
-										<option value="footer-3">       Footer Block3    </option>
+									<option value="">-- Select --</option>
+									<option value="nav-bar-menu">		Nav Bar Menu 		</option>
+									<option value="home-block-1">		Home Block 1		</option>
+									<option value="home-block-2">		Home Block 2		</option>
+									<option value="copyright">			Copyright Block	</option>
+									<option value="footer-1">				Footer Block1		</option>
+									<option value="footer-2">				Footer Block2		</option>
+									<option value="footer-3">				Footer Block3		</option>
 								</select>
 							</div>
 						</div>
@@ -111,8 +131,8 @@ AddModule = React.createClass({
 							<label htmlFor="" className="col-sm-1 control-label">Status</label>
 							<div className="col-sm-11">
 								<select id="select_publish" ref="publish" name="publish" defaultValue="true" className="form-control" >
-										<option value="true" > Published   </option>
-										<option value="false">Unpublished </option>
+									<option value="true" > Published   </option>
+									<option value="false">Unpublished </option>
 								</select>
 							</div>
 						</div>

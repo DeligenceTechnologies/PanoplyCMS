@@ -1,5 +1,4 @@
-AdminHeader=React.createClass({
-	
+AdminHeader=React.createClass({	
 	render(){
 		return(
 			<nav className="navbar navbar-default navbar-static-top">
@@ -20,9 +19,8 @@ AdminHeader=React.createClass({
 						</div>
 				</div>
 		</nav>
-		)  	
+		)
 	}
-	
 })
 
 Usersettings=React.createClass({
@@ -54,10 +52,10 @@ Usersettings=React.createClass({
 						<span className="caret"></span>
 				</button>
 				<ul className="dropdown-menu pull-right">
-							<li><a href="profile.html"><i className="fa fa-user"></i> My Profile</a></li>
-							<li><a href="#"><i className="fa fa-cog"></i> Account Settings</a></li>
-							<li><a href="#"><i className="fa fa-question-circle"></i> Help</a></li>
-							<li onClick={this.logout} ><a href=""><i  className="fa fa-sign-out"  ></i> Log Out</a></li>
+					<li><a href="profile.html"><i className="fa fa-user"></i> My Profile</a></li>
+					<li><a href="#"><i className="fa fa-cog"></i> Account Settings</a></li>
+					<li><a href="#"><i className="fa fa-question-circle"></i> Help</a></li>
+					<li onClick={this.logout} ><a href=""><i  className="fa fa-sign-out"  ></i> Log Out</a></li>
 				</ul>
 		</div>
 		)
@@ -80,7 +78,7 @@ Logo=React.createClass({
 		}
 		// console.log(this.data.results.name,'+++++++++++++++++++');
 		return( <div>
-			<a className="navbar-brand" href="#">
+			<a className="navbar-brand" href={FlowRouter.path('front-home')}>
 			{this.data.results?this.data.results.name:''}
 			</a>
 		</div>

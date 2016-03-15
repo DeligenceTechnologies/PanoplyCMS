@@ -38,6 +38,7 @@ Package.onUse(function(api) {
   api.use('cfs:s3');
   api.export("Sites");
   api.export("Modules");
+  api.export("MenuItems");
   /*--------------------------------Client------------------------------------- */
 
   api.addFiles('admin/styles/admin.css',['client'])
@@ -52,6 +53,10 @@ Package.onUse(function(api) {
 
   api.addFiles('admin/settings/settings.jsx',['client'])
   
+  api.addFiles('admin/content/category/addCategory.jsx',['client'])
+  api.addFiles('admin/content/category/editCategory.jsx',['client'])
+  api.addFiles('admin/content/category/listCategories.jsx',['client'])
+  
   api.addFiles('admin/content/article/addArticle.jsx',['client'])
   api.addFiles('admin/content/article/editArticle.jsx',['client'])
   api.addFiles('admin/content/article/listArticles.jsx',['client'])
@@ -62,10 +67,6 @@ Package.onUse(function(api) {
   api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
   api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
 
-  api.addFiles('admin/content/category/addCategory.jsx',['client'])
-  api.addFiles('admin/content/category/editCategory.jsx',['client'])
-  api.addFiles('admin/content/category/listCategories.jsx',['client'])
-
   /*--------------------------------Server------------------------------------- */
 
   api.addFiles([
@@ -73,6 +74,8 @@ Package.onUse(function(api) {
     'admin/server/settings.js',
     'admin/server/sidebar.js',
     'admin/server/startup.js',
+    'admin/server/menus.js',
+    'admin/server/menuItems.js',
     'admin/server/module.js',
     'admin/server/category.js',
     'admin/server/users.js'

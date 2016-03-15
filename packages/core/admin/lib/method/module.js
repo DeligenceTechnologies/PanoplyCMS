@@ -5,7 +5,9 @@ Meteor.methods({
 		insert.trash = false;
 		Modules.insert(insert);
 	},
-	editModule(select, update) {
+	editModule(select, update) {/*
+		debugger;
+		console.log(update.modDesc.type)*/
 		update.updatedAt = new Date();
 		update.alias = update.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
 		Modules.update(select, {$set: update});

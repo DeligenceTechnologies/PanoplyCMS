@@ -41,7 +41,7 @@ h1.page-header {margin-top: -5px;}
 .nav .fa { background-color: #F1F1F1;  padding: 7px 8px 8px 8px;  border-radius: 30px; width: 30px; height: 30px;  color: #2574ab;border: solid 1px #e7e7e7; margin-right: 5px;}
 .nav-tabs.nav-justified > li:last-child {border-right: none;}
 .navbar-form { margin:15px -15px;}
-.form-control {background-color: #2574ab;  border: none;  color: #fff !important; text-shadow: none; border-radius: 4px;}
+.form-control {border: none; text-shadow: none; border-radius: 4px;}
 .form-control:focus{box-shadow:none;}
 .navbar-left .btn-default {background-color: #2574ab;background-image: none; border: none;  margin-left: -4px!important; border-bottom-right-radius: 4px; border-top-right-radius: 4px;border-bottom-left-radius: 0px; border-top-left-radius: 0px;  height: 34px; text-shadow: none;color: #fff; box-shadow:none;}
 

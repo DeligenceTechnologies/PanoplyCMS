@@ -85,11 +85,11 @@ DefaultTemplate = React.createClass({
 						<nav className="nav blog-nav">
 							{this.renderNavMenu()}
 							{/*
-												 		<a className="nav-link active" href="#">Home</a>
-														<a className="nav-link" href="#">New features</a>
-														<a className="nav-link" href="#">Press</a>
-														<a className="nav-link" href="#">New hires</a>
-														<a className="nav-link" href="#">About</a>
+						 		<a className="nav-link active" href="#">Home</a>
+								<a className="nav-link" href="#">New features</a>
+								<a className="nav-link" href="#">Press</a>
+								<a className="nav-link" href="#">New hires</a>
+								<a className="nav-link" href="#">About</a>
 							*/}
 						</nav>
 					</div>

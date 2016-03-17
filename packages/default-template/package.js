@@ -37,8 +37,6 @@ Package.onUse(function(api) {
 	api.use('cfs:gridfs');
 	api.use('cfs:filesystem');
 	api.use('cfs:s3');
-	api.use('coniel:react-form-handler');
-	api.use('aldeed:simple-schema');
 
 	api.use("deligence:panoplycore");
 	api.use('thekavish:panoply-calc');
@@ -46,14 +44,16 @@ Package.onUse(function(api) {
 	/*Added files below*/
 
 	api.addFiles('client/default-template.jsx', ['client']);
-	api.addFiles('client/login.jsx', ['client']);
-	// api.addAssets('client/index.html', ['client']);
-	// api.addFiles('client/startup.jsx', ['client']);
+	
+	api.addFiles('client/homeLayouts/Header.jsx', ['client']);
+	api.addFiles('client/homeLayouts/SidePanel.jsx', ['client']);
+	api.addFiles('client/homeLayouts/Footer.jsx', ['client']);
+	api.addFiles('client/homeLayouts/Logo.jsx', ['client']);
+	// api.addFiles('client/RegisterationForm.jsx', ['client']);
+
 	api.addFiles('client/style.css', ['client']);
+	
+	api.addFiles('server/startup.js', ['server']);
 
 	api.addFiles('lib/router/router.jsx', ['client','server']);
-
-	// api.addFiles('server/users.js', ['server']);
-	// api.addFiles('server/sites.js', ['server']);
-	// api.addFiles('server/modules.js', ['server']);
-	});
+});

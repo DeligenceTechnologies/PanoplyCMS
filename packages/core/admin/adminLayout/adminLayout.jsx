@@ -15,7 +15,7 @@ AdminLayout = React.createClass({
 					</div>
 					<div className="col-md-10 content">
 						<div className="panel panel-default">
-							<div className="panel-heading">panel-heading
+							<div className="panel-heading">
 							</div>
 							<div className="panel-body">
 								{this.props.content}

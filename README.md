@@ -3,26 +3,19 @@ PanoplyCMS is opensource CMS based on Meteor Framework. In current version it pr
 
 ## Installation
 - Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine
-- Go to folder location through terminal or command prompt
+- Go to folder location through your terminal or command prompt
 - Type: meteor and hit enter. Please wait for server to get start. It will automatically install all dependencies and will start running
-- Once it start running goto you browser ant type: http://localhost:3000
-- Thats it! You have installed PanoplyCMS on your system successfully
+- Once it starts running go to http://localhost:3000 from your browser.
+- Thats it! You have installed PanoplyCMS on your system successfully and it is up and running.
 
 Frontend Link: http://localhost:3000
 Backend Link: http://localhost:3000/admin
 
 Initial Login Credentials on Backend:
     email: 'info@deligence.com'
-    password: 'y!A;4)'
+    password: 'Pass@123'
 
 Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
-
-## Demo
-- Frontend: http://panoplycms.meteor.com
-- Backend: http://panoplycms.meteor.com/admin
-- Backend Login Details
-	-- Email: info@deligence.com
-	-- Password: BkX5cS
 
 ## Features
 - Single Admin

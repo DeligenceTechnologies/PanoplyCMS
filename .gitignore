@@ -44,3 +44,6 @@ Temporary Items
 
 # Compression Files
 *.zip
+*.rar
+
+packages/panoply-calc/.travis.yml

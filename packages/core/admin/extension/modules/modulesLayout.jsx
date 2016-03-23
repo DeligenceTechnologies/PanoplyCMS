@@ -25,7 +25,7 @@ ModulesLayout = React.createClass({
 	},
 	render() {
 		return (
-			<div className="col-md-10" id="container">
+			<div className="col-md-12" id="container">
 			<div className="dropdown">
 				<button className="btn btn-success  dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add Module&nbsp;
 					<span className="caret"></span>

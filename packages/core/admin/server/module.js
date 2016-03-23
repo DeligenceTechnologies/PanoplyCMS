@@ -1,8 +1,13 @@
 Meteor.publish('moduleList', function(){
-
-	return Modules.find({});
+	var data = Modules.find({});
+	if (data) {
+		return data;
+	}
 });
 Meteor.publish('findAModule', function(id){
-
-	return Modules.find({_id:id});
+	check(id, String);
+	var data = Modules.find({_id:id});
+	if (data) {
+		return data;
+	}
 });

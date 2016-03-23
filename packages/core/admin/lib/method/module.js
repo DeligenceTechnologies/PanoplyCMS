@@ -11,7 +11,7 @@ Meteor.methods({
 		Modules.update(select, {$set: update});
 	},
 	removeModule(modId) {
-		Modules.update(modId,{$set:{"trash":true}});
+		Modules.update(modId,{$set:{"trash":1}});
 	}
 });
 _.mixin({

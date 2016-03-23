@@ -42,6 +42,7 @@ Package.onUse(function(api) {
   /*--------------------------------Client------------------------------------- */
 
   api.addFiles('admin/styles/admin.css',['client'])
+  api.addFiles('admin/styles/theme-default.min.css',['client'])
 
   api.addFiles('admin/login/login.jsx',['client'])
   api.addFiles('admin/login/adminEdit.jsx',['client'])
@@ -66,6 +67,9 @@ Package.onUse(function(api) {
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])
   api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
   api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
+  
+  api.addAssets('admin/client/head.html',['client'])
+  api.addFiles('admin/client/compatibility/jquery.form-validator.min.js',['client'])
 
   /*--------------------------------Server------------------------------------- */
 

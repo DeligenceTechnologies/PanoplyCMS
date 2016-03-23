@@ -12,17 +12,3 @@ FlowRouter.route('/', {
 		// console.log('Welcome to Panoply CMS!');
 	}]
 });
-
-/*--------------------------Login Routing--------------------------*/
-FlowRouter.route('/login', {
-	name: 'login',
-	subscriptions: function(params){
-
-	},
-	action: function(params) {
-		if (Meteor.userId()) {
-			FlowRouter.go('front-home');
-		}
-		else ReactLayout.render(FLogin);
-	}
-});

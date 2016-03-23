@@ -37,3 +37,4 @@ cfs:s3                     # Amazon Web Services S3 storage adapter for Collecti
 rosh93:dataset-filter      # Reactive filtering for client-side data powered by twitter typeahead.js bloodhou
 aldeed:simple-schema       # A simple schema validation object with reactivity. Used by collection2 and autoform.
 coniel:react-form-handler  # React form validation using aldeed:simple-schema
+mdg:validation-error@0.2.0       # A standard validation error to be used by form/method/validation packages

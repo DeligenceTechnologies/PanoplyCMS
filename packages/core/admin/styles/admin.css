@@ -363,3 +363,12 @@ h1.page-header {margin-top: -5px;}
 .form-control{
   width: inherit !important;
 }
+
+#error-dialog {
+	display: none;
+	background-color: #f2dede;
+	padding: 15px;
+	margin-bottom: 20px;
+	border: #b94a48 1px solid;
+	border-radius: 4px;
+}

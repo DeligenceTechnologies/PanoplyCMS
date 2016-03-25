@@ -17,7 +17,6 @@ jquery                     # Helpful client-side library
 tracker                    # Meteor's client-side reactive programming library
 check                      # Check whether a value matches a pattern
 audit-argument-checks      # Try to detect inadequate input sanitization
-
 standard-minifiers         # JS/CSS minifiers run for production mode
 es5-shim                   # ECMAScript 5 compatibility for older browsers.
 ecmascript                 # Enable ECMAScript2015+ syntax in app code
@@ -26,7 +25,6 @@ accounts-password          # Password support for accounts
 react                      # Everything you need to use React with Meteor.
 kadira:flow-router         # Carefully Designed Client Side Router for Meteor
 kadira:react-layout        # Layout Manager for React with SSR Support
-
 twbs:bootstrap             # The most popular front-end framework for developing responsive, mobile first projects on the web.
 fortawesome:fontawesome    # Font Awesome (official): 500+ scalable vector icons, customizable via CSS
 teamon:tinymce             # TinyMCE editor
@@ -34,7 +32,11 @@ cfs:standard-packages      # Filesystem for Meteor, collectionFS
 cfs:gridfs                 # GridFS storage adapter for CollectionFS
 cfs:filesystem             # Filesystem storage adapter for CollectionFS
 cfs:s3                     # Amazon Web Services S3 storage adapter for CollectionFS
-rosh93:dataset-filter      # Reactive filtering for client-side data powered by twitter typeahead.js bloodhou
+rosh93:dataset-filter      # Reactive filtering for client-side data powered by twitter typeahead.js bloodhound
+ajduke:bootstrap-tokenfield
 aldeed:simple-schema       # A simple schema validation object with reactivity. Used by collection2 and autoform.
 coniel:react-form-handler  # React form validation using aldeed:simple-schema
 mdg:validation-error@0.2.0       # A standard validation error to be used by form/method/validation packages
+mizzao:autocomplete
+mizzao:jquery-ui
+anti:i18n

@@ -11,14 +11,14 @@ Meteor.methods({
 			createdAt: new Date(),
 			updateAt: '',
             status:1,
-            trash:0,
+            trash:false,
 			owner: '',
 	      	username: ''
 
 		})
 	},
 	deleteArticle:function(id){
-		Articles.remove({_id:id});
+		Articles.update({_id:id},{$set:{trash:true}});
 	},
 	editArticle:function(id,title,alias,category,tags,article,metaKeyword,metaDescription){
 		return Articles.update({_id:id},{$set:{
@@ -31,7 +31,7 @@ Meteor.methods({
 			metaDescription:metaDescription,
 			updateAt: new Date(),
             status:1,
-            trash:0,
+            trash:false,
 			owner: '',
 	      	username: ''
 

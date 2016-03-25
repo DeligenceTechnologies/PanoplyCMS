@@ -1,6 +1,5 @@
 Meteor.publish('articlesFind', function(){
-	
-	return Articles.find({});
+	return Articles.find({trash:false});
 });
 Meteor.publish('findOneArticle', function(id){
 	return Articles.find({_id:id});

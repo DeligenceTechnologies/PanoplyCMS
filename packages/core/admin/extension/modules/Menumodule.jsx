@@ -27,14 +27,14 @@ MenuModule = React.createClass({
 	render(){
 		return(
 			<div className="form-group">
-				<label htmlFor="html" className="col-sm-1 control-label">Select Menu</label>
+				<label htmlFor="menu" className="col-sm-1 control-label">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_SELECT_MENU')}</label>
 				<div className="col-sm-5">
 					<select id="select_menu" name="select-menu" ref="menu" className="form-control" >
 						<option value="">-- None --</option>
 						{this.renderMenuList()}
 					</select>
-				</div>{/*FlowRouter.getRouteName()*/}
-				<label htmlFor="menu-level" className="col-sm-1 control-label">Show levels upto</label>
+				</div>
+				<label htmlFor="menulevels" className="col-sm-1 control-label">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_SHOW_LEVELS')}</label>
 				<div className="col-sm-5">
 					<input type="text" name="menulevel" ref="menulevel" id="menulevel" className="form-control" defaultValue="1"/>
 				</div>

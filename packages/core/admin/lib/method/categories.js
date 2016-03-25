@@ -1,12 +1,12 @@
 Meteor.methods({
 delete_category: function(id){
-	console.log(id,'--->')
-	    Categories.update({_id:id},{$set:{trash:1}});
+	
+	    Categories.update({_id:id},{$set:{trash:true}});
 },
 update_category: function(id,categoryname,aliasname){
 	    Categories.update({_id:id}, {
 			$set: {
-				name:categoryname,
+				title:categoryname,
 				alias:aliasname,
 				updateAt:new Date()
 			}
@@ -19,7 +19,7 @@ add_category: function(categoryname,aliasname){ console.log('add_category',categ
 			createdAt: new Date(),
 			updateAt: '',
             status:1,
-            trash:0,
+            trash:false,
 			owner: '',
 	      	username: ''
 		});

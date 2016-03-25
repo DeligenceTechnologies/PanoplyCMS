@@ -1,8 +1,19 @@
-Sites = new Mongo.Collection('site');
-Sidebars = new Mongo.Collection('sidebars');
-AdminSidebarMenu = new Mongo.Collection('adminSidebarMenu');
-Articles = new Mongo.Collection('articles');
-Modules = new Mongo.Collection('modules');
-Categories = new Mongo.Collection('categories');
-Menus = new Mongo.Collection('menus');
-MenuItems = new Mongo.Collection('menuItems');
+Sites = new Meteor.Collection('site');
+
+Sidebars=new Meteor.Collection('sidebars');
+
+AdminSidebarMenu = new Meteor.Collection('adminSidebarMenu');
+
+Articles = new Meteor.Collection('articles');
+
+Modules = new Meteor.Collection('modules');
+
+Categories = new Meteor.Collection('categories');
+
+Menus = new Meteor.Collection('menus');
+
+MenuItems=new Meteor.Collection('menuItems');
+
+Tags=new Meteor.Collection('tags');
+
+Search=new Meteor.Collection('search');

@@ -4,10 +4,9 @@ AdminFooter=React.createClass({
 		<footer className="pull-left ">
 			<div className="col-md-12">
 				<hr className="divider"/>
-				Copyright &copy; 2015 <a href="#">Deligence</a>
+				{i18n('ADMIN_FOOTER_COPYRIGHT')} &copy; 2015 <a href="#">{i18n('ADMIN_FOOTER_DELIGENCE')}</a>
 			</div>
-  		</footer>
+		</footer>
 		)
 	}
-
 })

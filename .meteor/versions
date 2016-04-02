@@ -43,7 +43,8 @@ ddp-client@1.2.1
 ddp-common@1.2.2
 ddp-rate-limiter@1.0.0
 ddp-server@1.2.2
-deligence:panoplycore@0.0.1
+deligence1:panoplycms-collections@0.0.1
+deligence1:panoplycms-core@0.0.1
 deps@1.0.9
 diff-sequence@1.0.1
 ecmascript@0.1.6
@@ -70,6 +71,7 @@ localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.10
 meteor-base@1.0.1
+meteorhacks:subs-manager@1.1.0
 minifiers@1.1.7
 minimongo@1.0.10
 mizzao:autocomplete@0.5.1
@@ -109,6 +111,7 @@ standard-minifiers@1.0.2
 teamon:tinymce@4.3.3_3
 templating@1.1.5
 templating-tools@1.0.0
+themeteorchef:jquery-validation@1.0.0
 tracker@1.0.9
 twbs:bootstrap@3.3.6
 ui@1.0.8

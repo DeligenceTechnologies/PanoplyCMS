@@ -16,14 +16,14 @@ AddArticle=React.createClass({
 	},
 	componentDidMount: function(){
 		document.title = "Add Article"
-		tinymce.init({ selector: 'textarea' });  
+		//tinymce.init({ selector: 'textarea#editor1' });  
 	},
 	componentWillUnmount: function() {
 		
 	},
 	componentDidUpdate: function() {
 
-	    tinymce.init({ selector: 'textarea' });
+	    //tinymce.init({ selector: 'textarea' });
       var sourceData=[];
       
     _.each(this.data.tags,function(a){
@@ -101,7 +101,7 @@ AddArticle=React.createClass({
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
               <div className = "col-sm-10">
                 <div className="summernote">
-                  <textarea ref="editor1"></textarea>
+                  <textarea id="editor1" ref="editor1"></textarea>
                 </div>
               </div>
             </div>

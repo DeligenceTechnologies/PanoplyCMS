@@ -19,8 +19,6 @@ EditUser = React.createClass({
     }
   },
   componentDidUpdate(){
-    console.log($("#userEditForm"),'$("#userEditForm")')
-    
     this.state.valid=$("#userEditForm").validate({
        rules: {
            email: {

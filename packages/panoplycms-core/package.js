@@ -41,7 +41,7 @@ Package.onUse(function(api) {
   api.use('ajduke:bootstrap-tokenfield');
   api.use('anti:i18n');
   api.use('themeteorchef:jquery-validation');
-
+  api.use('arillo:flow-router-helpers');
   api.use('deligence1:panoplycms-collections')
   // api.use('deligence1:panoplycms-router')
   
@@ -61,7 +61,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/content/article/listArticles.jsx',['client'])
   api.addFiles('admin/content/article/language.js',['client'])
   api.addFiles('admin/login/login.jsx',['client'])
-  
+
   api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
   api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
   api.addFiles('admin/extension/modules/addModule.jsx',['client'])

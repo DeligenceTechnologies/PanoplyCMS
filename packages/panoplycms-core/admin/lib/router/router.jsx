@@ -2,14 +2,14 @@ PanoplyRouter = FlowRouter;
 PanoplyRouter.wait();
 
 _.extend(PanoplyRouter, {
-  init: function(){
-    Tracker.autorun(function (c) {
+  init: () => {
+    Tracker.autorun( (c) => {
       if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
         packages = PanoplyCMSCollections.RegisteredPackages.find().fetch()
 
         menuItems = PanoplyCMSCollections.MenuItems.find({trash:false}).fetch()
 
-        _.each(menuItems, function(i){
+        menuItems.forEach( (i) => {
           let route = {
             action: (params, queryParams) => {
               renderLayout(null,null,params, queryParams)
@@ -21,23 +21,24 @@ _.extend(PanoplyRouter, {
         let admin = PanoplyRouter.group({
           name: "admin",
           prefix: '/admin',
-          triggersEnter: [function(context, redirect){
+          triggersEnter: [ (context, redirect) => {
             if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
               console.log('Access Denied')
               redirect('login');
             }
           }]
         });
+
         admin.route('/', {
-          action: function(params) {
+          action: (params) => {
             FlowRouter.go('dashboard');
           }
         });
 
         // if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
           /* Create Admin Route Group */
-          _.each(packages, function(p){
-            _.each(p.routes, function(r){
+          packages.forEach( (p) => {
+            p.routes.forEach( (r) => {
               let route = {
                 name: r.name,
                 layout : r.layout,
@@ -72,7 +73,7 @@ _.extend(PanoplyRouter, {
 });
 
 if(Meteor.isClient){
-  Meteor.startup(function(){
+  Meteor.startup(() => {
     PanoplyRouter.init();
   })
 }

@@ -1,6 +1,7 @@
 ListArticles = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
+     Meteor.subscribe('articlesFind');
     return {
       results: PanoplyCMSCollections.Articles.find().fetch()
     } 

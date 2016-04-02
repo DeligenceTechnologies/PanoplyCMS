@@ -11,19 +11,21 @@ AddArticle=React.createClass({
   },
 	getInitialState(){
 	 return {
-			language:i18n.getLanguage()
+			language:i18n.getLanguage(),
+      msg:'',
+      valid:''
 		}
 	},
 	componentDidMount: function(){
 		document.title = "Add Article"
-		tinymce.init({ selector: 'textarea#editor1' });  
+		tinymce.init({ selector: 'textarea' });  
 	},
 	componentWillUnmount: function() {
 		
 	},
 	componentDidUpdate: function() {
 
-	    //tinymce.init({ selector: 'textarea' });
+	    tinymce.init({ selector: 'textarea' });
       var sourceData=[];
       
     _.each(this.data.tags,function(a){
@@ -37,28 +39,31 @@ AddArticle=React.createClass({
         },
         showAutocompleteOnFocus: true
       })
+
 	},
 	submitData(event){
 		event.preventDefault();
     
     	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
-    	var alias=ReactDOM.findDOMNode(this.refs.alias).value.trim();
+    	
     	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
     	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
     	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent();
     	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
     	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
       tagAry=tags.split(',');
+      that=this;
       console.log(tagAry)
       for(i=0;i<tagAry.length;i++){
          Meteor.call('addTagExt',tagAry[i]);
       }
       
-    	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,function(err,data){
+    	Meteor.call('addArticles',title,category,tags,article,metaKeyword,metaDescription,function(err,data){
     		if(err)
     			console.log(err);
     		else{
     			FlowRouter.go('articles');
+          //that.setState({msg : true})
         }
       
     	});
@@ -70,6 +75,7 @@ AddArticle=React.createClass({
 		return (
 			 <div className="col-md-10 content">
        <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} />
+       {this.state.msg?<AlertMessage data={'Successfully added article.'}/>:''}
         <div className="panel-body">
         <div id="notification"></div>
           <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
@@ -101,7 +107,7 @@ AddArticle=React.createClass({
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
               <div className = "col-sm-10">
                 <div className="summernote">
-                  <textarea id="editor1" ref="editor1"></textarea>
+                  <textarea ref="editor1"></textarea>
                 </div>
               </div>
             </div>

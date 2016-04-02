@@ -16,7 +16,7 @@ AddArticle=React.createClass({
 	},
 	componentDidMount: function(){
 		document.title = "Add Article"
-		//tinymce.init({ selector: 'textarea#editor1' });  
+		tinymce.init({ selector: 'textarea#editor1' });  
 	},
 	componentWillUnmount: function() {
 		

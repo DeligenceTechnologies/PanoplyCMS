@@ -3,15 +3,15 @@ Template.addHtmlblocks.rendered= function(){
 }
 Template.addHtmlblocks.events({
   'submit form': function(event){
-       event.preventDefault();
-       var sub_menus=new Array();
-       var title=$('#title').val();
-       var html_block=$('textarea').val();
-        var position=$("#select_position option:selected").val();
-        $.each($("input[name='checkbox']:checked"), function(){            
-            sub_menus.push($(this).val());
-        });
-       if(html_block && position && sub_menus[0]){ 
+      event.preventDefault();
+      var sub_menus=new Array();
+      var title=$('#title').val();
+      var html_block=$('textarea').val();
+      var position=$("#select_position option:selected").val();
+      $.each($("input[type='checkbox']:checked"), function(){
+        sub_menus.push($(this).val());
+      });
+       if(html_block && position && sub_menus.length){ 
             Meteor.call('add_htmlblocks',title,html_block,position,sub_menus,function(err,data){
               if(err){
                  $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Htmlblocks not saved.</div>');

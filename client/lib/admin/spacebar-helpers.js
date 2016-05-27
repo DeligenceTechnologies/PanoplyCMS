@@ -96,14 +96,14 @@ UI.registerHelper('listCheckMenu', function(menus) {
 
     menuArr.forEach(function (menu) {
       list += '<li';
-      list += '><input type="checkbox" name="checkbox"> ';
+      list += '><input type="checkbox" name="checkbox" ';
       if(submenu){
         level++;
       }
       for(let i=0; i<level;i++){
         list += '- ';
       }
-      list += menu.title + '</li>';
+      list += 'value="' + menu.title + '" > ' + menu.title + '</li>';
       if(menu.child){
         list += getElem(menu.child, menu.alias);
       }

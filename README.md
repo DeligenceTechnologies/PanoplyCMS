@@ -18,11 +18,11 @@ Initial Login Credentials on Backend:
 Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
 
 # Demo
-- Frontend: http://panoplycms.meteor.com
-- Backend: http://panoplycms.meteor.com/admin
+- Frontend: http://107.170.113.66:3000/
+- Backend: http://107.170.113.66:3000/admin
 - Backend Login Details
 	-- Email: info@deligence.com
-	-- Password: BkX5cS
+	-- Password: y!A;4)
 
 # Features
 - Single Admin

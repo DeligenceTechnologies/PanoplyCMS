@@ -8,14 +8,10 @@ Template.editHtmlblocks.events({
        var title=$('#title').val();
        var html_block=$('textarea').val();
        var position=$("#select_position option:selected").val();
-        $.each($("input[name='checkbox']:checked"), function(){ 
-          if($(this).val()=='on') 
-            sub_menus.push('');
-          else
-            sub_menus.push($(this).val());
+        $.each($("input[type='checkbox']:checked"), function(){
+          sub_menus.push($(this).val());
         });
-  
-      if( title && html_block && position &&  sub_menus[0]){
+      if( title && html_block && position &&  sub_menus.length){
         Meteor.call('update_htmlblocks',Router.current().params._id,title,html_block,position,sub_menus,function(err){
           if(err){
                $("#notification").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>Error!</strong> Alias are already exist.</div>');

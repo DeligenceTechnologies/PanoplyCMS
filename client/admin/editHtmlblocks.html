@@ -34,7 +34,7 @@
           <div class = "form-group">
             <label  class = "col-sm-2 control-label">Menu</label>
             <div class = "col-sm-10">
-               <ul><li><input type="checkbox" name="checkbox" checked="{{set_checked ''}}" value="" >Home</li>
+               <ul><li><input type="checkbox" name="checkbox" checked="{{set_checked ''}}" >Home</li>
                 {{#each list_of_menus_of_category}}
                   <li><input type="checkbox" name="checkbox" id={{title}} value="{{alias}}" checked="{{set_checked alias}}" >{{title}}</li>
                 {{/each}}

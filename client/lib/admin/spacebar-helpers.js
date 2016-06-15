@@ -24,7 +24,7 @@ UI.registerHelper('listOfMenus', function(menus){
       list += ' <large>' + menu.title + '</large> <small> (<em>Alias:' + menu.alias + '</em>) </small></td>';
       list += '<td>' + menu.menuItem.type + '</td>';
       list += '<td id="delete_menu"><div  id="' + menu._id + '" class="delete_btn "><i class="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> Delete</div></td>';
-      list += '<td id="edit_menu"><div  class="edit_btn"  id="' + menu._id + '"> <i class="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i> Edit</div></td>';
+      list += '<td id="edit_menu"><div  class="edit_btn"  id="' + menu._id + '"> <i class="fa fa-pencil-square-o" id="' + menu._id + '" data-toggle="tooltip" title="Edit"></i> Edit</div></td>';
       
       list += '</tr>';
       if(menu.child){

@@ -11,7 +11,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.2.1');
+  api.versionsFrom('1.3.3.1');
   api.use('ecmascript');
   api.use("mongo");
   api.use("mobile-experience");
@@ -43,7 +43,7 @@ Package.onUse(function(api) {
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
   api.use('deligence1:panoplycms-collections')
-  // api.use('deligence1:panoplycms-router')
+  api.use('deligence1:panoplycms-router')
   
   /*--------------------------------Client------------------------------------- */
 

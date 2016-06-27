@@ -2,6 +2,11 @@ SystemLayout = React.createClass({
   handleChange: function(event) {
     this.setState({name: event.target.value});
   },
+  getInitialState(){
+    return{
+      successMsg:false
+    }
+  },
   mixins:[ReactMeteorData],
     getMeteorData(){
        
@@ -22,12 +27,12 @@ SystemLayout = React.createClass({
   },
   componentDidMount(){
     console.log($('.successMsg'));
-    $('.successMsg').hide();
+    //$('.successMsg').hide();
 
   },
   submitForm(event){
   	event.preventDefault();
-    
+    that=this;
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
     var siteOffline=$('input[name="options"]:checked').val()
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();
@@ -38,11 +43,15 @@ SystemLayout = React.createClass({
         console.log(err);
       else{
         console.log(data,$('.successMsg'));
-        $('.successMsg').show();
+        $('.successMsg').alert();
+        that.setState({'successMsg':true})
       }
         
     });
     
+  },
+  resetSuccessMsg(){
+    this.setState({'successMsg':false})
   },
   restrictLength(event){
     
@@ -51,21 +60,21 @@ SystemLayout = React.createClass({
     }
   },
   render() {
-    // if (this.data.pageLoading) {
-    //   return <LoadingSpinner />;
-    // }
+    /*if (this.data.pageLoading) {
+      return <LoadingSpinner />;
+    }*/
+    if (this.state.successMsg) {
+      msg= <AlertMsg />;
+    }else{
+      msg='';
+    }
     return (
       <div>
         <Heading data={i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION')} />
-        <div className="successMsg alert alert-success alert-dismissible" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        <strong>Successfully! </strong>
-          Update the website settings.
-        </div>
-        <div>
-          <form className = "form-horizontal" onSubmit={this.submitForm} >
+        {msg}
+        
+        <div onClick={this.resetSuccessMsg}>
+          <form className = "form-horizontal"  onSubmit={this.submitForm} >
             <div className="form-group">
                <label className="col-sm-2 control-label">{i18n('ADMIN_SETTINGS_NAME')}</label>
                <div className="col-sm-10">
@@ -115,5 +124,17 @@ SystemLayout = React.createClass({
 LoadingSpinner=React.createClass({
   render:function(){
     return <div>Loading....</div>
+  }
+})
+
+AlertMsg=React.createClass({
+  render:function(){
+    return <div className="successMsg alert alert-success alert-dismissible" role="alert">
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <strong>Successfully! </strong>
+          Update the website settings.
+        </div>
   }
 })

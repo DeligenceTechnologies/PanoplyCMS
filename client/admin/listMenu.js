@@ -29,12 +29,16 @@ Template.listMenu.helpers({
     },
     list_of_menu: function () {
       elements = menus.find({status:1,trash:0}).fetch();
+      console.log(menus.find({status:1,trash:0}).fetch(),'elemnts')
       length= Router.current().url.split('/').length;
       if(Router.current().url.split('/')[length-1]!=undefined){ 
+          console.log(1);
             var x=Router.current().url.split('/')[length-1];
             var x=(x-1)*10;
              elements = menus.find({status:1,trash:0},{skip:x,limit:10}).fetch();
+             console.log(x,'x',menus.find({status:1,trash:0},{skip:x,limit:10}).fetch())
         }else{
+            console.log(2);
               elements = menus.find({status:1,trash:0},{skip:0,limit:10}).fetch();
         }
 
@@ -70,7 +74,7 @@ Template.listMenu.helpers({
        });
        return child;
       }
-
+      console.log(getElements(),'getelements..');
       return getElements();
     },
     list_of_articles: function () {

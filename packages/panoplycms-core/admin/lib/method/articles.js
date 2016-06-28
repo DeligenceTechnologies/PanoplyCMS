@@ -1,7 +1,8 @@
 Meteor.methods({
-	addArticles: function(title,category,tags,article,metaKeyword,metaDescription){
+	addArticles: function(title,aliasname,category,tags,article,metaKeyword,metaDescription){
 		return PanoplyCMSCollections.Articles.insert({
 			title:title,
+			alias: aliasname,
 			category:category,
 			tags:tags,
 			article:article,

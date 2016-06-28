@@ -2,12 +2,12 @@ FrontFooter = React.createClass({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
-			rightPosMods: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"home-block-2"}]}, {sort:{createdAt:1}}).fetch(),
-			leftFooterPosMods: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-1"}]}, {sort:{createdAt:1}}).fetch(),
+			rightPosMods: PanoplyCMSCollections.Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"home-block-2"}]}, {sort:{createdAt:1}}).fetch(),
+			leftFooterPosMods: PanoplyCMSCollections.Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-1"}]}, {sort:{createdAt:1}}).fetch(),
 			// leftFotrModCount: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-1"}]}).count(),
-			midFooterPosMods: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-2"}]}, {sort:{createdAt:1}}).fetch(),
+			midFooterPosMods: PanoplyCMSCollections.Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-2"}]}, {sort:{createdAt:1}}).fetch(),
 			// midFotrModCount: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-2"}]}).count(),
-			rightFooterPosMods: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-3"}]}, {sort:{createdAt:1}}).fetch(),
+			rightFooterPosMods: PanoplyCMSCollections.Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-3"}]}, {sort:{createdAt:1}}).fetch(),
 			// rightFotrModCount: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"footer-3"}]}).count()
 		};
 	},

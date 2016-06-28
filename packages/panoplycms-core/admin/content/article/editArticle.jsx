@@ -13,10 +13,10 @@ EditArticle=React.createClass({
   },
 	componentDidMount: function(){
 		document.title = "Edit Article";
-		tinymce.init({ selector: 'textarea' });
+		tinymce.init({ selector: 'editor1' });
 	},
 	componentWillUnmount: function() {
-		
+		tinymce.init({ selector: 'editor1' });
 	},
 	componentDidUpdate: function() {
 	    tinymce.init({ selector: 'textarea' });
@@ -37,12 +37,13 @@ EditArticle=React.createClass({
 	submitData(event){
 		event.preventDefault();
     	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
-    	var alias=ReactDOM.findDOMNode(this.refs.alias).value.trim();
+    	var alias= generateAlias(title);
     	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
     	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
     	var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
     	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
     	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
+
     	Meteor.call('editArticle',FlowRouter.getParam("_id"),title,alias,category,tags,article,metaKeyword,metaDescription,function(err,data){
     		if(err)
     			console.log(err);
@@ -65,6 +66,8 @@ EditArticle=React.createClass({
                 <label  htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
                 <div className = "col-sm-10">
                   <input type = "text" id="title" ref="title" className = "form-control"  placeholder = "Enter title" defaultValue={this.data.results.title} required/>
+{/*                   <input type = "hidden" id="title" ref="alias" className = "form-control"  placeholder = "alias" defaultValue={this.data.results.alias} required/>
+            */} 
                 </div>
               </div>
               <div className = "form-group">

@@ -18,14 +18,14 @@ AddArticle=React.createClass({
 	},
 	componentDidMount: function(){
 		document.title = "Add Article"
-		tinymce.init({ selector: 'textarea' });  
+tinymce.init({ selector: '#editor1' });
 	},
 	componentWillUnmount: function() {
 		
 	},
 	componentDidUpdate: function() {
 
-	    tinymce.init({ selector: 'textarea' });
+	  tinymce.init({ selector: '#editor1' });
       var sourceData=[];
       
     _.each(this.data.tags,function(a){
@@ -45,20 +45,22 @@ AddArticle=React.createClass({
 		event.preventDefault();
     
     	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
-    	
+    	var alias = generateAlias(title);
     	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
     	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
-    	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent();
+      var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
+  //	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+    //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
     	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
     	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
       tagAry=tags.split(',');
       that=this;
-      console.log(tagAry)
+      console.log(article)
       for(i=0;i<tagAry.length;i++){
          Meteor.call('addTagExt',tagAry[i]);
       }
       
-    	Meteor.call('addArticles',title,category,tags,article,metaKeyword,metaDescription,function(err,data){
+    	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,function(err,data){
     		if(err)
     			console.log(err);
     		else{
@@ -107,7 +109,8 @@ AddArticle=React.createClass({
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
               <div className = "col-sm-10">
                 <div className="summernote">
-                  <textarea ref="editor1"></textarea>
+
+                  <textarea ref="editor1" id="article" />
                 </div>
               </div>
             </div>

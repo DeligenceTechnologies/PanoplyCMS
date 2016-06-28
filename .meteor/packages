@@ -19,6 +19,7 @@ kadira:flow-router
 kadira:react-layout
 fortawesome:fontawesome
 twbs:bootstrap
+
 deligence1:panoplycms-core
 teamon:tinymce
 accounts-password
@@ -34,3 +35,7 @@ anti:i18n
 standard-minifier-css
 standard-minifier-js
 react-meteor-data
+aldeed:simple-schema
+
+deligence:default-template
+

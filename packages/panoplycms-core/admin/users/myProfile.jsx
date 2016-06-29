@@ -22,13 +22,6 @@ UserList = React.createClass({
       return(
               <div className="col-md-10 content">
               <Heading  data={i18n('ADMIN_USERS_PROFILE')} />
-              <div className="successMsg alert alert-success alert-dismissible" role="alert">
-                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              <strong>Successfully! </strong>
-                Updated profile.
-              </div>
               <div className="panel-body">
                 <div className="panel">
                   <div className="table-responsive" id="non-editable">
@@ -48,8 +41,8 @@ UserList = React.createClass({
                       <td><img src={this.data?this.data.image?this.data.image.url():'':''} className="img-circle" alt="Cinque Terre" width="50" height="50" /></td>
                       <td>{this.data.user?this.data.user.profile?this.data.user.profile.username:'':''}</td>
                       <td>{this.data.user?this.data.user.emails[0].address:''}</td>
-                      <td><a className = "btn btn-primary" href={FlowRouter.path('editUser',{_id:this.data.user._id})}>{i18n('ADMIN_USERS_PROFILE_EDIT')}</a></td>
-                      <td><a className = "btn btn-success" href={FlowRouter.path('dashboard')}>{i18n('ADMIN_USERS_EDIT_CANCEL')}</a></td> 
+                      <td><a className = "btn btn-primary" href={FlowRouter.path('editUser',{_id:this.data.user._id})}>EDIT</a></td>
+                      <td><a className = "btn btn-danger" href={FlowRouter.path('dashboard')}>CANCEL</a></td> 
                       </tr> 
                       </tbody>
                     </table>
@@ -64,5 +57,18 @@ UserList = React.createClass({
 LoadingSpinner=React.createClass({
   render:function(){
     return <div>Loading....</div>
+  }
+})
+
+UserAlertMsg=React.createClass({
+
+  render:function(){
+    return <div className="successMsg alert alert-success " >
+            <button type="button" onClick={this.props.data} className="close"  aria-label="Close">
+              <span aria-hidden="true"  >&times;</span>
+            </button>
+            <strong>Successfully! </strong>
+                Updated profile.
+          </div>
   }
 })

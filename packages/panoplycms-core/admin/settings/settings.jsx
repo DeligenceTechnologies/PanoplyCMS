@@ -4,7 +4,8 @@ SystemLayout = React.createClass({
   },
   getInitialState(){
     return{
-      successMsg:false
+      successMsg:false,
+      errorMsg:false, 
     }
   },
   mixins:[ReactMeteorData],
@@ -13,22 +14,14 @@ SystemLayout = React.createClass({
     return {
       results: PanoplyCMSCollections.Sites.findOne()
     };
-      // Meteor.subscribe('siteName')
-      // return {
-      // results: Sites.findOne()
-      // }
-    
   },
   componentDidUpdate(){
-    $('.options').toggleClass('active');
-    $('.option').button();
     
-
   },
   componentDidMount(){
-    console.log($('.successMsg'));
-    //$('.successMsg').hide();
-
+   
+    $('.options').toggleClass('active');
+    $('.option').button();
   },
   submitForm(event){
   	event.preventDefault();
@@ -39,12 +32,13 @@ SystemLayout = React.createClass({
     var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim()
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
     Meteor.call('updateSiteName',id,name,siteMetaKeyword,siteMetaDesc,siteOffline,function(err,data){
-      if(err)
-        console.log(err);
+      if(err){
+        console.log(err,'err---------------');
+        that.setState({'errorMsg':err})
+      }
       else{
-        console.log(data,$('.successMsg'));
-        $('.successMsg').alert();
         that.setState({'successMsg':true})
+        
       }
         
     });
@@ -52,6 +46,7 @@ SystemLayout = React.createClass({
   },
   resetSuccessMsg(){
     this.setState({'successMsg':false})
+    this.setState({'errorMsg':false})
   },
   restrictLength(event){
     
@@ -60,13 +55,12 @@ SystemLayout = React.createClass({
     }
   },
   render() {
-    /*if (this.data.pageLoading) {
-      return <LoadingSpinner />;
-    }*/
     if (this.state.successMsg) {
-      msg= <AlertMsg />;
+      msg= <AlertMessage data={'Update the website settings.'} func={this.resetSuccessMsg}/>;
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{
-      msg='';
+      msg=''
     }
     return (
       <div>
@@ -97,7 +91,7 @@ SystemLayout = React.createClass({
                <label className="col-sm-2 control-label">{i18n('ADMIN_SETTINGS_SITE_OFFLINE')}</label>
                <div className="col-sm-10">
                 <div className="btn-group" data-toggle="buttons">
-                  <label className={this.data.results.siteOffline=='Yes'?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
+                 <label className={this.data.results.siteOffline=='Yes'?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
                     <input type="radio" className="rad" name="options" ref="options" id="option2"  value="Yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
                   </label>
                   <label className={this.data.results.siteOffline=='No'?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
@@ -109,9 +103,9 @@ SystemLayout = React.createClass({
             <div className="form-group">
                <label className="col-sm-2 control-label"></label>
                <div className="col-sm-10">
-                 <input type="submit"  className="btn btn-success" value={i18n('ADMIN_SETTINGS_CHANGE')}/>
+                 <input type="submit"  className="btn btn-primary" value='UPDATE'/>
                  &nbsp;&nbsp;
-                 <a className="btn btn-danger" href={FlowRouter.path('dashboard')} >{i18n('ADMIN_SETTINGS_CANCEL')}</a>
+                 <a className="btn btn-danger" href={FlowRouter.path('dashboard')} >CANCEL</a>
                </div>
             </div>         
           </form>
@@ -127,14 +121,15 @@ LoadingSpinner=React.createClass({
   }
 })
 
-AlertMsg=React.createClass({
+/*AlertMsg=React.createClass({
+
   render:function(){
-    return <div className="successMsg alert alert-success alert-dismissible" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        <strong>Successfully! </strong>
-          Update the website settings.
-        </div>
+    return <div className="successMsg alert alert-success " >
+            <button type="button" onClick={this.props.func} className="close"  aria-label="Close">
+              <span aria-hidden="true"  >&times;</span>
+            </button>
+            <strong>Successfully! </strong>
+              Update the website settings.
+          </div>
   }
-})
+})*/

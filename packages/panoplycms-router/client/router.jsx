@@ -1,5 +1,6 @@
 PanoplyRouter = FlowRouter;
 PanoplyRouter.wait();
+
 console.log('---------------------')
 console.log(PanoplyRouter)
 _.extend(PanoplyRouter, {

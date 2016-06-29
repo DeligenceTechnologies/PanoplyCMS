@@ -4,9 +4,9 @@ FrontHeader = React.createClass({
 		var isReady = Meteor.subscribe('findMenuOnNavBar','nav-bar-menu').ready();
 		// console.log('modules is',isReady , 'ready')
 		console.log(Meteor.subscribe('findMenuOnNavBar','nav-bar-menu').ready())
-		var theMenuId = Modules.findOne({$and: [{"modDesc.type" : "MenuModule"}, {trash:false}, {"status" : "true"}, {position:"nav-bar-menu"}]}).modDesc.value.menuId;
+		var theMenuId = PanoplyCMSCollections.Modules.findOne({$and: [{"modDesc.type" : "MenuModule"}, {trash:false}, {"status" : "true"}, {position:"nav-bar-menu"}]});
 		return {
-			navMenuitems : MenuItems.find({"mainParentId" : theMenuId}).fetch()
+			navMenuitems : PanoplyCMSCollections.MenuItems.find({"mainParentId" : theMenuId}).fetch()
 		}
 	},
 	renderNavMenu() {

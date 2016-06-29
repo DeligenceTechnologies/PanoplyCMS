@@ -2,7 +2,7 @@ SidePanel = React.createClass({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
-			rightPosMods: Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"home-block-2"}]}, {sort:{createdAt:1}}).fetch(),
+			rightPosMods: PanoplyCMSCollections.Modules.find({$and: [{"modDesc.type" : "HtmlBlock"}, {trash:false}, {"status" : "true"}, {position:"home-block-2"}]}, {sort:{createdAt:1}}).fetch(),
 		};
 	},
 	

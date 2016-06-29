@@ -50,7 +50,7 @@ EditMenu=React.createClass({
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</label>
               <div className = "col-sm-10" id="token" > 
-                <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuData.title} id="desc" />
+                <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuData.desc} id="desc" />
               </div>
            </div>
           <div className="form-group">

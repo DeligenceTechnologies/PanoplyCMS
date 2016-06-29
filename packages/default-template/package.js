@@ -37,19 +37,23 @@ Package.onUse(function(api) {
 	api.use('cfs:gridfs');
 	api.use('cfs:filesystem');
 	api.use('cfs:s3');
+	
 
-	api.use("deligence:panoplycore");
-	api.use('thekavish:panoply-calc');
+	api.use("deligence1:panoplycms-core");
+	api.use("deligence1:panoplycms-collections");
+	//api.use('thekavish:panoply-calc');
 
 	/*Added files below*/
 
+
 	api.addFiles('client/default-template.jsx', ['client']);
-	
+	api.addFiles('client/startup.jsx', ['client']);
+
 	api.addFiles('client/homeLayouts/Header.jsx', ['client']);
 	api.addFiles('client/homeLayouts/SidePanel.jsx', ['client']);
 	api.addFiles('client/homeLayouts/Footer.jsx', ['client']);
 	api.addFiles('client/homeLayouts/Logo.jsx', ['client']);
-	// api.addFiles('client/RegisterationForm.jsx', ['client']);
+	api.addFiles('client/RegisterationForm.jsx', ['client']);
 
 	api.addFiles('client/style.css', ['client']);
 	

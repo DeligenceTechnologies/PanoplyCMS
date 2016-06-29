@@ -4,7 +4,7 @@ Logo = React.createClass({
 		var handle = Meteor.subscribe('siteName')
 		return {
 			pageLoading: ! handle.ready(), 
-			results: Sites.findOne()
+			results: PanoplyCMSCollections.Sites.findOne()
 		};
 	},
 	render(){

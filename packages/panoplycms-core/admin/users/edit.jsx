@@ -79,6 +79,7 @@ EditUser = React.createClass({
 },
 updateuser(event){
   event.preventDefault();
+
   if(this.state.valid.form()){
     var username = this.refs.username.value.trim();
     var email = this.refs.email.value.trim();

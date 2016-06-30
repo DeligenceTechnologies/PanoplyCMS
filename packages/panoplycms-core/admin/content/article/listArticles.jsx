@@ -46,15 +46,43 @@ var Trvalue = React.createClass({
   editArticle(){
 
   },
+  mixins:[ReactMeteorData],
+  getMeteorData(){
+     Meteor.subscribe('findCategory',this.props.data.category);
+    return {
+      results: PanoplyCMSCollections.Categories.findOne({_id:this.props.data.category})
+    } 
+  },
   render: function() {
 
     var c=0;
     return (
        <tr>
-          <td id="edit_article"><a href={FlowRouter.path('editArticle',{_id:this.props.data._id})} ><large> {this.props.data.title}</large><small> (<em>Alias:{this.props.data.alias}</em>) </small> </a></td>
-          <td  >{this.props.data.category}</td>
-          <td id="delete_article"><div  onClick={this.deleteArticle} className="delete_btn"><i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> </div></td>
-          <td id="edit_article"><div  className="edit_btn"  id=""><a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i></a> </div></td>
+          <td id="edit_article">
+            <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})} >
+              <large> 
+                {this.props.data.title}
+              </large>
+              <small> 
+                (<em>Alias:{this.props.data.alias}</em>) 
+              </small> 
+            </a>
+          </td>
+          <td>
+            {this.data.results?this.data.results.title:''}
+          </td>
+          <td id="delete_article">
+            <div  onClick={this.deleteArticle} className="delete_btn">
+              <i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 
+            </div>
+          </td>
+          <td id="edit_article">
+            <div  className="edit_btn"  id="">
+              <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}>
+                <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i>
+              </a> 
+            </div>
+          </td>
         </tr>
     )
     

@@ -2,7 +2,7 @@ EditArticle=React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
     Meteor.subscribe('Categories');
-    Meteor.subscribe('tags');
+    //Meteor.subscribe('tags');
     var handle=Meteor.subscribe('findOneArticle',FlowRouter.getParam("_id"));
     return {
       pageLoading: ! handle.ready(),

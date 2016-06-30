@@ -1,7 +1,7 @@
 ListTags = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
-    Meteor.subscribe('tags')
+   /* Meteor.subscribe('tags')*/
     return{
       tagsData:Tags.find().fetch()
     }

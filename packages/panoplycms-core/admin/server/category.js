@@ -4,5 +4,5 @@ Meteor.publish('Categories', function(){
 });
 Meteor.publish('findCategory', function(id){
 	
-	return PanoplyCMSCollections.Categories.find({_id:id});
+	return PanoplyCMSCollections.Categories.find({_id:id,trash:false});
 });

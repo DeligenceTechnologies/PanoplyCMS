@@ -1,3 +1,4 @@
+//Meteor.subscribe('tags')
 Meteor.methods({
 	addTag: function(title,desc,metaKeyword,metaDesc){
 		return PanoplyCMSCollections.Tags.insert({
@@ -35,6 +36,10 @@ Meteor.methods({
 		
 	},
 	addTagExt:function(tag){
-		PanoplyCMSCollections.Tags.insert({title:tag});
+		let tagExist=PanoplyCMSCollections.Tags.find({title:tag}).count();
+		if(tagExist==0){
+			PanoplyCMSCollections.Tags.insert({title:tag});
+		}
+		
 	}
 })

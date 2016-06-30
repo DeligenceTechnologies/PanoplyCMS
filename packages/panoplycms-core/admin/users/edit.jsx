@@ -19,7 +19,7 @@ EditUser = React.createClass({
     }
   },
   componentDidMount(){
-      console.log('chal nahi pa rahe hu',$("#userEditForm"));
+      
       let validObj=$("#userEditForm").validate({
          rules: {
              email: {

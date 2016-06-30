@@ -26,6 +26,7 @@ SystemLayout = React.createClass({
   submitForm(event){
   	event.preventDefault();
     that=this;
+    
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
     var siteOffline=$('input[name="options"]:checked').val()
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();

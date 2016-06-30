@@ -389,3 +389,6 @@ ul.nav-children li a:focus, ul.nav-children li a:hover, ul.nav-children li a:act
 	background-color:#142849;
 	color:#fff;
 }
+.error{
+	color: red;
+}

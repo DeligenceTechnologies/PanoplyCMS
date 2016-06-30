@@ -1,31 +1,69 @@
+import {teamon} from 'meteor/teamon:tinymce';
+
 AddArticle=React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
     Meteor.subscribe('Categories');
-    Meteor.subscribe('tags');
     return {
-      
       results: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
-      tags: PanoplyCMSCollections.Tags.find({trash:false}).fetch()
+      tags: PanoplyCMSCollections.Tags.find({}).fetch()
     } 
   },
 	getInitialState(){
 	 return {
 			language:i18n.getLanguage(),
-      msg:'',
-      valid:''
+      msg:false,
+      valid:'',
+      errorMsg:false
 		}
 	},
 	componentDidMount: function(){
 		document.title = "Add Article"
-tinymce.init({ selector: '#editor1' });
+    console.log('add articles rendred...');
+    let validObj=$("#add-article").validate({
+         rules: {
+             title: {
+                 required: true
+             },
+             editor: {
+              required: true
+            },
+            SelectName: { 
+              required: true
+            }
+          
+        },
+        submitHandler: function (form) { // for demo
+              return false;
+          },
+         errorElement : 'div',
+         errorPlacement: function(error, element) {
+           var placement = $(element).data('error');
+           if (placement) {
+             $(placement).append(error)
+           } else {
+             error.insertAfter(element);
+           }
+         }
+      });
+    this.setState({valid:validObj})  
+    console.log($('textarea'),'textarea') 
+    tinymce.EditorManager.execCommand('mceRemoveEditor',true, '#editor1');
+    tinymce.init({
+      selector: 'textarea',
+      skin_url: '/packages/teamon_tinymce/skins/lightgray',
+    });
+    console.log(tinymce.init({selector: 'textarea',skin_url: '/packages/teamon_tinymce/skins/lightgray'}), '<====== ')
 	},
 	componentWillUnmount: function() {
 		
 	},
 	componentDidUpdate: function() {
 
-	  tinymce.init({ selector: '#editor1' });
+	  tinymce.init({
+      selector: 'textarea',
+      skin_url: '/packages/teamon_tinymce/skins/lightgray',
+    });
       var sourceData=[];
       
     _.each(this.data.tags,function(a){
@@ -43,44 +81,62 @@ tinymce.init({ selector: '#editor1' });
 	},
 	submitData(event){
 		event.preventDefault();
-    
-    	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
-    	var alias = generateAlias(title);
-    	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
-    	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
-      var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
-  //	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
-    //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
-    	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
-    	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
-      tagAry=tags.split(',');
-      that=this;
-      console.log(article)
-      for(i=0;i<tagAry.length;i++){
-         Meteor.call('addTagExt',tagAry[i]);
-      }
-      
-    	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,function(err,data){
-    		if(err)
-    			console.log(err);
-    		else{
-    			FlowRouter.go('articles');
-          //that.setState({msg : true})
+      if(this.state.valid.form()){
+      	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
+      	var alias = generateAlias(title);
+      	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
+      	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
+        var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
+    //	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+      //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
+      	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
+      	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
+        tagAry=tags.split(',');
+        that=this;
+        for(i=0;i<tagAry.length;i++){
+           Meteor.call('addTagExt',tagAry[i]);
         }
-      
-    	});
+        
+      	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
+      		if(data){
+            that.setState({errorMsg : data})
+          }else{
+            that.setState({msg : true})
+            ReactDOM.findDOMNode(that.refs.title).value='';
+            ReactDOM.findDOMNode(that.refs.myselect).value='';
+            ReactDOM.findDOMNode(that.refs.token).value='';
+            $('#tokenfield').tokenfield('setTokens', ' ');
+            tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
+            ReactDOM.findDOMNode(that.refs.keyword).value='';
+            ReactDOM.findDOMNode(this.refs.desc).value='';
+          }
+        
+      	});
+      }  
 	},
+  resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
+  },
 	render(){
-    if (this.data.pageLoading) {
+    /*if (this.data.pageLoading) {
       return <LoadingSpinner />;
+    }*/
+    var msg='';
+    if(this.state.msg){
+      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
     }
 		return (
-			 <div className="col-md-10 content">
+			 <div className="col-md-10 content" onClick={this.resetSuccessMsg} >
        <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} />
-       {this.state.msg?<AlertMessage data={'Successfully added article.'}/>:''}
+       {msg}
         <div className="panel-body">
         <div id="notification"></div>
-          <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+          <form id="add-article" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
             <div className = "form-group">
               <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
               <div className = "col-sm-10">
@@ -90,8 +146,8 @@ tinymce.init({ selector: '#editor1' });
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CATEGORY')}</label>
               <div className = "col-sm-10">
-                <select defaultValue='select' ref="myselect" className="selectpicker form-control " data-style="btn-primary" >
-                  <option value="select">--select--</option>
+                <select defaultValue='select' name="SelectName" ref="myselect" className="selectpicker form-control " data-style="btn-primary" >
+                  <option value="">--select--</option>
                    {this.data.results.map(function(result){
                       return  <option key={result._id} value={result._id}>{result.title}</option>
                       })
@@ -102,7 +158,7 @@ tinymce.init({ selector: '#editor1' });
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TAGS')}</label>
               <div className = "col-sm-10" id="token" > 
-                <input type="text" ref="token" className="form-control" id="tokenfield" defaultValue="red,green,blue" />
+                <input type="text" ref="token" className="form-control" id="tokenfield" />
               </div>
             </div>
             <div className = "form-group">
@@ -110,7 +166,7 @@ tinymce.init({ selector: '#editor1' });
               <div className = "col-sm-10">
                 <div className="summernote">
 
-                  <textarea ref="editor1" id="article" />
+                  <textarea ref="editor1" name="editor" id="article" />
                 </div>
               </div>
             </div>
@@ -123,14 +179,14 @@ tinymce.init({ selector: '#editor1' });
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_METADESCRIPTION')}</label>
               <div className = "col-sm-10">
-                <input type="textarea" name="desc" ref="desc" className="form-control" required/>
+                <input type="text" name="desc" ref="desc" className="form-control" required/>
               </div>
             </div>
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">
-                <button className="btn btn-primary " >{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_SAVE')}</button>
+                <button className="btn btn-primary " >SAVE</button>
                 &nbsp;&nbsp;
-                <a className="btn btn-success" href={FlowRouter.path('articles')}>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CANCEL')}</a>
+                <a className="btn btn-danger" href={FlowRouter.path('articles')}>CANCEL</a>
               </div>
             </div> 
           </form>

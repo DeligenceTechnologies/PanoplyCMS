@@ -3,7 +3,7 @@ ListTags = React.createClass({
   getMeteorData(){
    /* Meteor.subscribe('tags')*/
     return{
-      tagsData:Tags.find().fetch()
+      tagsData:PanoplyCMSCollections.Tags.find().fetch()
     }
   },
   submitForm(event){
@@ -24,6 +24,8 @@ ListTags = React.createClass({
                           <th>{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_DESCRIPTION')}</th>
                           <th>{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_METAKEYWORD')}</th>
                           <th>{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_METADESCRIPTION')}</th>
+                          <th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
+                          <th>{i18n('ADMIN_MENU_ADDMENU_FORM_EDIT')}</th>
                         </tr>
                       </thead>
                       <tbody>

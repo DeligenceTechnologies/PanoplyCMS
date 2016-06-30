@@ -17,8 +17,8 @@ EditModule = React.createClass({
 		return {
 			ready : handle.ready(),
 			menuReady : Meteor.subscribe('menus').ready(),
-			aModule: Modules.find({_id:this.props._id}).fetch(),
-			menus: Menus.find({"trash" : false}).fetch()
+			aModule: PanoplyCMSCollections.Modules.find({_id:this.props._id}).fetch(),
+			menus: PanoplyCMSCollections.Menus.find({"trash" : false}).fetch()
 		};
 	},
 	getMenuValue(){
@@ -67,6 +67,7 @@ EditModule = React.createClass({
 			// console.log(this.data.menus,'!!!!!!!!Voila!!!!!!!')
 		});
 	},
+
 	renderHBform(){
 		if (this.data.aModule[0].modDesc.type == 'HtmlBlock') {
 			return(
@@ -104,6 +105,27 @@ EditModule = React.createClass({
 		Meteor.call("removeModule", this.props._id);
 		FlowRouter.go('modulesManager');
 	},
+	 renderListItems() {
+
+        var items = [];
+        for (var i = 0; i < this.data.menus.length; i++) {
+            var item = this.data.menus[i];
+             console.log(this.data.aModule[0].menu,"====>",item.title)
+            if(this.data.aModule[0].menu==item.title)
+            {
+            items.push( 
+            		  	<option value={item.title} selected >{item.title}</option>
+            	);
+        }
+        	else  {
+            items.push( 
+            		  	<option value={item.title}  >{item.title}</option>
+            	);
+        }
+         
+        }
+        return items;
+    },
 	render() {
 		console.log("order one");
 		if (this.data.ready) {
@@ -148,12 +170,16 @@ EditModule = React.createClass({
 							<div className="form-group">
 						  <label htmlFor="menu" className="col-sm-1 control-label" ref="menu" >{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_MENU')}</label>
 						  <div className="col-sm-6">
-						   <select id="select_menus" ref="menus"  className="form-control" >
+						  		<select id="select_menus" ref="menus" className="form-control">
+								 {this.renderListItems()}
+								</select>
+
+						  {/* <select id="select_menus" ref="menus"  className="form-control" >
 							  {this.data.results.map(function(result){
 								return  <ChildValue   key={result._id} data={result} func={that.getMenuValue} />
 								})
 							  }
-							</select>
+							</select>*/}
 					  </div>
 			</div>
 							<div className="form-group">

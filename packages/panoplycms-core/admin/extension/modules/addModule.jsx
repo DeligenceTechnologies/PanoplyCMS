@@ -53,16 +53,29 @@ AddModule = React.createClass({
 			"status": $(ReactDOM.findDOMNode(this.refs.publish)).val(),
 			"owner":'browser-user'
 		}
-		console.log($('input:radio[name=showTitle]:checked').val());
+		console.log(insert);
 
 		Meteor.call("addModule", insert, function(err,res){
-			console.log(err,res)
+			console.log(res)
+			return <AlertMessage />
 		});
 		FlowRouter.go('modulesManager');
 	},
 	cancelSubmit(){
 		FlowRouter.go('modulesManager');
 	},
+	 renderListItems() {
+        var items = [];
+        for (var i = 0; i < this.data.results.length; i++) {
+            var item = this.data.results[i];
+             
+            items.push( 
+            	<option value={item.title}>{item.title}</option>
+            	);
+         
+        }
+        return items;
+    },
 	render() {
 		console.log(this.data.results,'sihksoihasasasjaj');
 		if (this.data.pageLoading) {
@@ -110,9 +123,12 @@ AddModule = React.createClass({
 						<label htmlFor="menu" className="col-sm-1 control-label">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_MENU')}</label>
 						<div className="col-sm-11">
 							<select id="select_menus" ref="menus" className="form-control">
+								 {this.renderListItems()}
+							</select>
+						{/*	<select id="select_menus" ref="menus" className="form-control">
 								{this.data.results.map(function(result){return
 								<ChildValue key={result._id} data={result} /> })}
-							</select>
+							</select>*/}
 						</div>
 					</div>
 					<div className="form-group">

@@ -3,7 +3,9 @@ Meteor.methods({
     insert.createdAt = new Date();
     insert.alias = insert.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
     insert.trash = false;
-    PanoplyCMSCollections.Modules.insert(insert);
+     var result=PanoplyCMSCollections.Modules.insert(insert);
+     if(result)
+      return "true";
   },
   editModule(select, update) {
     update.updatedAt = new Date();

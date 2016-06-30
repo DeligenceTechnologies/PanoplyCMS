@@ -28,11 +28,11 @@ _.extend(PanoplyRouter, {
         _.each(packages, function(p){
           _.each(p.routes, function(r){
             let route = {
-              name: r.name,
+               name: r.name,
               layout : r.layout,
               template : r.component,
               action: (params, queryParams) => {
-                renderLayout(r.layout, r.component, params, queryParams)
+                  renderLayout(r.layout, r.component, params, queryParams)
               }
             }
 

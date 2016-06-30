@@ -66,7 +66,7 @@ _.extend(PanoplyRouter, {
         try{
           PanoplyRouter.initialize();
         } catch(err) {
-          console.error('Caught error', err)
+          PanoplyRouter.reload();
         }
       }
     });

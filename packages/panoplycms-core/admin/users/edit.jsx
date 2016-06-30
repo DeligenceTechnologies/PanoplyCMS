@@ -124,7 +124,9 @@ updateuser(event){
                     <label htmlFor = "firstname" className = "col-sm-2 control-label" >Profile Picture</label>
                     <div className = "col-sm-10">
                       <input ref="file" type="file" name="file" onChange={this.uploadFile} className="upload-file"/>
-                      <img src={this.data.image?this.data.image.url():''} className="img-rounded"   /> 
+                      <div className="col-md-3">
+                        <img src={this.data.image?this.data.image.url():''} className="img-rounded" style={{maxWidth: "100%"}} /> 
+                      </div>
                     </div>
                   </div> 
                   <div className = "form-group">

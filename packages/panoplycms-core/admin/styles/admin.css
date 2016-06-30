@@ -384,3 +384,8 @@ ul.nav-children li:focus, ul.nav-children li:hover, ul.nav-children li:active,
 ul.nav-children li a:focus, ul.nav-children li a:hover, ul.nav-children li a:active {
 	text-decoration: none;
 }
+
+.nav-color{
+	background-color:#142849;
+	color:#fff;
+}

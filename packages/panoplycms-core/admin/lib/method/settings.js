@@ -2,6 +2,7 @@ Meteor.methods({
 	updateSiteName: function(id,name,keyword,desc,onof){
 		console.log(id,name);
 		return PanoplyCMSCollections.Sites.update({_id:id},{$set:{name:name,siteMetaKeyword:keyword,siteMetaDesc:desc,siteOffline:onof}})
+
 	},
 	updateUserPhoto: function(userId,url) {
         if (userId) {

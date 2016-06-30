@@ -4,6 +4,9 @@ ModulesLayout = React.createClass({
 	mixins: [ReactMeteorData],
 
 	getMeteorData() {
+		 Meteor.subscribe('moduleList');
+		console.log( PanoplyCMSCollections.Modules.find({}).fetch())
+		
 		return {
 			mod: PanoplyCMSCollections.Modules.find({trash:false},{sort:{createdAt:-1}}).fetch(),
 		};

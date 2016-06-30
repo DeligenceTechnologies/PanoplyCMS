@@ -60,7 +60,7 @@ _.extend(PanoplyRouter, {
           ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
         }
         
-        console.log('---------------------')
+        console.log('---------------------123')
         console.log(PanoplyRouter)
         try{
           PanoplyRouter.initialize();

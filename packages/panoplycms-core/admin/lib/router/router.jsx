@@ -4,6 +4,7 @@ PanoplyRouter.wait();
 _.extend(PanoplyRouter, {
   init: () => {
     Tracker.autorun( (c) => {
+      console.log(c)
       if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
         packages = PanoplyCMSCollections.RegisteredPackages.find().fetch()
 

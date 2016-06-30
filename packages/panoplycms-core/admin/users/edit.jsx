@@ -18,44 +18,48 @@ EditUser = React.createClass({
       valid:''
     }
   },
-  componentDidUpdate(){
-    this.state.valid=$("#userEditForm").validate({
-       rules: {
-           email: {
-               required: true,
-               email:true
-           },
-           username: {
-            required: true,
+  componentDidMount(){
+      console.log('chal nahi pa rahe hu',$("#userEditForm"));
+      let validObj=$("#userEditForm").validate({
+         rules: {
+             email: {
+                 required: true,
+                 email:true
+             },
+             username: {
+              required: true,
+            },
+          
+        },
+        //For custom messages
+         messages: {
+             email:{
+                 required: "Please enter  email.",
+                 email: "Please enter a valid email."
+             },
+             username: {
+                required: "Please enter name.",
+               
+              }
           },
-        
-      },
-//For custom messages
-       messages: {
-           email:{
-               required: "Please enter  email.",
-               email: "Please enter a valid email."
-           },
-           username: {
-              required: "Please enter name.",
-             
-            }
-        },
-        submitHandler: function (form) { // for demo
-            alert('valid form');
-            return false;
-        },
-       errorElement : 'div',
-       errorPlacement: function(error, element) {
-         var placement = $(element).data('error');
-         if (placement) {
-           $(placement).append(error)
-         } else {
-           error.insertAfter(element);
+          submitHandler: function (form) { // for demo
+              return false;
+          },
+         errorElement : 'div',
+         errorPlacement: function(error, element) {
+           var placement = $(element).data('error');
+           if (placement) {
+             $(placement).append(error)
+           } else {
+             error.insertAfter(element);
+           }
          }
-       }
-    });
-
+      });
+      this.setState({valid:validObj})    
+  },
+  resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
   },
   uploadFile: function (event) {
 
@@ -80,12 +84,10 @@ updateuser(event){
     var username = this.refs.username.value.trim();
     var email = this.refs.email.value.trim();
     that=this;
-   
      Meteor.call('updateUser',username,email,function(err,data){
         if(err){
-            alert('Error in update.');
-        }else{
-          
+            that.setState({'errorMsg':err})
+        }else{ 
           that.setState({msg : true})
         }
    })
@@ -95,14 +97,15 @@ updateuser(event){
   
 },
    render() {
-    if (this.data.pageLoading) {
+    /*if (this.data.pageLoading) {
       return <LoadingSpinner />;
-    }
+    }*/
 
       return(
-              <div className="col-md-10 content">
+              <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
                 <Heading  data={i18n('ADMIN_USERS_EDIT')} />
-                {this.state.msg?<AlertMessage data={'Your Profile is successfully updated.'}/>:''}
+                {this.state.msg?<AlertMessage data={'Your Profile is successfully updated.'} func={this.resetSuccessMsg} />:'' }
+                {this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
                 
                 <form className="form-horizontal" id="userEditForm"  encType="multipart/form-data" onSubmit={this.updateuser}> 
                   <div className = "form-group">
@@ -127,9 +130,9 @@ updateuser(event){
                   <div className = "form-group">
                     <label htmlFor = "firstname" className = "col-sm-2 control-label" ></label>
                     <div className = "col-sm-6">
-                     <input type = "submit"   className = "btn btn-primary" value={i18n('ADMIN_USERS_EDIT_SAVE')} />
+                     <input type = "submit"   className = "btn btn-primary" value='UPDATE' />
                      &nbsp;&nbsp;
-                      <a className = "btn btn-success" href={FlowRouter.path('dashboard')} >{i18n('ADMIN_USERS_EDIT_CANCEL')}</a>
+                      <a className = "btn btn-danger" href={FlowRouter.path('dashboard')} >CANCEL</a>
                     </div>
                   </div> 
                 </form>

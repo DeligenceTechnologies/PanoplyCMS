@@ -4,7 +4,7 @@ EditTag=React.createClass({
     var handle = Meteor.subscribe('findTag',this.props._id)
     return {
       pageLoading: ! handle.ready(), 
-      tagsData: Tags.findOne({_id:this.props._id})
+      tagsData: PanoplyCMSCollections.Tags.findOne({_id:this.props._id})
     };
   },
   submitData(event){

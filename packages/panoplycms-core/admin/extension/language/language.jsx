@@ -11,9 +11,9 @@ Language=React.createClass({
    },  
   setLanguage(event){
     this.setState({value:event.currentTarget.value});
+    console.log(i18n.getLanguage(),'i18n.getLanguage()');
     i18n.setLanguage(event.currentTarget.value);
-    
-  },
+   },
 	render(){
 		return (
 			

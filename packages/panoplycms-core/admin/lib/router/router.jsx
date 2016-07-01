@@ -51,6 +51,14 @@ _.extend(PanoplyRouter, {
               if(Roles.userIsInRole(Meteor.userId(), ['admin']) && r.provides == 'dashboard'){
                 admin.route(r.path, route)
               } else {
+                if(route.name == 'login'){
+                  route.triggersEnter = [ (context, redirect) => {
+                    if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+                      console.log('Already Loggedin')
+                      redirect('/admin');
+                    }
+                  }]
+                }
                 PanoplyRouter.route(r.path, route)
               }
             })

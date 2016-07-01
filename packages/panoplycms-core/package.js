@@ -45,6 +45,37 @@ Package.onUse(function(api) {
   api.use('deligence1:panoplycms-collections')
   api.use('deligence1:panoplycms-router')
   
+  /*--------------------------------Server------------------------------------- */
+
+  api.addFiles([
+    'admin/server/startup.js',
+    'admin/server/articles.js',
+    'admin/server/settings.js',
+    'admin/server/sidebar.js',
+    'admin/server/module.js',
+    'admin/server/category.js',
+    'admin/server/users.js',
+    'admin/server/menu.js',
+    'admin/server/tags.js'
+    ],['server'])
+
+  /*--------------------------------Client Server---------------------------------*/
+
+  api.addFiles([
+    'admin/lib/method/collection.js',
+    'admin/lib/method/articles.js',
+    'admin/lib/method/settings.js',
+    'admin/lib/router/router.jsx',
+    'admin/lib/common.js',
+    'admin/lib/startup.js',
+    'admin/lib/method/user.js',
+    'admin/lib/method/module.js',
+    'admin/lib/method/categories.js',
+    'admin/lib/method/menu.js',
+    'admin/lib/method/tags.js',
+    'admin/lib/method/search.js'
+    ],['client','server'])
+  
   /*--------------------------------Client------------------------------------- */
   api.addFiles('admin/common/alertMessage.jsx',['client'])
   api.addFiles('admin/common/modal.jsx',['client'])
@@ -54,7 +85,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
-   api.addFiles('admin/adminLayout/component/language.js',['client'])
+  api.addFiles('admin/adminLayout/component/language.js',['client'])
   api.addFiles('admin/settings/settings.jsx',['client'])
   api.addFiles('admin/settings/language.js',['client'])
   api.addFiles('admin/styles/admin.css',['client'])
@@ -96,38 +127,8 @@ Package.onUse(function(api) {
   api.addFiles('admin/components/tags/language.js',['client'])
 
 
-  /*--------------------------------Server------------------------------------- */
-
-  api.addFiles([
-    'admin/server/articles.js',
-    'admin/server/settings.js',
-    'admin/server/sidebar.js',
-    'admin/server/startup.js',
-    'admin/server/module.js',
-    'admin/server/category.js',
-    'admin/server/users.js',
-    'admin/server/menu.js',
-    'admin/server/tags.js'
-    ],['server'])
-
-  /*--------------------------------Client Server---------------------------------*/
-
-  api.addFiles([
-    'admin/lib/method/collection.js',
-    'admin/lib/method/articles.js',
-    'admin/lib/method/settings.js',
-    'admin/lib/router/router.jsx',
-    'admin/lib/common.js',
-    'admin/lib/startup.js',
-    'admin/lib/method/user.js',
-    'admin/lib/method/module.js',
-    'admin/lib/method/categories.js',
-    'admin/lib/method/menu.js',
-    'admin/lib/method/tags.js',
-    'admin/lib/method/search.js'
-    ],['client','server'])
   
-  
+  api.export('PanoplyCMSRegisterPackage')
 });
 
 

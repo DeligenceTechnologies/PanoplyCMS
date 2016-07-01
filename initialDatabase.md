@@ -1,3 +1,6 @@
+No Need to add this anymore
+
+
 db.adminSidebarMenu.find().pretty();
 db.adminSidebarMenu.insert([{
 	"_id" : "evxeRgJYkAXJctkpH",
@@ -347,17 +350,7 @@ db.registeredPackages.insert({
 			"permission" : [
 				"admin"
 			]
-		},
-		{
-			"name" : "modulesManager",
-			"path" : "/modules",
-			"component" : "ModulesLayout",
-			"layout" : "AdminLayout",
-			"provides" : "dashboard",
-			"permission" : [
-				"admin"
-			]
-		},
+		}
 		{
 			"name" : "login",
 			"path" : "/login",

@@ -1,4 +1,10 @@
- Meteor.startup(function () {
+PanoplyCMSRegisterPackage = function(packageDetails) {
+	if(!PanoplyCMSCollections.RegisteredPackages.find({name: packageDetails.name}).count())
+	  PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+}
+
+
+Meteor.startup(function () {
 	if (PanoplyCMSCollections.AdminSidebarMenu.find().count() === 0 ) {
 		sidebarList=[{
 			title:'SETTINGS',
@@ -40,7 +46,7 @@
 			desc:'',
 			alias:'',
 			icon:'fa fa-puzzle-piece',
-			param:[{label:'Modules',routeName:'Modules',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
+			param:[{label:'Modules',routeName:'modules',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
 		},
 		{
 			title:'HELP',
@@ -83,6 +89,252 @@
 		
 		
 	}
+
+	PanoplyCMSRegisterPackage(
+		{
+			"name" : "panoplycore",
+			"routes" : [
+				{
+					"name" : "settings",
+					"path" : "/settings",
+					"component" : "SystemLayout",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "addArticle",
+					"path" : "/articles/add",
+					"component" : "AddArticle",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "editArticle",
+					"path" : "/article/edit/:_id",
+					"component" : "EditArticle",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "articles",
+					"path" : "/articles",
+					"component" : "ListArticles",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "AddModules",
+					"path" : "/modules/add",
+					"component" : "AddModule",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "EditModule",
+					"path" : "/modules/edit/:_id",
+					"component" : "EditModule",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "modulesManager",
+					"path" : "/modules",
+					"component" : "ModulesLayout",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "listCategories",
+					"path" : "/categories",
+					"component" : "ListCategories",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "addCategory",
+					"path" : "/categories/add",
+					"component" : "AddCategory",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard"
+				},
+				{
+					"name" : "editCategory",
+					"path" : "/categories/edit/:_id",
+					"component" : "EditCategory",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "addMenu",
+					"path" : "/menus/add",
+					"component" : "AddMenu",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "editMenu",
+					"path" : "/menu/edit/:_id",
+					"component" : "EditMenu",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "manageMenu",
+					"path" : "/menus",
+					"component" : "ListMenus",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "addMenuItem",
+					"path" : "/menus/:_id/addMenuItem",
+					"component" : "AddMenuItem",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "editMenuItem",
+					"path" : "/menu/:_id/editMenuItem",
+					"component" : "EditMenuItem",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "listMenuItems",
+					"path" : "/menus/:_id/MenuItems",
+					"component" : "ListMenuItems",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "users",
+					"path" : "/users",
+					"component" : "UserList",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "editUser",
+					"path" : "/users/:_id",
+					"component" : "EditUser",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "changePassword",
+					"path" : "/changepassword",
+					"component" : "ChangePassword",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "language",
+					"path" : "/language",
+					"component" : "Language",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "login",
+					"path" : "/login",
+					"component" : "Login",
+					"layout" : "AdminLoginLayout",
+					"provides" : "adminLogin"
+				},
+				{
+					"name" : "dashboard",
+					"path" : "/dashboard",
+					"component" : "Dashboard",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
+				{
+					"name" : "addTag",
+					"path" : "/tags/add",
+					"component" : "AddTag",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : ["admin"]
+				},
+				{ 
+					"name" : "editTag",
+					"path" : "/tags/edit/:_id",
+					"component" : "EditTag", 
+					"layout" : "AdminLayout", 
+					"provides" : "dashboard", 
+					"permission" : [ "admin" ]
+				 },
+				 { 
+				 	"name" : "tags", 
+				 	"path" : "/tags", 
+				 	"component" : "ListTags", 
+				 	"layout" : "AdminLayout", 
+				 	"provides" : "dashboard", 
+				 	"permission" : [ "admin" ]
+				  }
+			]
+		}
+	)
 	
 	PanoplyCMSCollections.Tags._ensureIndex({ "title": 1 }, { unique: true });
 });

@@ -1,3 +1,6 @@
+import 'meteor/twbs:bootstrap';
+import 'meteor/jquery';
+
 ListArticles = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
@@ -12,7 +15,7 @@ ListArticles = React.createClass({
       <div className="col-md-10 content">
         <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
         <div className="panel-heading"> <a  className="btn btn-success btn-ico" href={FlowRouter.path('addArticle')} ><i className="fa fa-plus-circle "></i>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}</a>
-</div>
+        </div>
         <div className="panel-body">
           <div className="table-responsive" id="non-editable">
             <table className="table table-bordered">
@@ -31,7 +34,8 @@ ListArticles = React.createClass({
               </tbody>
             </table>
           </div>
-        </div>    
+        </div> 
+        <Modal/>
       </div>
 
     );
@@ -40,8 +44,8 @@ ListArticles = React.createClass({
 
 var Trvalue = React.createClass({
   deleteArticle(){
-    Meteor.call('deleteArticle',this.props.data._id,function(err,data){
-    });
+    /*Meteor.call('deleteArticle',this.props.data._id,function(err,data){
+    });*/
   },
   editArticle(){
 
@@ -72,11 +76,11 @@ var Trvalue = React.createClass({
             {this.data.results?this.data.results.title:''}
           </td>
           <td id="delete_article">
-            <div  onClick={this.deleteArticle} className="delete_btn">
-              <i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 
+            <div  onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target="#myModal">
+              <i className="fa fa-trash-o"  title="Delete" ></i> 
             </div>
           </td>
-          <td id="edit_article">
+          <td id="edit_article">                  
             <div  className="edit_btn"  id="">
               <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}>
                 <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i>

@@ -81,8 +81,8 @@ AddArticle=React.createClass({
       	var alias = generateAlias(title);
       	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
       	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
-        var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
-    //	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+        //var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
+        var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
       //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
       	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
       	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
@@ -93,8 +93,8 @@ AddArticle=React.createClass({
         }
         
       	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
-      		if(data){
-            that.setState({errorMsg : data})
+      		if(err){
+            that.setState({errorMsg : err})
           }else{
             that.setState({msg : true})
             ReactDOM.findDOMNode(that.refs.title).value='';
@@ -186,6 +186,7 @@ AddArticle=React.createClass({
             </div> 
           </form>
         </div>
+        
       </div>
 		)
 	}

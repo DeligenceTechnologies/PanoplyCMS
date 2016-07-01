@@ -47,23 +47,18 @@ AddArticle=React.createClass({
          }
       });
     this.setState({valid:validObj})  
-    console.log($('textarea'),'textarea') 
-    tinymce.EditorManager.execCommand('mceRemoveEditor',true, '#editor1');
+    tinymce.remove();
     tinymce.init({
       selector: 'textarea',
       skin_url: '/packages/teamon_tinymce/skins/lightgray',
     });
-    console.log(tinymce.init({selector: 'textarea',skin_url: '/packages/teamon_tinymce/skins/lightgray'}), '<====== ')
+    
 	},
 	componentWillUnmount: function() {
-		
+		tinymce.remove();
 	},
 	componentDidUpdate: function() {
-
-	  tinymce.init({
-      selector: 'textarea',
-      skin_url: '/packages/teamon_tinymce/skins/lightgray',
-    });
+    
       var sourceData=[];
       
     _.each(this.data.tags,function(a){

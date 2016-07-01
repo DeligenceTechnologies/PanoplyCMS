@@ -21,18 +21,37 @@ Meteor.startup(function () {
 			param:[{label:'User List',routeName:'users'},{label:'Change Password',routeName:'changePassword'}]
 		},
 		{
+			title:'MENU',
+			desc:'',
+			alias:'',
+			icon:'fa fa-bars',
+			param:[
+				{
+					label:'Manage Menu',
+					routeName:'manageMenu',
+					template:'ManageMenu',
+					providers:''
+				},
+				{
+					label:'Add Menu',
+					routeName:'addMenu',
+					template:'AddMenu',
+					providers:''
+				},
+				{
+					label:'Add Menu Item',
+					routeName:'addMenuItem',
+					template:'AddMenuItem',
+					providers:''
+				}				
+			]
+		},
+		{
 			title:'CONTENT',
 			desc:'',
 			alias:'',
 			icon:'fa fa-file-text-o',
 			param:[{label:'Articles',routeName:'articles',template:'Articles',providers:''},{label:'Categories',routeName:'listCategories',template:'Categories',providers:''}]
-		},
-		{
-			title:'MENU',
-			desc:'',
-			alias:'',
-			icon:'fa fa-bars',
-			param:[{label:'Manage Menu',routeName:'manageMenu',template:'ManageMenu',providers:''}]
 		},
 		{
 			title:'COMPONENTS',
@@ -223,7 +242,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "addMenuItem",
-					"path" : "/menus/:_id/addMenuItem",
+					"path" : "/menus/addMenuItem",
 					"component" : "AddMenuItem",
 					"layout" : "AdminLayout",
 					"provides" : "dashboard",
@@ -233,7 +252,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "editMenuItem",
-					"path" : "/menu/:_id/editMenuItem",
+					"path" : "/menu/editMenuItem",
 					"component" : "EditMenuItem",
 					"layout" : "AdminLayout",
 					"provides" : "dashboard",

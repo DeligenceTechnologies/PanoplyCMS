@@ -14,7 +14,7 @@ ListArticles = React.createClass({
     return (
       <div className="col-md-10 content">
         <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
-        <div className="panel-heading"> <a  className="btn btn-success btn-ico" href={FlowRouter.path('addArticle')} ><i className="fa fa-plus-circle "></i>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}</a>
+        <div className="panel-heading"> <a  className="btn btn-success btn-ico " href={FlowRouter.path('addArticle')} ><i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}</a>
         </div>
         <div className="panel-body">
           <div className="table-responsive" id="non-editable">
@@ -35,7 +35,9 @@ ListArticles = React.createClass({
             </table>
           </div>
         </div> 
-        <Modal/>
+        {this.data.results.map(function(result) {
+          return  <Modal key={result._id} data={result}/>         
+        })} 
       </div>
 
     );
@@ -76,7 +78,7 @@ var Trvalue = React.createClass({
             {this.data.results?this.data.results.title:''}
           </td>
           <td id="delete_article">
-            <div  onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target="#myModal">
+            <div  onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id}>
               <i className="fa fa-trash-o"  title="Delete" ></i> 
             </div>
           </td>
@@ -92,3 +94,28 @@ var Trvalue = React.createClass({
     
   }
 });
+
+Modal=React.createClass({
+  deleteArticle(){
+    Meteor.call('deleteArticle',this.props.data._id,function(err,data){
+    });
+  },
+  render:function(){
+    return(
+          <div id={this.props.data._id} className="modal fade" role="dialog">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <button type="button" className="close" data-dismiss="modal">&times;</button>
+                  <h4 className="modal-title">Do you really want to remove ?</h4>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-primary" onClick={this.deleteArticle} data-dismiss="modal">YES</button>
+                  <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    )     
+  }
+})

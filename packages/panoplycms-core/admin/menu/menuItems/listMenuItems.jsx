@@ -4,11 +4,12 @@ ListMenuItems = React.createClass({
     Meteor.subscribe('menuItems',FlowRouter.getParam("_id"))
     var handle2 = Meteor.subscribe('menuItems')
     return {
-      results: PanoplyCMSCollections.MenuItems.find({mainParentId:FlowRouter.getParam("_id"),trash:false}).fetch(),
-      MenuItemsData: PanoplyCMSCollections.MenuItems.find().fetch()
+       MenuItemsData : PanoplyCMSCollections.MenuItems.find({mainParentId:FlowRouter.getParam("_id"),trash:false}).fetch(),
+     results : PanoplyCMSCollections.MenuItems.find().fetch()
 
     } 
   },
+ 
   getListOfMenuItems(){
     that=this;
     var menus=this.listOfMenu();
@@ -92,6 +93,7 @@ console.log('deleteMenuItem call')
     ///});
   },
   render() {
+     
     
     var a={__html: this.getListOfMenuItems()};
     console.log(this.listOfMenu(),'listofmenu with parent');
@@ -101,7 +103,9 @@ console.log('deleteMenuItem call')
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
         <div className="panel-heading"><span className="lead"></span></div>
         <div className="panel-heading"> <a  className="btn btn-success" href={FlowRouter.path('addMenuItem',{_id:FlowRouter.getParam("_id")})} >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}</a></div>
-        <Trvalue key={1} level={0} menus={m}/>
+        <div class="row">
+            <Trvalue key={1} level={0} menus={m}/>
+        </div>
         </div>    
       
     );
@@ -140,6 +144,12 @@ var Trvalue = React.createClass({
         });
     },
   render: function() {    
+    var divStyle = {
+     // background: "#eee",
+   paddingTop: "5px",
+  //borderBottom: 'solid',
+ 
+};
 
     var menus = "";
     var list='|-';
@@ -163,12 +173,17 @@ var Trvalue = React.createClass({
       
       return (
         
-          <div className="row">
-          <span className="col-md-2">{this.props.list+this.props.title}<small> (<span>{'Alias:'+this.props.alias}</span>) </small></span>
-          <span className="col-md-2">{this.props.desc}</span>
-          <span className="col-md-2" id={this.props._id}><a href={FlowRouter.path('editMenuItem',{_id:this.props._id})} ><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i></a></span>
-          <span className="col-md-2" id={this.props._id} onClick={this.deleteMenuItem} ><i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i></span>
-          <div className="replies">{ menus }</div>
+          <div>
+          <div>
+          <span className="col-md-4">{this.props.list+this.props.title}<small> (<span>{'Alias:'+this.props.alias}</span>) </small></span>
+          <span className="col-md-5">{this.props.desc}</span>
+          <span className="col-md-1" id={this.props._id}><a href={FlowRouter.path('editMenuItem',{_id:this.props._id})} ><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i></a></span>
+          <span className="col-md-1" id={this.props._id} onClick={this.deleteMenuItem} ><i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i></span>
+          <br />
+          { menus }
+          </div>
+          <div style={divStyle}>
+          </div>
           </div>
          
         

@@ -18,6 +18,12 @@ AddModule = React.createClass({
 			validateHiddenInputs: true
 		});*/
 	},
+	 getInitialState(){
+    return{
+      successMsg:false,
+      errorMsg:false, 
+   		 }
+ 	 },
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		var handle=Meteor.subscribe('menus')
@@ -27,6 +33,8 @@ AddModule = React.createClass({
 		};
 	},
 	handleSubmit(event) {
+
+    var that = this;
 		event.preventDefault();
 		// console.log(event.target.querySelector('[name="menu"]').value);
 
@@ -57,13 +65,24 @@ AddModule = React.createClass({
 
 		Meteor.call("addModule", insert, function(err,res){
 			console.log(res)
-			return <AlertMessage />
+			 if(err){
+        console.log(err,'err---------------');
+        that.setState({'errorMsg':err})
+      }
+      else{
+        that.setState({'successMsg':true})
+        
+      }
 		});
 		FlowRouter.go('modulesManager');
 	},
 	cancelSubmit(){
 		FlowRouter.go('modulesManager');
 	},
+	 resetSuccessMsg(){
+    this.setState({'successMsg':false})
+    this.setState({'errorMsg':false})
+  },
 	 renderListItems() {
         var items = [];
         for (var i = 0; i < this.data.results.length; i++) {
@@ -77,6 +96,14 @@ AddModule = React.createClass({
         return items;
     },
 	render() {
+		if (this.state.successMsg) {
+      msg= <AlertMessage data={'Update the website settings.'} func={this.resetSuccessMsg}/>;
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg=''
+    }
+
 		console.log(this.data.results,'sihksoihasasasjaj');
 		if (this.data.pageLoading) {
 			return <LoadingSpinner />;
@@ -84,7 +111,8 @@ AddModule = React.createClass({
 		return (
 			<div className="col-md-12 sidebar">
 				<span className=""> {i18n('ADMIN_EXTENSION_MODULES_ADDHTMLBLOCKS')} </span>
-				<span className="form-error alert alert-danger" role="alert" id="error-dialog">Errors in adding {this.props.type}</span>
+				{msg}
+				{/*<span className="form-error alert alert-danger" role="alert" id="error-dialog">Errors in adding {this.props.type}</span>*/}
 				<form id="non-editable" className="form-horizontal" role="form">
 					<div className="form-group">
 						<label htmlFor="title" className="col-sm-1 control-label">{i18n('ADMIN_EXTENSION_MODULES_ADDMODULE_FORM_TITLE')}</label>

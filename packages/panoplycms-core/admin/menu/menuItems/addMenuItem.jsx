@@ -1,16 +1,28 @@
 AddMenuItem=React.createClass({
     mixins:[ReactMeteorData],  
     getMeteorData: function() {
+      var menu = Meteor.subscribe('menus')
       var handle = Meteor.subscribe('articlesFind')
       var handle1 = Meteor.subscribe('Categories')
-      var handle2 = Meteor.subscribe('menuItems')
+      var handle2 = Meteor.subscribe('menuItemsByMainParentId',this.state.MenuValue)
+      console.log(this.state.MenuValue,"test<=====")
       return {
         pageLoading: ! handle.ready(),
         pageLoading: ! handle1.ready(), 
         categoryData: PanoplyCMSCollections.Categories.find({trash:0}).fetch(),
         articleData: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
-        MenuItemData: PanoplyCMSCollections.MenuItems.find({trash:false}).fetch()
+        MenuItemData: PanoplyCMSCollections.MenuItems.find({mainParentId:this.state.MenuValue,trash:false}).fetch(),
+         Menu1:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
       };
+  },
+   getInitialState(){
+   return {
+      language:i18n.getLanguage(),
+      msg:false,
+      valid:'',
+      errorMsg:false
+    }
+    console.log(msg,"msg")
   },
    getInitialState: function() {
     return {
@@ -23,12 +35,20 @@ AddMenuItem=React.createClass({
     this.setState({itemType : ReactDOM.findDOMNode(this.refs.select).value.trim()})
 
   },
+   
   getMenuItemTypeValue(val){
    
     // console.log(val,'val');
     this.setState({MenuItemTypeValue :val})
     
   },
+ getMenuValue(val){
+   
+    console.log(val,'val');
+    this.setState({MenuValue :val})
+    
+  },
+
   componentDidMount: function(){
     document.title = "Add Menu Item"
 
@@ -40,25 +60,41 @@ AddMenuItem=React.createClass({
     
   },
   submitData(event){
+    var that=this;
+  // console.log("----",this.state.MenuValue,"---")
     event.preventDefault();
     var insert = {
       "title":ReactDOM.findDOMNode(this.refs.title).value.trim(),
       "desc":ReactDOM.findDOMNode(this.refs.desc).value.trim(),
-      "mainParentId":FlowRouter.getParam("_id"),
+      "mainParentId":this.state.MenuValue,//FlowRouter.getParam("_id"),
       "MenuItemType":this.state.itemType,
       "MenuItemTypeId":this.state.MenuItemTypeValue,
       "parentId":ReactDOM.findDOMNode(this.refs.selectParent).value.trim()
     }
-    console.log(insert)
+   console.log(insert)
     Meteor.call("insertMenuItem", insert,function(err,data){
-        if(err)
+        if(err){
+           that.setState({errorMsg : err})
           console.log(err);
+                }
           else{
-            console.log(FlowRouter.getParam("_id"),data);
-           FlowRouter.go('listMenuItems',{_id:FlowRouter.getParam("_id")})
+             that.setState({msg : true})
+         //    console.log(FlowRouter.getParam("_id"),data);
+             ReactDOM.findDOMNode(that.refs.title).value="";
+             ReactDOM.findDOMNode(that.refs.desc).value="";
+             ReactDOM.findDOMNode(that.refs.selectParent).value="";
+           that.setState({itemType : ""});
+           that.setState({MenuItemTypeValue : ""});
+           that.setState({MenuValue : ""});
+
+        //   FlowRouter.go('listMenuItems',{_id:FlowRouter.getParam("_id")})
           }
     });
      
+  },
+  resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
   },
   fecthCategoryArticles(event){
     event.preventDefault();
@@ -115,9 +151,29 @@ AddMenuItem=React.createClass({
     return list;
   },
     
+
+
+// getMenuDropDown(){
+//   event.preventDefault();
+//     var menus1=this.data.Menu1;
+//     console.log(this.data.Menu1,"menus1====")
+
+//          menus1.forEach(function (menu1) {
+//         list1 += '<option value="' + menu1._id + '"';
+//         list1 += '>';
+//          list1 += menu1.title + '</option>';
+        
+//       });
+// return list1;
+
+//   },
+
+
+
+
   listOfMenu(){    
     var elements = this.data.MenuItemData;
-    console.log(this.data.MenuItemData,'elements');
+  //  console.log(this.data.MenuItemData,'elements');
     var menu = new Array();
 
     function getElements(parent_id){
@@ -150,15 +206,26 @@ AddMenuItem=React.createClass({
   },
 
   render(){
+    var msg='';
+    if(this.state.msg){
+      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
+    }
      if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
 
     var a={__html: '<option value="">Root</option>'+this.getDropDown()};
-    console.log(this.data.MenuItemData);
+  //  var b={__html: '<option value="">Select Menu</option>'+this.getMenuDropDown()};
+   // console.log(this.data.MenuItemData);
     return (
-    <div className="col-md-10 content">
+
+    <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
       <Heading  data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} />
+      {msg}
       <div className="panel-body">
       <div id="notification"></div>
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
@@ -174,6 +241,14 @@ AddMenuItem=React.createClass({
               <input type="text" ref="desc" className="form-control" id="desc" />
             </div>
          </div>
+      {/*   <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
+            <select className="col-sm-10" ref="selectMenu"   dangerouslySetInnerHTML={b}></select>
+         </div> */}
+          <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
+            <SelectMenu  func={this.getMenuValue} />    
+         </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
             <select className = "col-sm-10" ref="select" onChange={this.selectMenuItemType}> 
@@ -182,14 +257,15 @@ AddMenuItem=React.createClass({
               <option className="form-control" value="article" >Article</option>
             </select>
          </div>
-          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-            <select className="col-sm-10" ref="selectParent" onChange={this.selectMenuItemType} dangerouslySetInnerHTML={a}></select>
-         </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
             {this.state.itemType=='category'?<SelectCategory func={this.getMenuItemTypeValue} />:this.state.itemType=='article'?<SelectArticle func={this.getMenuItemTypeValue} />:''}    
          </div>
+
+          <div className = "form-group">
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
+            <select className="col-sm-10" ref="selectParent" onChange={this.selectMenuItemType} dangerouslySetInnerHTML={a}></select>
+         </div>         
         <div className="form-group">
           <div className = "col-sm-offset-2 col-sm-10">
             <button className="btn btn-success " >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_SAVE')}</button>
@@ -245,10 +321,10 @@ LoadingSpinner=React.createClass({
       dataList: PanoplyCMSCollections.Articles.find({trash:false}).fetch()
     };
   },
-  setValue(event){
-    event.preventDefault();
-    this.props.func(ReactDOM.findDOMNode(this.refs.select).value.trim());
-  },
+  // setValue(event){
+  //   event.preventDefault();
+  //   this.props.func(ReactDOM.findDOMNode(this.refs.select).value.trim());
+  // },
   render: function() {
    
     return (
@@ -262,5 +338,33 @@ LoadingSpinner=React.createClass({
   }
 });
 
+
+
+
+SelectMenu = React.createClass({
+  mixins:[ReactMeteorData],  
+  getMeteorData: function() {
+    var handle1 = Meteor.subscribe('menus')
+    return {
+      dataList: PanoplyCMSCollections.Menus.find({trash:false}).fetch()
+    };
+  },
+  setValue(event){
+    event.preventDefault();
+    this.props.func(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim());
+  },
+  render: function() {
+   
+    return (
+            <select className = "col-sm-10" ref="selectMenu" onChange={this.setValue}> 
+                <option className="form-control" value="" >Select </option>
+                {this.data.dataList.map(function(result) {
+                   return  <option key={result._id} value={result._id}> {result.title} </option>;
+                })}
+            </select>
+    )
+    
+  }
+});
 
 

@@ -392,3 +392,8 @@ ul.nav-children li a:focus, ul.nav-children li a:hover, ul.nav-children li a:act
 .error{
 	color: red;
 }
+
+ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
+	overflow-y: scroll;
+	height: 112px;
+}

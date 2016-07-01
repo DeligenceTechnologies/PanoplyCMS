@@ -1,3 +1,5 @@
+import {teamon} from 'meteor/teamon:tinymce';
+
 EditArticle=React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
@@ -8,18 +10,24 @@ EditArticle=React.createClass({
       pageLoading: ! handle.ready(),
       results: PanoplyCMSCollections.Articles.findOne({_id:FlowRouter.getParam("_id")}),
       catdata: PanoplyCMSCollections.Categories.find().fetch(),
-      sourceData: PanoplyCMSCollections.Tags.find({trash:false}).fetch()
+      sourceData: PanoplyCMSCollections.Tags.find({}).fetch()
     } 
   },
 	componentDidMount: function(){
 		document.title = "Edit Article";
-		tinymce.init({ selector: 'editor1' });
+    console.log('edit article called.....',$('textarea'));
+		//tinymce.remove();
+
+    tinymce.init({
+      selector: 'textarea',
+      skin_url: '/packages/teamon_tinymce/skins/lightgray',
+    });
 	},
 	componentWillUnmount: function() {
-		tinymce.init({ selector: 'editor1' });
+		//tinymce.remove();
 	},
 	componentDidUpdate: function() {
-	    tinymce.init({ selector: 'textarea' });
+	    
       var sourceData=[];
       
     _.each(this.data.tags,function(a){
@@ -91,7 +99,7 @@ EditArticle=React.createClass({
               <label  htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
               <div className = "col-sm-10">
                 <div className="summernote">
-                  <textarea ref="editor1" id="article"  defaultValue={this.data.results.article}></textarea>
+                  <textarea ref="editor1" id="article"  defaultValue={this.data.results.article} />
                 </div>
               </div>
             </div>
@@ -109,9 +117,9 @@ EditArticle=React.createClass({
             </div>
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">
-                <button className="btn btn-primary " >{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_SAVE')}</button>
+                <button className="btn btn-primary " >SAVE</button>
                 &nbsp;&nbsp;
-                <a className="btn btn-success" href={FlowRouter.path('articles')}>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CANCEL')}</a>
+                <a className="btn btn-danger" href={FlowRouter.path('articles')}>CANCEL</a>
               </div>
             </div>  
           </form>

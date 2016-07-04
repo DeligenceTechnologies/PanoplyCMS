@@ -26,6 +26,14 @@ ListCategories = React.createClass({
   },
   render() {
     that=this;
+    nodata='';
+    if((this.data.Categories).length==0  && this.state.trashListShow==false){
+      nodata=<NotFoundComp/>
+    }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
+      nodata=<NotFoundComp/>
+    }else{
+      nodata='';
+    }
     return (<div>
              <div className="panel panel-black">
              <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
@@ -60,6 +68,7 @@ ListCategories = React.createClass({
                     }   
                     </tbody>
                   </table>
+                  {nodata}
                 </div>
               </div>
               {this.data.Categories.map(function(cat){

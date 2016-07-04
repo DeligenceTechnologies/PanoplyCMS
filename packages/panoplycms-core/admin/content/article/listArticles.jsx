@@ -28,6 +28,14 @@ ListArticles = React.createClass({
   },
   render() {
     that=this;
+    nodata='';
+    if((this.data.results).length==0  && this.state.trashListShow==false){
+      nodata=<NotFoundComp/>
+    }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
+      nodata=<NotFoundComp/>
+    }else{
+      nodata='';
+    }
     return (
       <div className="col-md-10 content">
         <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
@@ -50,7 +58,7 @@ ListArticles = React.createClass({
                   <th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 {this.state.trashListShow?this.data.resultOfTrash.map(function(result) {
                    return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
                 }):this.data.results.map(function(result) {
@@ -58,6 +66,7 @@ ListArticles = React.createClass({
                 })} 
               </tbody>
             </table>
+            {nodata}   
           </div>
         </div> 
         {this.data.results.map(function(result) {
@@ -182,3 +191,4 @@ RestoreModal=React.createClass({
     )     
   }
 })
+

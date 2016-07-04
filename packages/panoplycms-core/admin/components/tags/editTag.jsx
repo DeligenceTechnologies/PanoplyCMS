@@ -14,23 +14,44 @@ EditTag=React.createClass({
       var metaKeyword=ReactDOM.findDOMNode(this.refs.metaKeyword).value.trim();
       var metaDesc=ReactDOM.findDOMNode(this.refs.metaDesc).value.trim();
       //console.log(title,alias)
-      Meteor.call('editTag',this.props._id,title,desc,metaKeyword,metaDesc,function(err,data){
-        if(err)
-          console.log(err);
+      Meteor.call('editTag',this.props._id,title,desc,metaKeyword,metaDesc,(err,data)=>{
+        if(err){
+          this.setState({errorMsg : err})
+        }
         else{
-          console.log(data);
-          FlowRouter.go('tags');      
+          this.setState({msg : true});            
         }
       });
   },
+  getInitialState(){
+   return {
+      language:i18n.getLanguage(),
+      msg:false,
+      valid:'',
+      errorMsg:false
+    }
+  },
+  resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
+  },
 render:function(){
-   if (this.data.pageLoading) {
+   /*if (this.data.pageLoading) {
       return <LoadingSpinner />;
+    }*/
+    var msg='';
+    if(this.state.msg){
+      msg=<AlertMessage data={'updated tag.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
     }
 
 return(
-  <div className="col-md-10 content">
+  <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
     <Heading  data={i18n('ADMIN_COMPONENTS_TAGS_EDITTAG')} />
+    {msg}
     <div className="panel-body">
       <form className = "form-horizontal" role = "form" onSubmit={this.submitData}>
           <div className="form-group">
@@ -42,13 +63,13 @@ return(
            <div className="form-group">
             <label className="col-sm-2 control-label">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_DESCRIPTION')}</label>
             <div className="col-sm-10">
-              <textarea ref="desc" id="desc"  defaultValue={this.data.tagsData.desc} className="form-control"   required ></textarea>
+              <textarea ref="desc" id="desc"  defaultValue={this.data.tagsData.desc} className="form-control"    ></textarea>
             </div>
           </div>
           <div className="form-group">
             <label className="col-sm-2 control-label">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_METAKEYWORD')}</label>
             <div className="col-sm-10">
-              <input type = "text" ref="metaKeyword" id="metaKeyword" defaultValue={this.data.tagsData.metaKeyword} className="form-control"   placeholder = "Enter title" required />
+              <input type = "text" ref="metaKeyword" id="metaKeyword" defaultValue={this.data.tagsData.metaKeyword} className="form-control"   placeholder = "Enter title"  />
             </div>
           </div>
           <div className="form-group">
@@ -59,9 +80,9 @@ return(
           </div>
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
-              <input type = "submit" className="btn btn-success" value={i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_SAVE')} />
+              <input type = "submit" className="btn btn-primary" value='UPDATE' />
               &nbsp;&nbsp;
-              <a href={FlowRouter.path('tags')} className="btn btn-danger">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_CANCEL')}</a>
+              <a href={FlowRouter.path('tags')} className="btn btn-danger">CANCEL</a>
             </div>
           </div>
       </form>

@@ -22,6 +22,7 @@ EditArticle=React.createClass({
 
   },
 	componentDidMount: function(){
+    $('#tokenfield').tokenfield('destroy');
 		document.title = "Edit Article";
     tinymce.init({
       selector: 'textarea',
@@ -63,7 +64,7 @@ EditArticle=React.createClass({
       });
       that.setState({valid:validObj})
     }, 3000)
-    
+
     
 	},
 	componentWillUnmount: function() {
@@ -87,7 +88,8 @@ EditArticle=React.createClass({
           source:sourceData,
           delay: 100
         },
-        showAutocompleteOnFocus: true
+        showAutocompleteOnFocus: true,
+        createTokensOnBlur:true
       })
 	},
 	submitData(event){

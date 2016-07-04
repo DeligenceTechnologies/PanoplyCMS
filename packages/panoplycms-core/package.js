@@ -42,8 +42,8 @@ Package.onUse(function(api) {
   api.use('anti:i18n');
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
-  api.use('deligence1:panoplycms-collections')
-  api.use('deligence1:panoplycms-router')
+  api.use('deligence1:panoplycms-collections');
+  api.use('deligence1:panoplycms-router');
   
   /*--------------------------------Server------------------------------------- */
 

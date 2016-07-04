@@ -18,6 +18,7 @@ AddArticle=React.createClass({
 		}
 	},
 	componentDidMount: function(){
+    $('#tokenfield').tokenfield('destroy');
 		document.title = "Add Article"
     console.log('add articles rendred...');
     let validObj=$("#add-article").validate({
@@ -64,13 +65,15 @@ AddArticle=React.createClass({
     _.each(this.data.tags,function(a){
         sourceData.push(a.title);
       });
+      
 
       $('#tokenfield').tokenfield({
         autocomplete: {
           source:sourceData,
           delay: 100
         },
-        showAutocompleteOnFocus: true
+        showAutocompleteOnFocus: true,
+        createTokensOnBlur:true
       })
 
 	},
@@ -186,7 +189,7 @@ AddArticle=React.createClass({
             </div> 
           </form>
         </div>
-        
+
       </div>
 		)
 	}

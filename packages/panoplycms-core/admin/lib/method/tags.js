@@ -9,15 +9,15 @@ Meteor.methods({
 			metaDescription:metaDesc,
 			createdAt: new Date(),
 			updateAt: '',
-            status:1,
-            trash:false,
+      status:1,
+      /*trash:false,*/
 			owner: '',
-	      	username: ''
+	    username: ''
 
 		})
 	},
 	deleteTag:function(id){
-		PanoplyCMSCollections.Tags.update({_id:id},{$set:{trash:true}});
+		PanoplyCMSCollections.Tags.remove({_id:id});
 	},
 	editTag:function(id,title,desc,metaKeyword,metaDesc){
 		return PanoplyCMSCollections.Tags.update({_id:id},{$set:{

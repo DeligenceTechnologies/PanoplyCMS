@@ -7,19 +7,37 @@
     event.preventDefault();    
       var title = this.refs.title.value.trim();
       var alias = generateAlias(title);
-      Meteor.call('add_category',title,alias,function(err,data){
-        if(err)
-          console.log(err);
+      Meteor.call('add_category',title,alias,(err,data)=>{
+        if(err){
+          this.setState({errorMsg:err})
+        }
         else{
-         
-          FlowRouter.go('listCategories');      
+          this.setState({successMsg:true})     
         }
       });
   },
+  getInitialState(){
+    return{
+      errorMsg:false,
+      successMsg:false
+    }
+  },
+  resetSuccessMsg(){
+    this.setState({successMsg:false});
+    this.setState({errorMsg:false})
+  },
 render:function(){
+  if(this.state.successMsg){
+      msg=<AlertMessage data={'Successfully added Category.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg=''
+    }
 return(
       <div className="col-md-10 content">
          <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}/>
+         {msg}
           <form className = "form-horizontal" role = "form" onSubmit={this.submitData}>
             <div className="form-group">
               <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</label>
@@ -29,9 +47,9 @@ return(
                 </div>
                 <div className="form-group">
                   <div className="col-sm-offset-2 col-sm-10">
-                    <input type = "submit" className="btn btn-success" value={i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_SAVE')} />
+                    <input type = "submit" className="btn btn-primary" value='SAVE' />
                     &nbsp;&nbsp;
-                    <a href={FlowRouter.path('listCategories')} className="btn btn-danger">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CANCEL')}</a>
+                    <a href={FlowRouter.path('listCategories')} className="btn btn-danger">CANCEL</a>
                   </div>
                 </div>
           </form>

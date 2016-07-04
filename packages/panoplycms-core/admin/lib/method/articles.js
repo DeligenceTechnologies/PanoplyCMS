@@ -37,5 +37,11 @@ Meteor.methods({
 
 		}})
 		
+	},
+	restoreArticles:function(id){
+		PanoplyCMSCollections.Articles.update({_id:id},{$set:{ trash:false}})
+	},
+	deleteArticleParma:function(id){
+		PanoplyCMSCollections.Articles.remove({_id:id})
 	}
 })

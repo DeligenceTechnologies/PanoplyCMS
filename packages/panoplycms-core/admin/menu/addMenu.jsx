@@ -1,4 +1,13 @@
 AddMenu=React.createClass({
+  getInitialState(){
+   return {
+      language:i18n.getLanguage(),
+      msg:false,
+      valid:'',
+      errorMsg:false
+    }
+    console.log(msg,"msg")
+  },
   componentDidMount: function(){
     document.title = "Add Menu"
   },
@@ -8,23 +17,45 @@ AddMenu=React.createClass({
   componentDidUpdate: function() {
     
   },
+
   submitData(event){
+    var that=this
     event.preventDefault();
     var insert = {
       "title":ReactDOM.findDOMNode(this.refs.title).value.trim(),
       "desc":ReactDOM.findDOMNode(this.refs.desc).value.trim()    
     }
     Meteor.call("insertMenu", insert,function(err,data){
-      if(err)
+      if(err){
+        that.setState({errorMsg : err})
         console.log(err);
+      }
       else
-        FlowRouter.go('manageMenu')
+      {
+        that.setState({msg : true})
+        ReactDOM.findDOMNode(that.refs.title).value="";
+        ReactDOM.findDOMNode(that.refs.desc).value="";
+      }
+      //  FlowRouter.go('manageMenu')
     });
   },
+  resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
+  },
   render(){
+     var msg='';
+    if(this.state.msg){
+      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
+    }
     return (
-    <div className="col-md-10 content">
+    <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
       <Heading  data={i18n('ADMIN_MENU_ADDMENU')} />
+      {msg}
       <div className="panel-body">
       <div id="notification"></div>
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >

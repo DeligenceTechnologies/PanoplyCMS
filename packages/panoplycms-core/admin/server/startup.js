@@ -1,6 +1,14 @@
 PanoplyCMSRegisterPackage = function(packageDetails) {
-	if(!PanoplyCMSCollections.RegisteredPackages.find({name: packageDetails.name}).count())
-	  PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+	switch(packageDetails.name){
+		case 'panoplycore':
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name}).count())
+		  	PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+		  break;
+		case 'template':
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name, 'templates.name':packageDetails.templates.name}).count())
+			  PanoplyCMSCollections.RegisteredPackages.update({'name':packageDetails.name},{$push:{'templates': packageDetails.templates}})
+			break;
+	}
 }
 
 
@@ -18,7 +26,10 @@ Meteor.startup(function () {
 			desc:'',
 			alias:'',
 			icon:'fa fa-user',
-			param:[{label:'User List',routeName:'users'},{label:'Change Password',routeName:'changePassword'}]
+			param:[
+				{label:'User List',routeName:'users'},
+				{label:'Change Password',routeName:'changePassword'}
+			]
 		},
 		{
 			title:'MENU',
@@ -89,6 +100,11 @@ Meteor.startup(function () {
 	}else{
 		
 	}
+
+	if(!PanoplyCMSCollections.RegisteredPackages.find({'name': 'template'}).count()){
+		PanoplyCMSCollections.RegisteredPackages.insert({'name': 'template'})
+	}
+
 	if ( Meteor.users.find().count() === 0 ) {
 	    id=Accounts.createUser({
 	        username: 'deligence',
@@ -105,8 +121,7 @@ Meteor.startup(function () {
 	    console.log('********************************************');
 	    Roles.addUsersToRoles(id,['admin','owner']);
 	} else {
-		
-		
+			
 	}
 
 	PanoplyCMSRegisterPackage(
@@ -312,7 +327,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "login",
-					"path" : "/login",
+					"path" : "/adminlogin",
 					"component" : "Login",
 					"layout" : "AdminLoginLayout",
 					"provides" : "adminLogin"

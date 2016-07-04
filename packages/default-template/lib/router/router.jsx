@@ -9,8 +9,7 @@ FlowRouter.route('/', {
 		ReactLayout.render(DefaultTemplate);
 	},
 	triggersEnter: [function(context, redirect) {
-		// console.log('Welcome to Panoply CMS!');
+		console.log('Welcome to Panoply CMS!');
 	}]
 });
-
 

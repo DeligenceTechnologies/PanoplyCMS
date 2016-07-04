@@ -129,6 +129,7 @@ Package.onUse(function(api) {
 
   
   api.export('PanoplyCMSRegisterPackage')
+  api.export('PanoplyRouter')
 });
 
 

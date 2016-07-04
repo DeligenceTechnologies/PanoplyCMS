@@ -8,63 +8,86 @@ _.extend(PanoplyRouter, {
       if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
         packages = PanoplyCMSCollections.RegisteredPackages.find().fetch()
 
-        menuItems = PanoplyCMSCollections.MenuItems.find({trash:false}).fetch()
+        /*menuItems = PanoplyCMSCollections.MenuItems.find({trash:false}).fetch()
+
+        let tmplArray = _.find(packages, function(p){
+          if(p.name == "template")
+            return p
+        })
+
+        var defaultTemplate = _.find(tmplArray.templates, function(t){
+          if(t.active)
+            return t
+        })
+
 
         menuItems.forEach( (i) => {
           let route = {
             action: (params, queryParams) => {
-              renderLayout(null,null,params, queryParams)
+              // renderLayout(defaultTemplate.layout, null, params, queryParams)
+              renderLayout(null, null, params, queryParams)
             }
           }
           PanoplyRouter.route('/'+i.alias, route)
-        });
+          console.log(PanoplyRouter, "<--- Its router")
+        });*/
 
-        let admin = PanoplyRouter.group({
-          name: "admin",
-          prefix: '/admin',
-          triggersEnter: [ (context, redirect) => {
-            if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
-              console.log('Access Denied')
-              redirect('login');
+        // if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+          admin = PanoplyRouter.group({
+            name: "admin",
+            prefix: '/admin',
+            triggersEnter: [ (context, redirect) => {
+              if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
+                console.log(context, "<---- context")
+                redirect('login');
+              }
+            }]
+          });
+          admin.route('/', {
+            action: (params) => {
+              PanoplyRouter.go('dashboard');
             }
-          }]
-        });
-
-        admin.route('/', {
-          action: (params) => {
-            FlowRouter.go('dashboard');
-          }
-        });
+          });
+        /*} else {
+          admin = PanoplyRouter.group({
+            name: "admin",
+            prefix: '/admin',
+            triggersEnter: [ ]
+          });
+        }*/
 
         // if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
           /* Create Admin Route Group */
           packages.forEach( (p) => {
-            p.routes.forEach( (r) => {
-              let route = {
-                name: r.name,
-                layout : r.layout,
-                template : r.component,
-                action: (params, queryParams) => {
-                  renderLayout(r.layout, r.component, params, queryParams)
+            if(p.routes){              
+              p.routes.forEach( (r) => {
+                let route = {
+                  name: r.name,
+                  layout : r.layout,
+                  template : r.component,
+                  action: (params, queryParams) => {
+                    renderLayout(r.layout, r.component, params, queryParams)
+                  }
                 }
-              }
-              if(Roles.userIsInRole(Meteor.userId(), ['admin']) && r.provides == 'dashboard'){
-                admin.route(r.path, route)
-              } else {
-                if(route.name == 'login'){
-                  route.triggersEnter = [ (context, redirect) => {
-                    if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-                      console.log('Already Loggedin')
-                      redirect('/admin');
-                    }
-                  }]
+                if(r.provides == 'dashboard'){
+                  if(Roles.userIsInRole(Meteor.userId(), ['admin'])) admin.route(r.path, route)
+                } else {
+                  if(route.name == 'login'){
+                    route.triggersEnter = [ (context, redirect) => {
+                      if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+                        console.log('Already Loggedin')
+                        redirect('/');
+                      }
+                    }]
+                  }
+                  PanoplyRouter.route(r.path, route)
                 }
-                PanoplyRouter.route(r.path, route)
-              }
-            })
+              })
+            }
           })
         // }
 
+        /* Render React Layout */
         function renderLayout(layout, component, params, queryParams){
           ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
         }
@@ -78,7 +101,7 @@ _.extend(PanoplyRouter, {
         }
       }
     });
-  }
+  },
 });
 
 if(Meteor.isClient){
@@ -86,4 +109,3 @@ if(Meteor.isClient){
     PanoplyRouter.init();
   })
 }
-

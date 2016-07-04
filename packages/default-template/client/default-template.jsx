@@ -91,3 +91,16 @@ DefaultTemplate = React.createClass({
 		)
 	}
 });
+
+
+DefaultArticle = React.createClass({
+	render(){
+		return <div>123456</div>
+	}
+})
+
+DefaultCategory = React.createClass({
+	render(){
+		return <div>123456</div>
+	}
+})

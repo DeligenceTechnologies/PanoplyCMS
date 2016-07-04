@@ -43,8 +43,8 @@ Package.onUse(function(api) {
 	api.use("deligence1:panoplycms-collections");
 	//api.use('thekavish:panoply-calc');
 
-	/*Added files below*/
-
+	/* Added files below */
+	api.addFiles('lib/router/router.js', ['client']);
 
 	api.addFiles('client/default-template.jsx', ['client']);
 	api.addFiles('client/startup.jsx', ['client']);

@@ -1,8 +1,10 @@
 Meteor.startup(() => {
-  generateRoutes({name:'Default Template'})  
+  /*generateRoutes({name:'Default Template'}) 
+  Meteor.subscribe('articlesFind')
+  Meteor.subscribe('Categories');*/
 })
 
-function generateRoutes(template) {
+/*function generateRoutes(template) {
   Tracker.autorun( (c) => {
     if(PanoplyCMSCollections.RegisteredPackages.find({name:"template"}).count()){
 
@@ -29,13 +31,28 @@ function generateRoutes(template) {
 
           let route = {
             action: (params, queryParams) => {
-              ReactLayout.render(eval(defaultTemplate.layout), { content: React.createElement(eval(defaultTemplate.component), params)})
+              params = { id: i.MenuItemTypeId };
+              ReactLayout.render(eval(defaultTemplate.layout), { content: React.createElement(eval(content), params)})
             }
           }
           PanoplyRouter.route('/'+i.alias, route)
           console.log(PanoplyRouter, "<--- Its router")
+
+          if(i.MenuItemType == 'category'){
+            let articles = PanoplyCMSCollections.Articles.find({category: i.MenuItemTypeId, trash:false},{_id:1, alias: 1}).fetch()
+            _.each(articles, a => {
+              let route = {
+                action: (params, queryParams) => {
+                  params = { id: a._id };
+                  ReactLayout.render(eval(defaultTemplate.layout), { content: React.createElement(eval(defaultTemplate.articleView), params)})
+                }
+              }
+              PanoplyRouter.route('/'+i.alias+'/'+a.alias, route)
+            })
+          }
+
         });
       }
     }
   })
-}
+}*/

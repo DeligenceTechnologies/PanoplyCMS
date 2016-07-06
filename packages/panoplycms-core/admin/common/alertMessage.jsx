@@ -34,3 +34,7 @@ NotFoundComp=React.createClass({
 
   }
 })
+
+export default NotFoundComp;
+export default AlertMessageOfError;
+export default AlertMessage;

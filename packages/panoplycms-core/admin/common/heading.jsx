@@ -7,5 +7,5 @@ Heading=React.createClass({
       )
   }
 })
-
+ export default Heading;
 

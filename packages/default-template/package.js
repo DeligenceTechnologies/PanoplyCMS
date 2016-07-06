@@ -60,4 +60,11 @@ Package.onUse(function(api) {
 	api.addFiles('server/startup.js', ['server']);
 
 	api.addFiles('lib/router/router.jsx', ['client','server']);
+
+	api.export([
+		'DefaultTemplate',
+		'DefaultCategory',
+		'DefaultArticle'
+	],['client']);
+	
 });

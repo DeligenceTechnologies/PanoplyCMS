@@ -8,6 +8,10 @@ PanoplyCMSRegisterPackage = function(packageDetails) {
 			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name, 'templates.name':packageDetails.templates.name}).count())
 			  PanoplyCMSCollections.RegisteredPackages.update({'name':packageDetails.name},{$push:{'templates': packageDetails.templates}})
 			break;
+		default:
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name}).count())
+		  	PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+		  break;
 	}
 }
 

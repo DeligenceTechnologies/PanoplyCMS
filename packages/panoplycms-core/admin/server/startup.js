@@ -60,21 +60,72 @@ Meteor.startup(function () {
 			desc:'',
 			alias:'',
 			icon:'fa fa-file-text-o',
-			param:[{label:'Articles',routeName:'articles',template:'Articles',providers:''},{label:'Categories',routeName:'listCategories',template:'Categories',providers:''}]
+			param:[
+				{
+					label:'Articles',
+					routeName:'articles',
+					template:'Articles',
+					providers:''
+				},
+				{
+					label:'Categories',
+					routeName:'listCategories',
+					template:'Categories',
+					providers:''
+				}
+			]
 		},
 		{
 			title:'COMPONENTS',
 			desc:'',
 			alias:'',
 			icon:'fa fa-cogs',
-			param:[{label:'Tags',routeName:'tags',template:'Tags',providers:''},{label:'Search',routeName:'serach',template:'Search',providers:''}]
+			param:[
+				/*{
+					label:'Tags',
+					routeName:'tags',
+					template:'Tags',
+					providers:''
+				},
+				{
+					label:'Search',
+					routeName:'serach',
+					template:'Search',
+					providers:''
+				}*/
+			]
 		},
 		{
 			title:'EXTENSIONS',
 			desc:'',
 			alias:'',
 			icon:'fa fa-puzzle-piece',
-			param:[{label:'Modules',routeName:'modules',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
+			param:[
+				{
+					label:'Modules',
+					routeName:'modules',
+					template:'Modules',
+					providers:''
+				}/*,
+				{
+					label:'Plugins',
+					routeName:'plugins',
+					template:'Plugins',
+					providers:''
+				}*/,
+				{
+					label:'Language',
+					routeName:'language',
+					template:'Language',
+					providers:''
+				},
+				{
+					label:'Templates',
+					routeName:'templates',
+					template:'Templates',
+					providers:''
+				}
+			]
 		},
 		{
 			title:'HELP',

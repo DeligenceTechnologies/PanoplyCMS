@@ -1,6 +1,7 @@
 PanoplyCMSRegisterPackage(
 		{
 			"name" : "tags",
+			"type" : "component",
 			"routes" : [
 				{
 					"name" : "addTag",
@@ -17,15 +18,15 @@ PanoplyCMSRegisterPackage(
 					"layout" : "AdminLayout", 
 					"provides" : "dashboard", 
 					"permission" : [ "admin" ]
-				 },
-				 { 
+				},
+				{ 
 				 	"name" : "tags", 
 				 	"path" : "/tags", 
 				 	"component" : "ListTags", 
 				 	"layout" : "AdminLayout", 
 				 	"provides" : "dashboard", 
 				 	"permission" : [ "admin" ]
-				  }
+				}
 			]
 		}
 	)

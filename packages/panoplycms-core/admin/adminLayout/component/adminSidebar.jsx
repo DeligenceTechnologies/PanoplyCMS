@@ -13,7 +13,7 @@ mixins:[ReactMeteorData],
         <div className="side-menu-container">
           <ul className="nav navbar-nav">
             {this.data.results.map(function(result) {
-               return <LiItem key={result._id} {...result}/>;
+               return <LiItem key={result._id} {...result} />;
             })}                  
           </ul>
         </div>

@@ -45,20 +45,19 @@ Package.onUse(function(api) {
   
   api.addFiles('server/startup.js',['server'])
   
-  
-
   api.use("deligence1:panoplycms-collections");
   api.use("deligence1:panoplycms-core");
   
-
   api.addFiles('components/tags/addTag.jsx',['client'])
   api.addFiles('components/tags/editTag.jsx',['client'])
   api.addFiles('components/tags/listTags.jsx',['client'])
   api.addFiles('components/tags/language.js',['client'])
 
-  api.export("ListTags", ["client"]);
-  api.export("AddTag", ["client"]);
-  api.export("EditTag", ["client"]);
+  api.export([
+    "ListTags", 
+    "AddTag", 
+    "EditTag"
+  ], ["client"]);  
   
 });
 

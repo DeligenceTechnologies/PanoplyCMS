@@ -46,10 +46,10 @@ ddp-client@1.2.8
 ddp-common@1.2.6
 ddp-rate-limiter@1.0.5
 ddp-server@1.2.8
+deligence1:default-template@0.1.0
 deligence1:panoplycms-collections@0.0.1
 deligence1:panoplycms-component@0.0.1
 deligence1:panoplycms-core@0.0.1
-deligence:default-template@0.1.0
 deps@1.0.12
 diff-sequence@1.0.6
 ecmascript@0.4.6

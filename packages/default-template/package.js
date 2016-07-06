@@ -1,5 +1,5 @@
 Package.describe({
-	name: 'deligence:default-template',
+	name: 'deligence1:default-template',
 	version: '0.1.0',
 	// Brief, one-line summary of the package.
 	summary: '',

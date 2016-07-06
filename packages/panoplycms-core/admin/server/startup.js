@@ -124,7 +124,7 @@ Meteor.startup(function () {
 
 	PanoplyCMSRegisterPackage(
 		{
-			"name" : "tags",
+			"name" : "panoplycore",
 			"routes" : [
 				{
 					"name" : "settings",

@@ -5,7 +5,7 @@ import {NotFoundComp} from 'meteor/deligence1:panoplycms-core';
 ListTags = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
-   /* Meteor.subscribe('tags')*/
+    Meteor.subscribe('tags')
     return{
       tagsData:PanoplyCMSCollections.Tags.find({}).fetch()
     }
@@ -17,6 +17,7 @@ ListTags = React.createClass({
   render() {
     that=this;
     nodata='';
+    console.log(this.data.tagsData,'this.data.tagsData')
     if((this.data.tagsData).length==0 ){
       nodata=<NotFoundComp/>
     }else{
@@ -26,7 +27,7 @@ ListTags = React.createClass({
               <div className="col-md-10 content">
               <Heading  key={1} data="Tags" />
               <div className="panel-heading">
-                <a href={FlowRouter.path('addTag')} className="btn btn-success btn-ico"><i className="fa fa-plus-circle fa-lg"></i> ADD TAG</a>
+                <a href={FlowRouter.path('addTag')} className="btn btn-success btn-ico"><i className="fa fa-plus-circle fa-lg"></i> Add Tag</a>
               </div>
               <div className="panel-body">
                   <div className="table-responsive" id="non-editable">
@@ -67,10 +68,10 @@ var TagsItem = React.createClass({
       return(                                      
         <tr>
           <td>
-            <large> {this.props.data.title.length>10?this.props.data.title.substring(0,10)+'...':this.props.data.title}</large>
-            <small> (<em>{this.props.data.alias.length>10?this.props.data.alias.substring(0,10)+'...':this.props.data.alias}</em> )</small> 
+            <large> {this.props.data.title}</large>
+            <small> (<em>{this.props.data.alias}</em> )</small> 
           </td>
-          <td>{this.props.data.desc.length>50?this.props.data.desc.substring(0,20)+'...':this.props.data.desc.length}</td>
+          <td>{this.props.data.desc.length>50?this.props.data.desc.substring(0,40)+'...':this.props.data.desc.length}</td>
           <td>
             <div  onClick={this.deleteTag} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
               <i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 

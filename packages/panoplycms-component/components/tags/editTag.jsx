@@ -62,7 +62,7 @@ return(
           <div className="form-group">
             <label className="col-sm-2 control-label">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_TAGNAME')}</label>
             <div className="col-sm-10">
-              <input type = "text" ref="title" id="title" defaultValue={this.data.tagsData.title} className="form-control"   placeholder = "Enter title" required />
+              <input type = "text" ref="title" id="title" defaultValue={this.data.tagsData.title} className="form-control"   maxLength='25' placeholder = "Enter title" required />
             </div>
           </div>
            <div className="form-group">

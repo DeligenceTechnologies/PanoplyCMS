@@ -83,6 +83,8 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
   api.addFiles('admin/common/heading.jsx',['client'])
   api.addFiles('admin/common/alertMessage.jsx',['client'])
+  api.addFiles('admin/common/loadingSpinner.jsx',['client'])
+
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
@@ -135,6 +137,7 @@ Package.onUse(function(api) {
   api.export("NotFoundComp");
   api.export('AlertMessage');
   api.export('AlertMessageOfError');
+  api.export('LodingSpinner');
 });
 
 

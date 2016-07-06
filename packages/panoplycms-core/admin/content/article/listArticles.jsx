@@ -4,8 +4,9 @@ import 'meteor/jquery';
 ListArticles = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
-     Meteor.subscribe('articlesFind');
+     const articleSubscription = Meteor.subscribe('articlesFind');
     return {
+      pageLoading:! articleSubscription.ready(),
       results: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
       resultOfTrash: PanoplyCMSCollections.Articles.find({trash:true}).fetch()
     } 
@@ -29,6 +30,9 @@ ListArticles = React.createClass({
   render() {
     that=this;
     nodata='';
+    if (this.data.pageLoading) {
+      return <LoadingSpinner />;
+    }
     console.log((this.data.results).length==0  && this.state.trashListShow==false)
     if((this.data.results).length==0  && this.state.trashListShow==false){
       nodata=<NotFoundComp/>

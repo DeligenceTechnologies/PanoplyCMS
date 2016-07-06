@@ -42,9 +42,10 @@ Package.onUse(function(api) {
   api.use('anti:i18n');
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
-  api.use('deligence1:panoplycms-collections');
-  api.use('deligence1:panoplycms-router');
+  //api.use('deligence1:panoplycms-router');
+  //api.use("deligence1:panoplycms-component");
   
+  api.use('deligence1:panoplycms-collections');
   /*--------------------------------Server------------------------------------- */
 
   api.addFiles([
@@ -121,15 +122,19 @@ Package.onUse(function(api) {
   api.addFiles('admin/menu/menuItems/editMenuItem.jsx',['client'])
   api.addFiles('admin/menu/menuItems/listMenuItems.jsx',['client'])
   api.addFiles('admin/menu/menuItems/language.js',['client'])
-  api.addFiles('admin/components/tags/addTag.jsx',['client'])
+ /* api.addFiles('admin/components/tags/addTag.jsx',['client'])
   api.addFiles('admin/components/tags/editTag.jsx',['client'])
   api.addFiles('admin/components/tags/listTags.jsx',['client'])
-  api.addFiles('admin/components/tags/language.js',['client'])
+  api.addFiles('admin/components/tags/language.js',['client'])*/
 
 
   
   api.export('PanoplyCMSRegisterPackage')
   api.export('PanoplyRouter')
+  api.export("Heading");
+  api.export("NotFoundComp");
+  api.export('AlertMessage');
+  api.export('AlertMessageOfError');
 });
 
 

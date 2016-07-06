@@ -52,13 +52,7 @@ Meteor.startup(function () {
 					routeName:'addMenu',
 					template:'AddMenu',
 					providers:''
-				},
-				{
-					label:'Add Menu Item',
-					routeName:'addMenuItem',
-					template:'AddMenuItem',
-					providers:''
-				}				
+				}			
 			]
 		},
 		{
@@ -130,7 +124,7 @@ Meteor.startup(function () {
 
 	PanoplyCMSRegisterPackage(
 		{
-			"name" : "panoplycore",
+			"name" : "tags",
 			"routes" : [
 				{
 					"name" : "settings",

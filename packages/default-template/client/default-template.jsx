@@ -87,7 +87,7 @@ ArticleListView = article => {
           <p className="blog-post-meta">{new Date(article.createdAt).toDateString()} by <a href="#">{article.owner}</a></p>
           <div dangerouslySetInnerHTML={{__html:article.article.substr(0, 300)}} />
         	<ShowTags tags={article.tags} />
-          <div className="pull-right"><a href={article.alias} className="btn btn-default">Read More</a></div>
+          <div className="pull-right"><a href={FlowRouter.current().route.path+'/'+article.alias} className="btn btn-default">Read More</a></div>
           <div className="clear-both"></div>
         </div>
 }

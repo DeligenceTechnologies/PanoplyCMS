@@ -9,5 +9,6 @@ Tracker.autorun(function(c) {
 	if(Meteor.userId()){
 		PanoplyCMSCollections.sidebar = PanoplySubscriptions.subscribe('sidebar');
 		PanoplyCMSCollections.imagepic = PanoplySubscriptions.subscribe('imagepic')
+		PanoplyCMSCollections.menuRoutes = PanoplySubscriptions.subscribe('menuRoutes')
 	}
 })

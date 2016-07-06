@@ -52,13 +52,7 @@ Meteor.startup(function () {
 					routeName:'addMenu',
 					template:'AddMenu',
 					providers:''
-				},
-				{
-					label:'Add Menu Item',
-					routeName:'addMenuItem',
-					template:'AddMenuItem',
-					providers:''
-				}				
+				}			
 			]
 		},
 		{
@@ -130,7 +124,7 @@ Meteor.startup(function () {
 
 	PanoplyCMSRegisterPackage(
 		{
-			"name" : "panoplycore",
+			"name" : "tags",
 			"routes" : [
 				{
 					"name" : "settings",
@@ -345,31 +339,7 @@ Meteor.startup(function () {
 					"permission" : [
 						"admin"
 					]
-				},
-				{
-					"name" : "addTag",
-					"path" : "/tags/add",
-					"component" : "AddTag",
-					"layout" : "AdminLayout",
-					"provides" : "dashboard",
-					"permission" : ["admin"]
-				},
-				{ 
-					"name" : "editTag",
-					"path" : "/tags/edit/:_id",
-					"component" : "EditTag", 
-					"layout" : "AdminLayout", 
-					"provides" : "dashboard", 
-					"permission" : [ "admin" ]
-				 },
-				 { 
-				 	"name" : "tags", 
-				 	"path" : "/tags", 
-				 	"component" : "ListTags", 
-				 	"layout" : "AdminLayout", 
-				 	"provides" : "dashboard", 
-				 	"permission" : [ "admin" ]
-				  }
+				}
 			]
 		}
 	)

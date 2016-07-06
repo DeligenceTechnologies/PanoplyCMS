@@ -14,6 +14,10 @@ Meteor.publish('menuItemsRoutes', function(){
 	return PanoplyCMSCollections.MenuItems.find({trash:false});
 })
 
+Meteor.publish('menuRoutes', function(){
+	return PanoplyCMSCollections.Menus.find({trash:false});
+})
+
 Meteor.publish('roles', function (){
   return Meteor.roles.find({})
 })

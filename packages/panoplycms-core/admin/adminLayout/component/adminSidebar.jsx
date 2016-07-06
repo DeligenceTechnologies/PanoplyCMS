@@ -13,7 +13,7 @@ mixins:[ReactMeteorData],
         <div className="side-menu-container">
           <ul className="nav navbar-nav">
             {this.data.results.map(function(result) {
-               return <LiItem key={result._id} {...result}/>;
+               return <LiItem key={result._id} {...result} />;
             })}                  
           </ul>
         </div>
@@ -26,8 +26,11 @@ mixins:[ReactMeteorData],
 
 var LiItem = data => {
   menus = []
+  components = []
   if(data.title == 'MENU')
     menus = PanoplyCMSCollections.Menus.find().fetch()
+  if(data.title == 'COMPONENTS')
+    components = PanoplyCMSCollections.RegisteredPackages.find({type: 'component'},{_id: 1, name: 1}).fetch()
   var c=0;
   return (
   <li className="panel panel-default" id="dropdown">
@@ -43,6 +46,9 @@ var LiItem = data => {
           })}
           {menus.map(m => {
             return <li key={m._id}><a href={FlowRouter.path('listMenuItems', {_id: m._id})}>{m.title}</a></li>
+          })}
+          {components.map(m => {
+            return <li key={m._id}><a href={FlowRouter.path(m.name)}>{_(m.name).capitalize()}</a></li>
           })}
         </ul>
       </div>

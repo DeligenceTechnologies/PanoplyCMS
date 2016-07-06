@@ -29,6 +29,7 @@ ListArticles = React.createClass({
   render() {
     that=this;
     nodata='';
+    console.log((this.data.results).length==0  && this.state.trashListShow==false)
     if((this.data.results).length==0  && this.state.trashListShow==false){
       nodata=<NotFoundComp/>
     }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){

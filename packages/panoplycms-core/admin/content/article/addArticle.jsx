@@ -89,12 +89,14 @@ AddArticle=React.createClass({
       //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
       	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
       	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
+        console.log(tags,'tagAry')
         tagAry=tags.split(',');
         that=this;
         for(i=0;i<tagAry.length;i++){
            Meteor.call('addTagExt',tagAry[i]);
         }
-        
+        let objOfTags=$('#tokenfield').tokenfield('getTokens');
+        tags=_.pluck(objOfTags, 'value');
       	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
       		if(err){
             that.setState({errorMsg : err})
@@ -122,7 +124,7 @@ AddArticle=React.createClass({
     }*/
     var msg='';
     if(this.state.msg){
-      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={' Added article.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

@@ -28,7 +28,7 @@
   },
 render:function(){
   if(this.state.successMsg){
-      msg=<AlertMessage data={'Successfully added Category.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={' Added Category.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

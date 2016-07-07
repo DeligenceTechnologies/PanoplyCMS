@@ -6,10 +6,8 @@ ListArticles = React.createClass({
   getMeteorData(){
      const articleSubscription = Meteor.subscribe('articlesFind');
     return {
-<<<<<<< HEAD
-=======
+
       pageLoading:! articleSubscription.ready(),
->>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
       results: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
       resultOfTrash: PanoplyCMSCollections.Articles.find({trash:true}).fetch()
     } 
@@ -32,8 +30,6 @@ ListArticles = React.createClass({
   },
   render() {
     that=this;
-<<<<<<< HEAD
-=======
     nodata='';
     if (this.data.pageLoading) {
       return <LoadingSpinner />;
@@ -46,7 +42,6 @@ ListArticles = React.createClass({
     }else{
       nodata='';
     }
->>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
     return (
       <div className="col-md-10 content">
         <Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
@@ -69,11 +64,7 @@ ListArticles = React.createClass({
                   <th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
                 </tr>
               </thead>
-<<<<<<< HEAD
-              <tbody>
-=======
               <tbody >
->>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
                 {this.state.trashListShow?this.data.resultOfTrash.map(function(result) {
                    return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
                 }):this.data.results.map(function(result) {
@@ -205,9 +196,5 @@ RestoreModal=React.createClass({
           </div>
     )     
   }
-<<<<<<< HEAD
-})
-=======
 })
 
->>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd

@@ -57,9 +57,9 @@ updateuser(event){
                   <div className = "form-group">
                     <label htmlFor = "firstname" className = "col-sm-2 control-label" ></label>
                     <div className = "col-sm-6">
-                     <input type = "submit"   className = "btn btn-primary" value={i18n('ADMIN_USERS_EDIT_SAVE')} />
+                     <input type = "submit"   className = "btn btn-primary" value='SAVE' />
                      &nbsp;&nbsp;
-                      <a className = "btn btn-success" href={FlowRouter.path('home')} >{i18n('ADMIN_USERS_EDIT_CANCEL')}</a>
+                      <a className = "btn btn-danger" href={FlowRouter.path('dashboard')} >CANCEL</a>
                     </div>
                   </div> 
                 </form>

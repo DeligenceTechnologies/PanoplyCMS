@@ -33,7 +33,7 @@ UserList = React.createClass({
                           <th>{i18n('ADMIN_USERS_EDIT_EMAIL')}</th>
                           
                           <th>{i18n('ADMIN_USERS_PROFILE_EDIT')}</th>
-                          <th>{i18n('ADMIN_USERS_EDIT_CANCEL')}</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -41,8 +41,8 @@ UserList = React.createClass({
                       <td><img src={this.data?this.data.image?this.data.image.url():'':''} className="img-circle" alt="Cinque Terre" width="50" height="50" /></td>
                       <td>{this.data.user?this.data.user.profile?this.data.user.profile.username:'':''}</td>
                       <td>{this.data.user?this.data.user.emails[0].address:''}</td>
-                      <td><a className = "btn btn-primary" href={FlowRouter.path('editUser',{_id:this.data.user._id})}>EDIT</a></td>
-                      <td><a className = "btn btn-danger" href={FlowRouter.path('dashboard')}>CANCEL</a></td> 
+                      <td><a className = "btn btn-primary fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" href={FlowRouter.path('editUser',{_id:this.data.user._id})}></a></td>
+                      <td><button disabled='true' className = "btn btn-danger fa fa-trash-o" href={FlowRouter.path('dashboard')} data-toggle="tooltip" title="Delete" ></button></td> 
                       </tr> 
                       </tbody>
                     </table>

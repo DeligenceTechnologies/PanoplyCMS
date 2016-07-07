@@ -23,6 +23,12 @@ add_category: function(categoryname,aliasname){ console.log('add_category',categ
 			owner: '',
 	      	username: ''
 		});
+},
+restore_category:function(id){
+	PanoplyCMSCollections.Categories.update({_id:id},{$set:{ trash:false}})
+},
+delete_category_parma:function(id){
+	PanoplyCMSCollections.Categories.remove({_id:id})
 }
 
 });

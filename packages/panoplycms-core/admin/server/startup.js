@@ -1,6 +1,18 @@
 PanoplyCMSRegisterPackage = function(packageDetails) {
-	if(!PanoplyCMSCollections.RegisteredPackages.find({name: packageDetails.name}).count())
-	  PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+	switch(packageDetails.name){
+		case 'panoplycore':
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name}).count())
+		  	PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+		  break;
+		case 'template':
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name, 'templates.name':packageDetails.templates.name}).count())
+			  PanoplyCMSCollections.RegisteredPackages.update({'name':packageDetails.name},{$push:{'templates': packageDetails.templates}})
+			break;
+		default:
+			if(!PanoplyCMSCollections.RegisteredPackages.find({'name': packageDetails.name}).count())
+		  	PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
+		  break;
+	}
 }
 
 
@@ -18,7 +30,10 @@ Meteor.startup(function () {
 			desc:'',
 			alias:'',
 			icon:'fa fa-user',
-			param:[{label:'User List',routeName:'users'},{label:'Change Password',routeName:'changePassword'}]
+			param:[
+				{label:'User List',routeName:'users'},
+				{label:'Change Password',routeName:'changePassword'}
+			]
 		},
 		{
 			title:'MENU',
@@ -37,13 +52,7 @@ Meteor.startup(function () {
 					routeName:'addMenu',
 					template:'AddMenu',
 					providers:''
-				},
-				{
-					label:'Add Menu Item',
-					routeName:'addMenuItem',
-					template:'AddMenuItem',
-					providers:''
-				}				
+				}			
 			]
 		},
 		{
@@ -51,21 +60,72 @@ Meteor.startup(function () {
 			desc:'',
 			alias:'',
 			icon:'fa fa-file-text-o',
-			param:[{label:'Articles',routeName:'articles',template:'Articles',providers:''},{label:'Categories',routeName:'listCategories',template:'Categories',providers:''}]
+			param:[
+				{
+					label:'Articles',
+					routeName:'articles',
+					template:'Articles',
+					providers:''
+				},
+				{
+					label:'Categories',
+					routeName:'listCategories',
+					template:'Categories',
+					providers:''
+				}
+			]
 		},
 		{
 			title:'COMPONENTS',
 			desc:'',
 			alias:'',
 			icon:'fa fa-cogs',
-			param:[{label:'Tags',routeName:'tags',template:'Tags',providers:''},{label:'Search',routeName:'serach',template:'Search',providers:''}]
+			param:[
+				/*{
+					label:'Tags',
+					routeName:'tags',
+					template:'Tags',
+					providers:''
+				},
+				{
+					label:'Search',
+					routeName:'serach',
+					template:'Search',
+					providers:''
+				}*/
+			]
 		},
 		{
 			title:'EXTENSIONS',
 			desc:'',
 			alias:'',
 			icon:'fa fa-puzzle-piece',
-			param:[{label:'Modules',routeName:'modules',template:'Modules',providers:''},{label:'Plugins',routeName:'plugins',template:'Plugins',providers:''},{label:'Language',routeName:'language',template:'Language',providers:''},{label:'Templates',routeName:'templates',template:'Templates',providers:''}]
+			param:[
+				{
+					label:'Modules',
+					routeName:'modules',
+					template:'Modules',
+					providers:''
+				}/*,
+				{
+					label:'Plugins',
+					routeName:'plugins',
+					template:'Plugins',
+					providers:''
+				}*/,
+				{
+					label:'Language',
+					routeName:'language',
+					template:'Language',
+					providers:''
+				},
+				{
+					label:'Templates',
+					routeName:'templates',
+					template:'Templates',
+					providers:''
+				}
+			]
 		},
 		{
 			title:'HELP',
@@ -89,6 +149,11 @@ Meteor.startup(function () {
 	}else{
 		
 	}
+
+	if(!PanoplyCMSCollections.RegisteredPackages.find({'name': 'template'}).count()){
+		PanoplyCMSCollections.RegisteredPackages.insert({'name': 'template'})
+	}
+
 	if ( Meteor.users.find().count() === 0 ) {
 	    id=Accounts.createUser({
 	        username: 'deligence',
@@ -105,8 +170,7 @@ Meteor.startup(function () {
 	    console.log('********************************************');
 	    Roles.addUsersToRoles(id,['admin','owner']);
 	} else {
-		
-		
+			
 	}
 
 	PanoplyCMSRegisterPackage(
@@ -312,7 +376,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "login",
-					"path" : "/login",
+					"path" : "/adminlogin",
 					"component" : "Login",
 					"layout" : "AdminLoginLayout",
 					"provides" : "adminLogin"
@@ -326,31 +390,7 @@ Meteor.startup(function () {
 					"permission" : [
 						"admin"
 					]
-				},
-				{
-					"name" : "addTag",
-					"path" : "/tags/add",
-					"component" : "AddTag",
-					"layout" : "AdminLayout",
-					"provides" : "dashboard",
-					"permission" : ["admin"]
-				},
-				{ 
-					"name" : "editTag",
-					"path" : "/tags/edit/:_id",
-					"component" : "EditTag", 
-					"layout" : "AdminLayout", 
-					"provides" : "dashboard", 
-					"permission" : [ "admin" ]
-				 },
-				 { 
-				 	"name" : "tags", 
-				 	"path" : "/tags", 
-				 	"component" : "ListTags", 
-				 	"layout" : "AdminLayout", 
-				 	"provides" : "dashboard", 
-				 	"permission" : [ "admin" ]
-				  }
+				}
 			]
 		}
 	)

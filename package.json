@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "meteor-node-stubs": "^0.2.3",
-    "react": "^15.1.0",
+    "react": "^15.2.0",
     "react-addons-create-fragment": "^15.0.1",
     "react-addons-css-transition-group": "^15.0.1",
     "react-addons-linked-state-mixin": "^15.0.1",

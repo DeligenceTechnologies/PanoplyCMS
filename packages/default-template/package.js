@@ -1,5 +1,5 @@
 Package.describe({
-	name: 'deligence:default-template',
+	name: 'deligence1:default-template',
 	version: '0.1.0',
 	// Brief, one-line summary of the package.
 	summary: '',
@@ -43,8 +43,8 @@ Package.onUse(function(api) {
 	api.use("deligence1:panoplycms-collections");
 	//api.use('thekavish:panoply-calc');
 
-	/*Added files below*/
-
+	/* Added files below */
+	api.addFiles('lib/router/router.js', ['client']);
 
 	api.addFiles('client/default-template.jsx', ['client']);
 	api.addFiles('client/startup.jsx', ['client']);
@@ -60,4 +60,11 @@ Package.onUse(function(api) {
 	api.addFiles('server/startup.js', ['server']);
 
 	api.addFiles('lib/router/router.jsx', ['client','server']);
+
+	api.export([
+		'DefaultTemplate',
+		'DefaultCategory',
+		'DefaultArticle'
+	],['client']);
+	
 });

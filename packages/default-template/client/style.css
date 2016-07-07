@@ -200,3 +200,7 @@ margin: 0px !important;
 	border-radius: 9px;
 	border: #999 solid 1px;
 }
+
+.tag .label {
+	margin: 0 2px;
+}

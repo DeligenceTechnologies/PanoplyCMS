@@ -7,6 +7,13 @@ EditMenu=React.createClass({
       menuData: PanoplyCMSCollections.Menus.findOne({_id:this.props._id})
     };
   },
+  getInitialState(){
+   return {
+      msg:false,
+      errorMsg:false
+    }
+    console.log(msg,"msg")
+  },
   componentDidMount: function(){
     document.title = "Edit Menu"
   },
@@ -17,6 +24,7 @@ EditMenu=React.createClass({
     
   },
   submitData(event){
+    that=this;
     event.preventDefault();
     var insert = {
       "title":ReactDOM.findDOMNode(this.refs.title).value.trim(),
@@ -24,20 +32,39 @@ EditMenu=React.createClass({
     
     }
     Meteor.call("updateMenu",this.props._id,insert,function(err,data){
-        if(err)
+        if(err){
+          that.setState({errorMsg : err});
           console.log(err);
-          else
-            FlowRouter.go('manageMenu')
+        }
+        else {
+               that.setState({msg : true});
+               console.log(err);
+        }
+            //FlowRouter.go('manageMenu')
     });
      
   },
+   resetSuccessMsg(){
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
+  },
   render(){
+      var msg='';
+    if(this.state.msg){
+      msg=<AlertMessage data={'Menu successfully updated.'} func={this.resetSuccessMsg}/>
+    }else if(this.state.errorMsg){
+      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
+    }
+
     if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
     return (
-      <div className="col-md-10 content">
+      <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_EDITMENU')} />
+        {msg}
         <div className="panel-body">
         <div id="notification"></div>
           <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >

@@ -35,7 +35,7 @@ EditCategory = React.createClass({
       return <LoadingSpinner />;
     }
     if(this.state.successMsg){
-      msg=<AlertMessage data={'Successfully updated Category.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={' Updated Category.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

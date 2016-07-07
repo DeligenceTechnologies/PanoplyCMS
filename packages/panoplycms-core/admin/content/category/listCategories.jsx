@@ -1,8 +1,9 @@
 ListCategories = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
-    Meteor.subscribe('Categories')
+    const categoriesSubscription = Meteor.subscribe('Categories')
     return{
+      pageLoading:! categoriesSubscription.ready(),
       Categories: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
       resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true}).fetch()
     }
@@ -27,6 +28,9 @@ ListCategories = React.createClass({
   render() {
     that=this;
     nodata='';
+    if (this.data.pageLoading) {
+      return <LoadingSpinner />;
+    }
     if((this.data.Categories).length==0  && this.state.trashListShow==false){
       nodata=<NotFoundComp/>
     }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
@@ -34,7 +38,7 @@ ListCategories = React.createClass({
     }else{
       nodata='';
     }
-    return (<div>
+        return (<div>
              <div className="panel panel-black">
              <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
               <div className="panel-heading">

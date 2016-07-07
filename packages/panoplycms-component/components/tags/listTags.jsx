@@ -71,7 +71,7 @@ var TagsItem = React.createClass({
             <large> {this.props.data.title}</large>
             <small> (<em>{this.props.data.alias}</em> )</small> 
           </td>
-          <td>{this.props.data.desc.length>50?this.props.data.desc.substring(0,40)+'...':this.props.data.desc.length}</td>
+          <td>{this.props.data.desc.length>50?this.props.data.desc.substring(0,40)+'...':this.props.data.desc}</td>
           <td>
             <div  onClick={this.deleteTag} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
               <i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 
@@ -111,5 +111,7 @@ TagsModal=React.createClass({
     )     
   }
 })
+
+
 
 export default ListTags;

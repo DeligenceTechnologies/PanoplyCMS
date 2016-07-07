@@ -27,10 +27,9 @@ Meteor.methods({
 			metaKeyword:metaKeyword,
 			metaDescription:metaDesc,
 			updateAt:new Date(),
-            status:1,
-            trash:false,
+      status:1,
 			owner: '',
-	      	username: ''
+	    username: ''
 
 		}})
 		
@@ -38,8 +37,21 @@ Meteor.methods({
 	addTagExt:function(tag){
 		let tagExist=PanoplyCMSCollections.Tags.find({title:tag}).count();
 		if(tagExist==0){
-			PanoplyCMSCollections.Tags.insert({title:tag});
+			PanoplyCMSCollections.Tags.insert({
+			title:tag,
+			alias:tag.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
+			desc:'',
+			metaKeyword:'',
+			metaDescription:'',
+			createdAt: new Date(),
+			updateAt: '',
+      status:1,
+      /*trash:false,*/
+			owner: '',
+	    username: ''});
 		}
 		
 	}
 })
+
+

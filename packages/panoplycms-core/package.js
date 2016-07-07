@@ -74,7 +74,8 @@ Package.onUse(function(api) {
     'admin/lib/method/categories.js',
     'admin/lib/method/menu.js',
     'admin/lib/method/tags.js',
-    'admin/lib/method/search.js'
+    'admin/lib/method/search.js',
+    'admin/lib/method/template.js'
     ],['client','server'])
   
   /*--------------------------------Client------------------------------------- */
@@ -83,6 +84,8 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
   api.addFiles('admin/common/heading.jsx',['client'])
   api.addFiles('admin/common/alertMessage.jsx',['client'])
+  api.addFiles('admin/common/loadingSpinner.jsx',['client'])
+
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminSidebar.jsx',['client'])
@@ -103,6 +106,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/extension/modules/language.js',['client'])
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])  
   api.addFiles('admin/extension/language/language.jsx',['client'])
+  api.addFiles('admin/extension/template/templateManager.jsx',['client'])
 
   api.addFiles('admin/dashboard/dashboard.jsx',['client'])
   
@@ -135,6 +139,7 @@ Package.onUse(function(api) {
   api.export("NotFoundComp");
   api.export('AlertMessage');
   api.export('AlertMessageOfError');
+  api.export('LodingSpinner');
 });
 
 

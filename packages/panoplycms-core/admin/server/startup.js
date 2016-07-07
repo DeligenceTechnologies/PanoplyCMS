@@ -31,8 +31,14 @@ Meteor.startup(function () {
 			alias:'',
 			icon:'fa fa-user',
 			param:[
-				{label:'User List',routeName:'users'},
-				{label:'Change Password',routeName:'changePassword'}
+				{
+					label:'User List',
+					routeName:'users'
+				},
+				{
+					label:'Change Password',
+					routeName:'changePassword'
+				}
 			]
 		},
 		{
@@ -132,7 +138,20 @@ Meteor.startup(function () {
 			desc:'',
 			alias:'',
 			icon:'fa fa-question-circle',
-			param:[{label:'Officlie Support Forum',routeName:'officialSupportForum',template:'',providers:''},{label:'Website',routeName:'Website',template:'',providers:''}]
+			param:[
+				{
+					label:'Officlie Support Forum',
+					routeName:'officialSupportForum',
+					template:'',
+					providers:''
+				},
+				{
+					label:'Website',
+					routeName:'Website',
+					template:'',
+					providers:''
+				}
+			]
 		}
 
 		]

@@ -128,7 +128,6 @@ _.extend(PanoplyRouter, {
 
         /* Render React Layout */
         function renderLayout(layout, component, params, queryParams){
-          console.log(component,'component')
           ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
         }
         

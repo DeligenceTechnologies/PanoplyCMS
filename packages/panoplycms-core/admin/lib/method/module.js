@@ -23,5 +23,18 @@ Meteor.methods({
           PanoplyCMSCollections.Modules.update(modId,{$set:{"trash":true}});
     // }
     // console.log("Remove", modId);
+  },
+
+  // Trash Module
+  trashModule(id) {
+    PanoplyCMSCollections.Modules.update({_id: id}, {$set: {trash: true}});
+  },
+  // Delete from trash
+  deleteModule(id) {
+    PanoplyCMSCollections.Modules.remove({_id: id});
+  },
+  // Restore from trash
+  restoreModule(id) {
+    PanoplyCMSCollections.Modules.update({_id: id}, {$set: {trash: false}});
   }
 });

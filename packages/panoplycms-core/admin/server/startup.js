@@ -390,7 +390,17 @@ Meteor.startup(function () {
 					"permission" : [
 						"admin"
 					]
-				}
+				},
+				{
+					"name" : "templates",
+					"path" : "/templates",
+					"component" : "TemplateManger",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
 			]
 		}
 	)

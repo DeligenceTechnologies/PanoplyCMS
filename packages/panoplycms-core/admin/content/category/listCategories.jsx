@@ -3,7 +3,10 @@ ListCategories = React.createClass({
   getMeteorData(){
     const categoriesSubscription = Meteor.subscribe('Categories')
     return{
+<<<<<<< HEAD
+=======
       pageLoading:! categoriesSubscription.ready(),
+>>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
       Categories: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
       resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true}).fetch()
     }
@@ -27,6 +30,8 @@ ListCategories = React.createClass({
   },
   render() {
     that=this;
+<<<<<<< HEAD
+=======
     nodata='';
     if (this.data.pageLoading) {
       return <LoadingSpinner />;
@@ -38,6 +43,7 @@ ListCategories = React.createClass({
     }else{
       nodata='';
     }
+>>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
     return (<div>
              <div className="panel panel-black">
              <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />

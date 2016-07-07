@@ -46,7 +46,7 @@ AddMenu=React.createClass({
   render(){
      var msg='';
     if(this.state.msg){
-      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'Successfully added menu.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

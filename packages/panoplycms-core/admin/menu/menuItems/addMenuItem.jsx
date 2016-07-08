@@ -33,7 +33,7 @@ AddMenuItem=React.createClass({
       this.setState({MenuItemTypeValue :val})
     },
     getMenuValue(val){
-      console.log(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),"getMenuValue")
+      //console.log(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),"getMenuValue")
       this.setState({MenuValue :ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()})
     },
     componentDidMount: function(){

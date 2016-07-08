@@ -63,6 +63,7 @@ Package.onUse(function(api) {
   /*--------------------------------Client Server---------------------------------*/
 
   api.addFiles([
+    
     'admin/lib/method/collection.js',
     'admin/lib/method/articles.js',
     'admin/lib/method/settings.js',
@@ -75,6 +76,7 @@ Package.onUse(function(api) {
     'admin/lib/method/menu.js',
     'admin/lib/method/tags.js',
     'admin/lib/method/search.js'
+    
     ],['client','server'])
   
   /*--------------------------------Client------------------------------------- */

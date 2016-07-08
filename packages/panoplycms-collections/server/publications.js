@@ -37,3 +37,11 @@ Meteor.publish('Categories', function(){
 Meteor.publish('findCategory', function(id){
 	return PanoplyCMSCollections.Categories.find({_id:id});
 });
+
+/* Publish Modules */
+Meteor.publish('moduleList', function(){
+	return PanoplyCMSCollections.Modules.find({});
+});
+Meteor.publish('findAModule', function(id){
+	return PanoplyCMSCollections.Modules.find({_id:id});
+});

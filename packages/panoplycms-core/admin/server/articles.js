@@ -1,6 +1,8 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9ccc5bf7d9fbb660aa643c0274e739b1aa9e00b0
 /*Meteor.publish('articlesFind', function(){	
->>>>>>> 6ea662d707c8ca21625e5e34f6b27b79999b4fbd
 	return PanoplyCMSCollections.Articles.find({});
 });
 Meteor.publish('findOneArticle', function(id){

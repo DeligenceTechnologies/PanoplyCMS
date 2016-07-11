@@ -46,6 +46,7 @@ Package.onUse(function(api) {
   //api.use("deligence1:panoplycms-component");
   
   api.use('deligence1:panoplycms-collections');
+  
   /*--------------------------------Server------------------------------------- */
 
   api.addFiles([
@@ -86,6 +87,8 @@ Package.onUse(function(api) {
   api.addFiles('admin/common/heading.jsx',['client'])
   api.addFiles('admin/common/alertMessage.jsx',['client'])
   api.addFiles('admin/common/loadingSpinner.jsx',['client'])
+  api.addFiles('admin/common/position.jsx',['client'])
+  api.addFiles('admin/common/menuItemType.jsx',['client'])
 
   api.addFiles('admin/adminLayout/component/adminFooter.jsx',['client'])
   api.addFiles('admin/adminLayout/component/adminHeader.jsx',['client'])
@@ -141,6 +144,9 @@ Package.onUse(function(api) {
   api.export('AlertMessage');
   api.export('AlertMessageOfError');
   api.export('LodingSpinner');
+  api.export('Position');
+  api.export('MenuItemType');
+
 });
 
 

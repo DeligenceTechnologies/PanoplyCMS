@@ -1,15 +1,27 @@
+import { Match } from 'meteor/check'
+
+obj = { 
+  name: String,
+  type:String,
+  position:String,
+  showTitle:Boolean,
+  /*menuItems:[String],*/
+  allPages:Boolean,
+  moduleData:Object
+
+}
 Meteor.methods({
-  addModule(insert) {
-    insert.createdAt = new Date();
-    insert.alias = insert.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
-    insert.trash = false;
-     var result=PanoplyCMSCollections.Modules.insert(insert);
-     if(result)
-      return "true";
+  addModule(insert,menuItem) {
+    check(menuItem, [String]);
+    check(insert,obj)
+    insert.menuItems=menuItem;
+    insert.trash=false;
+    insert.createdAt=new Date();
+    PanoplyCMSCollections.Modules.insert(insert);
+
   },
   editModule(select, update) {
     update.updatedAt = new Date();
-    update.alias = update.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
     PanoplyCMSCollections.Modules.update(select, {$set: update});
   },
   removeModule(modId) {

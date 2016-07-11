@@ -129,11 +129,6 @@ var CategoriesItem = React.createClass({
               this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-archive" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
             }
           </td>
-          {/*<td>
-            <div  onClick={this.editCategory} className="edit_btn"  id="">
-              
-            </div>
-          </td>*/}
         </tr>    
       )
     }

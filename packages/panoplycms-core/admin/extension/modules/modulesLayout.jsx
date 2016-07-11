@@ -6,7 +6,7 @@ ModulesLayout = React.createClass({
 	getMeteorData() {
 		const moduleList = Meteor.subscribe('moduleList');		
 		return {
-			results: PanoplyCMSCollections.Modules.find({trash:false},{_id:1, title: 1, type: 1, position: 1}).fetch(),
+			results: PanoplyCMSCollections.Modules.find({trash:false},{_id:1, name: 1, type: 1, position: 1}).fetch(),
 			resultOfTrash: PanoplyCMSCollections.Modules.find({trash:true},{_id:1, title: 1, type: 1, position: 1}).fetch(),
 			modulesList: PanoplyCMSCollections.RegisteredPackages.find({type: "module"}).fetch()
 		};
@@ -28,7 +28,10 @@ ModulesLayout = React.createClass({
   	$('#add.modal').modal()
   },
   addModuleAction: type => {
-  	alert(type)
+    console.log(type,'type')
+    type=='menumodule'?FlowRouter.go('addMenuModule'):FlowRouter.go('addHtmlblock');
+    
+  	
   },
 	trashModule: function(id) {
 		that = this;
@@ -47,11 +50,11 @@ ModulesLayout = React.createClass({
 	handelClick: function(e){
 		switch(e.action){
   		case 'edit':
-  			alert(e.action+" Goto Edit Action")
+  			/*e.type=='menumodule'?FlowRouter.go('editMenuModule',{_id:e.id}):FlowRouter.go('editHtmlblock',{_id:e.id});*/
   			break;
   		case 'trash':
 	  		this.setState({id: e.id})
-	  		$('#trash.modal').modal()
+	  		$('#trash.modal').modal() 
   			break;
   		case 'delete':
   			this.setState({id: e.id})
@@ -120,13 +123,13 @@ ModulesLayout = React.createClass({
 ModuleList = module => {
 	style = { display: 'inline-block' };
 	return <tr>
-			<td>{module.title}</td>
+			<td>{module.name}</td>
 			<td>{module.type}</td>
 			<td>{module.position}</td>
 			<td>
 				{!module.stateVal ?
 					<div> 
-						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit'})}} ></i></div>					
+						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit', type:module.type})}} ></i></div>					
 						<div style={style}><i className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i></div> 
 					</div> :
 					<div> 
@@ -149,7 +152,7 @@ AddModulesPopup = (modules) => {
               <div className="modal-body">
                 <ul>
                 	{modules.list.map(l => {
-	                	return <li key={l._id} onClick={() => {modules.onClick(l.name)}} >{l.label?_.capitalize(l.label):_.capitalize(l.name)}</li>
+	                	return <li data-dismiss="modal" key={l._id} onClick={() => {modules.onClick(l.name)}} >{l.label?_.capitalize(l.label):_.capitalize(l.name)}</li>
                 	})}
                 </ul>
               </div>

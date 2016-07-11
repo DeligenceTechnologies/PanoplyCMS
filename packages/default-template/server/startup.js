@@ -8,7 +8,8 @@ Meteor.startup(function() {
 			active: true,
 			layout: "DefaultTemplate",
 			categoryView: "DefaultCategory",
-			articleView: "DefaultArticle"
+			articleView: "DefaultArticle",
+			positions: ['top', 'sidebar', 'footer']
 		}
 	})
 });

@@ -8,22 +8,15 @@ ModulesLayout = React.createClass({
 		return {
 			results: PanoplyCMSCollections.Modules.find({trash:false},{_id:1, title: 1, type: 1, position: 1}).fetch(),
 			resultOfTrash: PanoplyCMSCollections.Modules.find({trash:true},{_id:1, title: 1, type: 1, position: 1}).fetch(),
-			modulesList: PanoplyCMSCollections.RegisteredPackages.find({type: "modules"}).fetch()
+			modulesList: PanoplyCMSCollections.RegisteredPackages.find({type: "module"}).fetch()
 		};
-	},/*
-	componentDidMount: function() {
-		document.title = "Module Manager";
-	},*/
-	/*submitModForm() {
-		FlowRouter.go("AddModules",{'type':'htmlBlock'});
-	},*/
+	},
 	showModules(){
     if($('#display').val()=='trash'){
       this.setState({showTrashList:true})
     }else{
       this.setState({showTrashList:false})
-    }
-    
+    }    
   },
   getInitialState(){
     return{
@@ -37,12 +30,6 @@ ModulesLayout = React.createClass({
   addModuleAction: type => {
   	alert(type)
   },
-	/*renderModules() {
-		return this.data.mod.map((module) => {
-			return <ModuleListing key={module._id} module={module} />;
-		});
-	},*/
-
 	trashModule: function(id) {
 		that = this;
 		Meteor.call('trashModule',id, function(err, res){ that.setState({id:''}) })
@@ -131,17 +118,21 @@ ModulesLayout = React.createClass({
 });
 
 ModuleList = module => {
-	console.log(module)
+	style = { display: 'inline-block' };
 	return <tr>
 			<td>{module.title}</td>
 			<td>{module.type}</td>
 			<td>{module.position}</td>
 			<td>
 				{!module.stateVal ?
-					<div> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit'})}} ></i>
-					<i className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i> </div> :
-					<div> <i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i>
-					<i title="Delete" className="fa fa-times" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'delete'})}}></i> </div>
+					<div> 
+						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit'})}} ></i></div>					
+						<div style={style}><i className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i></div> 
+					</div> :
+					<div> 
+						<div style={style}><i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i></div>					
+						<div style={style}><i title="Delete" className="fa fa-times" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'delete'})}}></i></div>
+					</div>
 				}
 			</td>
 		</tr>
@@ -158,7 +149,7 @@ AddModulesPopup = (modules) => {
               <div className="modal-body">
                 <ul>
                 	{modules.list.map(l => {
-	                	return <li key={l._id} onClick={() => {modules.onClick(l.name)}} >{_.capitalize(l.name)}</li>
+	                	return <li key={l._id} onClick={() => {modules.onClick(l.name)}} >{l.label?_.capitalize(l.label):_.capitalize(l.name)}</li>
                 	})}
                 </ul>
               </div>
@@ -192,11 +183,10 @@ RemoveModulesPopup = (m) => {
 	return <div id="remove" className="modal fade" role="dialog">
           <div className="modal-dialog">
             <div className="modal-content">
-	            <div className="modal-header">
+	            <div className="modal-body">
                 <button type="button" className="close" data-dismiss="modal">&times;</button>
                 <h4 className="modal-title">Do you want to parmanently delete?</h4>
               </div>
-              <div className="modal-body"></div>
               <div className="modal-footer">
 	              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}} >Yes</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>

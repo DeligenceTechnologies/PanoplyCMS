@@ -1,4 +1,9 @@
-AddMenuModule = React.createClass({
+import 'meteor/deligence1:panoplycms-core';
+import  {Heading} from 'meteor/deligence1:panoplycms-core';
+import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
+import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+
+EditHtmlBlock = React.createClass({
 	componentWillUnmount(){
 	},
 	getInitialState(){

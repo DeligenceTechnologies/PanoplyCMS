@@ -59,11 +59,11 @@ TemplateManger = React.createClass({
 
 TemplateName = tem => {
   if(tem.active){
-    style={color:'#2574ab'}
+    style={color:'#2574ab',cursor:'pointer'}
     classname="fa fa-star fa-lg"
   }else{
     classname='fa fa-star-o fa-lg'
-    style={}
+    style={cursor:'pointer'}
   }
   return <tr>
       <td>{tem.name}</td>
@@ -72,12 +72,13 @@ TemplateName = tem => {
     </tr>
 }
 
-/*db.registeredPackages.update({_id:'Cgvessxm5YYbuzSKD'},{$push:{templates:{
-      "name" : "arisma Template",
-      "active" : false,
+/*db.registeredPackages.update({name:'template'},{$push:{templates:{
+      "name" : "Default Template",
+      "active" : true,
       "layout" : "DefaultTemplate",
       "categoryView" : "DefaultCategory",
-      "articleView" : "DefaultArticle"
+      "articleView" : "DefaultArticle",
+      position:['top','left']
     }
   }
 })*/

@@ -1,3 +1,8 @@
+import 'meteor/deligence1:panoplycms-core';
+import  {Heading} from 'meteor/deligence1:panoplycms-core';
+import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
+import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+
 AddMenuModule = React.createClass({
 	componentWillUnmount(){
 	},

@@ -1,4 +1,9 @@
-AddMenuModule = React.createClass({
+import 'meteor/deligence1:panoplycms-core';
+import  {Heading} from 'meteor/deligence1:panoplycms-core';
+import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
+import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+
+AddHtmlblock = React.createClass({
 	componentWillUnmount(){
 	},
 	getInitialState(){
@@ -25,22 +30,22 @@ AddMenuModule = React.createClass({
 
 		if(this.state.valid.form()){
 
-			let title=ReactDOM.findDOMNode(this.refs.title).value.trim();
+			let name=ReactDOM.findDOMNode(this.refs.name).value.trim();
 			let position=$('#position').val()
-			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
+			let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
 			showTitle = showTitle=='yes'?true:false
 
 			obj = { 
-			  name: title,
-			  type:'menumodule',
+			  name: name,
+			  type:'htmlblock',
 			  position:position,
 			  showTitle:showTitle,
 			  /*menuItems:menuItems,*/
 			  allPages:allPage,
 			  moduleData:{
-			  	menuItem:menu
+			  	html:article
 			  }
 			}
 			Meteor.call('addModule',obj,menuItems,(error,data)=>{
@@ -50,9 +55,8 @@ AddMenuModule = React.createClass({
 					console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
-					ReactDOM.findDOMNode(this.refs.title).value=''
-					//ReactDOM.findDOMNode(this.refs.position).value=''
-					ReactDOM.findDOMNode(this.refs.selectMenu).value=''
+					ReactDOM.findDOMNode(this.refs.name).value=''
+					tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
 					$("input").prop("checked", false);
 					$('#position').val('')
 					
@@ -65,7 +69,7 @@ AddMenuModule = React.createClass({
 
    	let validObj=$("#menuModule").validate({
          rules: {
-             title: {
+             name: {
                  required: true
              },
              position: {
@@ -92,6 +96,14 @@ AddMenuModule = React.createClass({
     this.setState({valid:validObj})  
     $('.options').toggleClass('active');
     $('.option').button();
+    tinymce.remove();
+    tinymce.init({
+      selector: 'textarea',
+      skin_url: '/packages/teamon_tinymce/skins/lightgray',
+    });
+  },
+  componentWillUnmount: function() {
+    tinymce.remove();
   },
   resetSuccessMsg(){
     this.setState({'successMsg':false})
@@ -100,7 +112,7 @@ AddMenuModule = React.createClass({
 	render(){
 		c=0;		
 		if(this.state.successMsg){
-       msg=<AlertMessage data={'menu module added.'} func={this.resetSuccessMsg}/>
+       msg=<AlertMessage data={'htmlblock added.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{
@@ -108,31 +120,19 @@ AddMenuModule = React.createClass({
     }
 		return (
 			 <div className="col-md-10 content" onClick={this.resetSuccessMsg} >
-       <Heading  data={'Add Menu Module'} />
+       <Heading  data={'Add Htmlblock'} />
        {msg}
         <div className="panel-body">
         <div id="notification"></div>
           <form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
             <div className = "form-group">
-              <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
+              <label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
               <div className = "col-sm-10">
-                <input type = "text" name="title" ref="title"  className = "form-control"  placeholder = "Enter title" required/>
+                <input type = "text" name="name" ref="name"  className = "form-control"  placeholder = "Enter title" required/>
               </div>
             </div>
              <Position key={this.data.templateRegister._id} data={this.data.templateRegister} />
             <div className = "form-group">
-              <label htmlFor = "lastname" className = "col-sm-2 control-label">Select Menu</label>
-              <div className = "col-sm-10">
-                <select defaultValue='select' name="selectMenu" ref="selectMenu" className="selectpicker form-control " data-style="btn-primary" >
-                  <option value="">--select--</option>
-                   {this.data.menuResults.map(function(result){
-                      return  <option key={result._id} value={result._id}>{result.title}</option>
-                      })
-                    }   
-                </select>
-              </div>
-            </div>
-            {/*<div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
               <div className = "col-sm-10">
                 <div className="summernote">
@@ -140,7 +140,7 @@ AddMenuModule = React.createClass({
                   <textarea ref="editor1" name="editor" id="article" />
                 </div>
               </div>
-            </div>*/}
+            </div>
             <div className="form-group">
                <label className="col-sm-2 control-label">Show Title</label>
                <div className="col-sm-10">
@@ -187,3 +187,12 @@ MenuList = React.createClass({
 		);
 	}
 });
+
+ HTMLBlock = data => {
+  showTitle = '';
+  if(data.module_title) showTitle = <h4>{data.module_title}</h4>;
+  return <div>
+    {showTitle}
+    {data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
+  </div>
+}

@@ -1,7 +1,7 @@
 EditMenuItem=React.createClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
-  // console.log(this.props._id,"====>",FlowRouter.getParam("_id"));
+  console.log(this.props._id,"====>",PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}).mainParentId);
     var handle = Meteor.subscribe('findMenuItem',this.props._id);
     var handle2 = Meteor.subscribe('menuItems',this.props._id);
    var menu = Meteor.subscribe('findMenu',this.props._id);
@@ -12,7 +12,8 @@ EditMenuItem=React.createClass({
       pageLoading: ! handle.ready(), 
       menuItemData: PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}),
       MenuId: Session.get('MenuId'),
-      MenuItemsData: PanoplyCMSCollections.MenuItems.find().fetch()
+      MenuItemsData: PanoplyCMSCollections.MenuItems.find().fetch(),
+      MenuValue1:PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}).mainParentId
 
   // Menu1:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
     };
@@ -26,9 +27,9 @@ EditMenuItem=React.createClass({
       language:i18n.getLanguage(),
       msg:false,
       valid:'',
-      errorMsg:false
+      errorMsg:false,
+   
     }
-     console.log(msg,"msg")
   },
   
   selectMenuItemType(event){
@@ -96,13 +97,13 @@ EditMenuItem=React.createClass({
       } else {
         var element = new Array();
         elements.forEach(function (elem1) {
-          //console.log(that.state.MenuValue,"elements.parent_id",elem1.mainParentId)
+          console.log(that.state.MenuValue,"elements.parent_id",elem1.mainParentId)
           if(that.state.MenuValue==elem1.mainParentId)
           {
                 var child = getChild(elem1._id);
-                // if(elem1.parentId==''){
+           if(elem1.parentId==''){
                   element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, child: child });
-        //    }
+           }
          }
         });
         return element;
@@ -123,6 +124,7 @@ EditMenuItem=React.createClass({
     return getElements();
   },
   componentDidMount: function(){
+    this.setState({MenuValue :this.data.MenuValue1})
     document.title = "Edit Menu"
   },
   componentWillUnmount: function() {
@@ -155,29 +157,33 @@ that=this;
     Meteor.call("updateMenuItem",this.props._id,insert,function(err,data){
         if(err)
         {
-            that.setState({errorMsg : err})
+             Session.set("errorMsg",err)
+            //that.setState({errorMsg : err})
              console.log(err)
           }
         else{    
-           that.setState({msg : true})
-           console.log(that.state.msg,"===>")
-           FlowRouter.go('listMenuItems',{_id:paramId})
+          Session.set("msg",true)
+           //that.setState({msg : true})
+           console.log(this.state.MenuValue,"===>")
+           this.setState({MenuValue :this.state.MenuValue})
+           //FlowRouter.go('listMenuItems',{_id:paramId})
             }
     });
  },
     resetSuccessMsg(){
-    this.setState({'msg':false})
-    this.setState({'errorMsg':false})
+      Session.get("msg",false)
+      Session.get("errorMsg",false)
+    // this.setState({'msg':false})
+    // this.setState({'errorMsg':false})
   },
-  render(){    
-    console.log(this.state.msg,"++++++++++++=")
+  render(){   
     var msg='';
-    if(this.state.msg){
-      msg=<AlertMessage data={'Successfully added article.'} func={this.resetSuccessMsg}/>
-    }else if(this.state.errorMsg){
-      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+    if(Session.get("msg")){
+      msg=<AlertMessage data={'Successfully updated menu Item.'} func={this.resetSuccessMsg}/>
+    }else if(Session.get("errorMsg")){
+      msg=<AlertMessageOfError data={Session.get("errorMsg")} func={this.resetSuccessMsg}/>
     }else{
-      msg='rhgfdbv';
+      msg='';
     }
      if (this.data.pageLoading) {
       return <LoadingSpinner />;
@@ -193,14 +199,14 @@ that=this;
       itemType=this.data.menuItemData.MenuItemType
     }
     return (
-    <div className="col-md-10 content">
+    <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
       <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
-           
+           {msg}
       <div className="panel-body">
       <div id="notification"></div>
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
           <div className = "form-group">
-            <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}abc {msg}</label>
+            <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
             <div className = "col-sm-10">
               <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuItemData.title} required/>
             </div>

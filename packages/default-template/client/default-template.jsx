@@ -6,7 +6,7 @@ DefaultTemplate = React.createClass({
 	render() {
 		return (
 			<div>
-				<FrontHeader />
+				<FrontHeader module={this.props.top} />
 				<div className="blog-header">
 					<div className="container">
 						<Logo />
@@ -19,14 +19,14 @@ DefaultTemplate = React.createClass({
 						</div>
 						{/*<!-- /.blog-main -->*/}
 						<div className="col-sm-3 col-sm-offset-1 blog-sidebar">
-							<SidePanel />
+							<SidePanel module={this.props.sidebar} />
 						</div>
 						{/*<!-- /.blog-sidebar -->*/}
 					</div>
 						{/*<!-- /.row -->*/}
 				</div>
 				{/*<!-- /.container -->*/}
-				<FrontFooter />
+				<FrontFooter module={this.props.footer} />
 			</div>
 		)
 	}

@@ -1,3 +1,4 @@
+
 /*Meteor.publish('articlesFind', function(){	
 	return PanoplyCMSCollections.Articles.find({});
 });

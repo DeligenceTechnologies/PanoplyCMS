@@ -109,7 +109,7 @@ Meteor.startup(function () {
 			param:[
 				{
 					label:'Modules',
-					routeName:'modules',
+					routeName:'modulesManager',
 					template:'Modules',
 					providers:''
 				}/*,

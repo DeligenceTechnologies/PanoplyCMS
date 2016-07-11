@@ -38,7 +38,7 @@ ListCategories = React.createClass({
     }else{
       nodata='';
     }
-        return (<div>
+    return (<div>
              <div className="panel panel-black">
              <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
               <div className="panel-heading">

@@ -64,6 +64,7 @@ Package.onUse(function(api) {
   /*--------------------------------Client Server---------------------------------*/
 
   api.addFiles([
+    
     'admin/lib/method/collection.js',
     'admin/lib/method/articles.js',
     'admin/lib/method/settings.js',

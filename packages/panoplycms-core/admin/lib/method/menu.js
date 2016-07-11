@@ -39,7 +39,7 @@ Meteor.methods({
         return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: update});
     },
     deleteMenuItem:function(id){
-        var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{"trash":true}});
+     //   var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{"trash":true}});
         PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
     },
      deleteMenu:function(id){
@@ -48,7 +48,7 @@ Meteor.methods({
     },
 
     restoreMenuItem(id){
-        var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{"trash":false}});
+      //  var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{"trash":false}});
         PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":false}});
     },
 })

@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'react-bootbox' ]
+2 info using npm@3.3.12
+3 info using node@v5.4.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData react-bootbox
+8 silly fetchNamedPackageData react-bootbox
+9 silly mapToRegistry name react-bootbox
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/react-bootbox
+13 verbose request uri https://registry.npmjs.org/react-bootbox
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 2:41:12 PM
+16 verbose request id cd55370705561a82
+17 http request GET https://registry.npmjs.org/react-bootbox
+18 http 404 https://registry.npmjs.org/react-bootbox
+19 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+19 verbose headers   etag: '"BFK64MDNDTUBH6RP87QAOQXA8"',
+19 verbose headers   'content-type': 'application/json',
+19 verbose headers   'cache-control': 'max-age=0',
+19 verbose headers   'content-length': '400',
+19 verbose headers   'accept-ranges': 'bytes',
+19 verbose headers   date: 'Thu, 07 Jul 2016 09:11:14 GMT',
+19 verbose headers   via: '1.1 varnish',
+19 verbose headers   age: '0',
+19 verbose headers   connection: 'keep-alive',
+19 verbose headers   'x-served-by': 'cache-sin6924-SIN',
+19 verbose headers   'x-cache': 'MISS',
+19 verbose headers   'x-cache-hits': '0',
+19 verbose headers   'x-timer': 'S1467882673.801055,VS0,VE245',
+19 verbose headers   vary: 'Accept-Encoding' }
+20 silly get cb [ 404,
+20 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+20 silly get     etag: '"BFK64MDNDTUBH6RP87QAOQXA8"',
+20 silly get     'content-type': 'application/json',
+20 silly get     'cache-control': 'max-age=0',
+20 silly get     'content-length': '400',
+20 silly get     'accept-ranges': 'bytes',
+20 silly get     date: 'Thu, 07 Jul 2016 09:11:14 GMT',
+20 silly get     via: '1.1 varnish',
+20 silly get     age: '0',
+20 silly get     connection: 'keep-alive',
+20 silly get     'x-served-by': 'cache-sin6924-SIN',
+20 silly get     'x-cache': 'MISS',
+20 silly get     'x-cache-hits': '0',
+20 silly get     'x-timer': 'S1467882673.801055,VS0,VE245',
+20 silly get     vary: 'Accept-Encoding' } ]
+21 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/react-bootbox
+21 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+21 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+21 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+21 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+21 silly fetchPackageMetaData     at emitTwo (events.js:87:13)
+21 silly fetchPackageMetaData     at Request.emit (events.js:172:7)
+21 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1082:10)
+21 silly fetchPackageMetaData     at emitOne (events.js:82:20)
+21 silly fetchPackageMetaData     at Request.emit (events.js:169:7)
+21 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+21 silly fetchPackageMetaData  error for react-bootbox { [Error: Registry returned 404 for GET on https://registry.npmjs.org/react-bootbox] pkgid: 'react-bootbox', statusCode: 404, code: 'E404' }
+22 silly rollbackFailedOptional Starting
+23 silly rollbackFailedOptional Finishing
+24 silly runTopLevelLifecycles Starting
+25 silly runTopLevelLifecycles Finishing
+26 silly install printInstalled
+27 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/react-bootbox
+27 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+27 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+27 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+27 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+27 verbose stack     at emitTwo (events.js:87:13)
+27 verbose stack     at Request.emit (events.js:172:7)
+27 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1082:10)
+27 verbose stack     at emitOne (events.js:82:20)
+27 verbose stack     at Request.emit (events.js:169:7)
+27 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+28 verbose statusCode 404
+29 verbose pkgid react-bootbox
+30 verbose cwd /home/deligence/Documents/prashant/Panoplycms-dev
+31 error Linux 3.19.0-51-generic
+32 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "react-bootbox"
+33 error node v5.4.1
+34 error npm  v3.3.12
+35 error code E404
+36 error 404 Registry returned 404 for GET on https://registry.npmjs.org/react-bootbox
+36 error 404
+36 error 404 'react-bootbox' is not in the npm registry.
+36 error 404 You should bug the author to publish it (or use the name yourself!)
+36 error 404
+36 error 404 Note that you can also install from a
+36 error 404 tarball, folder, http url, or git url.
+37 verbose exit [ 1, true ]

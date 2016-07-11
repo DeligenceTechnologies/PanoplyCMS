@@ -33,7 +33,7 @@ AddMenuItem=React.createClass({
       this.setState({MenuItemTypeValue :val})
     },
     getMenuValue(val){
-      console.log(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),"getMenuValue")
+      //console.log(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),"getMenuValue")
       this.setState({MenuValue :ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()})
     },
     componentDidMount: function(){
@@ -218,13 +218,10 @@ AddMenuItem=React.createClass({
           <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
          
-            <select id="mainMenu" ref="selectMenu" className = "col-sm-10" onChange={this.getMenuValue}>
+            <select id="mainMenu" ref="selectMenu" className = "col-sm-10" onChange={this.getMenuValue} defaultValue={that.props._id}>
               <option className="form-control" value="" >Select </option>
               {this.data.Menu1.map(function(result) {
-                    if(that.props._id==result._id) 
-                   return <option value={result._id} selected >{result.title} </option>;
-                  else
-                   return <option value={result._id} >{result.title} </option>;
+                   return <option value={result._id} key={result._id}>{result.title} </option>;
                  })} 
             </select>
           
@@ -248,13 +245,13 @@ AddMenuItem=React.createClass({
               <select id="mainMenu" ref="select" className = "col-sm-10" >
               <option className="form-control" value="" >Select </option>
               {this.data.categoryData.map(function(result) {
-                     return <option value={result._id} >{result.title} </option>;
+                     return <option key={result._id} value={result._id}  >{result.title} </option>;
                  })} 
              </select>:this.state.itemType=='article'?
               <select id="mainMenu" ref="select" className = "col-sm-10" >
               <option className="form-control" value="" >Select </option>
               {this.data.articleData.map(function(result) {
-                     return <option value={result._id} >{result.title} </option>;
+                     return <option key={result._id} value={result._id} >{result.title} </option>;
                  })} 
              </select>:''}    
          </div>

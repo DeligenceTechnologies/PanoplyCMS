@@ -6,7 +6,6 @@ ListArticles = React.createClass({
   getMeteorData(){
      const articleSubscription = Meteor.subscribe('articlesFind');
     return {
-
       pageLoading:! articleSubscription.ready(),
       results: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
       resultOfTrash: PanoplyCMSCollections.Articles.find({trash:true}).fetch()
@@ -72,7 +71,6 @@ ListArticles = React.createClass({
                 })} 
               </tbody>
             </table>
-            {nodata}   
           </div>
         </div> 
         {this.data.results.map(function(result) {

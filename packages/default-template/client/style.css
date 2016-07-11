@@ -204,3 +204,26 @@ margin: 0px !important;
 .tag .label {
 	margin: 0 2px;
 }
+
+
+nav.nav.blog-nav div {
+	padding: 12px 0;
+}
+
+nav.nav.blog-nav ul {
+  list-style: outside none none;
+  padding-left: 0;
+}
+
+nav.nav.blog-nav ul li {
+	display: inline-block;
+	padding: 0 3px
+}
+
+nav.nav.blog-nav ul li a {
+  color: white;
+  font-size: 1.3em;
+  font-style: unset;
+  text-transform: uppercase;
+  cursor: pointer;
+}

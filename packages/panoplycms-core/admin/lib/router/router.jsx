@@ -50,6 +50,8 @@ _.extend(PanoplyRouter, {
             modules[p] = mod;
           })
 
+          console.log(modules, 'modules')
+
           let content;
           switch(i.MenuItemType){
             case 'category':
@@ -72,7 +74,7 @@ _.extend(PanoplyRouter, {
           
           if(i.MenuItemType == 'category'){
             let articles = PanoplyCMSCollections.Articles.find({category: i.MenuItemTypeId, trash:false},{_id:1, alias: 1}).fetch()
-            console.log(i.MenuItemTypeId, articles)
+
             _.each(articles, a => {
               let route = {
                 action: (params, queryParams) => {
@@ -82,7 +84,6 @@ _.extend(PanoplyRouter, {
                 }
               }
               PanoplyRouter.route('/'+i.alias+'/'+a.alias, route)
-              console.log('/'+i.alias+'/'+a.alias, route)
             })
           }
 
@@ -189,3 +190,28 @@ HTMLBlock = data => {
     {data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
   </div>
 }
+
+MenuModuleFront = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData: function(){
+    return { items: PanoplyCMSCollections.MenuItems.find({_id: this.props.menuItem, trash:false}).fetch() }
+  },
+  onClick(a){
+    FlowRouter.go('/'+a)
+  },
+  render(){
+    showTitle = '';
+    if(this.props.module_title) showTitle = <h4>{this.props.module_title}</h4>;
+    return (<div>
+          {showTitle}
+          <ul>
+          {this.data.items?
+            this.data.items.map(i => {
+              return (<li key={i._id}>
+                <a onClick={()=>{this.onClick(i.alias)}}>{i.title}</a>
+              </li>)
+            }):'<li></li>'}
+          </ul>
+        </div>)
+  }
+})

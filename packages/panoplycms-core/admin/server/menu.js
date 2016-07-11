@@ -17,6 +17,10 @@ Meteor.publish('findMenuItem', function(id){
 	
 	return PanoplyCMSCollections.MenuItems.find({_id:id});
 });
+Meteor.publish('menuParentItems', function(id){
+	
+	return PanoplyCMSCollections.MenuItems.find({parentId:id,trash:false});
+});
 Meteor.publish('menuItemsbyParentId', function(){
 	
 	return PanoplyCMSCollections.MenuItems.find({trash:false});

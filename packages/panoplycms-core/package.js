@@ -75,13 +75,8 @@ Package.onUse(function(api) {
     'admin/lib/method/categories.js',
     'admin/lib/method/menu.js',
     'admin/lib/method/tags.js',
-<<<<<<< HEAD
-    'admin/lib/method/search.js'
-    
-=======
     'admin/lib/method/search.js',
     'admin/lib/method/template.js'
->>>>>>> 9ccc5bf7d9fbb660aa643c0274e739b1aa9e00b0
     ],['client','server'])
   
   /*--------------------------------Client------------------------------------- */

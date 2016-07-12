@@ -96,7 +96,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/component/language.js',['client'])
   api.addFiles('admin/settings/settings.jsx',['client'])
   api.addFiles('admin/settings/language.js',['client'])
-  api.addFiles('admin/styles/admin.css',['client'])
+  //api.addFiles('admin/styles/admin.css',['client'])
   api.addFiles('admin/content/article/addArticle.jsx',['client'])
   api.addFiles('admin/content/article/editArticle.jsx',['client'])
   api.addFiles('admin/content/article/listArticles.jsx',['client'])

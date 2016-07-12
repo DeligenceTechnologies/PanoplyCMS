@@ -25,4 +25,6 @@ Meteor.publish('menuItemsbyParentId', function(){
 	
 	return PanoplyCMSCollections.MenuItems.find({trash:false});
 });
-
+Meteor.publish('defaultMenuItem', function(){
+	return PanoplyCMSCollections.MenuItems.findOne({homepage:true});
+});

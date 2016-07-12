@@ -1,5 +1,3 @@
-/*import 'meteor/deligence1:panoplycms-component';
-import {ListTags} from 'meteor/deligence1:panoplycms-component';*/
 PanoplyRouter = FlowRouter;
 PanoplyRouter.wait();
 
@@ -128,7 +126,6 @@ _.extend(PanoplyRouter, {
             prefix: '/admin',
             triggersEnter: [ (context, redirect) => {
               if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
-                console.log(context, "<---- context")
                 redirect('login');
               }
             }]

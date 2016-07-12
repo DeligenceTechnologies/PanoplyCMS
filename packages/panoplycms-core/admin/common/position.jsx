@@ -12,7 +12,7 @@ Position=React.createClass({
                     return <optgroup key={c} value={result._id} label={result.name}>  
                             { 
                   
-                              result.position.map( p => {
+                              result.positions.map( p => {
                                 return <option key={p} value={p}>{p}</option>
                               })
                             }

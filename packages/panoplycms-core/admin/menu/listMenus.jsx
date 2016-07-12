@@ -62,13 +62,13 @@ ListMenus = React.createClass({
           </div>
         </div>   
               {this.data.results.map(function(result) {
-                  return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} />         
+                  return  <ModalMenu key={result._id} data={result} stateVal={that.state.trashListShow} />         
                 })} 
               {this.data.resultOfTrash.map(function(result) {
-                  return  <RestoreModal key={result._id} data={result}/>         
+                  return  <RestoreModalMenu key={result._id} data={result}/>         
               })} 
               {this.data.resultOfTrash.map(function(result) {
-                  return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} />         
+                  return  <ModalMenu key={result._id} data={result} stateVal={that.state.trashListShow} />         
               })}
       </div>
     );
@@ -99,7 +99,7 @@ var Trvalue = React.createClass({
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {
                       this.props.stateVal? 
-                      <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-archive" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> 
+                      <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreMenu} title="Restore" ></i> 
                       : <a href={FlowRouter.path('editMenu',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
                     }
                   </td>
@@ -108,8 +108,9 @@ var Trvalue = React.createClass({
   }
 });
 
-Modal=React.createClass({
+ModalMenu=React.createClass({
   deleteMenu(){
+    console.log(this.props.data._id,"delete Menu")
       if(this.props.stateVal){
             Meteor.call('deleteMenuParmanent',this.props.data._id,function(err,data){
           });
@@ -139,7 +140,7 @@ Modal=React.createClass({
   }
 })
 
-RestoreModal=React.createClass({
+RestoreModalMenu=React.createClass({
   restoreMenu(){
     Meteor.call('restoreMenus',this.props.data._id,function(err,data){
       if(err){

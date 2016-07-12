@@ -325,7 +325,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "addMenuItem",
-					"path" : "/menus/addMenuItem",
+					"path" : "/menus/:_id/addMenuItem",
 					"component" : "AddMenuItem",
 					"layout" : "AdminLayout",
 					"provides" : "dashboard",
@@ -335,7 +335,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "editMenuItem",
-					"path" : "/menu/editMenuItem",
+					"path" : "/menu/editMenuItem/:_id",
 					"component" : "EditMenuItem",
 					"layout" : "AdminLayout",
 					"provides" : "dashboard",
@@ -395,7 +395,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "login",
-					"path" : "/adminlogin",
+					"path" : "/login",
 					"component" : "Login",
 					"layout" : "AdminLoginLayout",
 					"provides" : "adminLogin"

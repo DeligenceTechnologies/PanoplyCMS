@@ -1,7 +1,5 @@
-import 'meteor/deligence1:panoplycms-core';
-import  {Heading} from 'meteor/deligence1:panoplycms-core';
-import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
-import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import  {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import  {PanoplyCMSCollections} from 'meteor/deligence1:panoplycms-collections';
 
 AddMenuModule = React.createClass({
 	componentWillUnmount(){
@@ -194,3 +192,29 @@ MenuList = React.createClass({
 });
 
 export default AddMenuModule;
+
+MenuModuleFront = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData: function(){
+    return { items: PanoplyCMSCollections.MenuItems.find({_id: this.props.menuItem, trash:false}).fetch() }
+  },
+  onClick(a){
+    FlowRouter.go('/'+a)
+  },
+  render(){
+    showTitle = '';
+    if(this.props.module_title) showTitle = <h4>{this.props.module_title}</h4>;
+    return (<div>
+          {showTitle}
+          <ul>
+          {this.data.items?
+            this.data.items.map(i => {
+              return (<li key={i._id}>
+                <a onClick={()=>{this.onClick(i.alias)}}>{i.title}</a>
+              </li>)
+            }):'<li></li>'}
+          </ul>
+        </div>)
+  }
+})
+

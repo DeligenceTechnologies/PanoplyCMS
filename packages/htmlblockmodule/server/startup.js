@@ -2,12 +2,12 @@ PanoplyCMSRegisterPackage(
 		{
 			"name" : "htmlblock",
 			"type" : "module",
-			"component":'AddHtmlblock',
-			"label":'Htmlblock',
+			"component":'HTMLBlock',
+			"label":'Html Block',
 			"routes" : [
 				{
 					"name" : "addHtmlblock",
-					"path" : "/htmlblock/add",
+					"path" : "/modules/htmlblock/add",
 					"component" : "AddHtmlblock",
 					"layout" : "AdminLayout",
 					"role":"add",
@@ -16,7 +16,7 @@ PanoplyCMSRegisterPackage(
 				},
 				{ 
 					"name" : "editHtmlblock",
-					"path" : "/htmlblock/:_id",
+					"path" : "/modules/htmlblock/:_id",
 					"component" : "EditHtmlblock", 
 					"layout" : "AdminLayout", 
 					"role":"edit",

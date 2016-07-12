@@ -44,14 +44,15 @@ Package.onUse(function(api) {
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
 
-  api.use('deligence1:panoplycms-core');
-  api.use('deligence1:panoplycms-collections');
+  api.use('deligence1:panoplycms-core')
+  api.use('deligence1:panoplycms-collections')
 
   api.addFiles('client/addMenuModule.jsx',"client");
   api.addFiles('client/editMenuModule.jsx',"client");
   api.addFiles('server/startup.js',"server");
 
-  api.export(['AddMenuModule','EditMenuModule'],'client')
+
+  api.export(['AddMenuModule','EditMenuModule','MenuModuleFront'],'client')
 
 });
 

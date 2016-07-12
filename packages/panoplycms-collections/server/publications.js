@@ -22,6 +22,10 @@ Meteor.publish('roles', function (){
   return Meteor.roles.find({})
 })
 
+Meteor.publish('siteName', function(){
+	return PanoplyCMSCollections.Sites.find({})
+})
+
 /* Publish Articles */
 Meteor.publish('articlesFind', function(){	
 	return PanoplyCMSCollections.Articles.find({});

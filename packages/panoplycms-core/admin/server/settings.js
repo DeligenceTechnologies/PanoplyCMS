@@ -1,3 +1,3 @@
-Meteor.publish('siteName', function(){
+/*Meteor.publish('siteName', function(){
 	return PanoplyCMSCollections.Sites.find({});
-});
+});*/

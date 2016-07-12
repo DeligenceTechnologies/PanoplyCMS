@@ -150,7 +150,7 @@ AddModulesPopup = (modules) => {
                 <h4 className="modal-title">Please select a module you want to add</h4>
               </div>
               <div className="modal-body">
-                <ul>
+                <ul className="listModules">
                 	{modules.list.map(l => {
 	                	return <li data-dismiss="modal" key={l._id} onClick={() => {modules.onClick(l.name)}} >{l.label?_.capitalize(l.label):_.capitalize(l.name)}</li>
                 	})}

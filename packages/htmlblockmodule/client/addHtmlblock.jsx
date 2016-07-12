@@ -1,7 +1,7 @@
 import 'meteor/deligence1:panoplycms-core';
-import  {Heading} from 'meteor/deligence1:panoplycms-core';
+import {Heading} from 'meteor/deligence1:panoplycms-core';
 import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
-import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import {AlertMessage} from 'meteor/deligence1:panoplycms-core';
 
 AddHtmlblock = React.createClass({
 	componentWillUnmount(){
@@ -188,7 +188,7 @@ MenuList = React.createClass({
 	}
 });
 
- HTMLBlock = data => {
+HTMLBlock = data => {
   showTitle = '';
   if(data.module_title) showTitle = <h4>{data.module_title}</h4>;
   return <div>

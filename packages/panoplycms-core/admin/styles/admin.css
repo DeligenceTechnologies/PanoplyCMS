@@ -397,3 +397,18 @@ ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
 	overflow-y: scroll;
 	height: 112px;
 }
+
+ul.listModules {
+    list-style: outside none none;
+    padding-left: 0;
+}
+
+ul.listModules > li {
+    border: 1px solid gray;
+    border-radius: 3px;
+    box-shadow: 0 0 2px gray;
+    display: block;
+    line-height: 1.5em;
+    margin: 2px 0;
+    padding: 5px;
+}

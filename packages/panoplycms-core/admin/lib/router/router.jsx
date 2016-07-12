@@ -16,7 +16,7 @@ _.extend(PanoplyRouter, {
         let tmplArray = _.findWhere(packages, {name: "template"}) || []
 
         // Get List of available Modules
-        let moduleTypes = _.filter(packages, p => { return p.type == "module" });
+        let moduleTypes = _.filter(packages, p => { return p.type == "module" }) || [];
 
         // Get Default Template Parameters 
         var defaultTemplate = _.find(tmplArray.templates, function(t){
@@ -24,8 +24,8 @@ _.extend(PanoplyRouter, {
             return t
         })
 
-        let mod = _.pluck(moduleTypes, 'name');
-        let positions = defaultTemplate.positions;
+        let mod = _.pluck(moduleTypes, 'name') || [];
+        let positions = defaultTemplate.positions || [];
 
         menuItems.forEach( (i) => {
 
@@ -49,8 +49,6 @@ _.extend(PanoplyRouter, {
             })
             modules[p] = mod;
           })
-
-          console.log(modules, 'modules')
 
           let content;
           switch(i.MenuItemType){

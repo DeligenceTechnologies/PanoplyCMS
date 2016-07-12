@@ -34,10 +34,6 @@ Meteor.startup(function () {
 				{
 					label:'User List',
 					routeName:'users'
-				},
-				{
-					label:'Change Password',
-					routeName:'changePassword'
 				}
 			]
 		},

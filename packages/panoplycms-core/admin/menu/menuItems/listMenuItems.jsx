@@ -68,7 +68,10 @@ listOfMenu(){
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
          <div className="row">   
         <div className="panel-heading"><span className="lead"></span></div>
-        <div className="panel-heading"> <a  className="btn btn-success btn-ico" onClick={this.storeMenuid} >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}</a>
+        <div className="panel-heading"> 
+          <a  className="btn btn-success btn-ico" onClick={this.storeMenuid} ><i className="fa fa-plus-circle fa-lg "></i>&nbsp;
+            {i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}
+          </a>
            <div className="pull-right col-md-3" >
             Menus:  
             <select id="mainMenu" ref="mainMenu" onChange={this.showMenu} defaultValue={FlowRouter.getParam("_id")}>

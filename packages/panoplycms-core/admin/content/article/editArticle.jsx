@@ -175,13 +175,13 @@ EditArticle=React.createClass({
             <div className = "form-group">
               <label  htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_METAKEYWORD')}</label>
               <div className = "col-sm-10">
-                 <input type = "text" id='metaKeyword' name="keyword" ref="keyword" defaultValue={this.data.results?this.data.results.metaKeyword:''} className = "form-control" required/>
+                 <input type = "text" id='metaKeyword' name="keyword" ref="keyword" defaultValue={this.data.results?this.data.results.metaKeyword:''} className = "form-control" />
               </div>
             </div>
             <div className = "form-group">
               <label  htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_METADESCRIPTION')}</label>
               <div className = "col-sm-10">
-                <input type="textarea" id='metaDescription'  name="desc" ref="desc" defaultValue={this.data.results?this.data.results.metaDescription:''} className="form-control" required/>
+                <input type="textarea" id='metaDescription'  name="desc" ref="desc" defaultValue={this.data.results?this.data.results.metaDescription:''} className="form-control" />
               </div>
             </div>
             <div className="form-group">

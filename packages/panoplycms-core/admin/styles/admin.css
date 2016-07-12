@@ -85,7 +85,7 @@ h1.page-header {margin-top: -5px;}
 .nav-children > li {margin-left: 31px; border-left: 1px solid #dbdfe6;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;text-transform: none; letter-spacing: normal; display: block;font-size: 12px;}
 .nav-children > li:first-child { padding-top: 7px;}
 .nav-children > li:last-child {padding-bottom: 7px;}
-.nav-children > li > a {display: block;font-weight: 400;padding: 5px 0 5px 18px;color: #657390;position: relative;/*  height: 28px;*/ -webkit-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s;}
+.nav-children > li > a {display: block;font-weight: 400;padding: 5px 0 5px 18px;color: #657390;position: relative;/*  height: 28px;*/ -webkit-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s;cursor:pointer;}
 .nav-children > li > a:before {content: '';position: absolute;width: 5px; height: 5px; left: -3px; top: 50%;background-color: #9fa8bc; margin-top: -3px; border-radius: 50px;-webkit-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s;}
 .nav-children > li > a:after {content: '';width: 30px;height: 30px; border: 1px solid #a0a8b9;position: absolute; left: -15px; top: 50%; margin-top: -15px; border-radius: 50px; opacity: 0; -webkit-transition: all 0.2s ease-out 0s;-o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s;}
 .nav-children > li > a:hover,

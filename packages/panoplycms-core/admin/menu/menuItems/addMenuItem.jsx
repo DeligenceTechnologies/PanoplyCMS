@@ -261,9 +261,9 @@ AddMenuItem=React.createClass({
          </div>         
         <div className="form-group">
           <div className = "col-sm-offset-2 col-sm-10">
-            <button className="btn btn-success " >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_SAVE')}</button>
+            <button className="btn btn-primary " >SAVE</button>
             &nbsp;&nbsp;
-            <a className="btn btn-danger " href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_CANCEL')}</a>
+            <a className="btn btn-danger " href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>CANCEL</a>
           </div>
           </div>
       </form>

@@ -395,7 +395,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "login",
-					"path" : "/adminlogin",
+					"path" : "/login",
 					"component" : "Login",
 					"layout" : "AdminLoginLayout",
 					"provides" : "adminLogin"

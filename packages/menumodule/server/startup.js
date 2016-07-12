@@ -2,12 +2,12 @@ PanoplyCMSRegisterPackage(
 		{
 			"name" : "menumodule",
 			"type" : "module",
-			"component":"MenuModule",
+			"component":"MenuModuleFront",
 			"label":"Menu Module",
 			"routes" : [
 				{
 					"name" : "addMenuModule",
-					"path" : "/menumodule/add",
+					"path" : "/modules/menumodule/add",
 					"component" : "AddMenuModule",
 					"layout" : "AdminLayout",
 					"provides" : "dashboard",
@@ -15,7 +15,7 @@ PanoplyCMSRegisterPackage(
 				},
 				{ 
 					"name" : "editMenuModule",
-					"path" : "/menumodule/:_id",
+					"path" : "/modules/menumodule/:_id",
 					"component" : "EditMenuModule", 
 					"layout" : "AdminLayout", 
 					"provides" : "dashboard",

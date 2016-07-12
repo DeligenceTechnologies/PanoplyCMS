@@ -5,7 +5,8 @@ ListCategories = React.createClass({
     return{
       pageLoading:! categoriesSubscription.ready(),
       Categories: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
-      resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true}).fetch()
+      resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true}).fetch(),
+      resultOfArticles: PanoplyCMSCollections.Articles.find({trash:false},{category:1}).fetch()
     }
   },
   submitForm(event){
@@ -49,7 +50,7 @@ ListCategories = React.createClass({
                 <div className="pull-right">
                   Display: 
                   <select id="display" onChange={this.showCategories}>
-                    <option value="all">All</option>
+                    <option value="active">Active</option>
                     <option value="trash">Trash</option>
                   </select>
                 </div>
@@ -76,7 +77,7 @@ ListCategories = React.createClass({
                 </div>
               </div>
               {this.data.Categories.map(function(cat){
-                return  <ModalOfCat key={cat._id} data={cat} stateVal={that.state.trashListShow} /> 
+                return  <ModalOfCat key={cat._id} resultOfArticles={that.data.resultOfArticles} data={cat} stateVal={that.state.trashListShow} /> 
                 })
               }
 
@@ -86,10 +87,11 @@ ListCategories = React.createClass({
               }
 
               {this.data.resultOfTrash.map(function(cat){
-                return  <ModalOfCat key={cat._id} data={cat} stateVal={that.state.trashListShow} /> 
+                return  <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
                 })
               }
-            </div>     
+            </div>   
+            <ArticlesExistPopup />  
           </div>
     );
   }
@@ -126,7 +128,7 @@ var CategoriesItem = React.createClass({
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {
-              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-archive" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
             }
           </td>
         </tr>    
@@ -141,9 +143,17 @@ ModalOfCat=React.createClass({
         console.log(err,'data')
       });
     }else{
-      Meteor.call('delete_category',this.props.data._id,function(err,data){
-      console.log(err,data)
-    });
+      let isExistArticle = _.findWhere(this.props.resultOfArticles, {category: this.props.data._id}) || []
+      isExistArticle=_.isEmpty(isExistArticle);
+      console.log(isExistArticle,'isExistArticle---')
+      if(isExistArticle){
+        Meteor.call('delete_category',this.props.data._id,function(err,data){
+          console.log(err,data)
+        });
+         
+       }else {
+         $('#articlExist.modal').modal()
+      }  
     }
     
   },
@@ -196,3 +206,21 @@ ModalOfRestoreCat=React.createClass({
     )     
   }
 })
+
+ArticlesExistPopup = (m) => {
+    return(
+          <div id="articlExist" className="modal fade" role="dialog">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <button type="button" className="close" data-dismiss="modal">&times;</button>
+                  <h4 className="modal-title">You can not remove this category because articles exist of that category.Please remove the article first after you can delete category.</h4>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    )     
+}

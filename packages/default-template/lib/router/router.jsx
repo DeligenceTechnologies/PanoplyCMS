@@ -1,4 +1,4 @@
-FlowRouter.route('/', {
+/*FlowRouter.route('/', {
 	name: 'front-home',
 	subscriptions: function(params){
 		this.register('Sites',Meteor.subscribe('siteName'))
@@ -11,5 +11,5 @@ FlowRouter.route('/', {
 	triggersEnter: [function(context, redirect) {
 		console.log('Welcome to Panoply CMS!');
 	}]
-});
+});*/
 

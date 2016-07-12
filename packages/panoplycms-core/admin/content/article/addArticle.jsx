@@ -20,7 +20,6 @@ AddArticle=React.createClass({
 	componentDidMount: function(){
     $('#tokenfield').tokenfield('destroy');
 		document.title = "Add Article"
-    console.log('add articles rendred...');
     let validObj=$("#add-article").validate({
          rules: {
              title: {
@@ -173,13 +172,13 @@ AddArticle=React.createClass({
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_METAKEYWORD')}</label>
               <div className = "col-sm-10">
-                 <input type = "text" name="keyword" ref="keyword" className = "form-control" required/>
+                 <input type = "text" name="keyword" ref="keyword" className = "form-control" />
               </div>
             </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_METADESCRIPTION')}</label>
               <div className = "col-sm-10">
-                <input type="text" name="desc" ref="desc" className="form-control" required/>
+                <input type="text" name="desc" ref="desc" className="form-control" />
               </div>
             </div>
             <div className="form-group">

@@ -1,7 +1,6 @@
-import 'meteor/deligence1:panoplycms-core';
-import  {Heading} from 'meteor/deligence1:panoplycms-core';
-import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
-import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import React from 'react';
+import  {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import  {PanoplyCMSCollections} from 'meteor/deligence1:panoplycms-collections';
 
 AddMenuModule = React.createClass({
 	componentWillUnmount(){
@@ -137,15 +136,6 @@ AddMenuModule = React.createClass({
                 </select>
               </div>
             </div>
-            {/*<div className = "form-group">
-              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
-              <div className = "col-sm-10">
-                <div className="summernote">
-
-                  <textarea ref="editor1" name="editor" id="article" />
-                </div>
-              </div>
-            </div>*/}
             <div className="form-group">
                <label className="col-sm-2 control-label">Show Title</label>
                <div className="col-sm-10">
@@ -192,3 +182,68 @@ MenuList = React.createClass({
 		);
 	}
 });
+
+export default AddMenuModule;
+
+MenuModuleFront = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData: function(){
+    return { items: PanoplyCMSCollections.MenuItems.find({mainParentId: this.props.menuItem, trash:false}).fetch() }
+  },
+  getMenuItems: function(){
+    var elements = this.data.items;
+    var menu = new Array();
+
+    function getElements(parent_id){
+      if(parent_id){
+        return getChild(parent_id);
+      } else {
+        var element = new Array();
+        elements.forEach(function (elem1) {
+         var child = getChild(elem1._id);
+          if(elem1.parentId==''){
+            element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, child: child });
+           }
+        });
+         return element;
+      }   
+    }
+
+    function getChild(parent_id){
+      var child = new Array();
+      elements.forEach(function (elem2) {
+        if(elem2.parentId){
+          if(parent_id== elem2.parentId){
+            child.push({ _id: elem2._id, title: elem2.title, mainParentId:elem2.mainParentId, alias: elem2.alias, desc:elem2.desc, child: getElements(elem2._id) });
+          }
+        }
+      });
+      return child;
+    }
+    return getElements();
+  },
+  render(){
+    showTitle = '';
+    if(this.props.module_title) showTitle = <h4>{this.props.module_title}</h4>;
+    return (
+      <div>
+        {showTitle}
+        {this.printMenu(this.getMenuItems())}
+      </div>
+    )
+  },
+  printMenu: function(items){
+    return (
+      <ul>
+        {items.map(i => {
+          return (
+            <li key={i._id}>
+              <a onClick={()=>{ PanoplyRouter.go('/'+ i.alias) }}>{i.title}</a>
+              {i.child.length?this.printMenu(i.child):''}
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+})

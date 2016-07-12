@@ -217,7 +217,7 @@ nav.nav.blog-nav ul {
 
 nav.nav.blog-nav ul li {
 	display: inline-block;
-	padding: 0 3px
+	padding: 0 10px
 }
 
 nav.nav.blog-nav ul li a {
@@ -226,4 +226,21 @@ nav.nav.blog-nav ul li a {
   font-style: unset;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+nav.nav.blog-nav ul li ul {
+	display: none
+}
+
+nav.nav.blog-nav ul li:hover ul li {
+	display: block
+}
+
+nav.nav.blog-nav ul li:hover ul {
+	background: #428bca none repeat scroll 0 0;
+	border: thin solid whitesmoke;
+	box-shadow: 0 0 0 0 white;
+	display: block;
+	min-width: 200px;
+	position: absolute;
 }

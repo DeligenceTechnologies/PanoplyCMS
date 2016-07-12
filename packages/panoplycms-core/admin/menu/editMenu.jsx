@@ -81,9 +81,9 @@ EditMenu=React.createClass({
            </div>
           <div className="form-group">
             <div className = "col-sm-offset-2 col-sm-10">
-              <button className="btn btn-success " >{i18n('ADMIN_MENU_ADDMENU_FORM_SAVE')}</button>
+              <button className="btn btn-primary " >UPDATE</button>
               &nbsp;&nbsp;
-              <a className="btn btn-danger "  href={FlowRouter.path('manageMenu')}>{i18n('ADMIN_MENU_ADDMENU_FORM_CANCEL')}</a>
+              <a className="btn btn-danger "  href={FlowRouter.path('manageMenu')}>CANCEL</a>
             </div>
           </div> 
         </form>

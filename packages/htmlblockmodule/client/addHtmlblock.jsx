@@ -1,7 +1,4 @@
-import 'meteor/deligence1:panoplycms-core';
-import {Heading} from 'meteor/deligence1:panoplycms-core';
-import {AlertMessageOfError} from 'meteor/deligence1:panoplycms-core';
-import {AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligence1:panoplycms-core';
 
 AddHtmlblock = React.createClass({
 	componentWillUnmount(){
@@ -196,3 +193,5 @@ HTMLBlock = data => {
     {data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
   </div>
 }
+
+export default AddHtmlblock;

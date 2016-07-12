@@ -48,7 +48,7 @@ ListArticles = React.createClass({
           <div className="pull-right">
             Display: 
             <select id="display" onChange={this.showArticles}>
-              <option value="all">All</option>
+              <option value="active">Active</option>
               <option value="trash">Trash</option>
             </select>
           </div>  
@@ -127,7 +127,7 @@ var Trvalue = React.createClass({
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {
-              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-archive" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
             }
           </td>
         </tr>
@@ -137,7 +137,9 @@ var Trvalue = React.createClass({
 });
 
 Modal=React.createClass({
-  deleteArticle(){
+  deleteArticle(event){
+    event.preventDefault();
+    console.log('called...')
     if(this.props.stateVal){
       Meteor.call('deleteArticleParma',this.props.data._id,function(err,data){
       });

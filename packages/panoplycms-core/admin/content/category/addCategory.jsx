@@ -4,7 +4,8 @@
     this.props.onUpdate(event.target.id,event.target.value);
   },
   submitData(event){
-    event.preventDefault();    
+    event.preventDefault(); 
+    that=this   
       var title = this.refs.title.value.trim();
       var alias = generateAlias(title);
       Meteor.call('add_category',title,alias,(err,data)=>{
@@ -12,6 +13,7 @@
           this.setState({errorMsg:err})
         }
         else{
+          that.refs.title.value='';
           this.setState({successMsg:true})     
         }
       });

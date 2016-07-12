@@ -104,7 +104,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/login/login.jsx',['client'])
 
   api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
-  api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
+  //api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
   api.addFiles('admin/extension/modules/addModule.jsx',['client'])
   api.addFiles('admin/extension/modules/editModule.jsx',['client'])
   api.addFiles('admin/extension/modules/language.js',['client'])

@@ -28,13 +28,13 @@ ListMenus = React.createClass({
         <Heading  data={i18n('ADMIN_MENU')} />
         <div className="panel-heading"> 
           <a  className="btn btn-success btn-ico" href={FlowRouter.path('addMenu')} >
-            <i className="fa fa-plus-circle "></i>
-            {i18n('ADMIN_MENU_ADDMENU')}
+            <i className="fa fa-plus-circle fa-lg "></i>&nbsp;
+              {i18n('ADMIN_MENU_ADDMENU')}
           </a>
           <div className="pull-right">
             Display: 
             <select id="display" onChange={this.showArticles}>
-              <option value="all">All</option>
+              <option value="active">Active</option>
               <option value="trash">Trash</option>
             </select>
           </div>

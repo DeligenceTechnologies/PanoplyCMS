@@ -49,7 +49,7 @@ Package.onUse(function(api) {
   api.addFiles('client/addHtmlblock.jsx',"client");
   api.addFiles('client/editHtmlblock.jsx',"client");
   api.addFiles('server/startup.js',"server");
-  api.export(['AddHtmlblock', 'EditHtmlBlock', 'HTMLBlock'], "client")
+  api.export(['AddHtmlblock', 'EditHtmlblock', 'HTMLBlock'], "client")
 
 });
 Package.onTest(function(api) {

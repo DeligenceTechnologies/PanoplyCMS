@@ -34,10 +34,6 @@ Meteor.startup(function () {
 				{
 					label:'User List',
 					routeName:'users'
-				},
-				{
-					label:'Change Password',
-					routeName:'changePassword'
 				}
 			]
 		},
@@ -395,7 +391,7 @@ Meteor.startup(function () {
 				},
 				{
 					"name" : "login",
-					"path" : "/adminlogin",
+					"path" : "/login",
 					"component" : "Login",
 					"layout" : "AdminLoginLayout",
 					"provides" : "adminLogin"

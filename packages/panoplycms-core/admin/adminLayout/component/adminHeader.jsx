@@ -72,7 +72,7 @@
   			</button>
 	  		<ul className="dropdown-menu pull-right">
 	            <li><a href={FlowRouter.path('editUser',{_id:'1'})}><i className="fa fa-user"></i> {i18n('ADMIN_HEADER_MY_PROFILE')}</a></li>
-	            <li><a href={FlowRouter.path('changePassword')}><i className="fa fa-cog"></i> {i18n('ADMIN_HEADER_ACCOUNT_SETTINGS')}</a></li>
+	            <li><a href={FlowRouter.path('changePassword')}><i className="fa fa-cog"></i> Change Password</a></li>
 	            <li><a href="#"><i className="fa fa-question-circle"></i> {i18n('ADMIN_HEADER_HELP')}</a></li>
 	            <li onClick={this.logout} ><a><i className="fa fa-sign-out" ></i>{i18n('ADMIN_HEADER_LOGOUT')}</a></li>
 	     	</ul>

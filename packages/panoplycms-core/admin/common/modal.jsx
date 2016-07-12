@@ -19,3 +19,15 @@
 	}
 })*/
 
+CoreOfflineComponent = React.createClass({
+  render: function() {
+    return <div><h1>Site Offline...!!!</h1></div>
+  }
+})
+
+CoreComponentNotFound = () => {
+  return <div>
+    <h2>404!</h2>
+    Component Not Found!
+  </div>
+}

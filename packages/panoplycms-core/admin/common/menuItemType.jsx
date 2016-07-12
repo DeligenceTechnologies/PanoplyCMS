@@ -15,6 +15,8 @@ MenuItemType=React.createClass({
     level = 1;
     function getElem(submenu, alias){
       list='';
+      let checked='';
+
 
       if(submenu && alias){
         menuArr = submenu;
@@ -28,7 +30,15 @@ MenuItemType=React.createClass({
         if(submenu){
           level++;
         }
-        list += ' <input className="ch" type="checkbox" value="'+menu._id+'" name="menucheck" />&nbsp;&nbsp;'
+        vvv = _.find(that.props.value,function(id){ 
+          return id == menu._id
+        });
+        if(vvv)
+          checked='checked'
+        else
+          checked='';
+
+        list += ' <input class="ch"  '+checked+' type="checkbox" value="'+menu._id+'" name="menucheck" />&nbsp;&nbsp;'
         for(let i=1; i<level;i++){
           if(submenu){list += '|'; } 
           list += '--';

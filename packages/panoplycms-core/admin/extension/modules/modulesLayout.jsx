@@ -27,11 +27,20 @@ ModulesLayout = React.createClass({
   addModules: () => {
   	$('#add.modal').modal()
   },
-  addModuleAction: type => {
-    console.log(type,'type')
-    type=='menumodule'?FlowRouter.go('addMenuModule'):FlowRouter.go('addHtmlblock');
+  addModuleAction: function(type){
+    let moduleArray = _.findWhere(this.data.modulesList, {name: type}) || []
+    moduleArray = _.findWhere(moduleArray.routes, {role: 'add'}) || []
+    console.log(moduleArray,'moduleArray-----')
+    FlowRouter.go(moduleArray.name)
+    //type=='menumodule'?FlowRouter.go('addMenuModule'):FlowRouter.go('addHtmlblock');
     
   	
+  },
+  editModuleAction(type,id){
+    let moduleArray = _.findWhere(this.data.modulesList, {name: type}) || []
+    moduleArray = _.findWhere(moduleArray.routes, {role: 'edit'}) || []
+    FlowRouter.go(moduleArray.name,{_id:id})
+    console.log(moduleArray.name,'moduleArray-----')
   },
 	trashModule: function(id) {
 		that = this;
@@ -51,6 +60,7 @@ ModulesLayout = React.createClass({
 		switch(e.action){
   		case 'edit':
   			/*e.type=='menumodule'?FlowRouter.go('editMenuModule',{_id:e.id}):FlowRouter.go('editHtmlblock',{_id:e.id});*/
+        this.editModuleAction(e.type,e.id)
   			break;
   		case 'trash':
 	  		this.setState({id: e.id})

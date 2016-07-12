@@ -192,3 +192,5 @@ MenuList = React.createClass({
 		);
 	}
 });
+
+export default AddMenuModule;

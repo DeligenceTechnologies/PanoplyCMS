@@ -20,8 +20,12 @@ Meteor.methods({
     PanoplyCMSCollections.Modules.insert(insert);
 
   },
-  editModule(select, update) {
+  editModule(select,update,menuItem) {
+    check(menuItem, [String]);
+    check(update,obj)
+    console.log(select,'select------')
     update.updatedAt = new Date();
+    update.menuItems=menuItem;
     PanoplyCMSCollections.Modules.update(select, {$set: update});
   },
   removeModule(modId) {

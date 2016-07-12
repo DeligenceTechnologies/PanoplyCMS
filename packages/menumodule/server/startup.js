@@ -10,6 +10,7 @@ PanoplyCMSRegisterPackage(
 					"path" : "/menumodule/add",
 					"component" : "AddMenuModule",
 					"layout" : "AdminLayout",
+					"role"   :"add",
 					"provides" : "dashboard",
 					"permission" : ["admin"]
 				},

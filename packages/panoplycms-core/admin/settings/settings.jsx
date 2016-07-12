@@ -34,7 +34,7 @@ SystemLayout = React.createClass({
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
     Meteor.call('updateSiteName',id,name,siteMetaKeyword,siteMetaDesc,siteOffline,function(err,data){
       if(err){
-        console.log(err,'err---------------');
+        
         that.setState({'errorMsg':err})
       }
       else{

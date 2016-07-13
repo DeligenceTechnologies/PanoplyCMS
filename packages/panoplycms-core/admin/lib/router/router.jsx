@@ -18,12 +18,19 @@ _.extend(PanoplyRouter, {
             return t
         })
 
+        /* Page Not Found Route */
         let notFound = defaultTemplate.notFound || 'CoreComponentNotFound'
         PanoplyRouter.notFound = {
-          action: function() {
-            ReactLayout.render(eval(defaultTemplate.layout), { 
-                  content: React.createElement(eval(notFound))
-            })
+          action: function(a, b) {
+            let cp = PanoplyRouter.current().path;
+            if(cp.split('/')[1] == 'admin')
+              ReactLayout.render(AdminLayout, { 
+                content: React.createElement(eval('CoreComponentNotFound'))
+              })
+            else 
+              ReactLayout.render(eval(defaultTemplate.layout), {
+                content: React.createElement(eval(notFound))
+              })
           }
         };
 
@@ -135,6 +142,14 @@ _.extend(PanoplyRouter, {
               PanoplyRouter.go('admin/dashboard');
             }
           });
+
+          admin.notFound = {
+            action: function() {
+              ReactLayout.render(AdminLayout, { 
+                    content: React.createElement(eval('CoreComponentNotFound'))
+              })
+            }
+          };
         /*} else {
           admin = PanoplyRouter.group({
             name: "admin",

@@ -15,32 +15,49 @@
    getInitialState(){
     return{
       trashListShow:false,
-      msg:false,
      }
     },
   
 listOfMenu(){  
-  
     var elements = this.data.MenuItemsData;
     var menu = new Array();
     var element = new Array();
     var level=0;
   elements.forEach(function (elem1) {
-          if(elem1.parentId=='' || elem1.trash==true ){
-            element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, level:level });
-             var child= getChild(elem1._id,level+1);
-           }
+      
+            if(elem1.parentId=='' || elem1.trash==true){
+                element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, level:level });
+                var child= getChild(elem1._id,level+1);
+              }
+             else if(elem1.parentId=='')
+              {
+                element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, level:level });
+                var child= getChild(elem1._id,level+1);
+              }
+           
         });
     function getChild(parent_id,level){
       elements.forEach(function (elem2) {
         if(elem2.parentId){
-          if(parent_id== elem2.parentId){
-              element.push({ _id: elem2._id, title: elem2.title, alias: elem2.alias, desc:elem2.desc, child: getChild(elem2._id,level+1), level:level });
+           if(parent_id== elem2.parentId){
+              if(elem2.trash==true){
+             element.push({ _id: elem2._id, title: elem2.title, alias: elem2.alias, desc:elem2.desc, child: getChild(elem2._id,level+1), level:level });
+               }
+              else {
+                element.push({ _id: elem2._id, title: elem2.title, alias: elem2.alias, desc:elem2.desc, level:level });
+                getChild(elem2._id,level+1)
+            }
           }
         }
-      });
-      return element;
+       }); 
+    if(Session.get("trashListShow")){
+         return element;
     }
+    else{
+         return _.sortBy(element,'level');
+    }
+    }
+  //  console.log(element,"----",'level')
      return element;
   },
   showArticles(){
@@ -62,23 +79,21 @@ listOfMenu(){
      console.log(FlowRouter.getParam("_id"),"routes")
       FlowRouter.go(''+'\addMenuItem',{_id:FlowRouter.getParam("_id")})
   },
- resetSuccessMsg(){
-    Session.set('msg',false)
-  },
+
   render() {
-    console.log(Session.get('msg'),"===><")
-     var msg='';
+   // console.log(Session.get('msg'),"===><")
+ /*    var msg='';
     if(Session.get("msg")){
       msg=<AlertMessageOfError data={'Parent of default menu Item can not be deleted.'} func={this.resetSuccessMsg}/>
     }else{
       msg='';
-    }
+    }*/
     that=this;
     var m =this.listOfMenu();
     return (
       <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
-             {msg}
+             
          <div className="row">   
       
         <div className="panel-heading"><span className="lead"></span></div>
@@ -98,7 +113,7 @@ listOfMenu(){
                <div className="pull-right col-md-3 col-md-offset-1">
                   Display: 
                   <select id="display" onChange={this.showArticles} >
-                    <option value="all">All</option>
+                    <option value="all">Active</option>
                     <option value="trash">Trash</option>
                   </select>
                </div>  
@@ -114,7 +129,6 @@ listOfMenu(){
                   <th>{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')}</th>
                  </tr>
               </thead>
-              {console.log(m,"data")}
                {m.map(function (menu) {
                     return  <Trvalue key={menu._id} data={menu} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />         
                 })} 
@@ -177,18 +191,18 @@ var Trvalue = React.createClass({
     for(i=0;i<that.props.data.level;i++){
       list +='|-';
     }
-console.log(that.props.data.level,"====>",that.props.data.title)
+//console.log(that.props.data.level,"====>",that.props.data.title)
     
     var c=0;
     return (
       <tbody >
        <tr>
-          <td id="edit_article" style={{lineHeight: "1em",}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
-          <td  >{this.props.data.desc}</td>
-          <td>
+          <td id="edit_article" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
+          <td style={{width:"50%"}} >{this.props.data.desc}</td>
+          <td style={{width:"10%"}}>
              <span   style={style} className={classname} onClick={this.changeDefaultValue}></span>
           </td>
-          <td>
+          <td style={{width:"10%"}}>
           
           <div  id="delete_article" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
               
@@ -211,7 +225,6 @@ console.log(that.props.data.level,"====>",that.props.data.title)
 });
 Modal=React.createClass({
    deleteMenuItem(){
-
      if(Session.get("trashListShow")){
                      Meteor.call('deleteMenu',this.props.data._id,function(err,data){
                   
@@ -222,9 +235,11 @@ Modal=React.createClass({
               event.preventDefault();
                 Meteor.call('deleteMenuItem',this.props.data._id,this.props.homepage,function(err,data){
                   if(data){
-                        Session.set('msg',true);
-                        console.log(data,Session.get('msg'));
+                            console.log(data);
                         }
+                  else{
+                    console.log(err)
+                  }
                   
                 });
           } 

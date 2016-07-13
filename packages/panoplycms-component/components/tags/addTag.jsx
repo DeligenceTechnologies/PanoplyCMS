@@ -33,10 +33,12 @@ import  {AlertMessage} from 'meteor/deligence1:panoplycms-core';
       var metaDesc=ReactDOM.findDOMNode(this.refs.metaDesc).value.trim();
       //console.log(title,alias)
       Meteor.call('addTag',title,desc,metaKeyword,metaDesc,(err,data)=>{
+       
         if(err){
-          this.setState({errorMsg : err})
+          this.setState({errorMsg :'Internal server error or duplicatie tag can not insert.'})
         }
         else{
+         
           this.setState({msg : true});
           ReactDOM.findDOMNode(this.refs.title).value='';
           ReactDOM.findDOMNode(this.refs.desc).value='';
@@ -52,11 +54,13 @@ render:function(){
       msg=<AlertMessage data={'Successfully added tag.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+      console.log('111')
     }else{
       msg='';
     }
+    console.log('111mm')
 return(
-  <div className="col-md-10 content">
+  <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
   <Heading  data={i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')} />
   {msg}
     <div className="panel-body">

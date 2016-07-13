@@ -82,23 +82,16 @@ AddArticle=React.createClass({
       	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
       	var alias = generateAlias(title);
       	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
-      	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
-        //var article=ReactDOM.findDOMNode(this.refs.editor1).value.trim();
         var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
-      //alert(ReactDOM.findDOMNode(this.refs.editor1).value.trim())
       	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
       	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
-        console.log(tags,'tagAry')
-        tagAry=tags.split(',');
-        that=this;
-        for(i=0;i<tagAry.length;i++){
-           Meteor.call('addTagExt',tagAry[i]);
-        }
+        
         let objOfTags=$('#tokenfield').tokenfield('getTokens');
         tags=_.pluck(objOfTags, 'value');
+        that=this;
       	Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
       		if(err){
-            that.setState({errorMsg : err})
+            that.setState({errorMsg : 'Internal server error or duplicate article can not insert.'})
           }else{
             that.setState({msg : true})
             ReactDOM.findDOMNode(that.refs.title).value='';

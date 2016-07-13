@@ -37,7 +37,7 @@ Meteor.methods({
 	addTagExt:function(tag){
 		let tagExist=PanoplyCMSCollections.Tags.find({title:tag}).count();
 		if(tagExist==0){
-			PanoplyCMSCollections.Tags.insert({
+			return PanoplyCMSCollections.Tags.insert({
 			title:tag,
 			alias:tag.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-'),
 			desc:'',

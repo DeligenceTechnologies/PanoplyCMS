@@ -74,15 +74,15 @@ ListArticles = React.createClass({
           </div>
         </div> 
         {this.data.results.map(function(result) {
-          return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} />         
+          return  <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
         })} 
 
         {this.data.resultOfTrash.map(function(result) {
-          return  <RestoreModal key={result._id} data={result}/>         
+          return  <RestoreModalOfArticle key={result._id} data={result}/>         
         })} 
 
         {this.data.resultOfTrash.map(function(result) {
-          return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} />         
+          return  <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
         })}
 
       </div>
@@ -136,7 +136,7 @@ var Trvalue = React.createClass({
   }
 });
 
-Modal=React.createClass({
+ModalOfArticle=React.createClass({
   deleteArticle(event){
     event.preventDefault();
     console.log('called...')
@@ -155,7 +155,7 @@ Modal=React.createClass({
               <div className="modal-content">
                 <div className="modal-body">
                   <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  <h4 className="modal-title">Do you really want to remove ?</h4>
+                  <h4 className="modal-title">Do you really want to remove?</h4>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={this.deleteArticle} data-dismiss="modal">YES</button>
@@ -168,8 +168,9 @@ Modal=React.createClass({
   }
 })
 
-RestoreModal=React.createClass({
+RestoreModalOfArticle=React.createClass({
   restoreArticle(){
+    console.log('restore article called...');
     Meteor.call('restoreArticles',this.props.data._id,function(err,data){
       if(err){
         console.log(err)
@@ -185,7 +186,7 @@ RestoreModal=React.createClass({
               <div className="modal-content">
                 <div className="modal-body">
                   <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  <h4 className="modal-title">Do you really want to restore ?</h4>
+                  <h4 className="modal-title">Do you really want to restore?</h4>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={this.restoreArticle} data-dismiss="modal">YES</button>

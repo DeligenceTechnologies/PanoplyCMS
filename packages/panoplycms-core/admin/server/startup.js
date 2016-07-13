@@ -421,6 +421,8 @@ Meteor.startup(function () {
 	)
 	
 	PanoplyCMSCollections.Tags._ensureIndex({ "title": 1 }, { unique: true });
+	PanoplyCMSCollections.Articles._ensureIndex({ "title": 1 }, { unique: true });
+	PanoplyCMSCollections.Categories._ensureIndex({ "title": 1 }, { unique: true });
 });
 
  

@@ -104,11 +104,12 @@ EditArticle=React.createClass({
       	var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
       	var alias= generateAlias(title);
       	var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
-      	var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
+      	//var tags=ReactDOM.findDOMNode(this.refs.token).value.trim();
       	var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
       	var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
       	var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
-
+        let objOfTags=$('#tokenfield').tokenfield('getTokens');
+        tags=_.pluck(objOfTags, 'value');
       	Meteor.call('editArticle',FlowRouter.getParam("_id"),title,alias,category,tags,article,metaKeyword,metaDescription,(err,data)=>{
       		if(err){
       			this.setState({errorMsg:err})

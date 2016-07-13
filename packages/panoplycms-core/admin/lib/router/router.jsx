@@ -132,7 +132,7 @@ _.extend(PanoplyRouter, {
           });
           admin.route('/', {
             action: (params) => {
-              PanoplyRouter.go('dashboard');
+              PanoplyRouter.go('admin/dashboard');
             }
           });
         /*} else {

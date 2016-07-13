@@ -3,21 +3,25 @@
   getMeteorData(){
     that=this
     var handle2 = Meteor.subscribe('menuItems',FlowRouter.getParam("_id"),that.state.trashListShow);
-    var Menus = Meteor.subscribe('menus')
+    var Menus = Meteor.subscribe('menus');
+    //var DefaultItem=Meteor.subscribe('defaultMenuItem');
    return {
      MenuItemsData : PanoplyCMSCollections.MenuItems.find({mainParentId:FlowRouter.getParam("_id"),trash:that.state.trashListShow}).fetch(),
      results : PanoplyCMSCollections.MenuItems.find().fetch(),
-     Menus:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
+     Menus:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
+      defaultMenuItem : PanoplyCMSCollections.MenuItems.findOne({homepage:true}),
       } 
     },
    getInitialState(){
     return{
-      trashListShow:false
+      trashListShow:false,
+      msg:false,
      }
     },
   
 listOfMenu(){  
-     var elements = this.data.MenuItemsData;
+  
+    var elements = this.data.MenuItemsData;
     var menu = new Array();
     var element = new Array();
     var level=0;
@@ -37,8 +41,7 @@ listOfMenu(){
       });
       return element;
     }
-   // console.log(getElements(),'getElements()')
-    return element;
+     return element;
   },
   showArticles(){
     if($('#display').val()=='trash'){
@@ -59,14 +62,25 @@ listOfMenu(){
      console.log(FlowRouter.getParam("_id"),"routes")
       FlowRouter.go(''+'\addMenuItem',{_id:FlowRouter.getParam("_id")})
   },
-
+ resetSuccessMsg(){
+    Session.set('msg',false)
+  },
   render() {
+    console.log(Session.get('msg'),"===><")
+     var msg='';
+    if(Session.get("msg")){
+      msg=<AlertMessageOfError data={'Parent of default menu Item can not be deleted.'} func={this.resetSuccessMsg}/>
+    }else{
+      msg='';
+    }
     that=this;
     var m =this.listOfMenu();
     return (
-      <div className="col-md-10 content">
+      <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
+             {msg}
          <div className="row">   
+      
         <div className="panel-heading"><span className="lead"></span></div>
         <div className="panel-heading"> 
           <a  className="btn btn-success btn-ico" onClick={this.storeMenuid} ><i className="fa fa-plus-circle fa-lg "></i>&nbsp;
@@ -96,19 +110,19 @@ listOfMenu(){
                 <tr>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
-                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-                   {/*<th>{i18n('ADMIN_MENU_ADDMENU_FORM_EDIT')}</th>*/}
+                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
+                  <th>{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')}</th>
                  </tr>
               </thead>
-              
+              {console.log(m,"data")}
                {m.map(function (menu) {
-                    return  <Trvalue key={menu._id} data={menu} />         
+                    return  <Trvalue key={menu._id} data={menu} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />         
                 })} 
           
               </table>
           </div>
            {this.data.MenuItemsData.map(function(result) {
-          return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} />         
+          return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />         
             })} 
             {this.data.MenuItemsData.map(function(result) {
           return  <RestoreModal key={result._id} data={result}/>            
@@ -123,19 +137,35 @@ var Trvalue = React.createClass({
   getMeteorData(){
     that=this
      Meteor.subscribe('menuParentItems',this.props.data._id,false);
-
- return {
-     MenuItemsData : PanoplyCMSCollections.MenuItems.find({parentId:that.props.data._id,trash:false}).fetch(),
-    
-      } 
+  return {
+           MenuItemData: PanoplyCMSCollections.MenuItems.find({trash:false}).fetch(),
+          } 
+    },
+ 
+  changeDefaultValue(){
+       Meteor.call("updateDefaultMenuItem",this.props.data._id,this.props.homepage,function(err,data){
+        if(err)
+        {
+                  console.log(err)
+          }
+        else{    
+             console.log(data,"===>")
+            }
+            });
     },
 
   render: function() {
-    var iconStyle={
+    if(this.props.data._id==this.props.homepage){
+    style={color:'#2574ab',cursor:'pointer'}
+    classname="fa fa-star fa-lg"
+    }else{
+      classname='fa fa-star-o fa-lg'
+      style={cursor:'pointer'}
+    }
+     var iconStyle={
         display:"inline-block",
         fontSize:"1.8em",
         verticalAlign:"top",
-       // marginTop: "-8px"
       };
     var divStyle = {
         display: "inline-block",
@@ -147,7 +177,7 @@ var Trvalue = React.createClass({
     for(i=0;i<that.props.data.level;i++){
       list +='|-';
     }
-
+console.log(that.props.data.level,"====>",that.props.data.title)
     
     var c=0;
     return (
@@ -155,11 +185,11 @@ var Trvalue = React.createClass({
        <tr>
           <td id="edit_article" style={{lineHeight: "1em",}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
           <td  >{this.props.data.desc}</td>
-          
-        {/*  <td id="delete_article"><div  onClick={this.deleteMenuItem} className="delete_btn"><i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> </div></td>
-          <td id="edit_article"><div  className="edit_btn"  id=""><a href={FlowRouter.path('editMenuItem',{_id:this.props.data._id})}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i></a> </div></td>*/}
-
           <td>
+             <span   style={style} className={classname} onClick={this.changeDefaultValue}></span>
+          </td>
+          <td>
+          
           <div  id="delete_article" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
               
               {
@@ -181,15 +211,21 @@ var Trvalue = React.createClass({
 });
 Modal=React.createClass({
    deleteMenuItem(){
+
      if(Session.get("trashListShow")){
                      Meteor.call('deleteMenu',this.props.data._id,function(err,data){
-                  console.log(err,data);
+                  
+                      console.log(err,data);
                 });
       }
     else {
               event.preventDefault();
-                Meteor.call('deleteMenuItem',this.props.data._id,function(err,data){
-                  console.log(err,data);
+                Meteor.call('deleteMenuItem',this.props.data._id,this.props.homepage,function(err,data){
+                  if(data){
+                        Session.set('msg',true);
+                        console.log(data,Session.get('msg'));
+                        }
+                  
                 });
           } 
     },
@@ -198,14 +234,29 @@ Modal=React.createClass({
           <div id={this.props.data._id} className="modal fade" role="dialog">
             <div className="modal-dialog">
               <div className="modal-content">
-                <div className="modal-body">
-                  <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  <h4 className="modal-title">Do you really want to remove ?</h4>
-                </div>
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                  {(this.props.data._id==this.props.homepage)?
+                  <div>
+                   <div className="modal-body">
+                      <h4 className="modal-title">Default Item can not be deleted</h4>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-danger" data-dismiss="modal">Ok</button>
+                   </div>
+                   </div> 
+                    :
+                    <div>
+                    <div className="modal-body">
+                    <h4 className="modal-title">Do you really want to remove ?</h4>
+                    </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={this.deleteMenuItem} data-dismiss="modal">YES</button>
                   <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
                 </div>
+                </div>
+                  }
+                  
+                
               </div>
             </div>
           </div>

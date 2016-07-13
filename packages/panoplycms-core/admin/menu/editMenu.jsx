@@ -38,8 +38,7 @@ EditMenu=React.createClass({
         }
         else {
                that.setState({msg : true});
-               console.log(err);
-        }
+              }
             //FlowRouter.go('manageMenu')
     });
      

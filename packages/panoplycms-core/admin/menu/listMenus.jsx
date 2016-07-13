@@ -47,8 +47,7 @@ ListMenus = React.createClass({
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-                 {/* <th>{i18n('ADMIN_MENU_ADDMENU_FORM_EDIT')}</th>*/}
-                </tr>
+                  </tr>
               </thead>
               <tbody>
                 {this.state.trashListShow ? this.data.resultOfTrash.map(function(result) {
@@ -74,7 +73,6 @@ ListMenus = React.createClass({
     );
   }
 });
-
 var Trvalue = React.createClass({
   storeMenuid(event){
       event.preventDefault();
@@ -110,8 +108,7 @@ var Trvalue = React.createClass({
 
 ModalMenu=React.createClass({
   deleteMenu(){
-    console.log(this.props.data._id,"delete Menu")
-      if(this.props.stateVal){
+        if(this.props.stateVal){
             Meteor.call('deleteMenuParmanent',this.props.data._id,function(err,data){
           });
       }else{

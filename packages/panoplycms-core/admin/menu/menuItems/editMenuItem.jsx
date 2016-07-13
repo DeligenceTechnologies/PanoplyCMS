@@ -1,26 +1,19 @@
 EditMenuItem=React.createClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
-  console.log(this.props._id,"====>",PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}).mainParentId);
-    var handle = Meteor.subscribe('findMenuItem',this.props._id);
-    var handle2 = Meteor.subscribe('menuItems',this.props._id);
+   var handle = Meteor.subscribe('findMenuItem',this.props._id);
+   var handle2 = Meteor.subscribe('menuItems',this.props._id);
    var menu = Meteor.subscribe('findMenu',this.props._id);
-
-
- // console.log(handle.fetch(),"<=====>",this.props._id)
     return {
       pageLoading: ! handle.ready(), 
       menuItemData: PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}),
       MenuId: Session.get('MenuId'),
       MenuItemsData: PanoplyCMSCollections.MenuItems.find().fetch(),
       MenuValue1:PanoplyCMSCollections.MenuItems.findOne({_id:this.props._id}).mainParentId
-
-  // Menu1:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
     };
   },
   
    getInitialState() {
-   
     return {
       itemType:'',
       MenuItemTypeValue:'',
@@ -57,8 +50,6 @@ EditMenuItem=React.createClass({
       }
 
       menuArr.forEach(function (menu) {
-       // console.log(that.data.menuItemData._id,"=====>",menu._id)
-        
         if(that.data.menuItemData._id != menu._id)  {
         list += '<option value="' + menu._id + '"'; 
          if(that.data.menuItemData.parentId == menu._id) list += 'selected';
@@ -77,7 +68,6 @@ EditMenuItem=React.createClass({
         else level--;     
         }  
       });
-
       return list;
     }
      
@@ -97,8 +87,7 @@ EditMenuItem=React.createClass({
       } else {
         var element = new Array();
         elements.forEach(function (elem1) {
-          console.log(that.state.MenuValue,"elements.parent_id",elem1.mainParentId)
-          if(that.state.MenuValue==elem1.mainParentId)
+         if(that.state.MenuValue==elem1.mainParentId)
           {
                 var child = getChild(elem1._id);
            if(elem1.parentId==''){
@@ -134,16 +123,12 @@ EditMenuItem=React.createClass({
 
   },
    getMenuValue(val){
-   
-    console.log(val,'val');
     this.setState({MenuValue :val})
-    
-  },
+   },
  
    submitData(event){
     event.preventDefault();
-that=this;
-   // console.log(ReactDOM.findDOMNode(this.refs.selectParentMenu).value.trim(),"parentId",ReactDOM.findDOMNode(this.refs.title).value.trim())
+    that=this;
     var insert = {
       "title":ReactDOM.findDOMNode(this.refs.title).value.trim(),
       "desc":ReactDOM.findDOMNode(this.refs.desc).value.trim(),
@@ -152,29 +137,23 @@ that=this;
       "MenuItemTypeId":this.state.MenuItemTypeValue,
       "parentId": ReactDOM.findDOMNode(this.refs.selectParentMenu).value.trim()   
     }
- // console.log("insert===>", insert)
     let paramId=this.data.menuItemData.mainParentId;
     Meteor.call("updateMenuItem",this.props._id,insert,function(err,data){
         if(err)
         {
              Session.set("errorMsg",err)
-            //that.setState({errorMsg : err})
-             console.log(err)
+            console.log(err)
           }
         else{    
           Session.set("msg",true)
-           //that.setState({msg : true})
-           console.log(this.state.MenuValue,"===>")
-           this.setState({MenuValue :this.state.MenuValue})
+        //  this.setState({MenuValue :this.state.MenuValue})
            //FlowRouter.go('listMenuItems',{_id:paramId})
             }
     });
  },
     resetSuccessMsg(){
-      Session.get("msg",false)
-      Session.get("errorMsg",false)
-    // this.setState({'msg':false})
-    // this.setState({'errorMsg':false})
+      Session.set("msg",false)
+      Session.set("errorMsg",false)
   },
   render(){   
     var msg='';
@@ -231,7 +210,7 @@ that=this;
          </div>
          
          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType:this.data.menuItemData.MenuItemType).toUpperCase()}</label>
             {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
 
            
@@ -358,12 +337,10 @@ SelectMenu = React.createClass({
     that=this
     return (
 
-            <select className = "col-sm-10" ref="selectMenu" onChange={this.setValue}  > 
+            <select className = "col-sm-10" ref="selectMenu" onChange={this.setValue} defaultValue={that.props.nameId} > 
                 <option className="form-control" value="" >Select</option>
                 {this.data.dataList.map(function(result) {
-                      if(that.props.nameId==result._id)
-                   return  <option key={result._id} value={result._id} selected> {result.title} </option>;
-                      else 
+                     
                       return <option key={result._id} value={result._id} > {result.title} </option>;
                 })}
             </select>

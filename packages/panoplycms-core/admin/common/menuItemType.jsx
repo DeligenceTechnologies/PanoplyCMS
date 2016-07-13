@@ -3,65 +3,16 @@ MenuItemType=React.createClass({
   getMeteorData() {
     
     return {
-      menuResults:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
       templateRegister:PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
       results : PanoplyCMSCollections.MenuItems.find().fetch(),
-     Menus:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
+      menus:PanoplyCMSCollections.Menus.find({}).fetch()
     };
-  },
-  getListOfMenuItems(){
-    that=this;
-    var menus=this.listOfMenu();
-    level = 1;
-    function getElem(submenu, alias){
-      list='';
-      let checked='';
-
-
-      if(submenu && alias){
-        menuArr = submenu;
-      } else {
-        menuArr = menus;
-        if(!menuArr.length)
-          list = '<div><strong>Warning !</strong> Menu Not Found!</div>';
-      }
-
-      menuArr.forEach(function (menu) {
-        if(submenu){
-          level++;
-        }
-        vvv = _.find(that.props.value,function(id){ 
-          return id == menu._id
-        });
-        if(vvv)
-          checked='checked'
-        else
-          checked='';
-
-        list += ' <input class="ch"  '+checked+' type="checkbox" value="'+menu._id+'" name="menucheck" />&nbsp;&nbsp;'
-        for(let i=1; i<level;i++){
-          if(submenu){list += '|'; } 
-          list += '--';
-        }
-        list += '<large>' + menu.title + '</large></br>';
-        if(menu.child){
-          list += getElem(menu.child, menu.alias);
-        }
-        if(submenu) level--;
-        else level=1; 
-      });
-      return list;
-    }
-       
-    var list = getElem();
-    return list;
   },
   listOfMenu(){  
     var elements = this.data.results;
     var menu = new Array();
 
     function getElements(parent_id){
-     // console.log("--====>",elements)
       if(parent_id){
         return getChild(parent_id);
       } else {
@@ -69,7 +20,7 @@ MenuItemType=React.createClass({
         elements.forEach(function (elem1) {
          var child = getChild(elem1._id);
           if(elem1.parentId==''){
-            element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, child: child });
+            element.push({ _id: elem1._id, title: elem1.title, mainParentId:elem1.mainParentId, alias: elem1.alias, desc:elem1.desc, child: child });
            }
         });
          return element;
@@ -91,16 +42,41 @@ MenuItemType=React.createClass({
     return getElements();
   },
   render:function(){
-    c=0;
-    var a={__html: this.getListOfMenuItems()};
-    return(
-          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">Menu Items</label>
-            <div className = "col-sm-2">
-              <div className="well" dangerouslySetInnerHTML={a} />
-            </div>
-          </div>
+    return (
+      <div className="form-group">
+        <label htmlFor="lastname" className="col-md-2 control-label">Menu Items</label>
+        <div className="col-md-10">{this.renderMenuList(this.listOfMenu())}</div>
+      </div>
     )     
+  },
+  renderMenuList: function(menulist){
+    let menus = _.groupBy(menulist, function(m){ return m.mainParentId; })
+    let menuKeys = _.keys(menus);
+    return menuKeys.map(m => {
+      let k = Math.random();
+      mainmenu = _.find(this.data.menus, (mm) => { return mm._id == m })
+      return (
+        <div key={k} className="col-sm-4">
+          <div className="well">
+            <h3 style={{marginTop: 0, marginBottom: 10}}>{mainmenu.title}</h3>
+            {this.printList(menus[m], 0)}
+          </div>
+        </div>
+      )
+    })
+  },
+  printList(items, padding){
+    if(padding > 20) padding = 20;
+    return <ul style={{listStyle:"none", paddingLeft: padding}}>
+        {items.map(i => {
+          return (
+            <li key={i._id}>
+              <input type="checkbox" value={i._id} name="menucheck" className="allPage" /> {i.title}
+              {i.child.length?this.printList(i.child, padding+20):''}
+            </li>
+          )
+        })}
+      </ul>
   }
 })
 

@@ -6,7 +6,6 @@ AddMenu=React.createClass({
       valid:'',
       errorMsg:false
     }
-    console.log(msg,"msg")
   },
   componentDidMount: function(){
     document.title = "Add Menu"

@@ -84,10 +84,10 @@ listOfMenu(){
     that=this;
     var m =this.listOfMenu();
     nodata='';
-    if((this.data.MenuItemsData).length==0  && this.state.trashListShow==false){
+    if((m).length==0  && this.state.trashListShow==false){
             nodata=<NotFoundComp/>;
     }
-    else if((this.data.MenuItemsData).length==0 && this.state.trashListShow==true){
+    else if((m).length==0 && this.state.trashListShow==true){
       nodata=<NotFoundComp/>
     }else{
       nodata='';

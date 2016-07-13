@@ -18,22 +18,6 @@ _.extend(PanoplyRouter, {
             return t
         })
 
-        /* Page Not Found Route */
-        let notFound = defaultTemplate.notFound || 'CoreComponentNotFound'
-        PanoplyRouter.notFound = {
-          action: function(a, b) {
-            let cp = PanoplyRouter.current().path;
-            if(cp.split('/')[1] == 'admin')
-              ReactLayout.render(AdminLayout, { 
-                content: React.createElement(eval('CoreComponentNotFound'))
-              })
-            else 
-              ReactLayout.render(eval(defaultTemplate.layout), {
-                content: React.createElement(eval(notFound))
-              })
-          }
-        };
-
         if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
           let offline = defaultTemplate.offline || 'CoreOfflineComponent'
           PanoplyRouter.route('/', {
@@ -140,16 +124,12 @@ _.extend(PanoplyRouter, {
           admin.route('/', {
             action: (params) => {
               PanoplyRouter.go('admin/dashboard');
-            }
+            }, 
+            triggersEnter: [(context, redirect) => {
+              redirect('dashboard')
+            }]
           });
 
-          admin.notFound = {
-            action: function() {
-              ReactLayout.render(AdminLayout, { 
-                    content: React.createElement(eval('CoreComponentNotFound'))
-              })
-            }
-          };
         /*} else {
           admin = PanoplyRouter.group({
             name: "admin",
@@ -193,6 +173,22 @@ _.extend(PanoplyRouter, {
         function renderLayout(layout, component, params, queryParams){
           ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
         }
+
+        /* Page Not Found Route */
+        let notFound = defaultTemplate.notFound || 'CoreComponentNotFound'
+        PanoplyRouter.notFound = {
+          action: function(a, b) {
+            let cp = PanoplyRouter.current().path;
+            if(cp.split('/')[1] == 'admin')
+              ReactLayout.render(AdminLayout, { 
+                content: React.createElement(eval('CoreComponentNotFound'))
+              })
+            else 
+              ReactLayout.render(eval(defaultTemplate.layout), {
+                content: React.createElement(eval(notFound))
+              })
+          }
+        };
         
         console.log('---------------------')
         console.log(PanoplyRouter)

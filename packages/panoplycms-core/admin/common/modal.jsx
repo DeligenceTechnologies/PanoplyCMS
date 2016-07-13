@@ -27,7 +27,7 @@ CoreOfflineComponent = React.createClass({
 
 CoreComponentNotFound = () => {
   return <div>
-    <h2>404!</h2>
-    Component Not Found!
+    <Heading data="404! Page not Found" />
+    <p>Sorry! URL for this route is not configured.</p>
   </div>
 }

@@ -43,6 +43,11 @@ Meteor.methods({
         return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: {homepage:true}});
     },
     deleteMenuItem:function(id,homepageId){
+        console.log(id,"id===>",homepageId,"homepage")
+     function deleteId()
+     {
+        return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
+     }
      function getchild(id){
         if(PanoplyCMSCollections.MenuItems.findOne({parentId:id})){
             var child=PanoplyCMSCollections.MenuItems.findOne({parentId:id})._id;
@@ -56,12 +61,13 @@ Meteor.methods({
             }
             else
             {
-                return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});     
+
+                deleteId();     
             }
             }
        else 
        {
-        return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
+        return deleteId(); 
        }
          }
             return getchild(id);

@@ -17,11 +17,23 @@ EditArticle=React.createClass({
     return{
       successMsg:false,
       errorMsg:false,
-      valid:''
+      valid:'',
+      tagTitle:''
     }
 
   },
 	componentDidMount: function(){
+   
+    let arrayOftag=[];
+     _.each(this.data.tags,(a)=>{
+        _.each(this.data.results.tags,function(t){
+          if(t==a._id){
+            arrayOftag.push(a.title)
+          }
+        })
+      });
+    this.setState({tagTitle:arrayOftag})
+    console.log(this.state.tagTitle,'tagTitle---')
     $('#tokenfield').tokenfield('destroy');
 		document.title = "Edit Article";
     tinymce.init({
@@ -40,12 +52,6 @@ EditArticle=React.createClass({
             },
             SelectName: { 
               required: true
-            },
-            keyword:{
-              required:true
-            },
-            desc:{
-              required:true
             }
           
         },
@@ -122,7 +128,7 @@ EditArticle=React.createClass({
     if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
-   
+    
     if(this.state.successMsg){
        msg=<AlertMessage data={' Update article.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
@@ -161,7 +167,7 @@ EditArticle=React.createClass({
               <div className = "form-group">
                 <label  htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TAGS')}</label>
                 <div className = "col-sm-10" id="token" > 
-                  <input type="text" ref="token" id="tokenfield"   className="form-control"  defaultValue={this.data.results?this.data.results.tags:''} />
+                  <input type="text" ref="token" id="tokenfield"   className="form-control"  defaultValue={this.data.results?this.state.tagTitle:''} />
                 </div>
              </div>
             <div className = "form-group">

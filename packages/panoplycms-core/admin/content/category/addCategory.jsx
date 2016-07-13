@@ -10,7 +10,7 @@
       var alias = generateAlias(title);
       Meteor.call('add_category',title,alias,(err,data)=>{
         if(err){
-          this.setState({errorMsg:err})
+          this.setState({errorMsg:'Internal server error or duplicate categories can not insert. '})
         }
         else{
           that.refs.title.value='';

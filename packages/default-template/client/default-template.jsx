@@ -1,15 +1,23 @@
 DefaultTemplate = React.createClass({
-	componentDidMount: function() {
-		document.title = 'PanoplyCMS';
+	mixins:[ReactMeteorData],
+		getMeteorData(){
+		return {
+			result: PanoplyCMSCollections.Sites.findOne()
+		};
 	},
-
+	componentDidMount: function() {
+		document.title = this.data.result.name;
+	},
+	componentDidUpdate: function() {
+		document.title = this.data.result.name;
+	},
 	render() {
 		return (
 			<div>
 				<FrontHeader module={this.props.top} />
 				<div className="blog-header">
 					<div className="container">
-						<Logo />
+						<Logo data={this.data.result} />
 					</div>
 				</div>
 				<div className="container">
@@ -42,7 +50,6 @@ DefaultArticle = React.createClass({
     } 
   },
 	render(){
-		console.log(this.props, "<---- Its My Props")
 		if(!_.has(this.data.article, "_id"))
 			return <div>Loading...</div>
 
@@ -68,7 +75,6 @@ DefaultCategory = React.createClass({
     } 
   },
 	render(){
-		console.log(this.props.id, "<---- Its My Props")
 		if(!this.data.articles.length)
 			return <div>Loading...</div>
 
@@ -81,7 +87,6 @@ DefaultCategory = React.createClass({
 })
 
 ArticleListView = article => {
-	console.log(article)
 	return <div className="blog-post">
           <h2 className="blog-post-title">{article.title.toUpperCase()}</h2>
           <p className="blog-post-meta">{new Date(article.createdAt).toDateString()} by <a href="#">{article.owner}</a></p>
@@ -92,11 +97,21 @@ ArticleListView = article => {
         </div>
 }
 
-ShowTags = t => {
-	console.log(t.tags,"All tags")
-	return <div className="tag">
-		{t.tags.map(tag => {
-			return <span key={tag} > <a className="label label-info"> {tag} </a> </span>
-		})}
-	</div>
-}
+ShowTags = React.createClass({
+	mixins:[ReactMeteorData],
+  getMeteorData(){
+    return {
+      tags: PanoplyCMSCollections.Tags.find({}).fetch()
+    } 
+  },
+	render: function(){
+		return (
+			<div className="tag">
+				{this.props.tags.map(tag => {
+					let t = _.find(this.data.tags, t => { return t._id == tag })
+					return <span key={tag} > <a className="label label-info"> {t.title} </a> </span>
+				})}
+			</div>
+		)
+	}
+})

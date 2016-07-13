@@ -1,7 +1,6 @@
 MenuItemType=React.createClass({
   mixins: [ReactMeteorData],
-  getMeteorData() {
-    
+  getMeteorData() {    
     return {
       templateRegister:PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
       results : PanoplyCMSCollections.MenuItems.find().fetch(),

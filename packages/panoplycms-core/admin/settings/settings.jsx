@@ -28,7 +28,7 @@ SystemLayout = React.createClass({
     that=this;
     
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
-    var siteOffline=$('input[name="options"]:checked').val()
+    var siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : false
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();
     var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim()
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
@@ -92,10 +92,10 @@ SystemLayout = React.createClass({
                <label className="col-sm-2 control-label">{i18n('ADMIN_SETTINGS_SITE_OFFLINE')}</label>
                <div className="col-sm-10">
                 <div className="btn-group" data-toggle="buttons">
-                 <label className={this.data.results.siteOffline=='Yes'?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
+                 <label className={this.data.results.siteOffline?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
                     <input type="radio" className="rad" name="options" ref="options" id="option2"  value="Yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
                   </label>
-                  <label className={this.data.results.siteOffline=='No'?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
+                  <label className={!this.data.results.siteOffline?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
                     <input type="radio" className="rad" ref="options" name="options" id="option3" value="No" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
                   </label>
                 </div>

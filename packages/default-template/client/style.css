@@ -206,21 +206,21 @@ margin: 0px !important;
 }
 
 
-nav.nav.blog-nav div {
+nav#main-nav.nav.blog-nav div {
 	padding: 12px 0;
 }
 
-nav.nav.blog-nav ul {
+nav#main-nav.nav.blog-nav ul {
   list-style: outside none none;
   padding-left: 0;
 }
 
-nav.nav.blog-nav ul li {
+nav#main-nav.nav.blog-nav ul li {
 	display: inline-block;
-	padding: 0 10px
+	padding: 0 15px
 }
 
-nav.nav.blog-nav ul li a {
+nav#main-nav.nav.blog-nav ul li a {
   color: white;
   font-size: 1.3em;
   font-style: unset;
@@ -228,19 +228,20 @@ nav.nav.blog-nav ul li a {
   cursor: pointer;
 }
 
-nav.nav.blog-nav ul li ul {
-	display: none
-}
-
-nav.nav.blog-nav ul li:hover ul li {
-	display: block
-}
-
-nav.nav.blog-nav ul li:hover ul {
+nav#main-nav.nav.blog-nav ul li:hover ul {
 	background: #428bca none repeat scroll 0 0;
 	border: thin solid whitesmoke;
 	box-shadow: 0 0 0 0 white;
 	display: block;
 	min-width: 200px;
 	position: absolute;
+}
+
+nav#main-nav.nav.blog-nav ul li ul {
+	display: none
+}
+
+
+.offlinePng{
+	background: rgba(0, 0, 0, 0) url("/offline.png") no-repeat fixed center center / cover ;
 }

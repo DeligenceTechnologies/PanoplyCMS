@@ -644,7 +644,3 @@ ul.listModules > li {
     padding: 5px;
     cursor: pointer;
 }
-
-.offlinePng{
-	background: rgba(0, 0, 0, 0) url("/offline.png") no-repeat fixed center center / cover ;
-}

@@ -40,7 +40,7 @@ ModulesLayout = React.createClass({
     let moduleArray = _.findWhere(this.data.modulesList, {name: type}) || []
     moduleArray = _.findWhere(moduleArray.routes, {role: 'edit'}) || []
     FlowRouter.go(moduleArray.name,{_id:id})
-    console.log(moduleArray.name,'moduleArray-----')
+    
   },
 	trashModule: function(id) {
 		that = this;
@@ -71,7 +71,9 @@ ModulesLayout = React.createClass({
 	  		$('#remove.modal').modal()
   			break;
   		case 'restore':
-  			this.restoreModule(e.id)
+        this.setState({id: e.id})
+        $('#restore.modal').modal()
+  			//this.restoreModule(e.id)
   			break;
   	}  	
 	},
@@ -94,7 +96,7 @@ ModulesLayout = React.createClass({
           <div className="pull-right">
             Display: 
             <select id="display" onChange={this.showModules}>
-              <option value="all">All</option>
+              <option value="active">Active</option>
               <option value="trash">Trash</option>
             </select>
           </div>  
@@ -124,6 +126,7 @@ ModulesLayout = React.createClass({
         <AddModulesPopup list={this.data.modulesList} onClick={this.addModuleAction} />
         <TrashModulesPopup id={this.state.id} onClick={this.trashModule} />
         <RemoveModulesPopup id={this.state.id} onClick={this.deleteModule} />
+        <RestoreModulesPopup id={this.state.id} onClick={this.restoreModule} />
       </div>
 
 		);
@@ -139,12 +142,13 @@ ModuleList = module => {
 			<td>
 				{!module.stateVal ?
 					<div> 
-						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit', type:module.type})}} ></i></div>					
+						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit', type:module.type})}} ></i></div>	&nbsp; &nbsp; &nbsp;	
 						<div style={style}><i className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i></div> 
 					</div> :
 					<div> 
-						<div style={style}><i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i></div>					
-						<div style={style}><i title="Delete" className="fa fa-times" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'delete'})}}></i></div>
+						<div style={style}><i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i></div>				
+              &nbsp; &nbsp; &nbsp;	
+						<div style={style}><i title="Delete"  style={{color: "red"}}  className="fa fa-times" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'delete'})}}></i></div>
 					</div>
 				}
 			</td>
@@ -202,6 +206,23 @@ RemoveModulesPopup = (m) => {
               </div>
               <div className="modal-footer">
 	              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}} >Yes</button>
+                <button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+}
+
+RestoreModulesPopup = (m) => {
+  return <div id="restore" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-body">
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                <h4 className="modal-title">Do you want to really restore?</h4>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}} >Yes</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
               </div>
             </div>

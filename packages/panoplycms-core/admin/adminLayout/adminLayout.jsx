@@ -1,3 +1,4 @@
+import {style} from  "../styles/admin.css";
 AdminLayout = React.createClass({
   insertSidebar(){
     

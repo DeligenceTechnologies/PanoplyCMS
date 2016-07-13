@@ -80,7 +80,7 @@ return(
           <div className="form-group">
             <label className="col-sm-2 control-label">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_METADESCRIPTION')}</label>
             <div className="col-sm-10">
-              <textarea ref="metaDesc" id="metaDesc"  defaultValue={this.data.tagsData.metaDescription} className="form-control"    required ></textarea>
+              <textarea ref="metaDesc" id="metaDesc"  defaultValue={this.data.tagsData.metaDescription} className="form-control"  ></textarea>
             </div>
           </div>
           <div className="form-group">

@@ -38,9 +38,34 @@ Meteor.methods({
         update.alias = update.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-');
         return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: update});
     },
-    deleteMenuItem:function(id){
-     //   var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{"trash":true}});
-        PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
+    updateDefaultMenuItem: function(id,defaultId) {
+        PanoplyCMSCollections.MenuItems.update({_id:defaultId}, {$set: {homepage:false}});
+        return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: {homepage:true}});
+    },
+    deleteMenuItem:function(id,homepageId){
+     function getchild(id){
+        if(PanoplyCMSCollections.MenuItems.findOne({parentId:id})){
+            var child=PanoplyCMSCollections.MenuItems.findOne({parentId:id})._id;
+           if(child){
+                if(child==homepageId){
+                    return "Its the parent of default";
+                   }
+                else {
+                    getchild(child);
+                 }
+            }
+            else
+            {
+                return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});     
+            }
+            }
+       else 
+       {
+        return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
+       }
+         }
+            return getchild(id);
+   
     },
      deleteMenu:function(id){
         var abc= PanoplyCMSCollections.MenuItems.remove({parentId:id});

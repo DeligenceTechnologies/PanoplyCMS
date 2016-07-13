@@ -33,8 +33,7 @@ AddMenuItem=React.createClass({
       this.setState({MenuItemTypeValue :val})
     },
     getMenuValue(val){
-      //console.log(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),"getMenuValue")
-      this.setState({MenuValue :ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()})
+        this.setState({MenuValue :ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()})
     },
     componentDidMount: function(){
       document.title = "Add Menu Item"
@@ -52,17 +51,16 @@ AddMenuItem=React.createClass({
             "mainParentId":ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),//FlowRouter.getParam("_id"),
             "MenuItemType":this.state.itemType,
             "MenuItemTypeId":ReactDOM.findDOMNode(that.refs.select).value.trim(),
-            "parentId":ReactDOM.findDOMNode(this.refs.selectParent).value.trim()
+            "parentId":ReactDOM.findDOMNode(this.refs.selectParent).value.trim(),
+            "homepage":false
           }
-         console.log(insert,"insertValues")
-          Meteor.call("insertMenuItem", insert,function(err,data){
+           Meteor.call("insertMenuItem", insert,function(err,data){
               if(err){
                  that.setState({errorMsg : err})
                 console.log(err);
                       }
                 else{
                    that.setState({msg : true})
-               //    console.log(FlowRouter.getParam("_id"),data);
                    ReactDOM.findDOMNode(that.refs.title).value="";
                    ReactDOM.findDOMNode(that.refs.desc).value="";
                    ReactDOM.findDOMNode(that.refs.selectParent).value="";
@@ -91,9 +89,7 @@ AddMenuItem=React.createClass({
         }
         
       });
-      // console.log('childData','==',childData);
-     return childData;
-
+        return childData;
   },
   getDropDown(){
     var menus=this.listOfMenu();
@@ -110,7 +106,6 @@ AddMenuItem=React.createClass({
 
       menuArr.forEach(function (menu) {
         list += '<option value="' + menu._id + '"';
-        //if(parent && (parent.id == menu._id)) list += 'selected';
         list += '>';
         if(submenu){
           level++;
@@ -138,7 +133,6 @@ AddMenuItem=React.createClass({
     that=this;
    
     var elements = this.data.MenuItemData;
-  //  console.log(this.data.MenuItemData,'elements');
     var menu = new Array();
 
     function getElements(parent_id){
@@ -147,7 +141,6 @@ AddMenuItem=React.createClass({
       } else {
         var element = new Array();
         elements.forEach(function (elem1) {
-        //  console.log(that.state.MenuValue,"list of Menu",elem1.mainParentId)  
           if(that.state.MenuValue==elem1.mainParentId){
           var child = getChild(elem1._id);
            if(elem1.parentId==''){
@@ -188,10 +181,7 @@ AddMenuItem=React.createClass({
     }
 
     var a={__html: '<option value="">Root</option>'+this.getDropDown()};
-  //  var b={__html: '<option value="">Select Menu</option>'+this.getMenuDropDown()};
-   // console.log(this.data.MenuItemData);
     return (
-
     <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
       <Heading  data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} />
       
@@ -211,59 +201,56 @@ AddMenuItem=React.createClass({
               <input type="text" ref="desc" className="form-control" id="desc" />
             </div>
          </div>
-      {/*   <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-            <select className="col-sm-10" ref="selectMenu"   dangerouslySetInnerHTML={b}></select>
-         </div> */}
-          <div className = "form-group">
+         <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
-         
-            <select id="mainMenu" ref="selectMenu" className = "col-sm-10" onChange={this.getMenuValue} defaultValue={that.props._id}>
-              <option className="form-control" value="" >Select </option>
-              {this.data.Menu1.map(function(result) {
-                   return <option value={result._id} key={result._id}>{result.title} </option>;
-                 })} 
-            </select>
-          
-         </div>
+            <div className = "col-sm-10" id="token" > 
+                 <select id="mainMenu" ref="selectMenu" className = "form-control" onChange={this.getMenuValue} defaultValue={that.props._id}>
+                  <option className="form-control" value="" >Select </option>
+                  {this.data.Menu1.map(function(result) {
+                       return <option value={result._id} key={result._id}>{result.title} </option>;
+                     })} 
+                </select>
+            </div>
+        </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
-            <select className = "col-sm-10" ref="selectMenuItemType" onChange={that.selectMenuItemType} > 
-              <option className="form-control" value="" >Select </option>
-              <option className="form-control" value="category"  >Category</option>
-              <option className="form-control" value="article" >Article</option>
-            </select>
+            <div className = "col-sm-10" id="token" > 
+              <select className = "form-control" ref="selectMenuItemType" onChange={that.selectMenuItemType} required> 
+                <option className="form-control" value="" >Select </option>
+                <option className="form-control" value="category"  >Category</option>
+                <option className="form-control" value="article" >Article</option>
+              </select>
+            </div>
          </div>
-        {/* <div className = "form-group">
+         <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
-            {this.state.itemType=='category'?<SelectCategory func={this.getMenuItemTypeValue} />:this.state.itemType=='article'?<SelectArticle func={this.getMenuItemTypeValue} />:''}    
-         </div>
-*/}       
-           <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
-            {this.state.itemType=='category'?
-              <select id="mainMenu" ref="select" className = "col-sm-10" >
-              <option className="form-control" value="" >Select </option>
-              {this.data.categoryData.map(function(result) {
-                     return <option key={result._id} value={result._id}  >{result.title} </option>;
-                 })} 
-             </select>:this.state.itemType=='article'?
-              <select id="mainMenu" ref="select" className = "col-sm-10" >
-              <option className="form-control" value="" >Select </option>
-              {this.data.articleData.map(function(result) {
-                     return <option key={result._id} value={result._id} >{result.title} </option>;
-                 })} 
-             </select>:''}    
+            <div className = "col-sm-10" id="token" > 
+                {this.state.itemType=='category'?
+                <select id="mainMenu" ref="select" className = "form-control" >
+                <option className="form-control" value="" >Select </option>
+                {this.data.categoryData.map(function(result) {
+                       return <option key={result._id} value={result._id}  >{result.title} </option>;
+                   })} 
+               </select>:this.state.itemType=='article'?
+                <select id="mainMenu" ref="select" className = "form-control" >
+                <option className="form-control" value="" >Select </option>
+                {this.data.articleData.map(function(result) {
+                       return <option key={result._id} value={result._id} >{result.title} </option>;
+                   })} 
+               </select>:''}  
+            </div>  
          </div>
           <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-            <select className="col-sm-10" ref="selectParent"  dangerouslySetInnerHTML={a} ></select>
+            <div className = "col-sm-10" id="token" > 
+              <select className="form-control" ref="selectParent"  dangerouslySetInnerHTML={a} ></select>
+            </div>
          </div>         
         <div className="form-group">
           <div className = "col-sm-offset-2 col-sm-10">
-            <button className="btn btn-success " >{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_SAVE')}</button>
+            <button className="btn btn-primary " >SAVE</button>
             &nbsp;&nbsp;
-            <a className="btn btn-danger " href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_CANCEL')}</a>
+            <a className="btn btn-danger " href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>CANCEL</a>
           </div>
           </div>
       </form>
@@ -271,7 +258,6 @@ AddMenuItem=React.createClass({
 </div>
     )
   }
-
 })
 
 LoadingSpinner=React.createClass({
@@ -314,10 +300,6 @@ LoadingSpinner=React.createClass({
       dataList: PanoplyCMSCollections.Articles.find({trash:false}).fetch()
     };
   },
-  // setValue(event){
-  //   event.preventDefault();
-  //   this.props.func(ReactDOM.findDOMNode(this.refs.select).value.trim());
-  // },
   render: function() {
    
     return (
@@ -330,32 +312,3 @@ LoadingSpinner=React.createClass({
     
   }
 });
-
-
-
-
-// SelectMenu = React.createClass({
-//   mixins:[ReactMeteorData],  
-//   getMeteorData: function() {
-//     var handle1 = Meteor.subscribe('menus')
-//     return {
-//       dataList: PanoplyCMSCollections.Menus.find({trash:false}).fetch()
-//     };
-//   },
-//   setValue(event){
-//     event.preventDefault();
-//     this.props.func(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim());
-//   },
-//   render: function() {
-   
-//     return (
-//             <select className = "col-sm-10" ref="selectMenu" onChange={this.setValue}> 
-//                 <option className="form-control" value="" >Select </option>
-//                 {this.data.dataList.map(function(result) {
-//                    return  <option key={result._id} value={result._id}> {result.title} </option>;
-//                 })}
-//             </select>
-//     )
-    
-//   }
-// });

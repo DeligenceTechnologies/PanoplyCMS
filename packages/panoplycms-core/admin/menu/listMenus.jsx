@@ -28,13 +28,13 @@ ListMenus = React.createClass({
         <Heading  data={i18n('ADMIN_MENU')} />
         <div className="panel-heading"> 
           <a  className="btn btn-success btn-ico" href={FlowRouter.path('addMenu')} >
-            <i className="fa fa-plus-circle "></i>
-            {i18n('ADMIN_MENU_ADDMENU')}
+            <i className="fa fa-plus-circle fa-lg "></i>&nbsp;
+              {i18n('ADMIN_MENU_ADDMENU')}
           </a>
           <div className="pull-right">
             Display: 
             <select id="display" onChange={this.showArticles}>
-              <option value="all">All</option>
+              <option value="active">Active</option>
               <option value="trash">Trash</option>
             </select>
           </div>
@@ -47,8 +47,7 @@ ListMenus = React.createClass({
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
                   <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-                 {/* <th>{i18n('ADMIN_MENU_ADDMENU_FORM_EDIT')}</th>*/}
-                </tr>
+                  </tr>
               </thead>
               <tbody>
                 {this.state.trashListShow ? this.data.resultOfTrash.map(function(result) {
@@ -74,7 +73,6 @@ ListMenus = React.createClass({
     );
   }
 });
-
 var Trvalue = React.createClass({
   storeMenuid(event){
       event.preventDefault();
@@ -110,8 +108,7 @@ var Trvalue = React.createClass({
 
 ModalMenu=React.createClass({
   deleteMenu(){
-    console.log(this.props.data._id,"delete Menu")
-      if(this.props.stateVal){
+        if(this.props.stateVal){
             Meteor.call('deleteMenuParmanent',this.props.data._id,function(err,data){
           });
       }else{

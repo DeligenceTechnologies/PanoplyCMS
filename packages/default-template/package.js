@@ -55,7 +55,7 @@ Package.onUse(function(api) {
 	api.addFiles('client/homeLayouts/Logo.jsx', ['client']);
 	api.addFiles('client/RegisterationForm.jsx', ['client']);
 
-	api.addFiles('client/style.css', ['client']);
+	//api.addFiles('client/style.css', ['client']);
 	
 	api.addFiles('server/startup.js', ['server']);
 

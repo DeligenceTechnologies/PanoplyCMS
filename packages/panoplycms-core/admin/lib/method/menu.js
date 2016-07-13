@@ -33,7 +33,26 @@ Meteor.methods({
         return PanoplyCMSCollections.MenuItems.insert(insert);  
     },
     updateMenuItem: function(id,update) {
-        var abc= PanoplyCMSCollections.MenuItems.update({parentId:id},{$set:{mainParentId:update.mainParentId}});
+       var child=PanoplyCMSCollections.MenuItems.find({parentId:id}).fetch()
+        for(var i=0;i<child.length;i++)
+        {
+              PanoplyCMSCollections.MenuItems.update({_id:child[i]._id},{$set:{mainParentId:update.mainParentId}});
+            var child1=PanoplyCMSCollections.MenuItems.find({parentId:child[i]._id}).fetch();
+            if(child1){
+                        getchild(child[i]._id)
+                    }
+        }
+        function getchild(id){
+        var child=PanoplyCMSCollections.MenuItems.find({parentId:id}).fetch()
+        for(var i=0;i<child.length;i++)
+        {
+            PanoplyCMSCollections.MenuItems.update({_id:child[i]._id},{$set:{mainParentId:update.mainParentId}});
+            var child1=PanoplyCMSCollections.MenuItems.find({parentId:id})
+            if(child1){
+                        getchild(child[i]._id)
+                    }
+        }
+     }
         update.updatedAt = new Date();
         update.alias = update.title.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-');
         return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: update});

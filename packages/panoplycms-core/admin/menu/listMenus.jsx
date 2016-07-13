@@ -22,6 +22,15 @@ ListMenus = React.createClass({
           }
   },
   render() {
+    nodata='';
+   if((this.data.results).length==0  && this.state.trashListShow==false){
+      nodata=<NotFoundComp/>;
+    }
+    else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
+      nodata=<NotFoundComp/>
+    }else{
+      nodata='';
+    }
     that=this;
     return (
       <div className="col-md-10 content">
@@ -58,6 +67,7 @@ ListMenus = React.createClass({
                 }) } 
               </tbody>
             </table>
+            {nodata}
           </div>
         </div>   
               {this.data.results.map(function(result) {

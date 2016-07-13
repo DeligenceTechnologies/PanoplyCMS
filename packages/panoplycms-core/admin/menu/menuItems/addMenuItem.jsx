@@ -197,13 +197,13 @@ AddMenuItem=React.createClass({
           </div>
           <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_DESCRIPTION')}</label>
-            <div className = "col-sm-10" id="token" > 
+            <div className = "col-sm-10"  > 
               <input type="text" ref="desc" className="form-control" id="desc" />
             </div>
          </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
-            <div className = "col-sm-10" id="token" > 
+            <div className = "col-sm-10"  > 
                  <select id="mainMenu" ref="selectMenu" className = "form-control" onChange={this.getMenuValue} defaultValue={that.props._id}>
                   <option className="form-control" value="" >Select </option>
                   {this.data.Menu1.map(function(result) {
@@ -214,7 +214,7 @@ AddMenuItem=React.createClass({
         </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
-            <div className = "col-sm-10" id="token" > 
+            <div className = "col-sm-10"  > 
               <select className = "form-control" ref="selectMenuItemType" onChange={that.selectMenuItemType} required> 
                 <option className="form-control" value="" >Select </option>
                 <option className="form-control" value="category"  >Category</option>

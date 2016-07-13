@@ -197,12 +197,12 @@ var Trvalue = React.createClass({
     return (
       <tbody >
        <tr>
-          <td id="edit_article" style={{lineHeight: "1em",}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
-          <td  >{this.props.data.desc}</td>
-          <td>
+          <td id="edit_article" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
+          <td style={{width:"50%"}} >{this.props.data.desc}</td>
+          <td style={{width:"10%"}}>
              <span   style={style} className={classname} onClick={this.changeDefaultValue}></span>
           </td>
-          <td>
+          <td style={{width:"10%"}}>
           
           <div  id="delete_article" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
               

@@ -202,23 +202,24 @@ EditMenuItem=React.createClass({
          </div>
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
-            <select className = "col-sm-10" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
-              <option className="form-control" value="" >Select </option>
-              <option className="form-control"  value="category"  >Category</option>
-              <option className="form-control" value="article" >Article</option>
-            </select>
+            <div className = "col-sm-10"  >
+                <select className = "form-control" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
+                  <option className="form-control" value="" >Select </option>
+                  <option className="form-control"  value="category"  >Category</option>
+                  <option className="form-control" value="article" >Article</option>
+                </select>
+            </div>
          </div>
          
          <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType:this.data.menuItemData.MenuItemType).toUpperCase()}</label>
             {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
-
-           
-            
          </div>
           <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-            <select className="col-sm-10" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
+            <div className = "col-sm-10"  >
+              <select className="form-control" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
+            </div>
          </div>
         <div className="form-group">
           <div className = "col-sm-offset-2 col-sm-10">
@@ -273,13 +274,16 @@ SelectCategory = React.createClass({
     
    
     return (
-<select className = "col-sm-10" ref="select" value={this.state.selectValue} onChange={this.setValue} > 
-           {this.data.dataList.map(function(result) {
-                 return  <option key={result._id} value={result._id}> {result.title} </option>;
-              })} 
-         
-          </select>
-            )
+              <div className = "col-sm-10"  >
+                  <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue} > 
+                   <option className="form-control" value="" >Select </option>
+                   {this.data.dataList.map(function(result) {
+                         return  <option key={result._id} value={result._id}> {result.title} </option>;
+                      })} 
+                 
+                  </select>
+              </div>
+                )
     
   }
 });
@@ -312,11 +316,14 @@ SelectCategory = React.createClass({
   },
   render: function() {
     return (
-<select className = "col-sm-10" ref="select" value={this.state.selectValue} onChange={this.setValue}> 
-              {this.data.dataList.map(function(result) {
-                 return  <option key={result._id} value={result._id}> {result.title} </option>;
-              })}
-          </select>
+              <div className = "col-sm-10"  >
+                  <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue}> 
+                      <option className="form-control" value="" >Select </option>
+                      {this.data.dataList.map(function(result) {
+                         return  <option key={result._id} value={result._id}> {result.title} </option>;
+                      })}
+                  </select>
+              </div>
             )    
   }
 });
@@ -336,14 +343,15 @@ SelectMenu = React.createClass({
   render: function() {
     that=this
     return (
-
-            <select className = "col-sm-10" ref="selectMenu" onChange={this.setValue} defaultValue={that.props.nameId} > 
-                <option className="form-control" value="" >Select</option>
-                {this.data.dataList.map(function(result) {
-                     
-                      return <option key={result._id} value={result._id} > {result.title} </option>;
-                })}
-            </select>
+            <div className = "col-sm-10"  >
+                <select className = "form-control" ref="selectMenu" onChange={this.setValue} defaultValue={that.props.nameId} > 
+                    <option className="form-control" value="" >Select</option>
+                    {this.data.dataList.map(function(result) {
+                         
+                          return <option key={result._id} value={result._id} > {result.title} </option>;
+                    })}
+                </select>
+            </div>
     )
     
   }

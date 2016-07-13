@@ -35,28 +35,46 @@ _.extend(PanoplyRouter, {
           let mod = _.pluck(moduleTypes, 'name') || [];
           let positions = defaultTemplate.positions || [];
 
-          menuItems.forEach( (i) => {
+          var defaultModules = {};
+          var modules = {}
 
-            let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, position: {$in: positions}, $or: [{allPages: true}, {menuItems: i._id}]}).fetch();
+          if(!menuItems.length){
+            let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}]}).fetch();
+            let allModules = getModulesList(positions, modulesList, moduleTypes)
+            defaultModules = allModules.defaultModules
+          }
 
-            var modules = {}
-
+          /* Get List of modules on position */
+          function getModulesList(positions, modulesList, moduleTypes){
+            var modules = {}, defaultModules = {}
             _.each(positions, p => {
-              let mod = []
+              let mod = [], defaultMod = []
               _.each(modulesList, m => {
                 if(m.position == p){
                   _.each(moduleTypes, t => {
                     if(t.name == m.type){
                       m.moduleData?m.moduleData['key']=Math.random():m['moduleData'] = { key: Math.random() }
-                      // mod.push({ component: t.component, data: m.moduleData })
-                      if(m.showTitle) m.moduleData['module_title'] = m.title
+                      if(m.showTitle) m.moduleData['module_title'] = m.name
                       mod.push(React.createElement(eval(t.component), m.moduleData))
+                      if(m.allPages) defaultMod.push(React.createElement(eval(t.component), m.moduleData))
                     }
                   })
                 }
               })
               modules[p] = mod;
+              defaultModules[p] = defaultMod;
             })
+            return { modules, defaultModules }
+          }
+
+          menuItems.forEach( (i) => {
+
+            let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}, {menuItems: i._id}]}).fetch();
+
+            let allModules = getModulesList(positions, modulesList, moduleTypes)
+
+            modules = allModules.modules
+            defaultModules = allModules.defaultModules
 
             let content;
             switch(i.MenuItemType){
@@ -185,7 +203,8 @@ _.extend(PanoplyRouter, {
               })
             else 
               ReactLayout.render(eval(defaultTemplate.layout), {
-                content: React.createElement(eval(notFound))
+                content: React.createElement(eval(notFound)),
+                ...defaultModules
               })
           }
         };

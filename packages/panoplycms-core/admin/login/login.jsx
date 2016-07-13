@@ -1,9 +1,17 @@
 Login = React.createClass({
+  mixins:[ReactMeteorData],
+    getMeteorData(){
+    return {
+      result: PanoplyCMSCollections.Sites.findOne()
+    };
+  },
+  componentDidMount: function() {
+    document.title = this.data.results.name + ' Login';
+  },
   getInitialState(){
    return {
       err:'',
-      data:''
-     
+      data:''     
     }
   },
   submitData(event){
@@ -41,7 +49,7 @@ Login = React.createClass({
                   <div className="col-md-offset-2 col-md-6">
                     <div className="panel panel-default">
                       <div className="panel-heading">
-                        <span className="lead form-signin-heading">PanoplyCMS Log In</span>
+                        <span className="lead form-signin-heading">{this.data.results.name} Log In</span>
                       </div>
                       <form className="form-signin" onSubmit={this.submitData} >
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>

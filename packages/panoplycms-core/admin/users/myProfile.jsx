@@ -21,7 +21,7 @@ UserList = React.createClass({
     
       return(
               <div className="col-md-10 content">
-              <Heading  data={i18n('ADMIN_USERS_PROFILE')} />
+              <Heading  data={'User List'} />
               <div className="panel-body">
                 <div className="panel">
                   <div className="table-responsive" id="non-editable">

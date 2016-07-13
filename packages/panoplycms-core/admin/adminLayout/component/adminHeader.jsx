@@ -97,7 +97,7 @@ Logo=React.createClass({
     	}
 		
 		return( <div>
-			<a className="navbar-brand" href="#">
+			<a className="navbar-brand" href={FlowRouter.path('dashboard')} style={{cursor:'pointer'}}>
 			{this.data.results.name.length>10?this.data.results.name.substring(0,9)+'...':this.data.results.name}
 			</a>
 		</div>

@@ -57,7 +57,7 @@ Package.onUse(function(api) {
 	api.addFiles('client/notFound.jsx',"client")
 	api.addFiles('client/offline.jsx',"client")
 
-	//api.addFiles('client/style.css', ['client']);
+	api.addFiles('client/style.css', ['client']);
 	
 	api.addFiles('server/startup.js', ['server']);
 

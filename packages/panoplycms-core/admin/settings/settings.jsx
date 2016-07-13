@@ -30,7 +30,7 @@ SystemLayout = React.createClass({
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
     var siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : false
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();
-    var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim()
+    var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaDesc).value.trim()
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
     Meteor.call('updateSiteName',id,name,siteMetaKeyword,siteMetaDesc,siteOffline,function(err,data){
       if(err){

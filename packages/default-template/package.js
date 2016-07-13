@@ -54,6 +54,8 @@ Package.onUse(function(api) {
 	api.addFiles('client/homeLayouts/Footer.jsx', ['client']);
 	api.addFiles('client/homeLayouts/Logo.jsx', ['client']);
 	api.addFiles('client/RegisterationForm.jsx', ['client']);
+	api.addFiles('client/notFound.jsx',"client")
+	api.addFiles('client/offline.jsx',"client")
 
 	api.addFiles('client/style.css', ['client']);
 	
@@ -64,7 +66,9 @@ Package.onUse(function(api) {
 	api.export([
 		'DefaultTemplate',
 		'DefaultCategory',
-		'DefaultArticle'
+		'DefaultArticle',
+		'DefaultNotFound',
+		'DefaultOffline'
 	],['client']);
 	
 });

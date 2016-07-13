@@ -20,12 +20,12 @@
 					<Logo />
 				</div>
 				<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-					<form className="navbar-form navbar-left" onSubmit={this.submitData} >
+					{/*<form className="navbar-form navbar-left" onSubmit={this.submitData} >
 						<div className="form-group">
 							<input type="text" ref="key" className="form-control" placeholder="Search" />
 						</div>
 						<button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
-					</form>
+					</form>*/}
 			        <div className="btn-group pull-right">
               			<Usersettings />
             	</div>

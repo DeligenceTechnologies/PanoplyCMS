@@ -76,20 +76,22 @@ listOfMenu(){
   },
    storeMenuid(event){
       event.preventDefault();
-     console.log(FlowRouter.getParam("_id"),"routes")
+    // console.log(FlowRouter.getParam("_id"),"routes")
       FlowRouter.go(''+'\addMenuItem',{_id:FlowRouter.getParam("_id")})
   },
 
   render() {
-   // console.log(Session.get('msg'),"===><")
- /*    var msg='';
-    if(Session.get("msg")){
-      msg=<AlertMessageOfError data={'Parent of default menu Item can not be deleted.'} func={this.resetSuccessMsg}/>
-    }else{
-      msg='';
-    }*/
     that=this;
     var m =this.listOfMenu();
+    nodata='';
+    if((m).length==0  && this.state.trashListShow==false){
+            nodata=<NotFoundComp/>;
+    }
+    else if((m).length==0 && this.state.trashListShow==true){
+      nodata=<NotFoundComp/>
+    }else{
+      nodata='';
+    }
     return (
       <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
@@ -134,6 +136,7 @@ listOfMenu(){
                 })} 
           
               </table>
+              {nodata}
           </div>
            {this.data.MenuItemsData.map(function(result) {
           return  <Modal key={result._id} data={result} stateVal={that.state.trashListShow} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />         

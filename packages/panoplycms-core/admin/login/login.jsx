@@ -39,7 +39,7 @@ Login = React.createClass({
     }
     return (<div>
        <div className="container-fluid main-container">
-       <div classNamee="col-md-10 content">
+       <div className="col-md-10 content">
           <div className="panel panel-default">
             {showAlert}
             <section>
@@ -53,7 +53,7 @@ Login = React.createClass({
                       </div>
                       <form className="form-signin" onSubmit={this.submitData} >
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                        <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+                        <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required />
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
                         <input type="password" ref="password" id="inputPassword" className="form-control" placeholder="Password" required />
                         <input type="submit" value="Login" className="btn btn-lg btn-primary btn-block" />

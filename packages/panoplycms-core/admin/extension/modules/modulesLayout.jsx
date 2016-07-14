@@ -142,13 +142,15 @@ ModuleList = module => {
 			<td>
 				{!module.stateVal ?
 					<div> 
-						<div style={style}><i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit', type:module.type})}} ></i></div>	&nbsp; &nbsp; &nbsp;	
-						<div style={style}><i className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i></div> 
+						<div style={style}><i  style={{color:"red"}} className="fa fa-trash-o" title="Trash" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'trash'})}}></i></div> 
+            &nbsp; &nbsp; &nbsp;  
+            <div style={style}><i  style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" onClick={() => {module.onClick({id: module._id, action:'edit', type:module.type})}} ></i></div>  
 					</div> :
 					<div> 
-						<div style={style}><i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i></div>				
-              &nbsp; &nbsp; &nbsp;	
 						<div style={style}><i title="Delete"  style={{color: "red"}}  className="fa fa-times" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'delete'})}}></i></div>
+            &nbsp; &nbsp; &nbsp;
+            <div style={style}><i title="Restore" className="fa fa-undo" data-toggle="tooltip" onClick={() => {module.onClick({id: module._id, action:'restore'})}}></i></div>        
+                
 					</div>
 				}
 			</td>

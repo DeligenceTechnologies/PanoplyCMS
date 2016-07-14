@@ -73,11 +73,11 @@ var TagsItem = React.createClass({
           <td>{this.props.data.desc.length>50?this.props.data.desc.substring(0,40)+'...':this.props.data.desc}</td>
           <td>
             <div  onClick={this.deleteTag} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
-              <i className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 
+              <i style={{color:"red"}} className="fa fa-trash-o" data-toggle="tooltip" title="Delete" ></i> 
             </div>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href={FlowRouter.path('editTag',{_id:this.props.data._id})}>
-                <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i>
+                <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i>
               </a>
           </td>
         </tr>    

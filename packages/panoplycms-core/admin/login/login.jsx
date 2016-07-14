@@ -6,7 +6,7 @@ Login = React.createClass({
     };
   },
   componentDidMount: function() {
-    document.title = this.data.results.name + ' Login';
+    document.title = this.data.result.name + ' Login';
   },
   getInitialState(){
    return {
@@ -49,7 +49,7 @@ Login = React.createClass({
                   <div className="col-md-offset-2 col-md-6">
                     <div className="panel panel-default">
                       <div className="panel-heading">
-                        <span className="lead form-signin-heading">{this.data.results.name} Log In</span>
+                        <span className="lead form-signin-heading">{this.data.result.name} Log In</span>
                       </div>
                       <form className="form-signin" onSubmit={this.submitData} >
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>

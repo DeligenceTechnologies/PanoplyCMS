@@ -135,7 +135,8 @@ EditMenuItem=React.createClass({
       "MenuItemType":ReactDOM.findDOMNode(this.refs.select).value.trim(),
       "mainParentId":this.state.MenuValue,
       "MenuItemTypeId":this.state.MenuItemTypeValue,
-      "parentId": ReactDOM.findDOMNode(this.refs.selectParentMenu).value.trim()   
+      "parentId": ReactDOM.findDOMNode(this.refs.selectParentMenu).value.trim()  
+      /*"externalUrl":ReactDOM.findDOMNode(that.refs.url).value?ReactDOM.findDOMNode(that.refs.url).value.trim():'#'*/ 
     }
     let paramId=this.data.menuItemData.mainParentId;
     Meteor.call("updateMenuItem",this.props._id,insert,function(err,data){
@@ -156,6 +157,7 @@ EditMenuItem=React.createClass({
       Session.set("errorMsg",false)
   },
   render(){   
+    console.log(this.state.itemType,'{this.state.itemType}--')
     var msg='';
     if(Session.get("msg")){
       msg=<AlertMessage data={'Successfully updated menu Item.'} func={this.resetSuccessMsg}/>
@@ -177,6 +179,7 @@ EditMenuItem=React.createClass({
     }else{
       itemType=this.data.menuItemData.MenuItemType
     }
+    console.log(itemType,'itemType----')
     return (
     <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
       <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
@@ -207,13 +210,16 @@ EditMenuItem=React.createClass({
                   <option className="form-control" value="" >Select </option>
                   <option className="form-control"  value="category"  >Category</option>
                   <option className="form-control" value="article" >Article</option>
+                {/*To do - Add external link functionality */}
+                  {/*<option className="form-control" value="url" >External Url</option>*/}
                 </select>
             </div>
          </div>
          
          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType:this.data.menuItemData.MenuItemType).toUpperCase()}</label>
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1):this.data.menuItemData.MenuItemType.charAt(0).toUpperCase() + this.data.menuItemData.MenuItemType.slice(1))}</label>
             {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
+
          </div>
           <div className = "form-group">
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>

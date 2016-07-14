@@ -145,7 +145,6 @@ ModalOfCat=React.createClass({
     }else{
       let isExistArticle = _.findWhere(this.props.resultOfArticles, {category: this.props.data._id}) || []
       isExistArticle=_.isEmpty(isExistArticle);
-      console.log(isExistArticle,'isExistArticle---')
       if(isExistArticle){
         Meteor.call('delete_category',this.props.data._id,function(err,data){
           console.log(err,data)

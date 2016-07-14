@@ -33,7 +33,6 @@ ListArticles = React.createClass({
     if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
-    console.log((this.data.results).length==0  && this.state.trashListShow==false)
     if((this.data.results).length==0  && this.state.trashListShow==false){
       nodata=<NotFoundComp/>
     }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
@@ -72,6 +71,7 @@ ListArticles = React.createClass({
               </tbody>
             </table>
           </div>
+          {nodata}
         </div> 
         {this.data.results.map(function(result) {
           return  <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
@@ -139,7 +139,6 @@ var Trvalue = React.createClass({
 ModalOfArticle=React.createClass({
   deleteArticle(event){
     event.preventDefault();
-    console.log('called...')
     if(this.props.stateVal){
       Meteor.call('deleteArticleParma',this.props.data._id,function(err,data){
       });
@@ -170,7 +169,6 @@ ModalOfArticle=React.createClass({
 
 RestoreModalOfArticle=React.createClass({
   restoreArticle(){
-    console.log('restore article called...');
     Meteor.call('restoreArticles',this.props.data._id,function(err,data){
       if(err){
         console.log(err)

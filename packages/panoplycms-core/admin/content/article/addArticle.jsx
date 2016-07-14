@@ -51,6 +51,9 @@ AddArticle=React.createClass({
     tinymce.init({
       selector: 'textarea',
       skin_url: '/packages/teamon_tinymce/skins/lightgray',
+       toolbar: "image",
+  plugins: "image imagetools",
+  imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
     });
     
 	},

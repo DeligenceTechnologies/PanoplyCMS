@@ -50,7 +50,7 @@
     return {
       pageLoading: ! handle.ready(), 
       user: Meteor.users.findOne(),
-      results: Images.findOne()
+      results: Images.findOne({_id:Meteor.user().profile.imageId})
     };
   },
  	logout(event){
@@ -62,11 +62,13 @@
 		if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
+    let imgUrl=Images.findOne({_id:Meteor.user().profile.imageId})
+    console.log('this.data.results.url()',imgUrl,Meteor.user().profile.imageId,Meteor.user())
 		// console.log(this.data.results.url());
 		return( <div>
 
   			 <button type="button" className="btn btn-logged" data-toggle="dropdown">
-    			<span className="custom-span" >{Meteor.user()?Meteor.user().profile?Meteor.user().profile.username:'':''}</span><img src={this.data.results?this.data.results.url():''} alt="Cinque Terre" width="50" height="20" />
+    			<span className="custom-span" >{Meteor.user()?Meteor.user().profile?Meteor.user().profile.username:'':''}</span><img src={imgUrl?imgUrl.url():''} alt="Cinque Terre" width="50" height="20" />
     				
     				<span className="caret"></span>
   			</button>

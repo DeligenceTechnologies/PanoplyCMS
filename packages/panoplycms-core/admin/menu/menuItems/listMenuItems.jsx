@@ -111,7 +111,9 @@ listOfMenu(){
                  
                 })} 
             </select>
+
           </div>  
+          
                <div className="pull-right col-md-3 col-md-offset-1">
                   Display: 
                   <select id="display" onChange={this.showArticles} >

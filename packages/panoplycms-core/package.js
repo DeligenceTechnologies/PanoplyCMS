@@ -45,12 +45,11 @@ Package.onUse(function(api) {
   api.use('arillo:flow-router-helpers');
   //api.use('deligence1:panoplycms-router');
   //api.use("deligence1:panoplycms-component");
-  
   api.use('deligence1:panoplycms-collections');
-  
-  /*--------------------------------Server------------------------------------- */
 
-  api.addFiles([
+
+  /*--------------------------------Server------------------------------------- */
+   api.addFiles([
     'admin/server/startup.js',
     'admin/server/articles.js',
     'admin/server/settings.js',
@@ -59,6 +58,7 @@ Package.onUse(function(api) {
     'admin/server/category.js',
     'admin/server/users.js',
     'admin/server/menu.js',
+    'admin/server/homepage.js',
     'admin/server/tags.js'
     ],['server'])
 

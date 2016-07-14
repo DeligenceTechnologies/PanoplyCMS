@@ -84,7 +84,7 @@ ListArticles = React.createClass({
         {this.data.resultOfTrash.map(function(result) {
           return  <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
         })}
-        {nodata}
+       
       </div>
 
     );

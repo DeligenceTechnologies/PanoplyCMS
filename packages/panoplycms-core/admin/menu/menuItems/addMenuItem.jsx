@@ -228,13 +228,13 @@ AddMenuItem=React.createClass({
             <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1)}</label>
             <div className = "col-sm-10" id="token" > 
                 {this.state.itemType=='category'?
-                <select id="mainMenu" ref="select" className = "form-control" >
+                <select id="mainMenu" ref="select" className = "form-control" required >
                 <option className="form-control" value="" >Select </option>
                 {this.data.categoryData.map(function(result) {
                        return <option key={result._id} value={result._id}  >{result.title} </option>;
                    })} 
                </select>:this.state.itemType=='article'?
-                <select id="mainMenu" ref="select" className = "form-control" >
+                <select id="mainMenu" ref="select" className = "form-control" required >
                 <option className="form-control" value="" >Select </option>
                 {this.data.articleData.map(function(result) {
                        return <option key={result._id} value={result._id} >{result.title} </option>;

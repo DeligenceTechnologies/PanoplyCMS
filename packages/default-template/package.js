@@ -13,6 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.3.3.1');
 	api.use('ecmascript');
+	api.use('modules');
 	api.use("mongo");
 	api.use("mobile-experience");
 	api.use("meteor-base");
@@ -57,7 +58,7 @@ Package.onUse(function(api) {
 	api.addFiles('client/notFound.jsx',"client")
 	api.addFiles('client/offline.jsx',"client")
 
-	api.addFiles('client/style.css', ['client']);
+	api.addFiles('imports/style.css', ['client']);
 	
 	api.addFiles('server/startup.js', ['server']);
 

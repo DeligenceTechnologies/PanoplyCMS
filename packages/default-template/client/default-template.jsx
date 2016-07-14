@@ -6,6 +6,7 @@ DefaultTemplate = React.createClass({
 		};
 	},
 	componentDidMount: function() {
+		require('../imports/style.css')
 		if(PanoplyRouter.current().path == '/'){
 			document.title = this.data.result.name;
 			let metakey = document.createElement('meta');

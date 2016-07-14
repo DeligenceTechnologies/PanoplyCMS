@@ -45,7 +45,14 @@ var LiItem = data => {
       <div className="panel-body">      
         <ul className="nav-children" style={style}>
           {data.param.map( p => {
-            return <li key={c++}><a onClick={()=>{ data.onClick(p.routeName) }} >{p.label}</a></li>
+            let params = {}
+           
+            if(p.url){
+              params = { href: p.url, target: "_blank" }
+            } else {
+              params['onClick'] = ()=>{ data.onClick(p.routeName) }
+            }
+            return <li key={c++}><a {...params} >{p.label}</a></li>
           })}
           {menus.map(m => {
             return <li key={m._id}><a href={FlowRouter.path('listMenuItems', {_id: m._id})}>{m.title}</a></li>

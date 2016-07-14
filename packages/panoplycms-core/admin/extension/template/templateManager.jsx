@@ -29,7 +29,7 @@ TemplateManger = React.createClass({
     that=this;
     nodata='';
     return (<div>
-             <div className="panel panel-black">
+             <div className="panel panel-black col-md-10">
              <Heading  data={'Template Manger'} />
               <div className="panel-heading">
               </div>

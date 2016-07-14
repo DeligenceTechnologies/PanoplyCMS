@@ -50,7 +50,8 @@ AddMenuItem=React.createClass({
             "desc":ReactDOM.findDOMNode(this.refs.desc).value.trim(),
             "mainParentId":ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),//FlowRouter.getParam("_id"),
             "MenuItemType":this.state.itemType,
-            "MenuItemTypeId":ReactDOM.findDOMNode(that.refs.select).value.trim(),
+            "MenuItemTypeId":/*ReactDOM.findDOMNode(that.refs.url).value?'':*/ReactDOM.findDOMNode(that.refs.select).value.trim(),
+            /*"externalUrl":ReactDOM.findDOMNode(that.refs.url).value?ReactDOM.findDOMNode(that.refs.url).value.trim():'#',*/
             "parentId":ReactDOM.findDOMNode(this.refs.selectParent).value.trim(),
             "homepage":false
           }
@@ -61,13 +62,13 @@ AddMenuItem=React.createClass({
                       }
                 else{
                    that.setState({msg : true})
+                   that.setState({itemType :''});
                    ReactDOM.findDOMNode(that.refs.title).value="";
                    ReactDOM.findDOMNode(that.refs.desc).value="";
                    ReactDOM.findDOMNode(that.refs.selectParent).value="";
                    ReactDOM.findDOMNode(that.refs.selectMenu).value=that.props._id;
                    ReactDOM.findDOMNode(that.refs.selectMenuItemType).value="";
-                   ReactDOM.findDOMNode(that.refs.select).value="";
-               //   FlowRouter.go('listMenuItems',{_id:FlowRouter.getParam("_id")})
+                  
                 }
           });
            
@@ -219,11 +220,12 @@ AddMenuItem=React.createClass({
                 <option className="form-control" value="" >Select </option>
                 <option className="form-control" value="category"  >Category</option>
                 <option className="form-control" value="article" >Article</option>
+                {/*<option className="form-control" value="url" >External Url</option>*/}
               </select>
             </div>
          </div>
          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType}</label>
+            <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1)}</label>
             <div className = "col-sm-10" id="token" > 
                 {this.state.itemType=='category'?
                 <select id="mainMenu" ref="select" className = "form-control" >
@@ -237,7 +239,7 @@ AddMenuItem=React.createClass({
                 {this.data.articleData.map(function(result) {
                        return <option key={result._id} value={result._id} >{result.title} </option>;
                    })} 
-               </select>:''}  
+               </select>:/*this.state.itemType=='url'?<input type="text" ref="url" name="url" className="form-control"  />:*/''}  
             </div>  
          </div>
           <div className = "form-group">

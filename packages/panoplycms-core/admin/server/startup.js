@@ -114,13 +114,13 @@ Meteor.startup(function () {
 					routeName:'plugins',
 					template:'Plugins',
 					providers:''
-				}*/,
+				}*//*,
 				{
 					label:'Language',
 					routeName:'language',
 					template:'Language',
 					providers:''
-				},
+				}*/,
 				{
 					label:'Templates',
 					routeName:'templates',
@@ -138,12 +138,14 @@ Meteor.startup(function () {
 				{
 					label:'Officlie Support Forum',
 					routeName:'officialSupportForum',
+					url:'https://github.com/DeligenceTechnologies/Panoplycms',
 					template:'',
 					providers:''
 				},
 				{
 					label:'Website',
 					routeName:'Website',
+					url:'http://www.deligence.com/blog/panoply-cms-meteor-based-open-source-cms',
 					template:'',
 					providers:''
 				}

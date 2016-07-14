@@ -39,7 +39,7 @@ Login = React.createClass({
     }
     return (<div>
        <div className="container-fluid main-container">
-       <div className="col-md-10 content">
+       <div className="content">
           <div className="panel panel-default">
             {showAlert}
             <section>

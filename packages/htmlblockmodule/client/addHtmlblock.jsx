@@ -45,11 +45,9 @@ AddHtmlblock = React.createClass({
 			  	html:article
 			  }
 			}
-			Meteor.call('addModule',obj,menuItems,(error,data)=>{
-				console.log(error,data,'error,data')
+			Meteor.call('addModule',obj,menuItems,(error,data) => {
 				if(error){
 					this.setState({errorMsg:error})
-					console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.name).value=''
@@ -178,7 +176,6 @@ MenuList = React.createClass({
 		menu: React.PropTypes.object.isRequired,
 	},
 	render(){
-		// console.log(this.props.menu._id,'Skadoooosh!!')
 		return (
 			<option value={this.props.menu._id}>{this.props.menu.title}</option>
 		);

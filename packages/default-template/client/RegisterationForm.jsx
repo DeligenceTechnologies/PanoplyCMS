@@ -32,7 +32,7 @@
 // 	}
 // });
 
-RegisterationForm = React.createClass({
+/*RegisterationForm = React.createClass({
 	_onSubmit(doc) {
 		console.log(doc, function(error){
 			if (error) {
@@ -86,4 +86,4 @@ RegisterationForm = React.createClass({
             </form> 
 		)
 	}
-});
+});*/

@@ -12,7 +12,7 @@ update_category: function(id,categoryname,aliasname){
 			}
 		});
 },
-add_category: function(categoryname,aliasname){ console.log('add_category',categoryname,aliasname);
+add_category: function(categoryname,aliasname){
 	    return PanoplyCMSCollections.Categories.insert({
 			title: categoryname,
 			alias: aliasname,

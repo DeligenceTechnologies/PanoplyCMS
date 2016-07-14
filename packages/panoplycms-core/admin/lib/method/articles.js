@@ -22,7 +22,6 @@ Meteor.methods({
 				tagsArrayIds.push(tagExist._id)
 			}	
 		})
-		console.log(tagsArrayIds,'tagsArrayIds--')
 		return PanoplyCMSCollections.Articles.insert({
 			title:title,
 			alias: aliasname,
@@ -66,7 +65,6 @@ Meteor.methods({
 				tagsArrayIds.push(tagExist._id)
 			}	
 		})
-		console.log(tagsArrayIds,'tagsArrayIds++++++++++++--')
 		return PanoplyCMSCollections.Articles.update({_id:id},{$set:{
 			title:title,
 			alias:alias,

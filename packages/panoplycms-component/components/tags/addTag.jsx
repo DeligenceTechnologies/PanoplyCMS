@@ -54,11 +54,9 @@ render:function(){
       msg=<AlertMessage data={'Successfully added tag.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
-      console.log('111')
     }else{
       msg='';
     }
-    console.log('111mm')
 return(
   <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
   <Heading  data={i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')} />

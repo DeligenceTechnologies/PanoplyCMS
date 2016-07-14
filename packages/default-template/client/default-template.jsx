@@ -1,26 +1,54 @@
 DefaultTemplate = React.createClass({
 	mixins:[ReactMeteorData],
-		getMeteorData(){
+	getMeteorData(){
 		return {
 			result: PanoplyCMSCollections.Sites.findOne()
 		};
 	},
 	componentDidMount: function() {
 		require('../imports/style.css')
+		document.title = this.data.result.name;
 		if(PanoplyRouter.current().path == '/'){
-			document.title = this.data.result.name;
-			let metakey = document.createElement('meta');
-			let metadesc = document.createElement('meta');
-			metakey.name = "keywords"
-			metakey.content = this.data.result.siteMetaKeyword
-			metadesc.name = "description"
-			metadesc.content = this.data.result.siteMetaDesc
-			document.getElementsByTagName('head')[0].appendChild(metakey)
-			document.getElementsByTagName('head')[0].appendChild(metadesc)			
+
+			if($('meta[name=keywords]').length){
+	  		$('meta[name=keywords]').attr('content', this.data.result.siteMetaKeyword);
+	  	} else {
+				let metakey = document.createElement('meta');
+				metakey.name = "keywords"
+				metakey.content = this.data.result.siteMetaKeyword
+				document.getElementsByTagName('head')[0].appendChild(metakey)
+	  	}
+	  	if($('meta[name=description]').length){
+	  		$('meta[name=description]').attr('content', this.data.result.siteMetaDesc);
+	  	} else {  		
+				let metadesc = document.createElement('meta');
+				metadesc.name = "description"
+				metadesc.content = this.data.result.siteMetaDesc
+				document.getElementsByTagName('head')[0].appendChild(metadesc)
+	  	}			
 		}
 	},
 	componentDidUpdate: function() {
 		document.title = this.data.result.name;
+		if(PanoplyRouter.current().path == '/'){
+
+			if($('meta[name=keywords]').length){
+	  		$('meta[name=keywords]').attr('content', this.data.result.siteMetaKeyword);
+	  	} else {
+				let metakey = document.createElement('meta');
+				metakey.name = "keywords"
+				metakey.content = this.data.result.siteMetaKeyword
+				document.getElementsByTagName('head')[0].appendChild(metakey)
+	  	}
+	  	if($('meta[name=description]').length){
+	  		$('meta[name=description]').attr('content', this.data.result.siteMetaDesc);
+	  	} else {  		
+				let metadesc = document.createElement('meta');
+				metadesc.name = "description"
+				metadesc.content = this.data.result.siteMetaDesc
+				document.getElementsByTagName('head')[0].appendChild(metadesc)
+	  	}			
+		}
 	},
 	render() {
 		return (
@@ -61,22 +89,48 @@ DefaultArticle = React.createClass({
     } 
   },
   componentDidMount: function() {
-  	if($('meta[name=keywords]').length){
-  		$('meta[name=keywords]').attr('content', this.data.article.metaKeyword);
-  	} else {
-			let metakey = document.createElement('meta');
-			metakey.name = "keywords"
-			metakey.content = this.data.article.metaKeyword
-			document.getElementsByTagName('head')[0].appendChild(metakey)
-  	}
-  	if($('meta[name=description]').length){
-  		$('meta[name=description]').attr('content', this.data.article.metaDescription);
-  	} else {  		
-			let metadesc = document.createElement('meta');
-			metadesc.name = "description"
-			metadesc.content = this.data.article.metaDescription
-			document.getElementsByTagName('head')[0].appendChild(metadesc)
-  	}
+  	if(PanoplyRouter.current().path != '/'){
+
+	  	if($('meta[name=keywords]').length){
+	
+	  		this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : '';
+	  	} else {
+				let metakey = document.createElement('meta');
+				metakey.name = "keywords"
+				metakey.content = this.data.article.metaKeyword
+				this.data.article.metaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+	  	}
+	  	if($('meta[name=description]').length){
+	  		this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : ''
+	  	} else {  		
+				let metadesc = document.createElement('meta');
+				metadesc.name = "description"
+				metadesc.content = this.data.article.metaDescription
+				this.data.article.metaDescription != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+	  	}
+	  }
+	},
+  componentDidUpdate: function() {
+  	if(PanoplyRouter.current().path != '/'){
+
+	  	if($('meta[name=keywords]').length){
+	
+	  		this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : '';
+	  	} else {
+				let metakey = document.createElement('meta');
+				metakey.name = "keywords"
+				metakey.content = this.data.article.metaKeyword
+				this.data.article.metaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+	  	}
+	  	if($('meta[name=description]').length){
+	  		this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : ''
+	  	} else {  		
+				let metadesc = document.createElement('meta');
+				metadesc.name = "description"
+				metadesc.content = this.data.article.metaDescription
+				this.data.article.metaDescription != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+	  	}
+	  }
 	},
 	render(){
 		if(!_.has(this.data.article, "_id"))
@@ -116,12 +170,19 @@ DefaultCategory = React.createClass({
 })
 
 ArticleListView = article => {
+	let route = PanoplyRouter.current().route.path.split('/')
+	alias = ''
+	if(route[route.length - 1] != ''){
+		alias = PanoplyRouter.current().route.path+'/'+article.alias
+	} else {
+		alias = PanoplyRouter.current().route.path+article.alias
+	}
 	return <div className="blog-post">
           <h2 className="blog-post-title">{article.title.toUpperCase()}</h2>
           <p className="blog-post-meta">{new Date(article.createdAt).toDateString()} by <a href="#">{article.owner}</a></p>
           <div dangerouslySetInnerHTML={{__html:article.article.substr(0, 300)}} />
         	<ShowTags tags={article.tags} />
-          <div className="pull-right"><a href={FlowRouter.current().route.path+'/'+article.alias} className="btn btn-default">Read More</a></div>
+          <div className="pull-right"><a href={alias} className="btn btn-default">Read More</a></div>
           <div className="clear-both"></div>
         </div>
 }

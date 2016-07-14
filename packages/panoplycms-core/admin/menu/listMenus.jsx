@@ -101,14 +101,14 @@ var Trvalue = React.createClass({
                       {
                         this.props.stateVal ? 
                         <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> 
-                        : <i className="fa fa-trash-o"  title="Trash" ></i> 
+                        : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
                       }
                     </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {
                       this.props.stateVal? 
                       <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreMenu} title="Restore" ></i> 
-                      : <a href={FlowRouter.path('editMenu',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+                      : <a href={FlowRouter.path('editMenu',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
                     }
                   </td>
               </tr>

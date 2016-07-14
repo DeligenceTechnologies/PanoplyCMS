@@ -123,12 +123,12 @@ var CategoriesItem = React.createClass({
           <td>
             <div className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
               {
-                this.props.stateVal ? <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i className="fa fa-trash-o"  title="Trash" ></i> 
+                this.props.stateVal ? <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
               }
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {
-              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+              this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
             }
           </td>
         </tr>    

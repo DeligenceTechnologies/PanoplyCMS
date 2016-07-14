@@ -147,6 +147,7 @@ Package.onUse(function(api) {
   api.export('LodingSpinner');
   api.export('Position');
   api.export('MenuItemType');
+  api.export('Images');
 
 });
 

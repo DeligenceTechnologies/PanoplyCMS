@@ -51,10 +51,8 @@ EditHtmlblock = React.createClass({
       }
 
 			Meteor.call('editModule',select,obj,menuItems,(error,data)=>{
-				console.log(error,data,'error,data')
 				if(error){
 					this.setState({errorMsg:error})
-					console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
 				}
@@ -107,8 +105,7 @@ EditHtmlblock = React.createClass({
     this.setState({'errorMsg':false})
   },
 	render(){
-		c=0;		
-    console.log(this.data.htmlblockModuleData,'htmlblockModuleData',this.data.htmlblockModuleData.name)
+		c=0;
 		if(this.state.successMsg){
        msg=<AlertMessage data={'htmlblock updated.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
@@ -158,7 +155,7 @@ EditHtmlblock = React.createClass({
               </div>
             </div>
             
-            <MenuItemType value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:''} />
+            <MenuItemType value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:[]} />
           
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">
@@ -175,16 +172,15 @@ EditHtmlblock = React.createClass({
 	}
 });
 
-MenuList = React.createClass({
+/*MenuList = React.createClass({
 	propTypes:{
 		menu: React.PropTypes.object.isRequired,
 	},
 	render(){
-		// console.log(this.props.menu._id,'Skadoooosh!!')
 		return (
 			<option value={this.props.menu._id}>{this.props.menu.title}</option>
 		);
 	}
-});
+});*/
 
 export default EditHtmlblock;

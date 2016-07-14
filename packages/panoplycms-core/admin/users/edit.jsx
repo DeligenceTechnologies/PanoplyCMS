@@ -9,7 +9,7 @@ EditUser = React.createClass({
     return {
       pageLoading: ! handle.ready(), 
       user: Meteor.users.findOne(),
-      image:Images.findOne()
+      image:Images.findOne({_id:Meteor.user().profile.imageId})
     };
   },
   getInitialState(){
@@ -61,46 +61,51 @@ EditUser = React.createClass({
     this.setState({'msg':false})
     this.setState({'errorMsg':false})
   },
-  uploadFile: function (event) {
-
-   if(Images.find().count()==0){
-
-   }else{
-      a=Images.find().fetch();
-      Images.remove({_id:a[0]._id});
-   }
-   FS.Utility.eachFile(event, function(file) {
-     
-      Images.insert(file, function (err, fileObj) {
-       
-        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-      });
-    });
-},
 updateuser(event){
   event.preventDefault();
-
+  var username = this.refs.username.value.trim();
+  var email = this.refs.email.value.trim();
+  var files = this.refs.profilePic.files[0];
+  that=this;
+  let userObj={
+    'emails.0.address':email,
+    profile: { 
+      username: username,
+      imageId:Meteor.user().profile.imageId
+    }
+  }
   if(this.state.valid.form()){
-    var username = this.refs.username.value.trim();
-    var email = this.refs.email.value.trim();
-    that=this;
-     Meteor.call('updateUser',username,email,function(err,data){
+    
+    if(files){
+      Images.insert(files, function (err, fileObj) {
+        if(fileObj){
+          userObj.profile['imageId'] = fileObj. _id;
+          console.log(userObj, " User ==== ")
+           Meteor.call('updateUser',userObj,function(err,data){
+              if(err){
+                  that.setState({'errorMsg':err})
+              }else{ 
+                that.setState({msg : true})
+              }
+         })
+        }
+      });
+    }else{
+      Meteor.call('updateUser',userObj,function(err,data){
         if(err){
             that.setState({'errorMsg':err})
         }else{ 
           that.setState({msg : true})
         }
-   })
-  }
- 
-  
-  
+     })
+    }
+  } 
 },
    render() {
     /*if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }*/
-
+    let imgUrl=Images.findOne({_id:Meteor.user().profile.imageId})
       return(
               <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
                 <Heading  data={i18n('ADMIN_USERS_EDIT')} />
@@ -123,9 +128,9 @@ updateuser(event){
                   <div className = "form-group">
                     <label htmlFor = "firstname" className = "col-sm-2 control-label" >Profile Picture</label>
                     <div className = "col-sm-10">
-                      <input ref="file" type="file" name="file" onChange={this.uploadFile} className="upload-file"/>
+                      <input ref="profilePic" type="file" name="file"  className="upload-file"/>
                       <div className="col-md-3">
-                        <img src={this.data.image?this.data.image.url():''} className="img-rounded" style={{maxWidth: "100%"}} /> 
+                        <img src={imgUrl?imgUrl.url():''} className="img-rounded" style={{maxWidth: "100%"}} /> 
                       </div>
                     </div>
                   </div> 

@@ -24,6 +24,7 @@ AddHtmlblock = React.createClass({
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
+    console.log(menuItems)
 
 		if(this.state.valid.form()){
 
@@ -45,11 +46,9 @@ AddHtmlblock = React.createClass({
 			  	html:article
 			  }
 			}
-			Meteor.call('addModule',obj,menuItems,(error,data)=>{
-				console.log(error,data,'error,data')
+			Meteor.call('addModule',obj,menuItems,(error,data) => {
 				if(error){
 					this.setState({errorMsg:error})
-					console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.name).value=''
@@ -157,7 +156,7 @@ AddHtmlblock = React.createClass({
                 <input type="checkbox" className="allPage" ref="desc" name="allPage" />
               </div>
             </div>
-            <MenuItemType />
+            <MenuItemType value={[]} />
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">
                 <button className="btn btn-primary " >SAVE</button>
@@ -178,7 +177,6 @@ MenuList = React.createClass({
 		menu: React.PropTypes.object.isRequired,
 	},
 	render(){
-		// console.log(this.props.menu._id,'Skadoooosh!!')
 		return (
 			<option value={this.props.menu._id}>{this.props.menu.title}</option>
 		);

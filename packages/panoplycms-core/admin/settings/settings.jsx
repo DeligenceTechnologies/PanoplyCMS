@@ -12,7 +12,8 @@ SystemLayout = React.createClass({
     getMeteorData(){
        
     return {
-      results: PanoplyCMSCollections.Sites.findOne()
+      results: PanoplyCMSCollections.Sites.findOne(),
+      image:Images.find().fetch()
     };
   },
   componentDidUpdate(){
@@ -26,24 +27,50 @@ SystemLayout = React.createClass({
   submitForm(event){
   	event.preventDefault();
     that=this;
-    
+    var files = this.refs.logoId.files[0];
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
     var siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : false
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();
     var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaDesc).value.trim()
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
-    Meteor.call('updateSiteName',id,name,siteMetaKeyword,siteMetaDesc,siteOffline,function(err,data){
-      if(err){
-        
-        that.setState({'errorMsg':err})
-      }
-      else{
-        that.setState({'successMsg':true})
-        
-      }
-        
-    });
-    
+    let settingObj={
+      name:name,
+      siteMetaKeyword:siteMetaKeyword,
+      siteMetaDesc:siteMetaDesc,
+      siteOffline:siteOffline,
+      logoId:this.data.results.logoId
+    }
+    if(files){
+      Images.insert(files,(err, fileObj) => {
+       if(fileObj){
+        settingObj.logoId=fileObj._id;
+          Meteor.call('updateSiteName',id,settingObj,function(err,data){
+          if(err){
+            
+            that.setState({'errorMsg':err})
+          }
+          else{
+            that.setState({'successMsg':true})
+            
+          }
+            
+        });  
+       }
+      });
+    }else{
+      Meteor.call('updateSiteName',id,settingObj,function(err,data){
+        if(err){
+          
+          that.setState({'errorMsg':err})
+        }
+        else{
+          that.setState({'successMsg':true})
+          
+        }
+          
+      });
+    }  
+      
   },
   resetSuccessMsg(){
     this.setState({'successMsg':false})
@@ -56,6 +83,8 @@ SystemLayout = React.createClass({
     }
   },
   render() {
+    let imgUrl=Images.findOne({_id:this.data.results.logoId})
+    console.log(imgUrl,'imgUrl====',imgUrl.url())
     if (this.state.successMsg) {
       msg= <AlertMessage data={'Update the website settings.'} func={this.resetSuccessMsg}/>;
     }else if(this.state.errorMsg){
@@ -71,7 +100,7 @@ SystemLayout = React.createClass({
         <div onClick={this.resetSuccessMsg}>
           <form className = "form-horizontal"  onSubmit={this.submitForm} >
             <div className="form-group">
-               <label className="col-sm-2 control-label">{i18n('ADMIN_SETTINGS_NAME')}</label>
+               <label className="col-sm-2 control-label">Site Name</label>
                <div className="col-sm-10">
                 <input type="text" className="form-control" onChange={this.restrictLength} name={this.data.results._id} ref="sitename" defaultValue={this.data.results.name} required/>
                </div>
@@ -101,6 +130,15 @@ SystemLayout = React.createClass({
                 </div>
                </div>
             </div>  
+            <div className = "form-group">
+              <label htmlFor = "firstname" className = "col-sm-2 control-label" >Logo</label>
+              <div className = "col-sm-10">
+                <input id="logoId" ref="logoId" type="file" className="validate"  />
+                <div className="col-md-3">
+                  <img src={imgUrl?imgUrl.url():''} className="img-rounded" style={{maxWidth: "100%"}} /> 
+                </div>
+              </div>
+            </div> 
             <div className="form-group">
                <label className="col-sm-2 control-label"></label>
                <div className="col-sm-10">

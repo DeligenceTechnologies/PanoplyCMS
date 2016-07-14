@@ -7,6 +7,13 @@ MenuItemType=React.createClass({
       menus:PanoplyCMSCollections.Menus.find({}).fetch()
     };
   },
+  getInitialState(){
+    let menu = {}
+    _.each(this.props.value, v => {
+      menu[v] = true
+    })
+    return { menu }
+  },
   listOfMenu(){  
     var elements = this.data.results;
     var menu = new Array();
@@ -64,13 +71,18 @@ MenuItemType=React.createClass({
       )
     })
   },
+  handleClick(id){
+    obj = this.state.menu
+    obj[id] = obj[id]?false:true;
+    this.setState({ menu: obj})
+  },
   printList(items, padding){
     if(padding > 20) padding = 20;
     return <ul style={{listStyle:"none", paddingLeft: padding}}>
         {items.map(i => {
           return (
             <li key={i._id}>
-              <input type="checkbox" value={i._id} name="menucheck" className="allPage" /> {i.title}
+              <input type="checkbox" value={i._id} defaultChecked={this.state.menu[i._id]} onClick={()=>{this.handleClick(i._id)}} name="menucheck" className="allPage" /> {i.title}
               {i.child.length?this.printList(i.child, padding+20):''}
             </li>
           )

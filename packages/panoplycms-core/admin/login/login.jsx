@@ -6,7 +6,7 @@ Login = React.createClass({
     };
   },
   componentDidMount: function() {
-    document.title = this.data.results.name + ' Login';
+    document.title = this.data.result.name + ' Login';
   },
   getInitialState(){
    return {
@@ -39,7 +39,7 @@ Login = React.createClass({
     }
     return (<div>
        <div className="container-fluid main-container">
-       <div classNamee="col-md-10 content">
+       <div className="content">
           <div className="panel panel-default">
             {showAlert}
             <section>
@@ -49,11 +49,11 @@ Login = React.createClass({
                   <div className="col-md-offset-2 col-md-6">
                     <div className="panel panel-default">
                       <div className="panel-heading">
-                        <span className="lead form-signin-heading">{this.data.results.name} Log In</span>
+                        <span className="lead form-signin-heading">{this.data.result.name} Log In</span>
                       </div>
                       <form className="form-signin" onSubmit={this.submitData} >
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                        <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+                        <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required />
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
                         <input type="password" ref="password" id="inputPassword" className="form-control" placeholder="Password" required />
                         <input type="submit" value="Login" className="btn btn-lg btn-primary btn-block" />

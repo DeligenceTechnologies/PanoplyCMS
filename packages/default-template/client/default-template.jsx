@@ -6,7 +6,18 @@ DefaultTemplate = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		document.title = this.data.result.name;
+		require('../imports/style.css')
+		if(PanoplyRouter.current().path == '/'){
+			document.title = this.data.result.name;
+			let metakey = document.createElement('meta');
+			let metadesc = document.createElement('meta');
+			metakey.name = "keywords"
+			metakey.content = this.data.result.siteMetaKeyword
+			metadesc.name = "description"
+			metadesc.content = this.data.result.siteMetaDesc
+			document.getElementsByTagName('head')[0].appendChild(metakey)
+			document.getElementsByTagName('head')[0].appendChild(metadesc)			
+		}
 	},
 	componentDidUpdate: function() {
 		document.title = this.data.result.name;
@@ -49,6 +60,24 @@ DefaultArticle = React.createClass({
       article: PanoplyCMSCollections.Articles.findOne({_id: this.props.id, trash:false})
     } 
   },
+  componentDidMount: function() {
+  	if($('meta[name=keywords]').length){
+  		$('meta[name=keywords]').attr('content', this.data.article.metaKeyword);
+  	} else {
+			let metakey = document.createElement('meta');
+			metakey.name = "keywords"
+			metakey.content = this.data.article.metaKeyword
+			document.getElementsByTagName('head')[0].appendChild(metakey)
+  	}
+  	if($('meta[name=description]').length){
+  		$('meta[name=description]').attr('content', this.data.article.metaDescription);
+  	} else {  		
+			let metadesc = document.createElement('meta');
+			metadesc.name = "description"
+			metadesc.content = this.data.article.metaDescription
+			document.getElementsByTagName('head')[0].appendChild(metadesc)
+  	}
+	},
 	render(){
 		if(!_.has(this.data.article, "_id"))
 			return <div>Loading...</div>
@@ -109,7 +138,9 @@ ShowTags = React.createClass({
 			<div className="tag">
 				{this.props.tags.map(tag => {
 					let t = _.find(this.data.tags, t => { return t._id == tag })
-					return <span key={tag} > <a className="label label-info"> {t.title} </a> </span>
+					if(t)
+						return <span key={tag} > <a className="label label-info"> {t.title} </a> </span>
+					else return ''
 				})}
 			</div>
 		)

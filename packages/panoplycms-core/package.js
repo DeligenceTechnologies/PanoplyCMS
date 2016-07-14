@@ -13,6 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.3.3.1');
   api.use('ecmascript');
+  api.use('modules');
   api.use("mongo");
   api.use("mobile-experience");
   api.use("meteor-base");
@@ -96,7 +97,7 @@ Package.onUse(function(api) {
   api.addFiles('admin/adminLayout/component/language.js',['client'])
   api.addFiles('admin/settings/settings.jsx',['client'])
   api.addFiles('admin/settings/language.js',['client'])
-  //api.addFiles('admin/styles/admin.css',['client'])
+  api.addFiles('imports/styles/admin.css',['client'])
   api.addFiles('admin/content/article/addArticle.jsx',['client'])
   api.addFiles('admin/content/article/editArticle.jsx',['client'])
   api.addFiles('admin/content/article/listArticles.jsx',['client'])

@@ -668,3 +668,7 @@ ul.listModules > li {
     margin-bottom: 10px;
     padding: 20px;
 }
+
+.btn-edit-module{
+  color: blueviolet;
+}

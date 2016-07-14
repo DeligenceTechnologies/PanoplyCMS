@@ -67,7 +67,8 @@ _.extend(PanoplyRouter, {
             return { modules, defaultModules }
           }
 
-          menuItems.forEach( (i) => {
+          _.each(menuItems, (i) => {
+            if(i.MenuItemType == 'url') return;
 
             let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}, {menuItems: i._id}]}).fetch();
 

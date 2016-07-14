@@ -155,7 +155,7 @@ EditHtmlblock = React.createClass({
               </div>
             </div>
             
-            <MenuItemType value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:''} />
+            <MenuItemType value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:[]} />
           
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">

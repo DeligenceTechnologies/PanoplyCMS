@@ -64,37 +64,33 @@ Meteor.methods({
         return PanoplyCMSCollections.MenuItems.update({_id:id}, {$set: {homepage:true}});
     },
     deleteMenuItem:function(id,homepageId){
-        console.log(id,"id===>",homepageId,"homepage")
-     function deleteId()
-     {
-        return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
-     }
-     function getchild(id){
-        if(PanoplyCMSCollections.MenuItems.findOne({parentId:id})){
-            var child=PanoplyCMSCollections.MenuItems.findOne({parentId:id})._id;
-           if(child){
-                if(child==homepageId){
-                    return "Its the parent of default";
-                   }
-                else {
-                    getchild(child);
-                 }
+        function deleteId(){
+                return PanoplyCMSCollections.MenuItems.update(id,{$set:{"trash":true}});
+        }
+        function getchild(id){
+            if(PanoplyCMSCollections.MenuItems.findOne({parentId:id})){
+               var child=PanoplyCMSCollections.MenuItems.findOne({parentId:id})._id;
+               if(child){
+                    if(child==homepageId){
+                        return "Its the parent of default";
+                    }
+                    else {
+                        getchild(child);
+                    }
+                }
+                else
+                {
+                    deleteId();     
+                }
             }
-            else
-            {
+           else{
+            return deleteId(); 
+           }
+    }
+    return getchild(id);
 
-                deleteId();     
-            }
-            }
-       else 
-       {
-        return deleteId(); 
-       }
-         }
-            return getchild(id);
-   
     },
-     deleteMenu:function(id){
+    deleteMenu:function(id){
         var abc= PanoplyCMSCollections.MenuItems.remove({parentId:id});
         PanoplyCMSCollections.MenuItems.remove({_id:id});
     },

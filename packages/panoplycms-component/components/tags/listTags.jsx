@@ -17,7 +17,6 @@ ListTags = React.createClass({
   render() {
     that=this;
     nodata='';
-    console.log(this.data.tagsData,'this.data.tagsData')
     if((this.data.tagsData).length==0 ){
       nodata=<NotFoundComp/>
     }else{

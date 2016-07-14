@@ -245,3 +245,7 @@ nav#main-nav.nav.blog-nav ul li ul {
 .offlinePng{
 	background: rgba(0, 0, 0, 0) url("/offline.png") no-repeat fixed center center / cover ;
 }
+
+h2.blog-title {
+	cursor: pointer;
+}

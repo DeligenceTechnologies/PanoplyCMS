@@ -157,7 +157,6 @@ EditMenuItem=React.createClass({
       Session.set("errorMsg",false)
   },
   render(){   
-    console.log(this.state.itemType,'{this.state.itemType}--')
     var msg='';
     if(Session.get("msg")){
       msg=<AlertMessage data={'Successfully updated menu Item.'} func={this.resetSuccessMsg}/>
@@ -179,67 +178,66 @@ EditMenuItem=React.createClass({
     }else{
       itemType=this.data.menuItemData.MenuItemType
     }
-    console.log(itemType,'itemType----')
     return (
-    <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
-      <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
-           {msg}
-      <div className="panel-body">
-      <div id="notification"></div>
-        <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
-          <div className = "form-group">
-            <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
-            <div className = "col-sm-10">
-              <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuItemData.title} required/>
+      <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
+        <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
+             {msg}
+        <div className="panel-body">
+        <div id="notification"></div>
+          <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+            <div className = "form-group">
+              <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
+              <div className = "col-sm-10">
+                <input type = "text" name="title" ref="title"  className = "form-control"  defaultValue={this.data.menuItemData.title} required/>
+              </div>
             </div>
-          </div>
-          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_DESCRIPTION')}</label>
-            <div className = "col-sm-10" id="token" > 
-              <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuItemData.desc} id="desc" />
-            </div>
-         </div>
-          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
-            <SelectMenu  func={this.getMenuValue} nameId={this.data.menuItemData.mainParentId} />    
-         </div>
-         <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
-            <div className = "col-sm-10"  >
-                <select className = "form-control" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
-                  <option className="form-control" value="" >Select </option>
-                  <option className="form-control"  value="category"  >Category</option>
-                  <option className="form-control" value="article" >Article</option>
-                {/*To do - Add external link functionality */}
-                  {/*<option className="form-control" value="url" >External Url</option>*/}
-                </select>
-            </div>
-         </div>
-         
-         <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1):this.data.menuItemData.MenuItemType.charAt(0).toUpperCase() + this.data.menuItemData.MenuItemType.slice(1))}</label>
-            {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_DESCRIPTION')}</label>
+              <div className = "col-sm-10" id="token" > 
+                <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuItemData.desc} id="desc" />
+              </div>
+           </div>
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
+              <SelectMenu  func={this.getMenuValue} nameId={this.data.menuItemData.mainParentId} />    
+           </div>
+           <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
+              <div className = "col-sm-10"  >
+                  <select className = "form-control" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
+                    <option className="form-control" value="" >Select </option>
+                    <option className="form-control"  value="category"  >Category</option>
+                    <option className="form-control" value="article" >Article</option>
+                  {/*To do - Add external link functionality */}
+                    {/*<option className="form-control" value="url" >External Url</option>*/}
+                  </select>
+              </div>
+           </div>
+           
+           <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1):this.data.menuItemData.MenuItemType.charAt(0).toUpperCase() + this.data.menuItemData.MenuItemType.slice(1))}</label>
+              {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
 
-         </div>
-          <div className = "form-group">
-            <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-            <div className = "col-sm-10"  >
-              <select className="form-control" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
+           </div>
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
+              <div className = "col-sm-10"  >
+                <select className="form-control" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
+              </div>
+           </div>
+          <div className="form-group">
+            <div className = "col-sm-offset-2 col-sm-10">
+              <button className="btn btn-primary " >UPDATE</button>
+              &nbsp;&nbsp;
+               <a className="btn btn-danger "  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId
+    })}>CANCEL</a>
             </div>
-         </div>
-        <div className="form-group">
-          <div className = "col-sm-offset-2 col-sm-10">
-            <button className="btn btn-primary " >UPDATE</button>
-            &nbsp;&nbsp;
-             <a className="btn btn-danger "  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId
-  })}>CANCEL</a>
-          </div>
-        </div>  
-      </form>
-    </div>
-</div>
-    )
-  }
+          </div>  
+        </form>
+      </div>
+  </div>
+      )
+    }
 
 })
 

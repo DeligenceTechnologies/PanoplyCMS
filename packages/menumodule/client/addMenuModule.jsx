@@ -171,18 +171,6 @@ AddMenuModule = React.createClass({
 	}
 });
 
-MenuList = React.createClass({
-	propTypes:{
-		menu: React.PropTypes.object.isRequired,
-	},
-	render(){
-		// console.log(this.props.menu._id,'Skadoooosh!!')
-		return (
-			<option value={this.props.menu._id}>{this.props.menu.title}</option>
-		);
-	}
-});
-
 export default AddMenuModule;
 
 MenuModuleFront = React.createClass({
@@ -202,7 +190,15 @@ MenuModuleFront = React.createClass({
         elements.forEach(function (elem1) {
          var child = getChild(elem1._id);
           if(elem1.parentId==''){
-            element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, child: child });
+            let obj = { 
+              _id: elem1._id, 
+              title: elem1.title, 
+              alias: elem1.alias, 
+              desc:elem1.desc, 
+              child: child 
+            }
+            if(elem1.MenuItemType == 'url') obj.url = elem1.externalUrl
+            element.push(obj);
            }
         });
          return element;
@@ -214,7 +210,16 @@ MenuModuleFront = React.createClass({
       elements.forEach(function (elem2) {
         if(elem2.parentId){
           if(parent_id== elem2.parentId){
-            child.push({ _id: elem2._id, title: elem2.title, mainParentId:elem2.mainParentId, alias: elem2.alias, desc:elem2.desc, child: getElements(elem2._id) });
+            let obj = { 
+              _id: elem2._id, 
+              title: elem2.title, 
+              mainParentId:elem2.mainParentId, 
+              alias: elem2.alias, 
+              desc:elem2.desc
+            } 
+            obj.child = getElements(elem2._id)
+            if(elem2.MenuItemType == 'url') obj.url = elem2.externalUrl
+            child.push(obj);
           }
         }
       });
@@ -236,9 +241,10 @@ MenuModuleFront = React.createClass({
     return (
       <ul>
         {items.map(i => {
+          if(i.url && !/^(f|ht)tps?:\/\//i.test(i.url)) i.url = '/'+i.url;
           return (
             <li key={i._id}>
-              <a onClick={()=>{ PanoplyRouter.go('/'+ i.alias) }}>{i.title}</a>
+              {i.url?<a href={i.url} >{i.title}</a> : <a onClick={()=>{ PanoplyRouter.go('/'+ i.alias) }}>{i.title}</a>}              
               {i.child.length?this.printMenu(i.child):''}
             </li>
           )

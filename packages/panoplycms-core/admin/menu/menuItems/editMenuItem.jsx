@@ -141,18 +141,20 @@ EditMenuItem=React.createClass({
     let paramId=this.data.menuItemData.mainParentId;
     Meteor.call("updateMenuItem",this.props._id,insert,function(err,data){
         if(err)
-        {
+        {    
              Session.set("errorMsg",err)
             console.log(err)
           }
         else{    
-          Session.set("msg",true)
+              Session.set("msg",true)
         //  this.setState({MenuValue :this.state.MenuValue})
            //FlowRouter.go('listMenuItems',{_id:paramId})
             }
     });
  },
-    resetSuccessMsg(){
+  resetSuccessMsg(){
+      this.setState({'msg':false})
+      this.setState({'errorMsg':false})
       Session.set("msg",false)
       Session.set("errorMsg",false)
   },

@@ -20,6 +20,7 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
 }
 
 
+
 /*
 * Override Bootstrap's default container.
 */
@@ -241,10 +242,6 @@ nav#main-nav.nav.blog-nav ul li ul {
 	display: none
 }
 
-
-.offlinePng{
-	background: rgba(0, 0, 0, 0) url("/offline.png") no-repeat fixed center center / cover ;
-}
 
 h2.blog-title {
 	cursor: pointer;

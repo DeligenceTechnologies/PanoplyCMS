@@ -24,7 +24,6 @@ AddHtmlblock = React.createClass({
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
-    console.log(menuItems)
 
 		if(this.state.valid.form()){
 

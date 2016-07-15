@@ -12,21 +12,23 @@ obj = {
 }
 Meteor.methods({
   addModule(insert,menuItem) {
-    check(menuItem, [String]);
-    check(insert,obj)
-    insert.menuItems=menuItem;
-    insert.trash=false;
-    insert.createdAt=new Date();
-    PanoplyCMSCollections.Modules.insert(insert);
-
+    if(Meteor.isServer){
+      check(menuItem, [String]);
+      check(insert,obj)
+      insert.menuItems=menuItem;
+      insert.trash=false;
+      insert.createdAt=new Date();
+      return PanoplyCMSCollections.Modules.insert(insert);      
+    }
   },
   editModule(select,update,menuItem) {
-    check(menuItem, [String]);
-    check(update,obj)
-    console.log(select,'select------')
-    update.updatedAt = new Date();
-    update.menuItems=menuItem;
-    PanoplyCMSCollections.Modules.update(select, {$set: update});
+    if(Meteor.isServer){
+      check(menuItem, [String]);
+      check(update,obj)
+      update.updatedAt = new Date();
+      update.menuItems=menuItem;
+      return PanoplyCMSCollections.Modules.update(select, {$set: update});
+    }
   },
   removeModule(modId) {
     // const task = taskList.findOne(taskId);

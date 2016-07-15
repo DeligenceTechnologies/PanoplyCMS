@@ -8,7 +8,8 @@ TemplateManger = React.createClass({
   },
   getInitialState(){
     return{
-      trashListShow:false
+      trashListShow:false,
+      url: ''
     }
   },
   setDefaultTemp(name,active){
@@ -25,33 +26,42 @@ TemplateManger = React.createClass({
     Meteor.call('setDefaultTempalteStatus',modifedArray,function(err,data){
     })
   },
+  showLayout(p, i){
+    if(p && i){
+      url = "/packages/" + p.split(":").join('_') + "/" + i;
+      this.setState({url: url})      
+    }
+    $('#view.modal').modal()
+  },
   render() {
     that=this;
     nodata='';
     return (<div>
-             <div className="panel panel-black col-md-10">
-             <Heading  data={'Template Manger'} />
-              <div className="panel-heading">
-              </div>
-              <div className="panel-body"> 
-                <div className="table-responsive" >
-                  <table className="table  table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Template Name</th>
-                        <th>Default</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {this.data.registeredPackages.templates.map(function(tem){
-                      return  <TemplateName key={tem.name} {...tem} func={that.setDefaultTemp}/> 
-                      })
-                    }
-                    </tbody>
-                  </table>
+              <div className="panel panel-black col-md-10">
+                <Heading  data={'Template Manger'} />
+                <div className="panel-heading">
+                </div>
+                <div className="panel-body"> 
+                  <div className="table-responsive" >
+                    <table className="table  table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Template Name</th>
+                          <th>Default</th>
+                          <th>Preview</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {this.data.registeredPackages.templates.map( (tem) => {
+                        return  <TemplateName key={tem.name} {...tem} func={this.setDefaultTemp} show={this.showLayout} />
+                        })
+                      }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>     
+              <ViewLayout url={this.state.url} />    
           </div>
     );
   }
@@ -59,26 +69,33 @@ TemplateManger = React.createClass({
 
 TemplateName = tem => {
   if(tem.active){
-    style={color:'#2574ab',cursor:'pointer'}
-    classname="fa fa-star fa-lg"
+    obj = {
+      style: {color:'#2574ab',cursor:'pointer'},
+      className: "fa fa-star fa-lg"
+    }
   }else{
-    classname='fa fa-star-o fa-lg'
-    style={cursor:'pointer'}
+    obj = {
+      className:'fa fa-star-o fa-lg',
+      style: {cursor:'pointer'}
+    }
   }
   return <tr>
       <td>{tem.name}</td>
-      <td id={tem.name} onClick={() => {tem.func(tem.name,tem.active)}} >
-      <span   style={style} className={classname} ></span></td>
+      <td id={tem.name} >
+      <span {...obj} onClick={() => {tem.func(tem.name,tem.active)}} ></span></td>
+      <td> <span className="glyphicon glyphicon-zoom-in" onClick={() => {tem.show(tem.packageName,tem.layoutImage)}}></span> </td>
     </tr>
 }
 
-/*db.registeredPackages.update({name:'template'},{$push:{templates:{
-      "name" : "Default Template",
-      "active" : true,
-      "layout" : "DefaultTemplate",
-      "categoryView" : "DefaultCategory",
-      "articleView" : "DefaultArticle",
-      position:['top','left']
-    }
-  }
-})*/
+ViewLayout = template => {
+  return <div id="view" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-body">
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                <img src={template.url} style={{width:"100%"}} />
+              </div>
+            </div>
+          </div>
+        </div>
+}

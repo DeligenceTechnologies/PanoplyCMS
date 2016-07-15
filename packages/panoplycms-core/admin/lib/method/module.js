@@ -5,7 +5,7 @@ obj = {
   type:String,
   position:String,
   showTitle:Boolean,
-  /*menuItems:[String],*/
+  menuItems:[String],
   allPages:Boolean,
   moduleData:Object
 
@@ -13,9 +13,7 @@ obj = {
 Meteor.methods({
   addModule(insert,menuItem) {
     if(Meteor.isServer){
-      check(menuItem, [String]);
       check(insert,obj)
-      insert.menuItems=menuItem;
       insert.trash=false;
       insert.createdAt=new Date();
       return PanoplyCMSCollections.Modules.insert(insert);      

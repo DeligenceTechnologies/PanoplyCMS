@@ -38,6 +38,6 @@ deligencetechnologies:panoplycms-core
 # aldeed:simple-schema
 
 deligencetechnologies:default-template
-deligencetechnologies:panoplycms-component
+deligencetechnologies:panoplycms-tag
 deligencetechnologies:menumodule
 deligencetechnologies:htmlblock

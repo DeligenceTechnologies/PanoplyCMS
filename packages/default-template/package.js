@@ -64,7 +64,11 @@ Package.onUse(function(api) {
 
 	api.addFiles('lib/router/router.jsx', ['client','server']);
 
-	api.addAssets('public/templateLayout.jpg', 'client');
+	api.addAssets([
+		'public/templateLayout.jpg',
+		'public/offline.png',
+		'public/notFound.png'
+	], 'client');
 
 	api.export([
 		'DefaultTemplate',

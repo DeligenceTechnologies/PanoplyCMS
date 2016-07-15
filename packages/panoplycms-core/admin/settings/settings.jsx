@@ -29,7 +29,7 @@ SystemLayout = React.createClass({
     that=this;
     var files = this.refs.logoId.files[0];
     var name=ReactDOM.findDOMNode(this.refs.sitename).value.trim();
-    var siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : false
+    var siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : $('input[name="options"]:checked').val()
     var siteMetaKeyword=ReactDOM.findDOMNode(this.refs.siteMetaKeyword).value.trim();
     var siteMetaDesc=ReactDOM.findDOMNode(this.refs.siteMetaDesc).value.trim()
     var id=ReactDOM.findDOMNode(this.refs.sitename).name.trim();
@@ -84,7 +84,7 @@ SystemLayout = React.createClass({
   },
   render() {
     let imgUrl=Images.findOne({_id:this.data.results.logoId})
-    console.log(imgUrl,'imgUrl====',imgUrl.url())
+    //console.log(imgUrl,'imgUrl====',imgUrl.url())
     if (this.state.successMsg) {
       msg= <AlertMessage data={'Update the website settings.'} func={this.resetSuccessMsg}/>;
     }else if(this.state.errorMsg){

@@ -13,7 +13,8 @@ PanoplyCMSRegisterPackage = function(packageDetails) {
 		  	PanoplyCMSCollections.RegisteredPackages.insert(packageDetails)
 		  break;
 	}
-}
+},
+
 
 
 Meteor.startup(function () {
@@ -173,9 +174,11 @@ Meteor.startup(function () {
 
 	if ( Meteor.users.find().count() === 0 ) {
 	    id=Accounts.createUser({
-	        username: 'deligence',
 	        email: 'info@deligence.com',
-	        password: 'Pass@123'
+	        password: 'Pass@123',
+	        profile: {
+	        	username: 'deligence'
+	        }
 	    });
 	   	console.log('********************************************');
 	    console.log('*                                          *');
@@ -425,6 +428,21 @@ Meteor.startup(function () {
 	PanoplyCMSCollections.Tags._ensureIndex({ "title": 1 }, { unique: true });
 	PanoplyCMSCollections.Articles._ensureIndex({ "title": 1 }, { unique: true });
 	PanoplyCMSCollections.Categories._ensureIndex({ "title": 1 }, { unique: true });
+
+	if (PanoplyCMSCollections.Tags.find().count() === 0 &&
+	    PanoplyCMSCollections.Categories.find().count() === 0 &&
+	    PanoplyCMSCollections.Articles.find().count() === 0 && 
+	    PanoplyCMSCollections.Menus.find().count() === 0 && 
+	    PanoplyCMSCollections.MenuItems.find().count() === 0 ) {
+		PanoplyCMSHomePage();
+	}
+	else {
+		
+	}
+	
+
 });
+
+
 
  

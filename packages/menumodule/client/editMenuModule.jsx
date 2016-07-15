@@ -36,7 +36,7 @@ EditMenuModule = React.createClass({
 			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:false
+			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
 			obj = { 
 			  name: title,

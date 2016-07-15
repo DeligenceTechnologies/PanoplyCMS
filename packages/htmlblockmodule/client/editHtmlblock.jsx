@@ -33,7 +33,7 @@ EditHtmlblock = React.createClass({
       let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
       let showTitle=$('input[name="options"]:checked').val()
       let allPage=$('.allPage').is(':checked')
-      showTitle = showTitle=='yes'?true:false
+      showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
 			obj = { 
         name: name,

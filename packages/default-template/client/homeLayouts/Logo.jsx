@@ -15,7 +15,7 @@ Logo = React.createClass({
 			<div>
 				<h3>Welcome to</h3>
 				{imgUrl?
-				<img src={imgUrl?imgUrl.url():''} />
+				<img style={{margin:"10px 0",maxWidth: "100%",maxHeight: "100px"}} src={imgUrl.url()} />
 				:
 				<h2 className="blog-title" onClick={this.onClick}>{this.props.data?this.props.data.name:''}</h2>
 				}

@@ -1,6 +1,6 @@
-# PanoplyCMS 1.0
-PanoplyCMS is opensource CMS based on Meteor Framework. In current version it provides basic functionality like adding articles and categoies and assigning them to menu. It uses Bootstrap3 as its css framework.
+# PanoplyCMS 1.1.0
 
+<<<<<<< HEAD
 # Installation
 - Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine
 - Go to folder location through terminal or command prompt
@@ -31,3 +31,6 @@ Now go and create some categories, then articles and finally some menus. Look at
 - Multiple & Multilevel Menus
 - Tags associated with articles
 - HTML Blocks that can load at any given position.
+=======
+Version under development
+>>>>>>> dev2

@@ -41,13 +41,13 @@ AddMenuModule = React.createClass({
 			  type:'menumodule',
 			  position:position,
 			  showTitle:showTitle,
-			  /*menuItems:menuItems,*/
+			  menuItems:menuItems,
 			  allPages:allPage,
 			  moduleData:{
 			  	menuItem:menu
 			  }
 			}
-			Meteor.call('addModule',obj,menuItems,(error,data)=>{
+			Meteor.call('addModule',obj,(error,data)=>{
 				console.log(error,data,'error,data')
 				if(error){
 					this.setState({errorMsg:error})

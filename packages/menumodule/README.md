@@ -1,4 +1,4 @@
-#PanoplyCMS - menumodule 1.1.0
+#PanoplyCMS - menumodule 0.0.1
 
 MenuModule for PanoplyCms. To insatll menumodule in your PanoplyCMS use:
 
@@ -13,23 +13,23 @@ Guidelines to create new menumodule package:
 1. On startup in server there must be a pacakge registration:
 	ex. 
 	```
-PanoplyCMSRegisterPackage(
-		{
+		PanoplyCMSRegisterPackage({
 			"name" : "yourmodulename", // name should be lowercase, without space and special symbols.
 			"type" : "module",		// must be defined type 'module'
-			"component":"FrontendReactComponent", //react component that is render on frontend
-			"label":"Your Module", //label of yourmodulename
+			"component":"FrontendReactComponent", // react component that is render on frontend
+			"label":"Your Module", // label of yourmodulename - optional
 			"routes" : [
 				{
-					"name" : "addyourmodulename", //route name of menumodule
-					"path" : "/modules/yourmodulename/add", //path shuold be modules/yourmodulename/ add for add module and :_id for edit
-					"component" : "AddMenuModule", //react component of addyourmodulename renderd on backend
+					"name" : "addyourmodulename", // route name of yourmodulename
+					"path" : "/modules/yourmodulename/add", // path shuold be `/modules/yourmodulename/` add for add module and :_id for edit
+					"component" : "addyourmodulename", //react component of addyourmodulename 
 					"layout" : "AdminLayout",  // layout must be AdminLayout
 					"role"   :"add",	// role must be add or edit
-					"provides" : "dashboard", //provides must be dashboard
+					"provides" : "dashboard", // provides must be dashboard
 					"permission" : ["admin"] // permission must be admin
 				},
 				...
 			]
 		})
+		```
 

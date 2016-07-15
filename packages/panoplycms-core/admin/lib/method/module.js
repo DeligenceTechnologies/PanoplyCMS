@@ -12,8 +12,10 @@ obj = {
 }
 Meteor.methods({
   addModule(insert,menuItem) {
-    check(menuItem, [String]);
-    check(insert,obj)
+    if(Meteor.isServer){
+      check(menuItem, [String]);
+      check(insert,obj)
+    }
     insert.menuItems=menuItem;
     insert.trash=false;
     insert.createdAt=new Date();
@@ -21,9 +23,11 @@ Meteor.methods({
 
   },
   editModule(select,update,menuItem) {
-    check(menuItem, [String]);
-    check(update,obj)
-    console.log(select,'select------')
+    if(Meteor.isServer){
+      check(menuItem, [String]);
+      check(update,obj)
+    }  
+    
     update.updatedAt = new Date();
     update.menuItems=menuItem;
     PanoplyCMSCollections.Modules.update(select, {$set: update});

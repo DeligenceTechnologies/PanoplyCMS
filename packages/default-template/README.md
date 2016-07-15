@@ -11,7 +11,8 @@ One can refer this package to create further templates for PanoplyCMS.
 Guidelines to create new template package:
 
 1. On startup in server there must be a pacakge registration:
-	ex. ```
+	ex. 
+	```
 	PanoplyCMSRegisterPackage({
 		"name" : "template",
 		"templates": {

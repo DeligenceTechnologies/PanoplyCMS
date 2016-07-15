@@ -1,6 +1,5 @@
 # PanoplyCMS 1.1.0
 
-<<<<<<< HEAD
 # Installation
 - Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine
 - Go to folder location through terminal or command prompt
@@ -13,7 +12,7 @@ Backend Link: http://localhost:3000/admin
 
 Initial Login Credentials on Backend:
     email: 'info@deligence.com'
-    password: 'y!A;4)'
+    password: 'Pass@123'
 
 Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
 
@@ -22,7 +21,7 @@ Now go and create some categories, then articles and finally some menus. Look at
 - Backend: http://107.170.113.66:3000/admin
 - Backend Login Details
 	-- Email: info@deligence.com
-	-- Password: y!A;4)
+	-- Password: Pass@123
 
 # Features
 - Single Admin
@@ -31,6 +30,3 @@ Now go and create some categories, then articles and finally some menus. Look at
 - Multiple & Multilevel Menus
 - Tags associated with articles
 - HTML Blocks that can load at any given position.
-=======
-Version under development
->>>>>>> dev2

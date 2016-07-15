@@ -35,5 +35,5 @@ Package.onUse(function(api) {
 
   api.export('PanoplyRouter')
 
-  api.addFiles('client/router.jsx',['client']);
+  // api.addFiles('client/router.jsx',['client']);
 });

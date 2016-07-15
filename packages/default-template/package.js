@@ -24,25 +24,23 @@ Package.onUse(function(api) {
 	api.use("reload");
 	api.use("random");
 	api.use("ejson");
-	api.use('react');
+	api.use('react@0.14.6');
 	api.use('insecure');
 	api.use('underscore');
 	api.use('accounts-password');
 	api.use('alanning:roles@1.2.14');
 	api.use("http");
-	api.use('twbs:bootstrap');
-	api.use('kadira:flow-router');
-	api.use('kadira:react-layout');
-	api.use('teamon:tinymce');
-	api.use('cfs:standard-packages');
-	api.use('cfs:gridfs');
-	api.use('cfs:filesystem');
-	api.use('cfs:s3');
-	
+	api.use('twbs:bootstrap@3.3.6');
+	api.use('kadira:flow-router@2.12.1');
+	api.use('kadira:react-layout@1.5.3');
+	api.use('teamon:tinymce@4.3.13');
+	api.use('cfs:standard-packages@0.5.9');
+	api.use('cfs:gridfs@0.0.33');
+	api.use('cfs:filesystem@0.1.2');
+	api.use('cfs:s3@0.1.3');
 
-	api.use("deligence1:panoplycms-core");
-	api.use("deligence1:panoplycms-collections");
-	//api.use('thekavish:panoply-calc');
+	api.use("deligence1:panoplycms-core@0.0.1");
+	api.use("deligence1:panoplycms-collections@0.0.1");
 
 	/* Added files below */
 	api.addFiles('lib/router/router.js', ['client']);

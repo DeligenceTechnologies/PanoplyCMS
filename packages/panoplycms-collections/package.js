@@ -23,7 +23,7 @@ Package.onUse(function(api) {
   api.use("reload");
   api.use("random");
   api.use("ejson");
-  api.use("meteorhacks:subs-manager");
+  api.use("meteorhacks:subs-manager@1.1.0");
   
   api.addFiles('common/collections.js',['client','server']);
   api.addFiles('server/publications.js',['server']);

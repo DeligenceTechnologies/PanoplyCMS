@@ -1,5 +1,6 @@
 Package.describe({
-  name: 'deligence1:panoplycms-tag',
+  name: 'deligencetechnologies:panoplycms-tag',
+
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -45,8 +46,8 @@ Package.onUse(function(api) {
   
   api.addFiles('server/startup.js',['server'])
   
-  api.use("deligence1:panoplycms-collections");
-  api.use("deligence1:panoplycms-core");
+  api.use("deligencetechnologies:panoplycms-collections");
+  api.use("deligencetechnologies:panoplycms-core");
   
   api.addFiles('components/tags/addTag.jsx',['client'])
   api.addFiles('components/tags/editTag.jsx',['client'])

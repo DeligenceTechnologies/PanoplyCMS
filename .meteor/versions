@@ -2,7 +2,6 @@ accounts-base@1.2.8
 accounts-password@1.1.11
 ajduke:bootstrap-tokenfield@0.5.0
 alanning:roles@1.2.15
-aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
 anti:i18n@0.4.3
 arillo:flow-router-helpers@0.4.7
@@ -46,12 +45,21 @@ ddp-client@1.2.8
 ddp-common@1.2.6
 ddp-rate-limiter@1.0.5
 ddp-server@1.2.8
+<<<<<<< HEAD
 deligence1:default-template@0.1.0
 deligence1:htmlblock@0.0.1
 deligence1:menumodule@0.0.1
 deligence1:panoplycms-collections@0.0.1
 deligence1:panoplycms-core@0.0.1
 deligence1:panoplycms-tag@0.0.1
+=======
+deligencetechnologies:default-template@0.1.0
+deligencetechnologies:htmlblock@0.0.1
+deligencetechnologies:menumodule@0.0.1
+deligencetechnologies:panoplycms-collections@0.0.1
+deligencetechnologies:panoplycms-component@0.0.1
+deligencetechnologies:panoplycms-core@0.0.1
+>>>>>>> f9f443279e1acf0800f830c2d608017053c432d2
 deps@1.0.12
 diff-sequence@1.0.6
 ecmascript@0.4.6
@@ -75,11 +83,9 @@ launch-screen@1.0.12
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.13
-mdg:validation-error@0.2.0
 meteor@1.1.15
 meteor-base@1.0.4
 meteorhacks:subs-manager@1.1.0
-minifier-css@1.1.12
 minifier-js@1.1.12
 minimongo@1.0.17
 mizzao:autocomplete@0.5.1
@@ -107,7 +113,6 @@ reactive-dict@1.1.8
 reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
-rosh93:dataset-filter@0.0.6
 routepolicy@1.0.11
 service-configuration@1.0.10
 session@1.1.6
@@ -115,8 +120,6 @@ sha@1.0.8
 spacebars@1.0.12
 spacebars-compiler@1.0.12
 srp@1.0.9
-standard-minifier-css@1.0.7
-standard-minifier-js@1.0.7
 teamon:tinymce@4.3.13
 templating@1.1.12
 templating-tools@1.0.4

@@ -20,25 +20,24 @@ kadira:react-layout
 fortawesome:fontawesome
 twbs:bootstrap
 
-deligence1:panoplycms-core
-teamon:tinymce
-accounts-password
-cfs:standard-packages
-cfs:gridfs
-cfs:filesystem
-cfs:s3
-rosh93:dataset-filter
-ajduke:bootstrap-tokenfield
-mizzao:autocomplete
-mizzao:jquery-ui
-anti:i18n
-standard-minifier-css
-standard-minifier-js
-react-meteor-data
-aldeed:simple-schema
+deligencetechnologies:panoplycms-core
+# teamon:tinymce
+# accounts-password
+# cfs:standard-packages
+# cfs:gridfs
+# cfs:filesystem
+# cfs:s3
+# rosh93:dataset-filter
+# ajduke:bootstrap-tokenfield
+# mizzao:autocomplete
+# mizzao:jquery-ui
+# anti:i18n
+# standard-minifier-css
+# standard-minifier-js
+# react-meteor-data
+# aldeed:simple-schema
 
-deligence1:default-template
-deligence1:panoplycms-tag
-deligence1:menumodule
-deligence1:htmlblock
-check
+deligencetechnologies:default-template
+deligencetechnologies:panoplycms-tag
+deligencetechnologies:menumodule
+deligencetechnologies:htmlblock

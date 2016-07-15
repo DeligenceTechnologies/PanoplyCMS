@@ -1,6 +1,4 @@
-import 'meteor/deligence1:panoplycms-core';
-import  {Heading} from 'meteor/deligence1:panoplycms-core';
-import {NotFoundComp} from 'meteor/deligence1:panoplycms-core';
+import {Heading, NotFoundComp} from 'meteor/deligencetechnologies:panoplycms-core';
 
 ListTags = React.createClass({
   mixins:[ReactMeteorData],

@@ -1,6 +1,6 @@
 import React from 'react';
-import  {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligence1:panoplycms-core';
-import  {PanoplyCMSCollections} from 'meteor/deligence1:panoplycms-collections';
+import  {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import  {PanoplyCMSCollections} from 'meteor/deligencetechnologies:panoplycms-collections';
 
 AddMenuModule = React.createClass({
 	componentWillUnmount(){

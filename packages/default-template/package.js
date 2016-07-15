@@ -1,5 +1,5 @@
 Package.describe({
-	name: 'deligence1:default-template',
+	name: 'deligencetechnologies:default-template',
 	version: '0.1.0',
 	// Brief, one-line summary of the package.
 	summary: 'Default Template for PanoplyCMS',
@@ -39,8 +39,8 @@ Package.onUse(function(api) {
 	api.use('cfs:filesystem@0.1.2');
 	api.use('cfs:s3@0.1.3');
 
-	api.use("deligence1:panoplycms-core@0.0.1");
-	api.use("deligence1:panoplycms-collections@0.0.1");
+	api.use("deligencetechnologies:panoplycms-core@0.0.1");
+	api.use("deligencetechnologies:panoplycms-collections@0.0.1");
 
 	/* Added files below */
 	api.addFiles('lib/router/router.js', ['client']);

@@ -34,20 +34,20 @@ AddMenuModule = React.createClass({
 			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:false
+			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
 			obj = { 
 			  name: title,
 			  type:'menumodule',
 			  position:position,
 			  showTitle:showTitle,
-			  /*menuItems:menuItems,*/
+			  menuItems:menuItems,
 			  allPages:allPage,
 			  moduleData:{
 			  	menuItem:menu
 			  }
 			}
-			Meteor.call('addModule',obj,menuItems,(error,data)=>{
+			Meteor.call('addModule',obj,(error,data)=>{
 				console.log(error,data,'error,data')
 				if(error){
 					this.setState({errorMsg:error})
@@ -94,6 +94,7 @@ AddMenuModule = React.createClass({
          }
       });
     this.setState({valid:validObj})  
+    
     $('.options').toggleClass('active');
     $('.option').button();
   },
@@ -155,7 +156,7 @@ AddMenuModule = React.createClass({
                 <input type="checkbox" className="allPage" ref="desc" name="allPage" />
               </div>
             </div>
-            <MenuItemType />
+            <MenuItemType value={[]} />
             <div className="form-group">
               <div className = "col-sm-offset-2 col-sm-10">
                 <button className="btn btn-primary " >SAVE</button>

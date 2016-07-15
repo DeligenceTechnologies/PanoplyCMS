@@ -24,7 +24,6 @@ AddHtmlblock = React.createClass({
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
-    console.log(menuItems)
 
 		if(this.state.valid.form()){
 
@@ -33,7 +32,7 @@ AddHtmlblock = React.createClass({
 			let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:false
+			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
 			obj = { 
 			  name: name,

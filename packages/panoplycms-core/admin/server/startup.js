@@ -174,9 +174,11 @@ Meteor.startup(function () {
 
 	if ( Meteor.users.find().count() === 0 ) {
 	    id=Accounts.createUser({
-	        username: 'deligence',
 	        email: 'info@deligence.com',
-	        password: 'Pass@123'
+	        password: 'Pass@123',
+	        profile: {
+	        	username: 'deligence'
+	        }
 	    });
 	   	console.log('********************************************');
 	    console.log('*                                          *');

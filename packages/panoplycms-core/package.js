@@ -10,6 +10,24 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Npm.depends({
+  "meteor-node-stubs": "0.2.3",
+  "react": "15.2.0",
+  "react-addons-create-fragment": "15.0.1",
+  "react-addons-css-transition-group": "15.0.1",
+  "react-addons-linked-state-mixin": "15.0.1",
+  "react-addons-perf": "15.0.1",
+  "react-addons-pure-render-mixin": "15.1.0",
+  "react-addons-test-utils": "15.0.1",
+  "react-addons-transition-group": "15.1.0",
+  "react-addons-update": "15.0.1",
+  "react-bootstrap": "0.29.5",
+  "react-dom": "15.1.0",
+  "react-mixin": "3.0.4",
+  "react-mounter": "1.2.0",
+  "react-paginate": "2.0.1"
+});
+
 Package.onUse(function(api) {
   api.versionsFrom('1.3.3.1');
   api.use('ecmascript');

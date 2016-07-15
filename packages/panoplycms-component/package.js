@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'deligence1:panoplycms-component',
+  name: 'deligence1:panoplycms-tag',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',

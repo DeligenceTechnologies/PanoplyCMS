@@ -49,7 +49,8 @@ Package.onUse(function(api) {
 
 
   /*--------------------------------Server------------------------------------- */
-   api.addFiles([
+
+  api.addFiles([
     'admin/server/startup.js',
     'admin/server/articles.js',
     'admin/server/settings.js',

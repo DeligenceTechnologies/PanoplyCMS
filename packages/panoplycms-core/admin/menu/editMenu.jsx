@@ -12,7 +12,6 @@ EditMenu=React.createClass({
       msg:false,
       errorMsg:false
     }
-    console.log(msg,"msg")
   },
   componentDidMount: function(){
     document.title = "Edit Menu"

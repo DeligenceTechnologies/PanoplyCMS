@@ -76,6 +76,8 @@ AddMenuItem=React.createClass({
   resetSuccessMsg(){
     this.setState({'msg':false})
     this.setState({'errorMsg':false})
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
   },
   fecthCategoryArticles(event){
     event.preventDefault();

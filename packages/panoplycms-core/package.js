@@ -49,7 +49,7 @@ Package.onUse(function(api) {
 
 
   /*--------------------------------Server------------------------------------- */
-  api.addAssets('../default-template/public/test.gif', 'client')
+
   api.addFiles([
     'admin/server/startup.js',
     'admin/server/articles.js',
@@ -148,6 +148,7 @@ Package.onUse(function(api) {
   api.export('LodingSpinner');
   api.export('Position');
   api.export('MenuItemType');
+  api.export('Images');
 
 });
 

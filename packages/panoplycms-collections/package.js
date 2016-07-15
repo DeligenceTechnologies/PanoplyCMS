@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'deligence1:panoplycms-collections',
+  name: 'deligencetechnologies:panoplycms-collections',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',

@@ -2,7 +2,7 @@
 
 Default Template for PanoplyCMS. To install default template in your PanoplyCMS use:
 
-`meteor add deligence1:default-template`
+`meteor add deligencetechnologies:default-template`
 
 This template is having 3 positions - Top, Sidebar, Footer where one can load any modules from PanoplyCMS
 

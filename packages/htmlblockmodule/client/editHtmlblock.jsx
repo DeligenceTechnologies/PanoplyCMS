@@ -1,4 +1,4 @@
-import  {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligence1:panoplycms-core';
+import  {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
 
 EditHtmlblock = React.createClass({
 	componentWillUnmount(){

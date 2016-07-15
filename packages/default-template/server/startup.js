@@ -5,7 +5,7 @@ Meteor.startup(function() {
 		"name" : "template",
 		"templates": {
 			name: "Default Template",
-			packageName: "deligence1:default-template",
+			packageName: "deligencetechnologies:default-template",
 			layoutImage: "public/templateLayout.jpg",
 			active: true,
 			layout: "DefaultTemplate",

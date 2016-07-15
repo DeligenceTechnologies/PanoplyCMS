@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'deligence1:panoplycms-router',
+  name: 'deligencetechnologies:panoplycms-router',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -31,7 +31,7 @@ Package.onUse(function(api) {
   api.use('kadira:flow-router');
   api.use('kadira:react-layout');
 
-  api.use('deligence1:panoplycms-collections')
+  api.use('deligencetechnologies:panoplycms-collections')
 
   api.export('PanoplyRouter')
 

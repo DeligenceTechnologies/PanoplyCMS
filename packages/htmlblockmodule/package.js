@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'deligence1:htmlblock',
+  name: 'deligencetechnologies:htmlblock',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -43,8 +43,8 @@ Package.onUse(function(api) {
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
 
-  api.use('deligence1:panoplycms-core')
-  api.use('deligence1:panoplycms-collections')
+  api.use('deligencetechnologies:panoplycms-core')
+  api.use('deligencetechnologies:panoplycms-collections')
 
   api.addFiles('client/addHtmlblock.jsx',"client");
   api.addFiles('client/editHtmlblock.jsx',"client");

@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'deligence1:panoplycms-core',
+  name: 'deligencetechnologies:panoplycms-core',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -24,6 +24,7 @@ Package.onUse(function(api) {
   api.use("reload");
   api.use("random");
   api.use("ejson");
+  api.use("check");
   api.use('react');
   api.use('insecure');
   api.use('underscore');
@@ -43,10 +44,8 @@ Package.onUse(function(api) {
   api.use('anti:i18n');
   api.use('themeteorchef:jquery-validation');
   api.use('arillo:flow-router-helpers');
-  //api.use('deligence1:panoplycms-router');
-  //api.use("deligence1:panoplycms-component");
-  api.use('deligence1:panoplycms-collections');
 
+  api.use('deligencetechnologies:panoplycms-collections');
 
   /*--------------------------------Server------------------------------------- */
 

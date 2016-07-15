@@ -1,5 +1,6 @@
 AdminLayout = React.createClass({
   componentDidMount(){
+    $('body').attr('style','')
     require('../../imports/styles/admin.css')
   },
   render() {

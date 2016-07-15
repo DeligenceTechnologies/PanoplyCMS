@@ -27,7 +27,9 @@ Login = React.createClass({
         self.setState({err:err})
       }else{
         self.setState({data:data})
-        FlowRouter.go('dashboard');
+        setTimeout(() => {
+          FlowRouter.go('dashboard');
+        },1000)
       }
     });
   },

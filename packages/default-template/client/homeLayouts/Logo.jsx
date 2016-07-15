@@ -14,7 +14,6 @@ Logo = React.createClass({
 		return(
 			<div>
 			{imgUrl?
-			
 				<img style={{margin:"10px 0",maxWidth: "100%",maxHeight: "100px"}} src={imgUrl.url()} />
 				:
 				<div><h3>Welcome to</h3> 

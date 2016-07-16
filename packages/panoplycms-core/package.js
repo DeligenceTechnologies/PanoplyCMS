@@ -1,6 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:panoplycms-core',
-  
+
   version: '0.0.3',
   // Brief, one-line summary of the package.
   summary: 'Core component for PanoplyCMS',
@@ -78,7 +78,6 @@ Package.onUse(function(api) {
     'admin/server/category.js',
     'admin/server/users.js',
     'admin/server/menu.js',
-    'admin/server/homepage.js',
     'admin/server/tags.js'
     ],['server'])
 

@@ -428,19 +428,6 @@ Meteor.startup(function () {
 	PanoplyCMSCollections.Tags._ensureIndex({ "title": 1 }, { unique: true });
 	PanoplyCMSCollections.Articles._ensureIndex({ "title": 1 }, { unique: true });
 	PanoplyCMSCollections.Categories._ensureIndex({ "title": 1 }, { unique: true });
-
-	if (PanoplyCMSCollections.Tags.find().count() === 0 &&
-	    PanoplyCMSCollections.Categories.find().count() === 0 &&
-	    PanoplyCMSCollections.Articles.find().count() === 0 && 
-	    PanoplyCMSCollections.Menus.find().count() === 0 && 
-	    PanoplyCMSCollections.MenuItems.find().count() === 0 ) {
-		PanoplyCMSHomePage();
-	}
-	else {
-		
-	}
-	
-
 });
 
 

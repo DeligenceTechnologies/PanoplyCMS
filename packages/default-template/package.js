@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'deligencetechnologies:default-template',
-	version: '0.1.0',
+	version: '0.1.1',
 	// Brief, one-line summary of the package.
 	summary: 'Default Template for PanoplyCMS',
 	// URL to the Git repository containing the source code for this package.
@@ -39,7 +39,7 @@ Package.onUse(function(api) {
 	api.use('cfs:filesystem@0.1.2');
 	api.use('cfs:s3@0.1.3');
 
-	api.use("deligencetechnologies:panoplycms-core@0.0.1");
+	api.use("deligencetechnologies:panoplycms-core@0.0.3");
 	api.use("deligencetechnologies:panoplycms-collections@0.0.1");
 
 	/* Added files below */

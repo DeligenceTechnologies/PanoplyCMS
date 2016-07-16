@@ -1,7 +1,7 @@
 Package.describe({
   name: 'deligencetechnologies:panoplycms-tag',
 
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'Tag Component for PanoplyCMS',
   // URL to the Git repository containing the source code for this package.
@@ -47,7 +47,7 @@ Package.onUse(function(api) {
   api.addFiles('server/startup.js',['server'])
   
   api.use("deligencetechnologies:panoplycms-collections@0.0.1");
-  api.use("deligencetechnologies:panoplycms-core@0.0.1");
+  api.use("deligencetechnologies:panoplycms-core@0.0.3");
   
   api.addFiles('components/tags/addTag.jsx',['client'])
   api.addFiles('components/tags/editTag.jsx',['client'])

@@ -45,6 +45,12 @@ ddp-client@1.2.8
 ddp-common@1.2.6
 ddp-rate-limiter@1.0.5
 ddp-server@1.2.8
+deligencetechnologies:default-template@0.1.1
+deligencetechnologies:htmlblock@0.0.2
+deligencetechnologies:menumodule@0.0.2
+deligencetechnologies:panoplycms-collections@0.0.1
+deligencetechnologies:panoplycms-core@0.0.3
+deligencetechnologies:panoplycms-tag@0.0.2
 deps@1.0.12
 diff-sequence@1.0.6
 ecmascript@0.4.6

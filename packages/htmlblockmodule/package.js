@@ -43,7 +43,7 @@ Package.onUse(function(api) {
   api.use('themeteorchef:jquery-validation@1.0.0');
   api.use('arillo:flow-router-helpers@0.4.7');
 
-  api.use('deligencetechnologies:panoplycms-core@0.0.1')
+  api.use('deligencetechnologies:panoplycms-core@0.0.3')
   api.use('deligencetechnologies:panoplycms-collections@0.0.1')
 
   api.addFiles('client/addHtmlblock.jsx',"client");

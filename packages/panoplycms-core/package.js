@@ -1,5 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:panoplycms-core',
+  
   version: '0.0.3',
   // Brief, one-line summary of the package.
   summary: 'Core component for PanoplyCMS',

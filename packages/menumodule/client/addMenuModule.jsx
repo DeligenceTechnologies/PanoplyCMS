@@ -22,7 +22,7 @@ AddMenuModule = React.createClass({
 	},
 	submitData(event){
 		event.preventDefault()
-		let menuItems = [];
+		var menuItems = [];
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
@@ -47,6 +47,8 @@ AddMenuModule = React.createClass({
 			  	menuItem:menu
 			  }
 			}
+      console.log(menuItems, "<=== Menu Items")
+      console.log(obj, " <=== OBJ")
 			Meteor.call('addModule',obj,(error,data)=>{
 				console.log(error,data,'error,data')
 				if(error){
@@ -59,7 +61,7 @@ AddMenuModule = React.createClass({
 					ReactDOM.findDOMNode(this.refs.selectMenu).value=''
 					$("input").prop("checked", false);
 					$('#position').val('')
-					
+					console.log('added')
 				}
 			})
 		}

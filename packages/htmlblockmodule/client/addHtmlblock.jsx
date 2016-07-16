@@ -20,7 +20,7 @@ AddHtmlblock = React.createClass({
 	},
 	submitData(event){
 		event.preventDefault()
-		let menuItems = [];
+		var menuItems = [];
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
@@ -39,13 +39,13 @@ AddHtmlblock = React.createClass({
 			  type:'htmlblock',
 			  position:position,
 			  showTitle:showTitle,
-			  /*menuItems:menuItems,*/
+			  menuItems:menuItems,
 			  allPages:allPage,
 			  moduleData:{
 			  	html:article
 			  }
 			}
-			Meteor.call('addModule',obj,menuItems,(error,data) => {
+			Meteor.call('addModule',obj,(error,data) => {
 				if(error){
 					this.setState({errorMsg:error})
 				}else{

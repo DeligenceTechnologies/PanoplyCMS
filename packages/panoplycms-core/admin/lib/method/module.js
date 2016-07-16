@@ -11,7 +11,7 @@ obj = {
 
 }
 Meteor.methods({
-  addModule(insert,menuItem) {
+  addModule(insert) {
     if(Meteor.isServer){
       check(insert,obj)
       insert.trash=false;
@@ -19,12 +19,10 @@ Meteor.methods({
       return PanoplyCMSCollections.Modules.insert(insert);      
     }
   },
-  editModule(select,update,menuItem) {
+  editModule(select,update) {
     if(Meteor.isServer){
-      check(menuItem, [String]);
       check(update,obj)
       update.updatedAt = new Date();
-      update.menuItems=menuItem;
       return PanoplyCMSCollections.Modules.update(select, {$set: update});
     }
   },

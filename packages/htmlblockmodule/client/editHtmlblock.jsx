@@ -21,7 +21,7 @@ EditHtmlblock = React.createClass({
 	},
 	submitData(event){
 		event.preventDefault()
-		let menuItems = [];
+		var menuItems = [];
 		$.each($("input[name='menucheck']:checked"), function(){            
     	menuItems.push($(this).val());
 		});
@@ -40,7 +40,7 @@ EditHtmlblock = React.createClass({
         type:'htmlblock',
         position:position,
         showTitle:showTitle,
-        /*menuItems:menuItems,*/
+        menuItems:menuItems,
         allPages:allPage,
         moduleData:{
           html:article
@@ -50,7 +50,7 @@ EditHtmlblock = React.createClass({
         _id:this.props._id
       }
 
-			Meteor.call('editModule',select,obj,menuItems,(error,data)=>{
+			Meteor.call('editModule',select,obj,(error,data)=>{
 				if(error){
 					this.setState({errorMsg:error})
 				}else{

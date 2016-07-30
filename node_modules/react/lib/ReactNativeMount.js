@@ -89,7 +89,7 @@ var ReactNativeMount = {
       var prevWrappedElement = prevComponent._currentElement;
       var prevElement = prevWrappedElement.props;
       if (shouldUpdateReactComponent(prevElement, nextElement)) {
-        ReactUpdateQueue.enqueueElementInternal(prevComponent, nextWrappedElement);
+        ReactUpdateQueue.enqueueElementInternal(prevComponent, nextWrappedElement, emptyObject);
         if (callback) {
           ReactUpdateQueue.enqueueCallbackInternal(prevComponent, callback);
         }
@@ -106,18 +106,8 @@ var ReactNativeMount = {
 
     ReactNativeTagHandles.assertRootTag(containerTag);
 
-    var instance = instantiateReactComponent(nextWrappedElement);
+    var instance = instantiateReactComponent(nextWrappedElement, false);
     ReactNativeMount._instancesByContainerID[containerTag] = instance;
-
-    if (process.env.NODE_ENV !== 'production') {
-      // Mute future events from the top level wrapper.
-      // It is an implementation detail that devtools should not know about.
-      instance._debugID = 0;
-
-      if (process.env.NODE_ENV !== 'production') {
-        ReactInstrumentation.debugTool.onBeginFlush();
-      }
-    }
 
     // The initial render is synchronous but any updates that happen during
     // rendering, in componentWillMount or componentDidMount, will be batched
@@ -127,7 +117,6 @@ var ReactNativeMount = {
     if (process.env.NODE_ENV !== 'production') {
       // The instance here is TopLevelWrapper so we report mount for its child.
       ReactInstrumentation.debugTool.onMountRootComponent(instance._renderedComponent._debugID);
-      ReactInstrumentation.debugTool.onEndFlush();
     }
     var component = instance.getPublicInstance();
     if (callback) {

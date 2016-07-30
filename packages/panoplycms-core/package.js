@@ -14,19 +14,15 @@ Package.describe({
 Npm.depends({
   "meteor-node-stubs": "0.2.3",
   "react": "15.2.0",
-  "react-addons-create-fragment": "15.0.1",
-  "react-addons-css-transition-group": "15.0.1",
-  "react-addons-linked-state-mixin": "15.0.1",
-  "react-addons-perf": "15.0.1",
-  "react-addons-pure-render-mixin": "15.1.0",
-  "react-addons-test-utils": "15.0.1",
-  "react-addons-transition-group": "15.1.0",
-  "react-addons-update": "15.0.1",
-  "react-bootstrap": "0.29.5",
-  "react-dom": "15.1.0",
-  "react-mixin": "3.0.4",
-  "react-mounter": "1.2.0",
-  "react-paginate": "2.0.1"
+  "react-addons-create-fragment": "15.3.0",
+  "react-addons-css-transition-group": "15.3.0",
+  "react-addons-linked-state-mixin": "15.3.0",
+  "react-addons-perf": "15.3.0",
+  "react-addons-pure-render-mixin": "15.3.0",
+  "react-addons-test-utils": "15.3.0",
+  "react-addons-transition-group": "15.3.0",
+  "react-addons-update": "15.3.0",
+  "react-dom": "15.3.0"
 });
 
 Package.onUse(function(api) {
@@ -45,7 +41,6 @@ Package.onUse(function(api) {
   api.use("ejson");
   api.use("check");
   api.use('react@0.14.6');
-  api.use('insecure');
   api.use('underscore');
   api.use('accounts-password');
   api.use('alanning:roles@1.2.14');
@@ -63,7 +58,7 @@ Package.onUse(function(api) {
   api.use('anti:i18n@0.4.3');
   api.use('themeteorchef:jquery-validation@1.0.0');
   api.use('arillo:flow-router-helpers@0.4.7');
-
+  api.use('fortawesome:fontawesome@4.5.0')
 
   api.use('deligencetechnologies:panoplycms-collections@0.0.1');
 
@@ -123,10 +118,10 @@ Package.onUse(function(api) {
   api.addFiles('admin/content/article/language.js',['client'])
   api.addFiles('admin/login/login.jsx',['client'])
 
-  api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
+  // api.addFiles('admin/extension/modules/Htmlblock.jsx',['client'])
   //api.addFiles('admin/extension/modules/Menumodule.jsx',['client'])
-  api.addFiles('admin/extension/modules/addModule.jsx',['client'])
-  api.addFiles('admin/extension/modules/editModule.jsx',['client'])
+  // api.addFiles('admin/extension/modules/addModule.jsx',['client'])
+  // api.addFiles('admin/extension/modules/editModule.jsx',['client'])
   api.addFiles('admin/extension/modules/language.js',['client'])
   api.addFiles('admin/extension/modules/modulesLayout.jsx',['client'])  
   api.addFiles('admin/extension/language/language.jsx',['client'])
@@ -150,11 +145,6 @@ Package.onUse(function(api) {
   api.addFiles('admin/menu/menuItems/editMenuItem.jsx',['client'])
   api.addFiles('admin/menu/menuItems/listMenuItems.jsx',['client'])
   api.addFiles('admin/menu/menuItems/language.js',['client'])
- /* api.addFiles('admin/components/tags/addTag.jsx',['client'])
-  api.addFiles('admin/components/tags/editTag.jsx',['client'])
-  api.addFiles('admin/components/tags/listTags.jsx',['client'])
-  api.addFiles('admin/components/tags/language.js',['client'])*/
-
 
   
   api.export('PanoplyCMSRegisterPackage')

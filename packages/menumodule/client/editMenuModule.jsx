@@ -32,7 +32,7 @@ EditMenuModule = React.createClass({
 			let position=$('#position').val()
 			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
 			let showTitle=$('input[name="options"]:checked').val()
-			let allPage=$('.allPage').is(':checked')
+			let allPage=$('input.allPage').prop("checked")
 			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
 			obj = { 
@@ -100,7 +100,7 @@ EditMenuModule = React.createClass({
     this.setState({'errorMsg':false})
   },
 	render(){
-		c=0;		
+		c=0; console.log(this.data.menuModuleModuleData, " Module Data")
 		if(this.state.successMsg){
        msg=<AlertMessage data={'menu module updated.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
@@ -159,7 +159,7 @@ EditMenuModule = React.createClass({
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
               <div className = "col-sm-10">
-                <input type="checkbox" defaultValue={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" name="allPage" />
+                <input type="checkbox" defaultChecked={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" name="allPage" />
               </div>
             </div>
             <MenuItemType value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>

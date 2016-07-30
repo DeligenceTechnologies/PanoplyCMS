@@ -60,7 +60,7 @@ MenuItemType=React.createClass({
     let menuKeys = _.keys(menus);
     return menuKeys.map(m => {
       let k = Math.random();
-      mainmenu = _.find(this.data.menus, (mm) => { return mm._id == m })
+      mainmenu = _.find(this.data.menus, (mm) => { return mm._id == m != undefined })
       return (
         <div key={k} className="col-sm-4">
           <div className="well">

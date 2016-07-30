@@ -438,7 +438,7 @@ var ResponderEventPlugin = {
       !(trackedTouchCount >= 0) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Ended a touch event which was not counted in trackedTouchCount.') : _prodInvariant('132') : void 0;
     }
 
-    ResponderTouchHistoryStore.recordTouchTrack(topLevelType, nativeEvent, nativeEventTarget);
+    ResponderTouchHistoryStore.recordTouchTrack(topLevelType, nativeEvent);
 
     var extracted = canTriggerTransfer(topLevelType, targetInst, nativeEvent) ? setResponderAndExtractTransfer(topLevelType, targetInst, nativeEvent, nativeEventTarget) : null;
     // Responder may or may not have transferred on a new touch start/move.

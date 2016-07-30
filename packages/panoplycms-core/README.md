@@ -5,3 +5,5 @@ PanoplyCMS-Core is the core package of PanoplyCMS. To install default template i
 `meteor add deligencetechnologies:panoplycms-core`
 
 This package provides complete backend (admin interface) of PanoplyCMS and frontend routing.
+
+`deligencetechnologies:default-template` and `fortawesome:fontawesome` packages are required to setup PanoplyCMS

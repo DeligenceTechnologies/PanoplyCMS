@@ -344,9 +344,11 @@ NoopInternalComponent.prototype = {
 
 var ShallowComponentWrapper = function (element) {
   // TODO: Consolidate with instantiateReactComponent
-  this._debugID = nextDebugID++;
-  var displayName = element.type.displayName || element.type.name || 'Unknown';
-  ReactInstrumentation.debugTool.onSetDisplayName(this._debugID, displayName);
+  if (process.env.NODE_ENV !== 'production') {
+    this._debugID = nextDebugID++;
+    var displayName = element.type.displayName || element.type.name || 'Unknown';
+    ReactInstrumentation.debugTool.onSetDisplayName(this._debugID, displayName);
+  }
 
   this.construct(element);
 };
@@ -424,6 +426,8 @@ function makeSimulator(eventType) {
 
     var fakeNativeEvent = new Event();
     fakeNativeEvent.target = node;
+    fakeNativeEvent.type = eventType.toLowerCase();
+
     // We don't use SyntheticEvent.getPooled in order to not have to worry about
     // properly destroying any properties assigned from `eventData` upon release
     var event = new SyntheticEvent(dispatchConfig, ReactDOMComponentTree.getInstanceFromNode(node), fakeNativeEvent, node);

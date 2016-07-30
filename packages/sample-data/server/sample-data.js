@@ -2,10 +2,9 @@
 
 // Variables exported by this module can be imported by other packages and
 // applications. See sample-data-tests.js for an example of importing.
+export const name = 'sample-data';
 
-
-const homepageListCategory=[
-				{
+homepageListCategory=[{
 					"_id" : "WjkfAjSTBQMBk4e6y",
 					"title" : "Category1",
 					"alias" : "category1",
@@ -37,10 +36,8 @@ const homepageListCategory=[
 					"trash" : false,
 					"owner" : "",
 					"username" : ""
-				}
-			];
-const homepageListArticle=[
-				{
+				}];
+homepageListArticle=[{
 					"_id" : "eQBWG4DXMsEp8NX7x",
 					"title" : "Article1",
 					"alias" : "article1",
@@ -121,10 +118,8 @@ const homepageListArticle=[
 					"trash" : false,
 					"owner" : "",
 					"username" : ""
-				}
-			];
-const homepageListMenus=[
-					{
+				}];
+homepageListMenus=[{
 						"_id" : "dGBtw92nTceAkThKq",
 						"title" : "menu1",
 						"desc" : "menu1",
@@ -150,10 +145,8 @@ const homepageListMenus=[
 						"alias" : "menu3",
 						"item" : [ ],
 						"trash" : false
-					}
-				];
-const homepageListMenuItems=[
-					{
+					}];
+homepageListMenuItems=[{
 						"_id" : "T8sgLe9oEToTApsfZ",
 						"title" : "Home",
 						"desc" : "Menu Item1",
@@ -309,10 +302,8 @@ const homepageListMenuItems=[
 						"createdAt" : new Date(),
 						"alias" : "item11",
 						"trash" : false
-					}
-				];
-const homepageListModules=[
-					{
+					}];
+homepageListModules=[{
 						"_id" : "FFocjg2zgMZWEACJf",
 						"name" : "Home",
 						"type" : "menumodule",
@@ -415,55 +406,34 @@ const homepageListModules=[
 						},
 						"trash" : false,
 						"createdAt" : new Date()
-					}
-				];
+					}];
 
-Meteor.startup(function () {
-	if(!PanoplyCMSCollections.Tags.find().count()){
-	  PanoplyCMSCollections.Tags.insert(
-			{
-				"_id" : "KbNnewPfXkkXEGdMB",
-				"title" : "tag1",
-				"alias" : "tag1",
-				"desc" : "test1",
-				"metaKeyword" : "test1",
-				"metaDescription" : "test1",
-				"createdAt" : new Date(),
-				"updateAt" : "",
-				"status" : 1,
-				"owner" : "",
-				"username" : ""
-			}
-		);		
-	}
+    PanoplyCMSCollections.Tags.insert({
+						"_id" : "KbNnewPfXkkXEGdMB",
+						"title" : "tag1",
+						"alias" : "tag1",
+						"desc" : "test1",
+						"metaKeyword" : "test1",
+						"metaDescription" : "test1",
+						"createdAt" : new Date(),
+						"updateAt" : "",
+						"status" : 1,
+						"owner" : "",
+						"username" : ""
+	});
+	_.each(homepageListCategory,function(listCategory){
+		PanoplyCMSCollections.Categories.insert(listCategory);	
+	});
+	_.each(homepageListArticle,function(listArticles){
+		PanoplyCMSCollections.Articles.insert(listArticles);	
+	});
+	_.each(homepageListMenus,function(listMenus){
+		PanoplyCMSCollections.Menus.insert(listMenus);	
+	});
+	_.each(homepageListMenuItems,function(listMenuItems){
+		PanoplyCMSCollections.MenuItems.insert(listMenuItems);	
+	});
+	_.each(homepageListModules,function(listModules){
+		PanoplyCMSCollections.Modules.insert(listModules);	
+	});
 
-	if(!PanoplyCMSCollections.Categories.find().count()){		
-		_.each(homepageListCategory,function(listCategory){
-			PanoplyCMSCollections.Categories.insert(listCategory);	
-		});
-	}
-
-	if(!PanoplyCMSCollections.Articles.find().count()){		
-		_.each(homepageListArticle,function(listArticles){
-			PanoplyCMSCollections.Articles.insert(listArticles);	
-		});
-	}
-
-	if(!PanoplyCMSCollections.Menus.find().count()){
-		_.each(homepageListMenus,function(listMenus){
-			PanoplyCMSCollections.Menus.insert(listMenus);	
-		});
-	}
-	
-	if(!PanoplyCMSCollections.MenuItems.find().count()){
-		_.each(homepageListMenuItems,function(listMenuItems){
-			PanoplyCMSCollections.MenuItems.insert(listMenuItems);	
-		});
-	}
-
-	if(!PanoplyCMSCollections.Modules.find().count()){
-		_.each(homepageListModules,function(listModules){
-			PanoplyCMSCollections.Modules.insert(listModules);	
-		});
-	}
-});

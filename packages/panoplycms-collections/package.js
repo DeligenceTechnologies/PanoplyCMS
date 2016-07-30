@@ -2,7 +2,7 @@ Package.describe({
   name: 'deligencetechnologies:panoplycms-collections',
   version: '0.0.1',
   // Brief, one-line summary of the package.
-  summary: 'Collections required for PanoplyCMS',
+  summary: 'Define collections required for PanoplyCMS',
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/DeligenceTechnologies/Panoplycms',
   // By default, Meteor will default to using README.md for documentation.

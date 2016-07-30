@@ -39,7 +39,7 @@ Package.onUse(function(api) {
 	api.use('cfs:filesystem@0.1.2');
 	api.use('cfs:s3@0.1.3');
 
-	api.imply("deligencetechnologies:panoplycms-core@0.0.3");
+	api.use("deligencetechnologies:panoplycms-core@0.0.3");
 	api.use("deligencetechnologies:panoplycms-collections@0.0.1");
 
 	/* Added files below */

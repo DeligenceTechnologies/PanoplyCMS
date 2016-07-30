@@ -1,11 +1,11 @@
 {
   "name": "PanoplyCMS",
   "version": "1.0.0",
-  "description": "",
+  "description": "Meteor Based CMS",
   "main": "",
   "dependencies": {
     "meteor-node-stubs": "^0.2.3",
-    "react": "^15.2.0",
+    "react": "^15.3.0",
     "react-addons-create-fragment": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
     "react-addons-linked-state-mixin": "^15.3.0",

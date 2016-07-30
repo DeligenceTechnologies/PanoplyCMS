@@ -4,6 +4,7 @@
 - Create a meteor application using `meteor create panoplycms`
 - Go to folder location through terminal or command prompt
 - Run commands in new terminal 
+<<<<<<< HEAD
 	* `meteor add deligencetechnologies:panoplycms-core`, 
 	* `meteor add deligencetechnologies:default-template`,
 	* `meteor add fortawesome:fontawesome`
@@ -12,6 +13,13 @@
 	* `meteor add deligencetechnologies:panoplycms-tag`
 	* `meteor add deligencetechnologies:sample-data` // remove after running once
 - Install React using: `meteor npm install --save meteor-node-stubs react react-dom react-addons-transition-group react-addons-css-transition-group react-addons-linked-state-mixin react-addons-create-fragment react-addons-update react-addons-pure-render-mixin react-addons-test-utils react-addons-perf` 
+=======
+	-- `meteor add deligencetechnologies:panoplycms-core`, 
+	-- `meteor add deligencetechnologies:default-template`
+	-- `meteor add deligencetechnologies:menumodule`
+	-- `meteor add deligencetechnologies:htmlblock`
+	-- `meteor add deligencetechnologies:panoplycms-tag`
+>>>>>>> parent of 516bafd... Fixed all packages
 - Run `meteor`
 - Once it start running goto you browser ant type: http://localhost:3000
 - Thats it! You have installed PanoplyCMS on your system successfully

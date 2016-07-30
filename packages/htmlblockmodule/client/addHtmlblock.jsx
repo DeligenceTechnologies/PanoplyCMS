@@ -52,7 +52,7 @@ AddHtmlblock = React.createClass({
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.name).value=''
 					tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
-					$("input[type='checkbox']").prop("checked", false);
+					$("input").prop("checked", false);
 					$('#position').val('')
 					
 				}

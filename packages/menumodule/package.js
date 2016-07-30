@@ -10,25 +10,10 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Npm.depends({
-  "meteor-node-stubs": "0.2.3",
-  "react": "15.2.0",
-  "react-addons-create-fragment": "15.3.0",
-  "react-addons-css-transition-group": "15.3.0",
-  "react-addons-linked-state-mixin": "15.3.0",
-  "react-addons-perf": "15.3.0",
-  "react-addons-pure-render-mixin": "15.3.0",
-  "react-addons-test-utils": "15.3.0",
-  "react-addons-transition-group": "15.3.0",
-  "react-addons-update": "15.3.0",
-  "react-dom": "15.3.0",
-  "react-mixin": "3.0.4",
-  "react-mounter": "1.2.0"
-});
-
 Package.onUse(function(api) {
   api.versionsFrom('1.3.4');
   api.use('ecmascript');
+  api.mainModule('menumodule.js');
   api.use("mongo");
   api.use("mobile-experience");
   api.use("meteor-base");
@@ -40,6 +25,7 @@ Package.onUse(function(api) {
   api.use("random");
   api.use("ejson");
   api.use('react@0.14.6');
+  api.use('insecure');
   api.use('underscore');
   api.use('accounts-password');
   api.use('alanning:roles@1.2.14');
@@ -56,7 +42,8 @@ Package.onUse(function(api) {
   api.use('ajduke:bootstrap-tokenfield@0.5.0');
   api.use('anti:i18n@0.4.3');
   api.use('themeteorchef:jquery-validation@1.0.0');
-  api.use('arillo:flow-router-helpers@0.4.7');  
+  api.use('arillo:flow-router-helpers@0.4.7');
+  
 
   api.use('deligencetechnologies:panoplycms-core@0.0.3')
   api.use('deligencetechnologies:panoplycms-collections@0.0.1')

@@ -227,3 +227,37 @@ if(Meteor.isClient){
     PanoplyRouter.init();
   })
 }
+/*
+HTMLBlock = data => {
+  showTitle = '';
+  if(data.module_title) showTitle = <h4>{data.module_title}</h4>;
+  return <div>
+    {showTitle}
+    {data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
+  </div>
+}
+
+MenuModuleFront = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData: function(){
+    return { items: PanoplyCMSCollections.MenuItems.find({_id: this.props.menuItem, trash:false}).fetch() }
+  },
+  onClick(a){
+    FlowRouter.go('/'+a)
+  },
+  render(){
+    showTitle = '';
+    if(this.props.module_title) showTitle = <h4>{this.props.module_title}</h4>;
+    return (<div>
+          {showTitle}
+          <ul>
+          {this.data.items?
+            this.data.items.map(i => {
+              return (<li key={i._id}>
+                <a onClick={()=>{this.onClick(i.alias)}}>{i.title}</a>
+              </li>)
+            }):'<li></li>'}
+          </ul>
+        </div>)
+  }
+})*/

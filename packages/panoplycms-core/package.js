@@ -102,6 +102,8 @@ Package.onUse(function(api) {
   
   /*--------------------------------Client------------------------------------- */
   api.addFiles('admin/common/alertMessage.jsx',['client'])
+  api.addFiles('admin/common/alertMessageOfError.jsx',['client'])
+  api.addFiles('admin/common/notFoundComp.jsx',['client'])
   api.addFiles('admin/common/modal.jsx',['client'])
   api.addFiles('admin/adminLayout/adminLayout.jsx',['client'])
   api.addFiles('admin/common/heading.jsx',['client'])

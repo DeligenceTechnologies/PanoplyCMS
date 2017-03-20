@@ -19,7 +19,7 @@ Meteor.publish('menuRoutes', function(){
 })
 
 Meteor.publish('roles', function (){
-  return Meteor.roles.find({})
+	return Meteor.roles.find({})
 })
 
 Meteor.publish('siteName', function(){

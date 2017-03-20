@@ -33,7 +33,7 @@ EditArticle=React.createClass({
         })
       });
     this.setState({tagTitle:arrayOftag})
-    console.log(this.state.tagTitle,'tagTitle---')
+    // console.log(this.state.tagTitle,'tagTitle---')
     $('#tokenfield').tokenfield('destroy');
 		document.title = "Edit Article";
     tinymce.init({
@@ -131,7 +131,7 @@ EditArticle=React.createClass({
     }
     
     if(this.state.successMsg){
-       msg=<AlertMessage data={' Update article.'} func={this.resetSuccessMsg}/>
+       msg=<AlertMessage data={'updated article.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

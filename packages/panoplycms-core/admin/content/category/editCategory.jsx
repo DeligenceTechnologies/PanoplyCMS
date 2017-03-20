@@ -1,3 +1,4 @@
+
 EditCategory = React.createClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
@@ -35,7 +36,7 @@ EditCategory = React.createClass({
       return <LoadingSpinner />;
     }
     if(this.state.successMsg){
-      msg=<AlertMessage data={' Updated Category.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'updated category.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

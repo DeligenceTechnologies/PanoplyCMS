@@ -30,7 +30,7 @@ ModulesLayout = React.createClass({
   addModuleAction: function(type){
     let moduleArray = _.findWhere(this.data.modulesList, {name: type}) || []
     moduleArray = _.findWhere(moduleArray.routes, {role: 'add'}) || []
-    console.log(moduleArray,'moduleArray-----')
+    // console.log(moduleArray,'moduleArray-----')
     FlowRouter.go(moduleArray.name)
     //type=='menumodule'?FlowRouter.go('addMenuModule'):FlowRouter.go('addHtmlblock');
     

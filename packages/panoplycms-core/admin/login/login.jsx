@@ -16,14 +16,13 @@ Login = React.createClass({
   },
   submitData(event){
     event.preventDefault();
-    console.log('err,data');
     var email=ReactDOM.findDOMNode(this.refs.email).value.trim();
     var password=ReactDOM.findDOMNode(this.refs.password).value.trim();
-    console.log(email,password,this);
+    // console.log(email,password,this);
     self=this;
     Meteor.loginWithPassword(email,password,function(err,data){
       if(err){
-        console.log(self,this,'this');
+        console.log("Error while log in ->>", err);
         self.setState({err:err})
       }else{
         self.setState({data:data})
@@ -39,7 +38,8 @@ Login = React.createClass({
     }else{
       showAlert='';
     }
-    return (<div>
+    return (
+      <div>
        <div className="container-fluid main-container">
        <div className="content">
           <div className="panel panel-default">
@@ -53,7 +53,7 @@ Login = React.createClass({
                       <div className="panel-heading">
                         <span className="lead form-signin-heading">{this.data.result.name} Log In</span>
                       </div>
-                      <form className="form-signin" onSubmit={this.submitData} >
+                      <form className="form-signin" onSubmit={this.submitData}>
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
                         <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required />
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
@@ -80,12 +80,13 @@ AdminLoginLayout = React.createClass({
 })
 
 ShowAlert=React.createClass({
-  render(){console.log(this.props.err)
+  render(){
+    console.log(this.props.err)
     return (
       <div className="alert alert-danger alert-dismissible" role="alert">
-              <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Error!</strong> 
-            </div>
+        <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> 
+      </div>
     )        
   }
 })

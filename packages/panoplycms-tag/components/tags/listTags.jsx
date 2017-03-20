@@ -86,7 +86,7 @@ var TagsItem = React.createClass({
 TagsModal=React.createClass({
   deleteTag(){
     Meteor.call('deleteTag',this.props.data._id,function(err,data){
-      console.log(err,data)
+      // console.log(err,data)
     });
   },
   render:function(){

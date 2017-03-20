@@ -161,7 +161,7 @@ EditMenuItem=React.createClass({
   render(){   
     var msg='';
     if(Session.get("msg")){
-      msg=<AlertMessage data={'Successfully updated menu Item.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'updated menu item.'} func={this.resetSuccessMsg}/>
     }else if(Session.get("errorMsg")){
       msg=<AlertMessageOfError data={Session.get("errorMsg")} func={this.resetSuccessMsg}/>
     }else{

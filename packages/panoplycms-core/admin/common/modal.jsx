@@ -20,14 +20,14 @@
 })*/
 
 CoreOfflineComponent = React.createClass({
-  render: function() {
-    return <div><h1>Site Offline...!!!</h1></div>
-  }
+	render: function() {
+		return <div><h1>Site Offline...!!!</h1></div>
+	}
 })
 
 CoreComponentNotFound = () => {
-  return <div>
-    <Heading data="404! Page not Found" />
-    <p>Sorry! URL for this route is not configured.</p>
-  </div>
+	return <div>
+		<Heading data="404! Page not Found" />
+		<p>Sorry! URL for this route is not configured.</p>
+	</div>
 }

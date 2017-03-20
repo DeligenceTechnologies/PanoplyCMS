@@ -13,6 +13,10 @@ body {
 	color: #555;
 }
 
+a {
+	cursor: pointer;
+}
+
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
@@ -341,7 +345,7 @@ h1.page-header {margin-top: -5px;}
   border-color: rgba(38, 43, 54, 0.1);
   border-top: 0;
   margin-top: 0;
-  margin-right: -8px;
+  margin-right: 0px;
   padding:5px;
   background-color: #fff;
   border-top-right-radius: 0;
@@ -374,6 +378,7 @@ h1.page-header {margin-top: -5px;}
   border-radius: 2px;
   padding:5px 10px;
   color:#2574ab;
+  cursor: pointer;
 }
  .dropdown-menu .list-group {
   margin-left: -5px;

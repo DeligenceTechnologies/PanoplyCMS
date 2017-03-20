@@ -19,7 +19,7 @@ _.extend(PanoplyRouter, {
         })
 
         if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
-          let offline = defaultTemplate.offline || 'CoreOfflineComponent'
+          let offline = defaultTemplate.offline || 'CoreOfflineComponent';
           PanoplyRouter.route('/', {
             action: (p, q) => {
               ReactLayout.render(eval(offline))
@@ -36,7 +36,7 @@ _.extend(PanoplyRouter, {
           let positions = defaultTemplate.positions || [];
 
           var defaultModules = {};
-          var modules = {}
+          var modules = {};
 
           if(!menuItems.length){
             let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}]}).fetch();
@@ -176,7 +176,7 @@ _.extend(PanoplyRouter, {
                   if(route.name == 'login'){
                     route.triggersEnter = [ (context, redirect) => {
                       if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-                        console.log('Already Loggedin')
+                        // console.log('Already Loggedin')
                         redirect('/');
                       }
                     }]
@@ -210,8 +210,8 @@ _.extend(PanoplyRouter, {
           }
         };
         
-        console.log('---------------------')
-        console.log(PanoplyRouter)
+        // console.log('---------------------')
+        // console.log(PanoplyRouter)
         try{
           PanoplyRouter.initialize();
         } catch(err) {

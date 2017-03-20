@@ -4,7 +4,7 @@ import 'meteor/jquery';
 ListArticles = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
-     const articleSubscription = Meteor.subscribe('articlesFind');
+    const articleSubscription = Meteor.subscribe('articlesFind');
     return {
       pageLoading:! articleSubscription.ready(),
       results: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
@@ -173,7 +173,7 @@ RestoreModalOfArticle=React.createClass({
       if(err){
         console.log(err)
       }else{
-        console.log(data)
+        // console.log(data)
       }
     });
   },
@@ -196,4 +196,3 @@ RestoreModalOfArticle=React.createClass({
     )     
   }
 })
-

@@ -1,6 +1,6 @@
-import  { Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
 
- AddTag=React.createClass({
+AddTag=React.createClass({
   handleChange: function(event) {
     this.props.onUpdate(event.target.id,event.target.value);
     //  var retObj = { };
@@ -48,7 +48,7 @@ import  { Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetech
 render:function(){
   var msg='';
     if(this.state.msg){
-      msg=<AlertMessage data={'Successfully added tag.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'added tag.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

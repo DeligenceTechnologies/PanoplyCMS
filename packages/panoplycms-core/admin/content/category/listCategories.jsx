@@ -41,7 +41,7 @@ ListCategories = React.createClass({
     }
     return (<div>
              <div className="panel panel-black">
-             <Heading  data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
+             <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
               <div className="panel-heading">
                 <a href={FlowRouter.path('addCategory')} className="btn btn-success btn-ico">
                     <i className="fa fa-plus-circle fa-lg"></i>&nbsp;

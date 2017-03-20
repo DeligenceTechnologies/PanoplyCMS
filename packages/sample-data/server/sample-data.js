@@ -407,33 +407,62 @@ homepageListModules=[{
 						"trash" : false,
 						"createdAt" : new Date()
 					}];
-
-    PanoplyCMSCollections.Tags.insert({
-						"_id" : "KbNnewPfXkkXEGdMB",
-						"title" : "tag1",
-						"alias" : "tag1",
-						"desc" : "test1",
-						"metaKeyword" : "test1",
-						"metaDescription" : "test1",
-						"createdAt" : new Date(),
-						"updateAt" : "",
-						"status" : 1,
-						"owner" : "",
-						"username" : ""
-	});
+		/*console.log("---------------------------------------------------------");
+		console.log("Tags count -->", PanoplyCMSCollections.Tags.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.Tags.find().count() == 0){
+	    PanoplyCMSCollections.Tags.insert({
+				"_id" : "KbNnewPfXkkXEGdMB",
+				"title" : "tag1",
+				"alias" : "tag1",
+				"desc" : "test1",
+				"metaKeyword" : "test1",
+				"metaDescription" : "test1",
+				"createdAt" : new Date(),
+				"updateAt" : "",
+				"status" : 1,
+				"owner" : "",
+				"username" : ""
+			});
+		}
 	_.each(homepageListCategory,function(listCategory){
-		PanoplyCMSCollections.Categories.insert(listCategory);	
+		/*console.log("---------------------------------------------------------");
+		console.log("Categories count -->", PanoplyCMSCollections.Categories.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.Categories.find().count() == 0){
+			PanoplyCMSCollections.Categories.insert(listCategory);
+		}
 	});
 	_.each(homepageListArticle,function(listArticles){
-		PanoplyCMSCollections.Articles.insert(listArticles);	
+		/*console.log("---------------------------------------------------------");
+		console.log("Articles count -->", PanoplyCMSCollections.Articles.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.Articles.find().count() == 0){
+			PanoplyCMSCollections.Articles.insert(listArticles);
+		}
 	});
 	_.each(homepageListMenus,function(listMenus){
-		PanoplyCMSCollections.Menus.insert(listMenus);	
+		/*console.log("---------------------------------------------------------");
+		console.log("Menus count -->", PanoplyCMSCollections.Menus.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.Menus.find().count() == 0){
+			PanoplyCMSCollections.Menus.insert(listMenus);
+		}
 	});
 	_.each(homepageListMenuItems,function(listMenuItems){
-		PanoplyCMSCollections.MenuItems.insert(listMenuItems);	
+		/*console.log("---------------------------------------------------------");
+		console.log("MenuItems count -->", PanoplyCMSCollections.MenuItems.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.MenuItems.find().count() == 0){
+			PanoplyCMSCollections.MenuItems.insert(listMenuItems);
+		}	
 	});
 	_.each(homepageListModules,function(listModules){
-		PanoplyCMSCollections.Modules.insert(listModules);	
+		/*console.log("---------------------------------------------------------");
+		console.log("Modules count -->", PanoplyCMSCollections.Modules.find().count());
+		console.log("---------------------------------------------------------");*/
+		if(PanoplyCMSCollections.Modules.find().count() == 0){
+			PanoplyCMSCollections.Modules.insert(listModules);
+		}
 	});
 

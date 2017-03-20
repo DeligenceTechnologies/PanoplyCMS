@@ -1,5 +1,5 @@
 
- AddCategory=React.createClass({
+AddCategory=React.createClass({
   handleChange: function(event) {
     this.props.onUpdate(event.target.id,event.target.value);
   },
@@ -30,7 +30,7 @@
   },
 render:function(){
   if(this.state.successMsg){
-      msg=<AlertMessage data={' Added Category.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'added category.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

@@ -1,4 +1,4 @@
-  ListMenuItems = React.createClass({
+ListMenuItems = React.createClass({
   mixins:[ReactMeteorData],
   getMeteorData(){
     that=this
@@ -231,7 +231,7 @@ Modal=React.createClass({
       else {
                  Meteor.call('deleteMenuItem',this.props.data._id,this.props.homepage,function(err,data){
                     if(data){
-                              console.log(data);
+                              // console.log(data);
                               if(data=="Its the parent of default")
                               $('#defaultItemParentPopup.modal').modal()
                     }
@@ -284,7 +284,7 @@ RestoreModal=React.createClass({
            if(err){
         console.log(err)
       }else{
-        console.log(data)
+        // console.log(data)
       }
          });
       

@@ -1,4 +1,4 @@
-import  { Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
 
 EditTag=React.createClass({
   mixins:[ReactMeteorData],  

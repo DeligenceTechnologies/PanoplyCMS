@@ -5,7 +5,7 @@ UserList = React.createClass({
     //   results: Images.findOne(),
     //   user: Meteor.users.findOne(),
     // } 
-    console.log(Meteor.users.findOne(),'<----')
+    // console.log(Meteor.users.findOne(),'<----')
     var handle = Meteor.subscribe('usersProfile')
     return {
       pageLoading: !handle.ready(), 

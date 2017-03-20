@@ -137,7 +137,7 @@ Meteor.startup(function () {
 			icon:'fa fa-question-circle',
 			param:[
 				{
-					label:'Officlie Support Forum',
+					label:'Official Support Forum',
 					routeName:'officialSupportForum',
 					url:'https://github.com/DeligenceTechnologies/Panoplycms',
 					template:'',

@@ -123,7 +123,7 @@ ModalMenu=React.createClass({
           });
       }else{
             Meteor.call('deleteMenus',this.props.data._id,function(err,data){
-            console.log(err,"response",data)
+            // console.log(err,"response",data)
           });
         }
       },

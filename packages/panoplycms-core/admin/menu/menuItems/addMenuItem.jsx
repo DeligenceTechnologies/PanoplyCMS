@@ -173,7 +173,7 @@ AddMenuItem=React.createClass({
     that=this
     var msg='';
     if(this.state.msg){
-      msg=<AlertMessage data={'Successfully added menu item.'} func={this.resetSuccessMsg}/>
+      msg=<AlertMessage data={'added menu item.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
       msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
     }else{

@@ -8,7 +8,8 @@ Dashboard = React.createClass({
     var n*/ame=React.findDOMNode(this.refs.sitename).value.trim();
   },
   render() {
-    return (<div>
+    return (
+      <div>
             <div className="col-md-10 content">
               <Heading  data={'Dashboard'} />
               <div className="panel-body">
@@ -16,7 +17,7 @@ Dashboard = React.createClass({
                   <div className="col-xs-3 col-md-3">
                     <div className="dt_box">
                       <i className="fa fa-television"></i> 
-                      <div><a href={FlowRouter.path('manageMenu')} >Menu Manager</a></div>
+                      <div><a href={FlowRouter.path('manageMenu')}>Menu Manager</a></div>
                     </div>
                   </div>
                   <div className="col-xs-3 col-md-3">
@@ -28,13 +29,13 @@ Dashboard = React.createClass({
                   <div className="col-xs-3 col-md-3">
                     <div className="dt_box">
                       <i className="fa fa-pencil"></i> 
-                      <div><a href={FlowRouter.path('articles')} >Article Manager</a></div>
+                      <div><a href={FlowRouter.path('articles')}>Article Manager</a></div>
                     </div>
                   </div>
                   <div className="col-xs-3 col-md-3">
                     <div className="dt_box">
                       <i className="fa fa-sliders"></i> 
-                      <div><a href={FlowRouter.path('modulesManager')} >Module Manager</a></div>
+                      <div><a href={FlowRouter.path('modulesManager')}>Module Manager</a></div>
                     </div>
                   </div>
                 </div>

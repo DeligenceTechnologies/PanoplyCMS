@@ -109,7 +109,7 @@ EditUser = React.createClass({
         {this.state.msg?<AlertMessage data={'updated your profile.'} func={this.resetSuccessMsg} />:'' }
         {this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
               
-        <form className="form-horizontal" id="userEditForm"  encType="multipart/form-data" onSubmit={this.updateuser}><div className = "form-group">
+        <form className="form-horizontal" id="userEditForm" encType="multipart/form-data" onSubmit={this.updateuser}><div className = "form-group">
             <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_USERS_EDIT_USERNAME')}</label>
             <div className = "col-sm-10">
               <input type = "text" ref="username" name="username" defaultValue={this.data.user.profile?this.data.user.profile.username:''} className = "form-control" />

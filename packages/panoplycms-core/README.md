@@ -1,4 +1,4 @@
-# PanoplyCMS - Core 0.1.0
+# PanoplyCMS - Core 0.1.1
 
 PanoplyCMS-Core is the core package of PanoplyCMS. To install default template in your PanoplyCMS use:
 

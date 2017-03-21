@@ -1,4 +1,4 @@
-# PanoplyCMS - Default Template 0.1.0
+# PanoplyCMS - Default Template 0.1.2
 
 Default Template for PanoplyCMS. To install default template in your PanoplyCMS use:
 

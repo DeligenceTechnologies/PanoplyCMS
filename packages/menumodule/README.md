@@ -2,7 +2,7 @@
 
 MenuModule for PanoplyCms. To insatll menumodule in your PanoplyCMS use:
 
-`meteor add deligence1:menumodule`
+`meteor add deligencetechnologies:menumodule`
 
 This pacakge create module of type menumodule and display selected menu on position in frontend.
 

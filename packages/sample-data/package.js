@@ -1,6 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:sample-data',
-  version: '0.0.2',
+  version: '0.1.3',
   // Brief, one-line summary of the package.
   summary: 'Sample Data for Panoply CMS',
   // URL to the Git repository containing the source code for this package.
@@ -48,5 +48,5 @@ Package.onUse(function(api) {
   api.use('arillo:flow-router-helpers@0.4.7');
 
   api.use('deligencetechnologies:panoplycms-collections@0.0.1');
-   api.addFiles(['server/sample-data.js'],['client','server'])
+  api.addFiles(['server/sample-data.js'],['client','server'])
 });

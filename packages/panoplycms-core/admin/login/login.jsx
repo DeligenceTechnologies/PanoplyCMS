@@ -9,23 +9,66 @@ Login = React.createClass({
     document.title = this.data.result.name + ' Login';
   },
   getInitialState(){
-   return {
-      err:'',
-      data:''     
+    return {
+      msg:false,
+      valid: '',
+      errorMsg:false,
     }
+  },
+  componentDidMount(){
+    let validObj=$("#loginForm").validate({
+      rules: {
+        email: {
+          required: true,
+          email:true
+        },
+        password: {
+          required: true,
+          password: true
+        },
+      },
+      //For custom messages
+      messages: {
+        email:{
+          required: "Please enter email.",
+          email: "Please enter a valid email."
+        },
+        password: {
+          required: "Please enter password.",
+          password: "Please enter valid password."
+        }
+      },
+      submitHandler: function (form) { // for demo
+        return false;
+      },
+      errorElement : 'div',
+      errorPlacement: function(error, element) {
+        var placement = $(element).data('error');
+        if (placement) {
+          $(placement).append(error)
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+    this.setState({valid:validObj})
+  },
+  resetSuccessMsg(){
+    this.setState({'msg': false})
+    this.setState({'errorMsg': false})
   },
   submitData(event){
     event.preventDefault();
     var email=ReactDOM.findDOMNode(this.refs.email).value.trim();
     var password=ReactDOM.findDOMNode(this.refs.password).value.trim();
     // console.log(email,password,this);
-    self=this;
-    Meteor.loginWithPassword(email,password,function(err,data){
+    // self=this;
+    Meteor.loginWithPassword(email,password,(err,data) =>{
       if(err){
-        console.log("Error while log in ->>", err);
-        self.setState({err:err})
+        // console.log("Error while log in ->>", err);
+        this.setState({errorMsg: err.reason})
       }else{
-        self.setState({data:data})
+        this.setState({data:data})
         setTimeout(() => {
           FlowRouter.go('dashboard');
         },1000)
@@ -33,17 +76,12 @@ Login = React.createClass({
     });
   },
   render() {
-    if(this.state.err){
-      showAlert=<ShowAlert key={1} err={this.state.err} />
-    }else{
-      showAlert='';
-    }
     return (
       <div>
        <div className="container-fluid main-container">
        <div className="content">
           <div className="panel panel-default">
-            {showAlert}
+            {this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
             <section>
               <div className="container">
                 <br />
@@ -53,7 +91,7 @@ Login = React.createClass({
                       <div className="panel-heading">
                         <span className="lead form-signin-heading">{this.data.result.name} Log In</span>
                       </div>
-                      <form className="form-signin" onSubmit={this.submitData}>
+                      <form className="form-signin" id="loginForm" onSubmit={this.submitData}>
                         <label htmlFor="inputEmail" className="sr-only">Email address</label>
                         <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required />
                         <label htmlFor="inputPassword" className="sr-only">Password</label>
@@ -79,14 +117,14 @@ AdminLoginLayout = React.createClass({
   }
 })
 
-ShowAlert=React.createClass({
+/*ShowAlert=React.createClass({
   render(){
-    console.log(this.props.err)
+    // console.log(this.props.err)
     return (
       <div className="alert alert-danger alert-dismissible" role="alert">
         <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong> 
+        <strong>Error! </strong>{this.props.err}
       </div>
     )        
   }
-})
+})*/

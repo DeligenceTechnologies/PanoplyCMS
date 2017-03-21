@@ -50,7 +50,7 @@ EditHtmlblock = React.createClass({
 
 			Meteor.call('editModule',select,obj,(error,data)=>{
 				if(error){
-					this.setState({errorMsg:error})
+					this.setState({errorMsg:error.reason})
 				}else{
 					this.setState({successMsg:true});
 				}

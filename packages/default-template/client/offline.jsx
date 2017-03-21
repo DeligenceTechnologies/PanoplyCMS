@@ -6,7 +6,7 @@ DefaultOffline = React.createClass({
 		$('body').attr('style', '')
 	},
 	render() {
-		console.log("Offline component rendered...")
+		// console.log("Offline component rendered...")
 		return (
 			<div></div>
 		)

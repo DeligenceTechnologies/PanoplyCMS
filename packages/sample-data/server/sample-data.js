@@ -386,7 +386,7 @@ homepageListModules=[{
 						"showTitle" : false,
 						"allPages" : true,
 						"moduleData" : {
-							"html" : "<div class=\"title\" style=\"box-sizing: border-box; margin: 0px; padding: 10px 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff;\">\n<h3 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 20px; text-rendering: optimizeLegibility;\">Contact Us</h3>\n</div>\n<p >Phone: +91 9910130340 http://www.deligence.com/ Email: sanjay@deligence.com</p>"
+							"html" : "<div class=\"title\" style=\"box-sizing: border-box; margin: 0px; padding: 10px 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff;\">\n<h3 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 20px; text-rendering: optimizeLegibility;\">Contact Us</h3>\n<p>Phone: +91 9910130340 http://www.deligence.com/ Email: sanjay@deligence.com</p>\n</div>"
 						},
 						"menuItems" : [ ],
 						"trash" : false,
@@ -455,7 +455,7 @@ homepageListModules=[{
 		console.log("---------------------------------------------------------");*/
 		if(PanoplyCMSCollections.MenuItems.find().count() == 0){
 			PanoplyCMSCollections.MenuItems.insert(listMenuItems);
-		}	
+		}
 	});
 	_.each(homepageListModules,function(listModules){
 		/*console.log("---------------------------------------------------------");
@@ -465,4 +465,3 @@ homepageListModules=[{
 			PanoplyCMSCollections.Modules.insert(listModules);
 		}
 	});
-

@@ -6,9 +6,13 @@ FrontFooter = data => {
 	return(
 		<div className="footer">
 			<footer className="blog-footer row">
-				{data.module?data.module.map(m => {
-					return <div className={className} key={m.key}>{m}</div>
-				}):''}
+				{
+					data.module?
+						data.module.map(m => {
+							return <div className={className} key={m.key}>{m}</div>
+						})
+					:''
+				}
 			</footer>
 		</div>
 	)

@@ -5,9 +5,7 @@ AdminHeader=React.createClass({
 		Meteor.call('saveSerachKey',key,function(err,data){
 			if(err){
 				console.log(err);
-			}else{
-				
-				
+			}else{				
 			}
 		})
 		ReactDOM.findDOMNode(this.refs.key).value = '';
@@ -104,8 +102,8 @@ Logo=React.createClass({
 	}
 })
 
-LoadingSpinner=React.createClass({
+/*LoadingSpinner=React.createClass({
 	render:function(){
 		return <div>Loading....</div>
 	}
-})
+})*/

@@ -11,5 +11,4 @@ i18n.map('en',{
 	ADMIN_USERS_EDIT_SAVE:'Save',
 	ADMIN_USERS_EDIT_CANCEL:'Cancel',
 	ADMIN_USERS_PROFILE_EDIT:'Edit'
-
 })

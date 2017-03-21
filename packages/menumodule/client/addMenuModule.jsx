@@ -1,6 +1,6 @@
 import React from 'react';
-import  {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
-import  {PanoplyCMSCollections} from 'meteor/deligencetechnologies:panoplycms-collections';
+import {Heading, AlertMessageOfError, AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import {PanoplyCMSCollections} from 'meteor/deligencetechnologies:panoplycms-collections';
 
 AddMenuModule = React.createClass({
 	componentWillUnmount(){
@@ -50,8 +50,8 @@ AddMenuModule = React.createClass({
 			Meteor.call('addModule',obj,(error,data)=>{
 				// console.log(error,data,'error,data')
 				if(error){
-					this.setState({errorMsg:error})
-					console.log(error,'error')
+					this.setState({errorMsg:error.reason})
+					// console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.title).value=''

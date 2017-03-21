@@ -78,9 +78,12 @@ ChangePassword = React.createClass({
 		}else{
 			Accounts.changePassword(oldPassword, newPassword,function(err,data){
 				if(err){
-					that.setState({'errorMsg':err.reason})
+					that.setState({'errorMsg': err.reason})
 				}else{
 					that.setState({msg : true})
+					ReactDOM.findDOMNode(that.refs.oldPassword).value = "";
+					ReactDOM.findDOMNode(that.refs.newPassword).value = "";
+					ReactDOM.findDOMNode(that.refs.confirmPassword).value = "";
 				}
 			});
 		}
@@ -90,11 +93,18 @@ ChangePassword = React.createClass({
 			return <LoadingSpinner />;
 		}
 
+		if(this.state.msg){
+			msg=<AlertMessage data={'changed your password.'} func={this.resetSuccessMsg}/>
+		}else if(this.state.errorMsg){
+			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+		}else{
+			msg='';
+		}
+
 		return(
 			<div className="col-md-10 content">
-				<Heading  data={i18n('ADMIN_USERS_CHANGE_PASSWORD')} />
-				{this.state.msg?<AlertMessage data={'changed your password.'} func={this.resetSuccessMsg} />:'' }
-				{this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
+				<Heading data={i18n('ADMIN_USERS_CHANGE_PASSWORD')} />
+				{msg}
 
 				<form className="form-horizontal" id="changePasswordForm" encType="multipart/form-data" onSubmit={this.updateuser}> 
 					<div className = "form-group">
@@ -120,13 +130,13 @@ ChangePassword = React.createClass({
 						<div className = "col-sm-6">
 							<input type = "submit" className = "btn btn-primary" value='SAVE' />
 							&nbsp;&nbsp;
-							<a className = "btn btn-danger" href={FlowRouter.path('dashboard')} >CANCEL</a>
+							<a className = "btn btn-danger" href={FlowRouter.path('dashboard')}>CANCEL</a>
 						</div>
 					</div> 
 				</form>
 			</div>
-		)  
-  }
+		)
+	}
 })
 
 LoadingSpinner=React.createClass({

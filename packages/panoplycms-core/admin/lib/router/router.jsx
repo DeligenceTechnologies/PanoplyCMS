@@ -17,9 +17,12 @@ _.extend(PanoplyRouter, {
           if(t.active)
             return t
         })
-
-        if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+        // console.log("-------", site.siteOffline)
+        // console.log("======", defaultTemplate.offline)
+        if(site.siteOffline || !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+          // console.log("*********", defaultTemplate.offline)
           let offline = defaultTemplate.offline || 'CoreOfflineComponent';
+          // console.log("==>>", offline)
           PanoplyRouter.route('/', {
             action: (p, q) => {
               ReactLayout.render(eval(offline))

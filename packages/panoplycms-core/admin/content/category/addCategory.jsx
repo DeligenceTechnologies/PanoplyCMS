@@ -1,4 +1,3 @@
-
 AddCategory=React.createClass({
   handleChange: function(event) {
     this.props.onUpdate(event.target.id,event.target.value);

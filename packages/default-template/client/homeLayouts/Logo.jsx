@@ -1,10 +1,10 @@
 Logo = React.createClass({
 	mixins:[ReactMeteorData],
-    getMeteorData(){   
-    return {
-      results: PanoplyCMSCollections.Sites.findOne()
-    };
-  },
+	getMeteorData(){
+		return {
+			results: PanoplyCMSCollections.Sites.findOne()
+		};
+	},
 	onClick(){
 		PanoplyRouter.go('/')
 	},
@@ -24,11 +24,5 @@ Logo = React.createClass({
 				<p className="lead blog-description">{this.props.data?this.props.data.summary:''}</p>
 			</div>
 		);
-	}
-});
-
-LoadingSpinner=React.createClass({
-	render(){
-		return <div>Loading ...</div>
 	}
 });

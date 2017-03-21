@@ -129,7 +129,7 @@ DefaultArticle = React.createClass({
 	render(){
 		if(this.data.article){
 			if(!_.has(this.data.article, "_id")){
-				return <div>Loading...</div>
+				return <LoadingSpinner />;
 			}
 			return <ArticleFullView {...this.data.article} />
 		}else{
@@ -160,7 +160,7 @@ DefaultCategory = React.createClass({
 	render(){
 		if(this.data.articles){
 			if(!this.data.articles.length){
-				return <div>Loading...</div>
+				return <LoadingSpinner />;
 			}
 			return (
 				<div>

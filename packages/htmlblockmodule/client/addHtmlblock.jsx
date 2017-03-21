@@ -41,16 +41,15 @@ AddHtmlblock = React.createClass({
 					html:article
 				}
 			}
-			Meteor.call('addModule',obj,(error,data) => {
+			Meteor.call('addModule', obj, (error,data) => {
 				if(error){
-					this.setState({errorMsg:error})
+					this.setState({errorMsg:error.reason})
 				}else{
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.name).value=''
 					tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
 					$("input").prop("checked", false);
 					$('#position').val('')
-					
 				}
 			})
 		}
@@ -154,7 +153,7 @@ AddHtmlblock = React.createClass({
 								&nbsp;&nbsp;
 								<a className="btn btn-danger" href={FlowRouter.path('modulesManager')}>CANCEL</a>
 							</div>
-						</div> 
+						</div>
 					</form>
 				</div>
 			</div>

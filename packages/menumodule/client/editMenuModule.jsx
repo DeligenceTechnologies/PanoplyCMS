@@ -48,14 +48,13 @@ EditMenuModule = React.createClass({
 				_id:this.props._id
 			}
 
-			Meteor.call('editModule',select,obj,(error,data)=>{
-				console.log(error,data,'error,data')
+			Meteor.call('editModule', select, obj,(error,data)=>{
+				// console.log(error,data,'error,data')
 				if(error){
-					this.setState({errorMsg:error})
-					console.log(error,'error')
+					this.setState({errorMsg:error.reason})
+					// console.log(error,'error')
 				}else{
 					this.setState({successMsg:true});
-					
 				}
 			})
 		}
@@ -105,7 +104,7 @@ EditMenuModule = React.createClass({
 		}
 		return (
 			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-				<Heading  data={'Edit Menu Module'} />
+				<Heading data={'Edit Menu Module'} />
 				{msg}
 				<div className="panel-body">
 					<div id="notification"></div>
@@ -124,7 +123,7 @@ EditMenuModule = React.createClass({
 									<option value="">--select--</option>
 									{
 										this.data.menuResults.map(function(result){
-											return  <option key={result._id} value={result._id}>{result.title}</option>
+											return <option key={result._id} value={result._id}>{result.title}</option>
 										})
 									}
 								</select>
@@ -151,7 +150,7 @@ EditMenuModule = React.createClass({
 									</label>
 								</div>
 							</div>
-						</div>  
+						</div>
 						<div className = "form-group">
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
 							<div className = "col-sm-10">
@@ -161,11 +160,11 @@ EditMenuModule = React.createClass({
 						<MenuItemType value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>
 						<div className="form-group">
 							<div className = "col-sm-offset-2 col-sm-10">
-								<button className="btn btn-primary " >UPDATE</button>
+								<button className="btn btn-primary ">UPDATE</button>
 								&nbsp;&nbsp;
 								<a className="btn btn-danger" href={FlowRouter.path('modulesManager')}>CANCEL</a>
 							</div>
-						</div> 
+						</div>
 					</form>
 				</div>
 			</div>

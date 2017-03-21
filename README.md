@@ -4,8 +4,8 @@
 - Create a meteor application using `meteor create panoplycms`
 - Go inside folder location through terminal or command prompt and
 - Run following commands :-
-	* `meteor add deligencetechnologies:panoplycms-core`, 
-	* `meteor add deligencetechnologies:default-template`,
+	* `meteor add deligencetechnologies:panoplycms-core`
+	* `meteor add deligencetechnologies:default-template`
 	* `meteor add fortawesome:fontawesome`
 	* `meteor add deligencetechnologies:menumodule`
 	* `meteor add deligencetechnologies:htmlblock`
@@ -29,8 +29,8 @@
 - Frontend Link: http://localhost:3000
 - Backend Link: http://localhost:3000/admin
 
-- Initial Login Credentials of Backend :-
-	Email: info@deligence.com
+- Initial Login Credentials of Backend :-<br>
+	Email: info@deligence.com<br>
 	Password: Pass@123
 
 Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
@@ -38,8 +38,8 @@ Now go and create some categories, then articles and finally some menus. Look at
 ## Demo
 - Frontend: http://107.170.113.66:3000/
 - Backend: http://107.170.113.66:3000/admin
-- Backend Login Details :-
-	Email: info@deligence.com
+- Backend Login Details :-<br>
+	Email: info@deligence.com<br>
 	Password: Pass@123
 
 ## Features

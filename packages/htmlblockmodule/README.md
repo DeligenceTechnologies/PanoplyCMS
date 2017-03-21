@@ -1,6 +1,6 @@
 # PanoplyCMS - htmlblock 0.0.1
 
-Htmlblock package for PanoplyCMS. To install Htmlblock Package in your PanoplyCMS use:
+Htmlblock package for PanoplyCMS. To install Htmlblock Package in your PanoplyCMS,Hit the following command :-
 
 `meteor add deligencetechnologies:htmlblock`
 
@@ -8,7 +8,7 @@ This package is having functionality to create custom HTML code from backend to 
 
 One can refer this package to display custom HTML code on frontend for PanoplyCMS.
 
-Guidelines to create new template package:
+# Guidelines to create new template package :-
 
 1. Add package with the following command:
     ex. 	

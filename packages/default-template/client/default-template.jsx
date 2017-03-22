@@ -49,6 +49,7 @@ DefaultTemplate = React.createClass({
 		}
 	},
 	render() {
+		// console.log("------", this.props.sidebar, _.isEmpty(this.props.sidebar))
 		return (
 			<div>
 				<FrontHeader module={this.props.top} />
@@ -59,11 +60,11 @@ DefaultTemplate = React.createClass({
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-sm-8 blog-main">
+						<div className={_.isEmpty(this.props.sidebar) ? "col-sm-12 blog-main" : "col-sm-8 blog-main"}>
 							{this.props.content}
 						</div>
 						{/*<!-- /.blog-main -->*/}
-						<div className="col-sm-3 col-sm-offset-1 blog-sidebar">
+						<div className={_.isEmpty(this.props.sidebar) ? "":"col-sm-3 col-sm-offset-1 blog-sidebar"}>
 							<SidePanel module={this.props.sidebar} />
 						</div>
 						{/*<!-- /.blog-sidebar -->*/}

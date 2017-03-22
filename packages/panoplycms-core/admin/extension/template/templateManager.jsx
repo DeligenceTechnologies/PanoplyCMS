@@ -30,7 +30,7 @@ TemplateManger = React.createClass({
 		if(p && i){
 			url = "/packages/" + p.split(":").join('_') + "/" + i;
 			this.setState({url: url})
-			console.log(url)
+			// console.log(url)
 		}
 		$('#view.modal').modal()
 	},

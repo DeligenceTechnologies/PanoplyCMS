@@ -5,7 +5,7 @@ FrontFooter = data => {
 	}
 	return(
 		<div className="footer">
-			<footer className="blog-footer row">
+			<footer className={_.isEmpty(data.module)?"":"blog-footer row"}>
 				{
 					data.module?
 						data.module.map(m => {

@@ -104,11 +104,19 @@ EditUser = React.createClass({
 		return <LoadingSpinner />;
 		}*/
 		let imgUrl=Images.findOne({_id:Meteor.user().profile.imageId})
+
+		if(this.state.msg){
+			msg=<AlertMessage data={'changed your password.'} func={this.resetSuccessMsg}/>
+		}else if(this.state.errorMsg){
+			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+		}else{
+			msg='';
+		}
+
 		return(
 			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
 				<Heading  data={i18n('ADMIN_USERS_EDIT')} />
-				{this.state.msg?<AlertMessage data={'updated your profile.'} func={this.resetSuccessMsg} />:'' }
-				{this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
+				{msg}
 
 				<form className="form-horizontal" id="userEditForm" encType="multipart/form-data" onSubmit={this.updateuser}>
 					<div className = "form-group">
@@ -145,10 +153,3 @@ EditUser = React.createClass({
 		)
 	}
 })
-
-LoadingSpinner=React.createClass({
-	render:function(){
-		return <div>Loading....</div>
-	}
-})
-

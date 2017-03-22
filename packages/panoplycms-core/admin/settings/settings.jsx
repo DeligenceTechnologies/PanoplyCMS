@@ -18,7 +18,6 @@ SystemLayout = React.createClass({
 	componentDidUpdate(){
 	},
 	componentDidMount(){
-		console.log("componentDidMount called...")
 		$('.options').toggleClass('active');
 		$('.option').button();
 	},

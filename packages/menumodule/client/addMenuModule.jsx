@@ -189,11 +189,11 @@ MenuModuleFront = React.createClass({
 					var child = getChild(elem1._id);
 					if(elem1.parentId==''){
 						let obj = { 
-						_id: elem1._id, 
-						title: elem1.title,
-						alias: elem1.alias,
-						desc:elem1.desc, 
-						child: child 
+							_id: elem1._id, 
+							title: elem1.title,
+							alias: elem1.alias,
+							desc:elem1.desc, 
+							child: child 
 						}
 						if(elem1.MenuItemType == 'url') obj.url = elem1.externalUrl
 						element.push(obj);
@@ -214,7 +214,7 @@ MenuModuleFront = React.createClass({
 							mainParentId:elem2.mainParentId, 
 							alias: elem2.alias, 
 							desc:elem2.desc
-						} 
+						}
 						obj.child = getElements(elem2._id)
 						if(elem2.MenuItemType == 'url') obj.url = elem2.externalUrl
 						child.push(obj);
@@ -239,14 +239,14 @@ MenuModuleFront = React.createClass({
 		return (
 			<ul>
 				{
-					items.map(i => {
-						if(i.url && !/^(f|ht)tps?:\/\//i.test(i.url)) i.url = '/'+i.url;
+					items.map(item => {
+						if(item.url && !/^(f|ht)tps?:\/\//i.test(item.url)) item.url = '/'+item.url;
 						return (
-							<li key={i._id}>
+							<li key={item._id}>
 								{
-									i.url?<a href={i.url} >{i.title}</a> : <a onClick={()=>{ PanoplyRouter.go('/'+ i.alias) }}>{i.title}</a>
+									item.url?<a href={item.url}>{item.title}</a> : <a onClick={()=>{ PanoplyRouter.go('/'+ item.alias) }}>{item.title}</a>
 								}
-								{i.child.length?this.printMenu(i.child):''}
+								{item.child.length?this.printMenu(item.child):''}
 							</li>
 						)
 					})

@@ -19,7 +19,7 @@ _.extend(PanoplyRouter, {
         })
         // console.log("-------", site.siteOffline)
         // console.log("======", defaultTemplate.offline)
-        if(site.siteOffline || !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+        if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
           // console.log("*********", defaultTemplate.offline)
           let offline = defaultTemplate.offline || 'CoreOfflineComponent';
           // console.log("==>>", offline)

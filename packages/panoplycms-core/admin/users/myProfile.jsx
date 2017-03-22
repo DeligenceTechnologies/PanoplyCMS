@@ -56,23 +56,3 @@ UserList = React.createClass({
 		)
 	}
 })
-
-LoadingSpinner=React.createClass({
-	render:function(){
-		return <div>Loading....</div>
-	}
-})
-
-/*UserAlertMsg=React.createClass({
-	render:function(){
-		return (
-			<div className="successMsg alert alert-success">
-				<button type="button" onClick={this.props.data} className="close"  aria-label="Close">
-					<span aria-hidden="true"  >&times;</span>
-				</button>
-				<strong>Successfully! </strong>
-				Updated profile.
-			</div>
-		);
-	}
-})*/

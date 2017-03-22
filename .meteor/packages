@@ -20,7 +20,6 @@ kadira:react-layout
 fortawesome:fontawesome
 twbs:bootstrap
 
-deligencetechnologies:panoplycms-core
 # teamon:tinymce
 # accounts-password
 # cfs:standard-packages
@@ -37,7 +36,9 @@ deligencetechnologies:panoplycms-core
 # react-meteor-data
 # aldeed:simple-schema
 
+deligencetechnologies:panoplycms-core
 deligencetechnologies:default-template
 deligencetechnologies:panoplycms-tag
 deligencetechnologies:menumodule
 deligencetechnologies:htmlblock
+deligencetechnologies:sample-data

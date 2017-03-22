@@ -13,7 +13,7 @@ EditMenuItem=React.createClass({
     };
   },
   
-   getInitialState() {
+  getInitialState() {
     return {
       itemType:'',
       MenuItemTypeValue:'',
@@ -21,16 +21,12 @@ EditMenuItem=React.createClass({
       msg:false,
       valid:'',
       errorMsg:false,
-   
     }
   },
   
   selectMenuItemType(event){
-    
     event.preventDefault();
-
     this.setState({itemType : ReactDOM.findDOMNode(this.refs.select).value.trim()})
-
   },
   getMenuItemTypeValue(val){
     this.setState({MenuItemTypeValue :val})    
@@ -87,13 +83,12 @@ EditMenuItem=React.createClass({
       } else {
         var element = new Array();
         elements.forEach(function (elem1) {
-         if(that.state.MenuValue==elem1.mainParentId)
-          {
-                var child = getChild(elem1._id);
-           if(elem1.parentId==''){
-                  element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, child: child });
-           }
-         }
+          if(that.state.MenuValue==elem1.mainParentId){
+            var child = getChild(elem1._id);
+            if(elem1.parentId==''){
+              element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, child: child });
+            }
+          }
         });
         return element;
       }   
@@ -117,16 +112,14 @@ EditMenuItem=React.createClass({
     document.title = "Edit Menu"
   },
   componentWillUnmount: function() {
-    
   },
   componentDidUpdate: function() {
-
   },
-   getMenuValue(val){
+  getMenuValue(val){
     this.setState({MenuValue :val})
-   },
+  },
  
-   submitData(event){
+  submitData(event){
     event.preventDefault();
     that=this;
     var insert = {
@@ -140,23 +133,21 @@ EditMenuItem=React.createClass({
     }
     let paramId=this.data.menuItemData.mainParentId;
     Meteor.call("updateMenuItem",this.props._id,insert,function(err,data){
-        if(err)
-        {    
-             Session.set("errorMsg",err)
-            console.log(err)
-          }
-        else{    
-              Session.set("msg",true)
+      if(err){    
+        Session.set("errorMsg", err.reason)
+        // console.log(err)
+      }else{    
+        Session.set("msg",true)
         //  this.setState({MenuValue :this.state.MenuValue})
-           //FlowRouter.go('listMenuItems',{_id:paramId})
-            }
+        //FlowRouter.go('listMenuItems',{_id:paramId})
+      }
     });
- },
+  },
   resetSuccessMsg(){
-      this.setState({'msg':false})
-      this.setState({'errorMsg':false})
-      Session.set("msg",false)
-      Session.set("errorMsg",false)
+    this.setState({'msg':false})
+    this.setState({'errorMsg':false})
+    Session.set("msg",false)
+    Session.set("errorMsg",false)
   },
   render(){   
     var msg='';
@@ -166,9 +157,6 @@ EditMenuItem=React.createClass({
       msg=<AlertMessageOfError data={Session.get("errorMsg")} func={this.resetSuccessMsg}/>
     }else{
       msg='';
-    }
-     if (this.data.pageLoading) {
-      return <LoadingSpinner />;
     }
 
     if (this.data.pageLoading) {
@@ -183,9 +171,9 @@ EditMenuItem=React.createClass({
     return (
       <div className="col-md-10 content"  onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM')} />
-             {msg}
+        {msg}
         <div className="panel-body">
-        <div id="notification"></div>
+          <div id="notification"></div>
           <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
             <div className = "form-group">
               <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
@@ -198,123 +186,118 @@ EditMenuItem=React.createClass({
               <div className = "col-sm-10" id="token" > 
                 <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuItemData.desc} id="desc" />
               </div>
-           </div>
+            </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
               <SelectMenu  func={this.getMenuValue} nameId={this.data.menuItemData.mainParentId} />    
-           </div>
-           <div className = "form-group">
+            </div>
+            <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
               <div className = "col-sm-10"  >
-                  <select className = "form-control" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
-                    <option className="form-control" value="" >Select </option>
-                    <option className="form-control"  value="category"  >Category</option>
-                    <option className="form-control" value="article" >Article</option>
+                <select className = "form-control" defaultValue={this.data.menuItemData.MenuItemType} ref="select" onChange={this.selectMenuItemType}> 
+                  <option className="form-control" value="" >Select </option>
+                  <option className="form-control"  value="category">Category</option>
+                  <option className="form-control" value="article">Article</option>
                   {/*To do - Add external link functionality */}
                     {/*<option className="form-control" value="url" >External Url</option>*/}
-                  </select>
+                </select>
               </div>
-           </div>
-           
-           <div className = "form-group">
-              <label htmlFor = "lastname" className = "col-sm-2 control-label">{(this.state.itemType? this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1):this.data.menuItemData.MenuItemType.charAt(0).toUpperCase() + this.data.menuItemData.MenuItemType.slice(1))}</label>
-              {itemType=='category'?<SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:itemType=='article'?<SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />:''}
-
-           </div>
+            </div>
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">
+                {
+                  (
+                    this.state.itemType?
+                      this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1)
+                    :
+                      this.data.menuItemData.MenuItemType.charAt(0).toUpperCase() + this.data.menuItemData.MenuItemType.slice(1)
+                  )
+                }
+              </label>
+              {
+                itemType=='category'?
+                  <SelectCategory typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />
+                :
+                  itemType=='article'?
+                    <SelectArticle typeId={this.data.menuItemData.MenuItemTypeId} func={this.getMenuItemTypeValue} />
+                :
+                ''
+              }
+            </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
               <div className = "col-sm-10"  >
                 <select className="form-control" ref="selectParentMenu"  dangerouslySetInnerHTML={a}></select>
               </div>
-           </div>
-          <div className="form-group">
-            <div className = "col-sm-offset-2 col-sm-10">
-              <button className="btn btn-primary " >UPDATE</button>
-              &nbsp;&nbsp;
-               <a className="btn btn-danger "  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId
-    })}>CANCEL</a>
             </div>
-          </div>  
-        </form>
+            <div className="form-group">
+              <div className = "col-sm-offset-2 col-sm-10">
+                <button className="btn btn-primary " >UPDATE</button>
+                &nbsp;&nbsp;
+               <a className="btn btn-danger "  href={FlowRouter.path('listMenuItems',{_id:this.data.menuItemData.mainParentId})}>CANCEL</a>
+              </div>
+            </div>  
+          </form>
+        </div>
       </div>
-  </div>
-      )
-    }
-
-})
-
-LoadingSpinner=React.createClass({
-  render:function(){
-    return <div>Loading....</div>
+    )
   }
 })
+
 
 SelectCategory = React.createClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
     var handle1 = Meteor.subscribe('Categories')
-    
     return {
       dataList: PanoplyCMSCollections.Categories.find({trash:false}).fetch()
-     
     };
   },
-  getInitialState: function() {
-   
+  getInitialState: function() {   
     return {
-      selectValue:''
-     
+      selectValue:''     
     }
   },
   componentDidMount: function() {
-
-     this.setState({selectValue :this.props.typeId})
+    this.setState({selectValue :this.props.typeId})
   },
   setValue(event){
     event.preventDefault();
-     this.setState({selectValue : ReactDOM.findDOMNode(this.refs.select).value.trim()})
+    this.setState({selectValue : ReactDOM.findDOMNode(this.refs.select).value.trim()})
     this.props.func(this.refs.select.value.trim());
   },
-
   render: function() {
-    
-   
     return (
-              <div className = "col-sm-10"  >
-                  <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue} > 
-                   <option className="form-control" value="" >Select </option>
-                   {this.data.dataList.map(function(result) {
-                         return  <option key={result._id} value={result._id}> {result.title} </option>;
-                      })} 
-                 
-                  </select>
-              </div>
-                )
-    
+      <div className = "col-sm-10"  >
+        <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue} > 
+          <option className="form-control" value="" >Select </option>
+          {
+            this.data.dataList.map(function(result) {
+              return <option key={result._id} value={result._id}> {result.title} </option>;
+            })
+          } 
+        </select>
+      </div>
+    )
   }
 });
- SelectArticle = React.createClass({
+
+SelectArticle = React.createClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
-    var handle1 = Meteor.subscribe('articlesFind')
-   
+    var handle1 = Meteor.subscribe('articlesFind')   
     return {
-      dataList: PanoplyCMSCollections.Articles.find({trash:false}).fetch()
-      
+      dataList: PanoplyCMSCollections.Articles.find({trash:false}).fetch()      
     };
   },
-  getInitialState: function() {
-   
+  getInitialState: function() {   
     return {
-      selectValue:''
-     
+      selectValue:''     
     }
   },
   componentDidMount: function() {
-
-     this.setState({selectValue :this.props.typeId})
+    this.setState({selectValue :this.props.typeId})
   },
-
   setValue(event){
     event.preventDefault();
     this.setState({selectValue : ReactDOM.findDOMNode(this.refs.select).value.trim()})
@@ -322,15 +305,17 @@ SelectCategory = React.createClass({
   },
   render: function() {
     return (
-              <div className = "col-sm-10"  >
-                  <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue}> 
-                      <option className="form-control" value="" >Select </option>
-                      {this.data.dataList.map(function(result) {
-                         return  <option key={result._id} value={result._id}> {result.title} </option>;
-                      })}
-                  </select>
-              </div>
-            )    
+      <div className = "col-sm-10"  >
+        <select className = "form-control" ref="select" value={this.state.selectValue} onChange={this.setValue}> 
+          <option className="form-control" value="" >Select </option>
+          {
+            this.data.dataList.map(function(result) {
+              return <option key={result._id} value={result._id}> {result.title} </option>;
+            })
+          }
+        </select>
+      </div>
+    )    
   }
 });
 
@@ -343,24 +328,21 @@ SelectMenu = React.createClass({
     };
   },
   setValue(event){
-        event.preventDefault();
-        this.props.func(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim());
+    event.preventDefault();
+    this.props.func(ReactDOM.findDOMNode(this.refs.selectMenu).value.trim());
   },
   render: function() {
     that=this
     return (
-            <div className = "col-sm-10"  >
-                <select className = "form-control" ref="selectMenu" onChange={this.setValue} defaultValue={that.props.nameId} > 
-                    <option className="form-control" value="" >Select</option>
-                    {this.data.dataList.map(function(result) {
-                         
-                          return <option key={result._id} value={result._id} > {result.title} </option>;
-                    })}
-                </select>
-            </div>
+      <div className = "col-sm-10"  >
+        <select className = "form-control" ref="selectMenu" onChange={this.setValue} defaultValue={that.props.nameId}> <option className="form-control" value="" >Select</option>
+          {
+            this.data.dataList.map(function(result) {
+              return <option key={result._id} value={result._id} > {result.title} </option>;
+            })
+          }
+        </select>
+      </div>
     )
-    
   }
 });
-
-

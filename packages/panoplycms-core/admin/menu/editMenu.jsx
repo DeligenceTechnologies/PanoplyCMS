@@ -31,23 +31,21 @@ EditMenu=React.createClass({
     
     }
     Meteor.call("updateMenu",this.props._id,insert,function(err,data){
-        if(err){
-          that.setState({errorMsg : err});
-          console.log(err);
-        }
-        else {
-               that.setState({msg : true});
-              }
-            //FlowRouter.go('manageMenu')
+      if(err){
+        that.setState({errorMsg : err});
+        console.log(err);
+      }else {
+        that.setState({msg : true});
+      }
+      //FlowRouter.go('manageMenu')
     });
-     
   },
    resetSuccessMsg(){
     this.setState({'msg':false})
     this.setState({'errorMsg':false})
   },
   render(){
-      var msg='';
+    var msg='';
     if(this.state.msg){
       msg=<AlertMessage data={'updated menu.'} func={this.resetSuccessMsg}/>
     }else if(this.state.errorMsg){
@@ -64,7 +62,7 @@ EditMenu=React.createClass({
         <Heading  data={i18n('ADMIN_MENU_EDITMENU')} />
         {msg}
         <div className="panel-body">
-        <div id="notification"></div>
+          <div id="notification"></div>
           <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
             <div className = "form-group">
               <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</label>
@@ -77,20 +75,19 @@ EditMenu=React.createClass({
               <div className = "col-sm-10" id="token" > 
                 <input type="text" ref="desc" className="form-control" defaultValue={this.data.menuData.desc} id="desc" />
               </div>
-           </div>
-          <div className="form-group">
-            <div className = "col-sm-offset-2 col-sm-10">
-              <button className="btn btn-primary " >UPDATE</button>
-              &nbsp;&nbsp;
-              <a className="btn btn-danger "  href={FlowRouter.path('manageMenu')}>CANCEL</a>
             </div>
-          </div> 
-        </form>
+            <div className="form-group">
+              <div className = "col-sm-offset-2 col-sm-10">
+                <button className="btn btn-primary " >UPDATE</button>
+                &nbsp;&nbsp;
+                <a className="btn btn-danger "  href={FlowRouter.path('manageMenu')}>CANCEL</a>
+              </div>
+            </div> 
+          </form>
+        </div>
       </div>
-  </div>
     )
   }
-
 })
 
 LoadingSpinner=React.createClass({

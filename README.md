@@ -36,8 +36,8 @@
 Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
 
 ## Demo
-- Frontend: http://107.170.113.66:3000/
-- Backend: http://107.170.113.66:3000/admin
+- Frontend: http://45.55.157.253/
+- Backend: http://45.55.157.253/admin
 - Backend Login Details :-<br>
 	Email: info@deligence.com<br>
 	Password: Pass@123

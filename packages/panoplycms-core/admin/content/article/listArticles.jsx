@@ -13,6 +13,9 @@ ListArticles = React.createClass({
 	},
 	componentDidMount(){
 	},
+	componentDidUpdate(){
+		$('[data-toggle="tooltip"]').tooltip();
+	},
 	showArticles(){
 		if($('#display').val()=='trash'){
 			this.setState({trashListShow:true})
@@ -31,9 +34,9 @@ ListArticles = React.createClass({
 		if (this.data.pageLoading) {
 			return <LoadingSpinner />;
 		}
-		if((this.data.results).length==0  && this.state.trashListShow==false){
+		if(this.data.results.length==0  && this.state.trashListShow==false){
 			nodata=<NotFoundComp/>
-		}else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
+		}else if(this.data.resultOfTrash.length==0 && this.state.trashListShow==true){
 			nodata=<NotFoundComp/>
 		}else{
 			nodata='';
@@ -55,26 +58,30 @@ ListArticles = React.createClass({
 				</div>
 				<div className="panel-body">
 					<div className="table-responsive" id="non-editable">
-						<table className="table table-bordered">
-							<thead>
-								<tr>
-									<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</th>
-									<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CATEGORY')}</th>
-									<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
-								</tr>
-							</thead>
-							<tbody>
-								{
-									this.state.trashListShow?
-										this.data.resultOfTrash.map(function(result) {
-											return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-										})
-									:this.data.results.map(function(result) {
-										return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-									})
-								} 
-							</tbody>
-						</table>
+						{
+							nodata == '' ?
+								<table className="table table-bordered">
+									<thead>
+										<tr>
+											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</th>
+											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CATEGORY')}</th>
+											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
+										</tr>
+									</thead>
+									<tbody>
+										{
+											this.state.trashListShow ?
+												this.data.resultOfTrash.map(function(result) {
+													return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
+												})
+											:this.data.results.map(function(result) {
+												return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
+											})
+										}
+									</tbody>
+								</table>
+							:''
+						}
 					</div>
 					{nodata}
 				</div>
@@ -108,9 +115,8 @@ var Trvalue = React.createClass({
 			results: PanoplyCMSCollections.Categories.findOne({_id:this.props.data.category})
 		}
 	},
-
-	render: function() {
-		var c=0;
+	render:function() {
+		var c = 0;
 
 		return (
 			<tr>
@@ -130,12 +136,12 @@ var Trvalue = React.createClass({
 				<td>
 					<div  id="delete_article" onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
 						{
-							this.props.stateVal ? <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
+							this.props.stateVal ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o"  title="Trash" ></i> 
 						}
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					{
-					this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+					this.props.stateVal? <i style={{cursor:'pointer'}} data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}> <i style={{color:"#142849",cursor:'pointer'}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
 					}
 				</td>
 			</tr>
@@ -161,7 +167,7 @@ ModalOfArticle=React.createClass({
 					<div className="modal-content">
 						<div className="modal-body">
 							<button type="button" className="close" data-dismiss="modal">&times;</button>
-							<h4 className="modal-title">Do you really want to remove?</h4>
+							<h4 className="modal-title">Do you really want to remove ?</h4>
 						</div>
 						<div className="modal-footer">
 							<button type="button" className="btn btn-primary" onClick={this.deleteArticle} data-dismiss="modal">YES</button>
@@ -191,7 +197,7 @@ RestoreModalOfArticle=React.createClass({
 					<div className="modal-content">
 						<div className="modal-body">
 							<button type="button" className="close" data-dismiss="modal">&times;</button>
-							<h4 className="modal-title">Do you really want to restore?</h4>
+							<h4 className="modal-title">Do you really want to restore ?</h4>
 						</div>
 						<div className="modal-footer">
 							<button type="button" className="btn btn-primary" onClick={this.restoreArticle} data-dismiss="modal">YES</button>

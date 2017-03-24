@@ -56,26 +56,30 @@ ListCategories = React.createClass({
             </div>
           </div>
           <div className="panel-body"> 
-            <div className="table-responsive" >
-              <table className="table  table-bordered">
-                <thead>
-                  <tr>
-                    <th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    this.state.trashListShow?
-                      this.data.resultOfTrash.map(function(cat){
-                        return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                      })
-                    :this.data.Categories.map(function(cat){
-                        return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                      })
-                  }   
-                </tbody>
-              </table>
+            <div className="table-responsive">
+              {
+                nodata == '' ?
+                  <table className="table  table-bordered">
+                    <thead>
+                      <tr>
+                        <th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        this.state.trashListShow?
+                          this.data.resultOfTrash.map(function(cat){
+                            return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
+                          })
+                        :this.data.Categories.map(function(cat){
+                            return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
+                          })
+                      }
+                    </tbody>
+                  </table>
+                :''
+              }
               {nodata}
             </div>
           </div>
@@ -123,19 +127,19 @@ var CategoriesItem = React.createClass({
               {this.props.data.title}
             </large>
             <small> 
-              (<em>Alias:{this.props.data.alias}</em> )
+              (<em>Alias:{this.props.data.alias}</em>)
             </small> 
           </a>
         </td>
         <td>
           <div className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
             {
-              this.props.stateVal ? <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
+              this.props.stateVal ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o" title="Trash"></i>
             }
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {
-            this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+            this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" style={{cursor:'pointer'}}></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i style={{color:"#142849", cursor:'pointer'}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
           }
         </td>
       </tr>    
@@ -218,7 +222,7 @@ ArticlesExistPopup = (m) => {
         <div className="modal-content">
           <div className="modal-body">
             <button type="button" className="close" data-dismiss="modal">&times;</button>
-            <h4 className="modal-title">You can not remove this category because articles exist of that category.Please remove the article first after you can delete category.</h4>
+            <h4 className="modal-title">You can not remove this category because articles exist of that category. Please remove the article first after you can delete category.</h4>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-danger" data-dismiss="modal">CANCEL</button>

@@ -134,7 +134,11 @@ DefaultArticle = React.createClass({
 			}
 			return <ArticleFullView {...this.data.article} />
 		}else{
-			return <div className="col-md-3 col-md-offset-5">Article not found.</div>
+			return (
+				<div className="col-md-3 col-md-offset-5">
+					<div className="alert alert-danger"><strong>Oops!</strong> Article not found.</div>
+				</div>
+			);
 		}
 	}
 })
@@ -173,7 +177,11 @@ DefaultCategory = React.createClass({
 				</div>
 			)
 		}else{
-			return <div className="col-md-3 col-md-offset-5">Article not found.</div>
+			return (
+				<div className="col-md-3 col-md-offset-5">
+					<div className="alert alert-danger"><strong>Oops!</strong> Article not found.</div>
+				</div>
+			);
 		}
 	}
 })

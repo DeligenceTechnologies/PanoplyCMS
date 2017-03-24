@@ -86,7 +86,7 @@ ListMenuItems = React.createClass({
       <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
         <div className="panel-heading"> 
-          <a  className="btn btn-success btn-ico" onClick={this.storeMenuid} ><i className="fa fa-plus-circle fa-lg "></i>&nbsp;
+          <a className="btn btn-success btn-ico" onClick={this.storeMenuid}><i className="fa fa-plus-circle fa-lg "></i>&nbsp;
             {i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}
           </a>
           <div className="pull-right" >
@@ -109,27 +109,31 @@ ListMenuItems = React.createClass({
         </div>
        
         <div className="table-responsive" id="non-editable">
-          <table className="table table-bordered"  >
-            <thead>
-              <tr>
-                <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
-                <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
-                <th>{/*i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')*/}</th>
-                <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                m.map(function (menu) {
-                  return  <Trvalue key={menu._id} data={menu} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />         
-                })
-              }
-            </tbody>          
-          </table>
+          {
+            nodata == '' ?
+              <table className="table table-bordered"  >
+                <thead>
+                  <tr>
+                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
+                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
+                    <th>{/*i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')*/}</th>
+                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    m.map(function (menu) {
+                      return  <Trvalue key={menu._id} data={menu} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />
+                    })
+                  }
+                </tbody>
+              </table>
+            :''
+          }
           {nodata}
         </div>
-        <DefaultItemParentPopup /> 
-      </div>    
+        <DefaultItemParentPopup />
+      </div>
     );
   }
 });
@@ -149,7 +153,7 @@ var Trvalue = React.createClass({
       if(err){
         console.log(err)
       }else{    
-             // console.log(data,"Response")
+        // console.log(data,"Response")
       }
     });
   },
@@ -181,20 +185,20 @@ var Trvalue = React.createClass({
     var c=0;
     return (
       <tr>
-        <td id="edit_menuItem" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#" ><large style={anchorStyle}  > {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
-        <td style={{width:"50%"}} >{this.props.data.desc}</td>
+        <td id="edit_menuItem" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="#"><large style={anchorStyle}> {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
+        <td style={{width:"50%"}}>{this.props.data.desc}</td>
         <td style={{width:"10%"}}>
           <span style={style} className={classname} onClick={this.changeDefaultValue}></span>
         </td>
         <td style={{width:"10%"}}>
-          <div  id="delete_menuItem" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
+          <div id="delete_menuItem" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
             {
-              Session.get("trashListShow") ? <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
+              Session.get("trashListShow") ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o" title="Trash"></i>
             }
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {
-            Session.get("trashListShow")? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editMenuItem',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+            Session.get("trashListShow")? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" style={{cursor:'pointer'}}></i> : <a href={FlowRouter.path('editMenuItem',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" style={{cursor:'pointer'}}></i> </a> 
           }
           <Modal key={this.props.data._id} data={this.props.data} stateVal={Session.get("trashListShow")} homepage={this.data.defaultMenuItem1? this.data.defaultMenuItem1._id: ""} />
           <RestoreModal key={this.props.data._id+"restore"} data={this.props.data}/>
@@ -235,7 +239,7 @@ Modal=React.createClass({
                     <h4 className="modal-title">Default Item can not be deleted</h4>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-danger" data-dismiss="modal">Ok</button>
+                    <button type="button" className="btn btn-primary" data-dismiss="modal">Ok</button>
                   </div>
                 </div> 
               :
@@ -294,7 +298,7 @@ DefaultItemParentPopup = (m) => {
         <div className="modal-content">
           <div className="modal-body">
             <button type="button" className="close" data-dismiss="modal">&times;</button>
-            <h4 className="modal-title">You can not delete default menu Items parent.Please change the default menu Item first after you can delete menu Item.</h4>
+            <h4 className="modal-title">You can not delete default menu Items parent. Please change the default menu Item first after you can delete this menu Item.</h4>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-danger" data-dismiss="modal">Ok</button>
@@ -302,5 +306,5 @@ DefaultItemParentPopup = (m) => {
         </div>
       </div>
     </div>
-  )     
+  )
 }

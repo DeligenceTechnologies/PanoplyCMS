@@ -659,6 +659,7 @@ ul.listModules > li {
 	font-size: 18px;
 	padding: 50px 10px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .dt_box i {

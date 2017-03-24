@@ -22,7 +22,7 @@ _.extend(PanoplyRouter, {
         if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
           // console.log("*********", defaultTemplate.offline)
           let offline = defaultTemplate.offline || 'CoreOfflineComponent';
-          // console.log("==>>", offline)
+          // console.log("==>>", offline)          
           PanoplyRouter.route('/', {
             action: (p, q) => {
               ReactLayout.render(eval(offline))
@@ -215,7 +215,7 @@ _.extend(PanoplyRouter, {
         
         // console.log('---------------------')
         // console.log(PanoplyRouter)
-        try{
+        try {
           PanoplyRouter.initialize();
         } catch(err) {
           PanoplyRouter.reload();

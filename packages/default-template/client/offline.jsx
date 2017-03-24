@@ -1,12 +1,23 @@
 DefaultOffline = React.createClass({
+	/*mixins: [ReactMeteorData],
+	getMeteorData() {
+		return {
+			siteData: PanoplyCMSCollections.Sites.findOne(),
+		};
+	},*/
 	componentDidMount(){
-		$('body').attr('style', 'background: rgba(0, 0, 0, 0) url("/packages/deligencetechnologies_default-template/public/offline.png") no-repeat fixed center center / cover ;')
+		/*console.log("------------", this.data.siteData)
+		if(this.data.siteData.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+			console.log("Offline component rendered...");*/
+			$('body').attr('style', 'background: rgba(0, 0, 0, 0) url("/packages/deligencetechnologies_default-template/public/offline.png") no-repeat fixed center center / cover ;')
+		/*}else{
+			console.log("Site not offline")
+		}*/
 	},
 	componentWillMount(){
 		$('body').attr('style', '')
 	},
 	render() {
-		// console.log("Offline component rendered...")
 		return (
 			<div></div>
 		)

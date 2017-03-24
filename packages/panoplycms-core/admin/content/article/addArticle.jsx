@@ -49,10 +49,22 @@ AddArticle=React.createClass({
 		tinymce.remove();
 		tinymce.init({
 			selector: 'textarea',
+			resize: 'true',
 			skin_url: '/packages/teamon_tinymce/skins/lightgray',
-			toolbar: "image",
-			plugins: "image imagetools",
-			imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+			toolbar:'image styleselect codesample forecolor backcolor ltr rtl fullscreen insertdatetime media pagebreak searchreplace table visualblocks code',
+			plugins: "autosave advlist autolink link image imagetools lists charmap print preview wordcount codesample textcolor colorpicker contextmenu directionality fullscreen hr insertdatetime legacyoutput media pagebreak searchreplace table visualblocks code",
+			contextmenu: "link image inserttable | cell row column deletetable",
+			media_live_embeds: true,
+			pagebreak_split_block: true,
+			visualblocks_default_state: true,
+			browser_spellcheck: true,
+			imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
+			audio_template_callback: function(data) {
+				return '<audio controls>' + '\n<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + '</audio>';
+			},
+			video_template_callback: function(data) {
+				return '<video width="' + data.width + '" height="' + data.height + '"' + (data.poster ? ' poster="' + data.poster + '"' : '') + ' controls="controls">\n' + '<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + (data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') + '</video>';
+			}
 		});
 	},
 	componentWillUnmount: function() {

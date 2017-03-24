@@ -129,15 +129,16 @@ EditMenuModule = React.createClass({
 								</select>
 							</div>
 						</div>
-						{/*<div className = "form-group">
-					<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
-					<div className = "col-sm-10">
-					<div className="summernote">
-
-					<textarea ref="editor1" name="editor" id="article" />
-					</div>
-					</div>
-					</div>*/}
+						{/*
+							<div className = "form-group">
+								<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
+								<div className = "col-sm-10">
+									<div className="summernote">
+										<textarea ref="editor1" name="editor" id="article" />
+									</div>
+								</div>
+							</div>
+						*/}
 					<div className="form-group">
 						<label className="col-sm-2 control-label">Show Title</label>
 							<div className="col-sm-10">

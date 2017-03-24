@@ -23,21 +23,21 @@ AddTag=React.createClass({
     this.setState({'errorMsg':false})
   },
   submitData(event){
-    event.preventDefault();    
+    event.preventDefault();
     var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
     var desc=ReactDOM.findDOMNode(this.refs.desc).value.trim();
     var metaKeyword=ReactDOM.findDOMNode(this.refs.metaKeyword).value.trim();
     var metaDesc=ReactDOM.findDOMNode(this.refs.metaDesc).value.trim();
     //console.log(title,alias)
-    Meteor.call('addTag',title,desc,metaKeyword,metaDesc,(err,data)=>{     
+    Meteor.call('addTag',title,desc,metaKeyword,metaDesc,(err,data)=>{
       if(err){
         this.setState({errorMsg :'Internal server error or duplicatie tag can not insert.'})
-      }else{       
+      }else{
         this.setState({msg : true});
         ReactDOM.findDOMNode(this.refs.title).value='';
         ReactDOM.findDOMNode(this.refs.desc).value='';
         ReactDOM.findDOMNode(this.refs.metaKeyword).value='';
-        ReactDOM.findDOMNode(this.refs.metaDesc).value='';              
+        ReactDOM.findDOMNode(this.refs.metaDesc).value='';
       }
     });
   },
@@ -71,7 +71,7 @@ AddTag=React.createClass({
             <div className="form-group">
               <label className="col-sm-2 control-label">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS_FORM_METAKEYWORD')}</label>
               <div className="col-sm-10">
-                <input type = "text" ref="metaKeyword" id="metaKeyword"  className="form-control"   placeholder = "Enter title"  />
+                <input type = "text" ref="metaKeyword" id="metaKeyword"  className="form-control"   placeholder = "Enter title" />
               </div>
             </div>
             <div className="form-group">

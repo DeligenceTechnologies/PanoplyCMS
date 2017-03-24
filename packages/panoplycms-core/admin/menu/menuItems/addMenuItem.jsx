@@ -173,7 +173,7 @@ AddMenuItem=React.createClass({
     }else{
       msg='';
     }
-     if (this.data.pageLoading) {
+    if (this.data.pageLoading) {
       return <LoadingSpinner />;
     }
 

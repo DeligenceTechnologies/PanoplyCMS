@@ -49,27 +49,31 @@ ListMenus = React.createClass({
         </div>
         <div className="panel-body">
           <div className="table-responsive" id="non-editable">
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
-                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
-                  <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.trashListShow ?
-                    this.data.resultOfTrash.map(function(result) {
-                      return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-                    })
-                  :
-                  this.data.results.map(function(result) {
-                    return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-                  })
-                } 
-              </tbody>
-            </table>
+            {
+              nodata == '' ?
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
+                      <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
+                      <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      this.state.trashListShow ?
+                        this.data.resultOfTrash.map(function(result) {
+                          return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
+                        })
+                      :
+                      this.data.results.map(function(result) {
+                        return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
+                      })
+                    } 
+                  </tbody>
+                </table>
+              :''
+            }
             {nodata}
           </div>
         </div>
@@ -102,21 +106,21 @@ var Trvalue = React.createClass({
     var c=0;
     return (
       <tr>
-        <td id="edit_menu"  ><a onClick={this.storeMenuid} ><large> {this.props.data.title}</large><small> (<em>{this.props.data.alias}</em>) </small> </a></td>
+        <td id="edit_menu"><a onClick={this.storeMenuid} ><large> {this.props.data.title}</large><small> (<em>{this.props.data.alias}</em>) </small> </a></td>
         <td>{this.props.data.desc}</td>  
         <td>
           <div  id="delete_article"  className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
             {
               this.props.stateVal ? 
-                <i style={{color:'red'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> 
-              : <i style={{color:"red"}} className="fa fa-trash-o"  title="Trash" ></i> 
+                <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> 
+              : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o" title="Trash"></i> 
             }
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {
             this.props.stateVal? 
-              <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreMenu} title="Restore" ></i> 
-            : <a href={FlowRouter.path('editMenu',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
+              <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreMenu} title="Restore" style={{cursor:'pointer'}}></i> 
+            : <a href={FlowRouter.path('editMenu',{_id:this.props.data._id})}> <i style={{color:"#142849",cursor:'pointer'}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit"></i></a> 
           }
         </td>
       </tr>

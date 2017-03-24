@@ -14,7 +14,7 @@ EditArticle=React.createClass({
 		}
 	},
 	getInitialState(){
-		return{
+		return {
 			successMsg:false,
 			errorMsg:false,
 			valid:'',
@@ -34,10 +34,40 @@ EditArticle=React.createClass({
 		// console.log(this.state.tagTitle,'tagTitle---')
 		$('#tokenfield').tokenfield('destroy');
 		document.title = "Edit Article";
+		
 		tinymce.init({
 			selector: 'textarea',
+			resize: 'true',
 			skin_url: '/packages/teamon_tinymce/skins/lightgray',
+			toolbar:'image styleselect codesample forecolor backcolor ltr rtl fullscreen insertdatetime media pagebreak searchreplace table visualblocks code',
+			plugins: "advlist autolink link image imagetools lists charmap print preview wordcount codesample textcolor colorpicker contextmenu directionality fullscreen hr insertdatetime legacyoutput media pagebreak searchreplace table visualblocks code",
+			contextmenu: "link image inserttable | cell row column deletetable",
+			media_live_embeds: true,
+			pagebreak_split_block: true,
+			visualblocks_default_state: true,
+			browser_spellcheck: true,
+			imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
+			audio_template_callback: function(data) {
+				return '<audio controls>' + '\n<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + '</audio>';
+			},
+			video_template_callback: function(data) {
+				return '<video width="' + data.width + '" height="' + data.height + '"' + (data.poster ? ' poster="' + data.poster + '"' : '') + ' controls="controls">\n' + '<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + (data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') + '</video>';
+			},
+			// setup: function(editor) {
+			// 	console.log("====>>", editor)
+			// 	editor.preventDefault();
+			// 	editor.addButton('mybutton', {
+			// 		type: 'menubutton',
+			// 		text: 'My button',
+			// 		icon: false,
+			// 		menu: [
+			// 			{text: 'Menu item 1', onclick: function() {editor.insertContent('Menu item 1');}},
+			// 			{text: 'Menu item 2', onclick: function() {editor.insertContent('Menu item 2');}}
+			// 		]
+			// 	});
+			// }
 		});
+		
 		that=this;
 		setTimeout(function(){
 			var validObj=$("#edit-article").validate({
@@ -75,9 +105,43 @@ EditArticle=React.createClass({
 		var sourceData=[];
 
 		tinymce.remove();
-		tinymce.init({
+		/*tinymce.init({
 			selector: 'textarea',
 			skin_url: '/packages/teamon_tinymce/skins/lightgray',
+			resize: 'true',
+		});*/
+
+		tinymce.init({
+			selector: 'textarea',
+			resize: 'true',
+			skin_url: '/packages/teamon_tinymce/skins/lightgray',
+			toolbar:'image styleselect codesample forecolor backcolor ltr rtl fullscreen insertdatetime media pagebreak searchreplace table visualblocks code',
+			plugins: "advlist autolink link image imagetools lists charmap print preview wordcount codesample textcolor colorpicker contextmenu directionality fullscreen hr insertdatetime legacyoutput media pagebreak searchreplace table visualblocks code",
+			contextmenu: "link image inserttable | cell row column deletetable",
+			media_live_embeds: true,
+			pagebreak_split_block: true,
+			visualblocks_default_state: true,
+			browser_spellcheck: true,
+			imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
+			audio_template_callback: function(data) {
+				return '<audio controls>' + '\n<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + '</audio>';
+			},
+			video_template_callback: function(data) {
+				return '<video width="' + data.width + '" height="' + data.height + '"' + (data.poster ? ' poster="' + data.poster + '"' : '') + ' controls="controls">\n' + '<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + (data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') + '</video>';
+			},
+			// setup: function(editor) {
+			// 	console.log("====>>", editor)
+			// 	editor.preventDefault();
+			// 	editor.addButton('mybutton', {
+			// 		type: 'menubutton',
+			// 		text: 'My button',
+			// 		icon: false,
+			// 		menu: [
+			// 			{text: 'Menu item 1', onclick: function() {editor.insertContent('Menu item 1');}},
+			// 			{text: 'Menu item 2', onclick: function() {editor.insertContent('Menu item 2');}}
+			// 		]
+			// 	});
+			// }
 		});
 
 		_.each(this.data.tags,function(a){
@@ -143,7 +207,7 @@ EditArticle=React.createClass({
 							<label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
 							<div className = "col-sm-10">
 								<input type = "text" id="title" name="title" ref="title" className = "form-control"  placeholder = "Enter title" defaultValue={this.data.results?this.data.results.title:''} required/>
-								{/*                   <input type = "hidden" id="title" ref="alias" className = "form-control"  placeholder = "alias" defaultValue={this.data.results.alias} required/>
+								{/* <input type = "hidden" id="title" ref="alias" className = "form-control" placeholder = "alias" defaultValue={this.data.results.alias} required/>
 								*/} 
 							</div>
 						</div>
@@ -170,7 +234,7 @@ EditArticle=React.createClass({
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className = "col-sm-10">
 								<div className="summernote">
-									<textarea ref="editor1" id="article"  name='editor' defaultValue={this.data.results?this.data.results.article:''} />
+									<textarea ref="editor1" id="article" name='editor' defaultValue={this.data.results?this.data.results.article:''} />
 								</div>
 							</div>
 						</div>

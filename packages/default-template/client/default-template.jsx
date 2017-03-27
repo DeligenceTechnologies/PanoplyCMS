@@ -136,7 +136,7 @@ DefaultArticle = React.createClass({
 		}else{
 			return (
 				<div className="col-md-3 col-md-offset-5">
-					<div className="alert alert-danger"><strong>Oops!</strong> Article not found.</div>
+					<div className="alert alert-danger"><strong>Sorry!</strong> Article not found.</div>
 				</div>
 			);
 		}
@@ -144,10 +144,13 @@ DefaultArticle = React.createClass({
 })
 
 ArticleFullView = article => {
+	// console.log("---------", article)
+	let userData = Meteor.users.findOne({_id: article.ownerId})
+	// console.log("---------", userData)
 	return (
 		<div className="blog-post">
 			<h2 className="blog-post-title">{article && article.title ? article.title.toUpperCase() :''}</h2>
-			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} by <a href="#">{article && article.owner ? article.owner :''}</a></p>
+			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} {userData && userData.profile && userData.profile.username ? 'by' :''} <strong>{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</strong></p>
 			<div dangerouslySetInnerHTML={{__html: article && article.article ? article.article :''}} />
 			<ShowTags tags={article && article.tags ? article.tags :''} />
 		</div>
@@ -179,7 +182,7 @@ DefaultCategory = React.createClass({
 		}else{
 			return (
 				<div className="col-md-3 col-md-offset-5">
-					<div className="alert alert-danger"><strong>Oops!</strong> Article not found.</div>
+					<div className="alert alert-danger"><strong>Sorry!</strong> Article not found.</div>
 				</div>
 			);
 		}
@@ -187,6 +190,8 @@ DefaultCategory = React.createClass({
 })
 
 ArticleListView = article => {
+	let userData = Meteor.users.findOne({_id: article.ownerId})
+
 	let route = PanoplyRouter.current().route.path.split('/')
 	alias = ''
 	if(route[route.length - 1] != ''){
@@ -197,7 +202,7 @@ ArticleListView = article => {
 	return (
 		<div className="blog-post">
 			<h2 className="blog-post-title">{article && article.title ? article.title.toUpperCase() :''}</h2>
-			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} by <a href="#">{article && article.owner ? article.owner :''}</a></p>
+			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} by <a href="javascript:void(0)">{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</a></p>
 			<div dangerouslySetInnerHTML={{__html:article && article.article ? article.article.substr(0, 300)+'...':''}} />
 			<ShowTags tags={article && article.tags ? article.tags :''} />
 			<div className="pull-right"><a href={alias} className="btn btn-default">Read More</a></div>

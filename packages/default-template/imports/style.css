@@ -204,6 +204,7 @@ margin: 0px !important;
 .blog-sidebar {
 	border-radius: 9px;
 	border: #999 solid 1px;
+	margin-bottom: 15px;
 }
 
 .tag .label {

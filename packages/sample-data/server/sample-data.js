@@ -15,8 +15,7 @@ if(Meteor.isServer){
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "wT75z3GXDijmiygcQ",
@@ -26,8 +25,7 @@ if(Meteor.isServer){
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "8LagPWd8TyWauB8Bi",
@@ -37,8 +35,7 @@ if(Meteor.isServer){
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		}
 	];
 	homepageListArticle=[
@@ -57,8 +54,7 @@ if(Meteor.isServer){
 			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "472Dgsst3bf4d7KAZ",
@@ -73,8 +69,7 @@ if(Meteor.isServer){
 			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "sQxFCncirtu4gEzJ7",
@@ -82,15 +77,14 @@ if(Meteor.isServer){
 			"alias" : "article",
 			"category" : "8LagPWd8TyWauB8Bi",
 			"tags" : [ ],
-			"article" : "<p><span style=\"color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 19px; background-color: #ffffff;\">And this is just a beginning. Anyone can write a Meteor package to wrap a specific Webpack configuration. If you feel like something is missing, please open an issue and I would love to add the missing features or packages&nbsp;</span><img class=\"emoji\" style=\"border: 0px; vertical-align: middle; width: 20px; height: 20px; max-width: 690px; max-height: 500px; color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 19px; background-color: #ffffff;\" title=\":slightly_smiling:\" src=\"https://discourse-cdn.global.ssl.fastly.net/meteor/images/emoji/emoji_one/slightly_smiling.png?v=1\" alt=\":slightly_smiling:\" /></p>",
+			"article" : "<p><span style=\"color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 19px; background-color: #ffffff;\">And this is just a beginning. Anyone can write a Meteor package to wrap a specific Webpack configuration. If you feel like something is missing, please open an issue and I would love to add the missing features or packages&nbsp;</span></p>",
 			"metaKeyword" : "Footer3 Article",
 			"metaDescription" : "Footer3 Article",
 			"createdAt" : new Date(),
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "ZAEfAHBASGAJDmJcb",
@@ -105,8 +99,7 @@ if(Meteor.isServer){
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "mMDKNW7wxwnkR7c2g",
@@ -121,8 +114,7 @@ if(Meteor.isServer){
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		}
 	];
 	homepageListMenus=[
@@ -342,8 +334,7 @@ if(Meteor.isServer){
 			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		},
 		{
 			"_id" : "btzfnsMesobufaaiB",
@@ -431,8 +422,7 @@ if(Meteor.isServer){
 			"createdAt" : new Date(),
 			"updateAt" : "",
 			"status" : 1,
-			"owner" : "",
-			"username" : ""
+			"ownerId" : ""
 		});
 	}
 	_.each(homepageListCategory,function(listCategory){

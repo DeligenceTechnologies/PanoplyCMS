@@ -12,15 +12,13 @@ Meteor.methods({
 					metaDescription:'',
 					createdAt: new Date(),
 					updateAt: '',
-		      status:1,
-					owner: '',
-			    username: ''
-			  });
+					status:1,
+					ownerId: Meteor.userId()
+				});
 				tagsArrayIds.push(id)
-				
 			}else{
 				tagsArrayIds.push(tagExist._id)
-			}	
+			}
 		})
 		return PanoplyCMSCollections.Articles.insert({
 			title:title,
@@ -32,11 +30,9 @@ Meteor.methods({
 			metaDescription:metaDescription,
 			createdAt: new Date(),
 			updateAt: '',
-            status:1,
-            trash:false,
-			owner: '',
-	      	username: ''
-
+			status:1,
+			trash:false,
+			ownerId: Meteor.userId()
 		})
 	},
 	deleteArticle:function(id){
@@ -55,15 +51,13 @@ Meteor.methods({
 					metaDescription:'',
 					createdAt: new Date(),
 					updateAt: '',
-		      status:1,
-					owner: '',
-			    username: ''
-			  });
+					status:1,
+					ownerId: Meteor.userId()
+				});
 				tagsArrayIds.push(id)
-				
 			}else{
 				tagsArrayIds.push(tagExist._id)
-			}	
+			}
 		})
 		return PanoplyCMSCollections.Articles.update({_id:id},{$set:{
 			title:title,
@@ -74,13 +68,10 @@ Meteor.methods({
 			metaKeyword:metaKeyword,
 			metaDescription:metaDescription,
 			updateAt: new Date(),
-            status:1,
-            trash:false,
-			owner: '',
-	      	username: ''
-
+			status:1,
+			trash:false,
+			ownerId: Meteor.userId()
 		}})
-		
 	},
 	restoreArticles:function(id){
 		PanoplyCMSCollections.Articles.update({_id:id},{$set:{ trash:false}})

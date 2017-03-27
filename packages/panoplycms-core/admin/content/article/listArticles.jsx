@@ -13,9 +13,9 @@ ListArticles = React.createClass({
 	},
 	componentDidMount(){
 	},
-	componentDidUpdate(){
+	/*componentDidUpdate(){
 		$('[data-toggle="tooltip"]').tooltip();
-	},
+	},*/
 	showArticles(){
 		if($('#display').val()=='trash'){
 			this.setState({trashListShow:true})

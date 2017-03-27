@@ -1,6 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:sample-data',
-  version: '0.1.6',
+  version: '0.1.7',
   // Brief, one-line summary of the package.
   summary: 'Sample Data for Panoply CMS',
   // URL to the Git repository containing the source code for this package.

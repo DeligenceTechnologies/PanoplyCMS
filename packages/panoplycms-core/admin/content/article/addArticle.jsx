@@ -1,4 +1,4 @@
-import {teamon} from 'meteor/teamon:tinymce';
+// import {teamon} from 'meteor/teamon:tinymce';
 
 AddArticle=React.createClass({
 	mixins:[ReactMeteorData],
@@ -45,8 +45,11 @@ AddArticle=React.createClass({
 				}
 			}
 		});
-		this.setState({valid:validObj})  
-		tinymce.remove();
+		this.setState({valid:validObj})
+		
+		$('#article').summernote({height: 200});
+
+		/*tinymce.remove();
 		tinymce.init({
 			selector: 'textarea',
 			resize: 'true',
@@ -65,10 +68,11 @@ AddArticle=React.createClass({
 			video_template_callback: function(data) {
 				return '<video width="' + data.width + '" height="' + data.height + '"' + (data.poster ? ' poster="' + data.poster + '"' : '') + ' controls="controls">\n' + '<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + (data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') + '</video>';
 			}
-		});
+		});*/
 	},
 	componentWillUnmount: function() {
-		tinymce.remove();
+		// tinymce.remove();
+		$('#article').summernote('destroy');
 	},
 	componentDidUpdate: function() {
 
@@ -94,7 +98,8 @@ AddArticle=React.createClass({
 			var title=ReactDOM.findDOMNode(this.refs.title).value.trim();
 			var alias = generateAlias(title);
 			var category=ReactDOM.findDOMNode(this.refs.myselect).value.trim();
-			var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+			// var article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+			var article = $('#article').summernote('code');
 			var metaKeyword=ReactDOM.findDOMNode(this.refs.keyword).value.trim();
 			var metaDescription=ReactDOM.findDOMNode(this.refs.desc).value.trim();
 
@@ -110,7 +115,8 @@ AddArticle=React.createClass({
 					ReactDOM.findDOMNode(that.refs.myselect).value='';
 					ReactDOM.findDOMNode(that.refs.token).value='';
 					$('#tokenfield').tokenfield('setTokens', ' ');
-					tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
+					// tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
+					$("#article").summernote("code", "");
 					ReactDOM.findDOMNode(that.refs.keyword).value='';
 					ReactDOM.findDOMNode(this.refs.desc).value='';
 				}
@@ -139,7 +145,7 @@ AddArticle=React.createClass({
 				{msg}
 				<div className="panel-body">
 					<div id="notification"></div>
-					<form id="add-article" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+					<form id="add-article" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
 						<div className = "form-group">
 							<label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
 							<div className = "col-sm-10">
@@ -153,7 +159,7 @@ AddArticle=React.createClass({
 									<option value="">--select--</option>
 									{
 										this.data.results.map(function(result){
-											return  <option key={result._id} value={result._id}>{result.title}</option>
+											return <option key={result._id} value={result._id}>{result.title}</option>
 										})
 									}
 								</select>
@@ -169,7 +175,7 @@ AddArticle=React.createClass({
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className = "col-sm-10">
 								<div className="summernote">
-									<textarea ref="editor1" name="editor" id="article" />
+									<textarea type="text" id="article" className="form-control"></textarea>
 								</div>
 							</div>
 						</div>

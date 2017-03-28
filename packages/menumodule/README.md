@@ -1,6 +1,6 @@
-# PanoplyCMS - menumodule 0.0.2
+# PanoplyCMS - menumodule 0.0.3
 
-MenuModule for PanoplyCms. To install menumodule in your PanoplyCMS, hit the following command :-
+MenuModule for PanoplyCMS. To install menumodule in your PanoplyCMS, Hit the following command :-
 
 `meteor add deligencetechnologies:menumodule`
 

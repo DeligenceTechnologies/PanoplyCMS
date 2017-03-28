@@ -1,6 +1,6 @@
-# PanoplyCMS - Tag 0.0.3
+# PanoplyCMS - Tag 0.0.4
 
-Default Template for PanoplyCMS. To install default template in your PanoplyCMS, Hit the following command :-
+Tag component for PanoplyCMS. To install PanoplyCMS-tag in your PanoplyCMS, Hit the following command :-
 
 `meteor add deligencetechnologies:panoplycms-tag`
 

@@ -1,6 +1,6 @@
-# PanoplyCMS - htmlblock 0.0.1
+# PanoplyCMS - htmlblock 0.0.3
 
-Htmlblock package for PanoplyCMS. To install Htmlblock Package in your PanoplyCMS,Hit the following command :-
+Htmlblock package for PanoplyCMS. To install Htmlblock Package in your PanoplyCMS, Hit the following command :-
 
 `meteor add deligencetechnologies:htmlblock`
 

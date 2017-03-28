@@ -1,6 +1,6 @@
-# PanoplyCMS - Default Template 0.1.3
+# PanoplyCMS - Default Template 0.1.7
 
-Default Template for PanoplyCMS. To install default template in your PanoplyCMS use:
+Default Template for PanoplyCMS. To install default template in your PanoplyCMS, use:
 
 `meteor add deligencetechnologies:default-template`
 

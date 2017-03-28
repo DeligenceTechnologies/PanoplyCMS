@@ -15,25 +15,25 @@ Dashboard = React.createClass({
           <div className="panel-body">
             <div className="row">
               <div className="col-xs-3 col-md-3">
-                <div className="dt_box" onClick={()=>FlowRouter.go('manageMenu')}>
+                <div className="dt_box">
                   <i className="fa fa-television"></i> 
                   <div><a href={FlowRouter.path('manageMenu')}>Menu Manager</a></div>
                 </div>
               </div>
               <div className="col-xs-3 col-md-3">
-                <div className="dt_box" onClick={()=>FlowRouter.go('listCategories')}>
+                <div className="dt_box">
                   <i className="fa fa-building"></i> 
                   <div><a href={FlowRouter.path('listCategories')}>Category Manager</a></div>
                 </div>
               </div>
               <div className="col-xs-3 col-md-3">
-                <div className="dt_box" onClick={()=>FlowRouter.go('articles')}>
+                <div className="dt_box">
                   <i className="fa fa-pencil"></i> 
                   <div><a href={FlowRouter.path('articles')}>Article Manager</a></div>
                 </div>
               </div>
               <div className="col-xs-3 col-md-3">
-                <div className="dt_box" onClick={()=>FlowRouter.go('modulesManager')}>
+                <div className="dt_box">
                   <i className="fa fa-sliders"></i> 
                   <div><a href={FlowRouter.path('modulesManager')}>Module Manager</a></div>
                 </div>

@@ -202,7 +202,7 @@ ArticleListView = article => {
 	return (
 		<div className="blog-post">
 			<h2 className="blog-post-title">{article && article.title ? article.title.toUpperCase() :''}</h2>
-			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} by <a href="javascript:void(0)">{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</a></p>
+			<p className="blog-post-meta">{article && article.createdAt ? new Date(article.createdAt).toDateString() :''} {userData && userData.profile && userData.profile.username ? 'by' : ''} <strong>{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</strong></p>
 			<div dangerouslySetInnerHTML={{__html:article && article.article ? article.article.substr(0, 300)+'...':''}} />
 			<ShowTags tags={article && article.tags ? article.tags :''} />
 			<div className="pull-right"><a href={alias} className="btn btn-default">Read More</a></div>

@@ -91,13 +91,13 @@ ListCategories = React.createClass({
 
           {
             this.data.resultOfTrash.map(function(cat){
-              return  <ModalOfRestoreCat key={cat._id} data={cat}/> 
+              return <ModalOfRestoreCat key={cat._id} data={cat}/> 
             })
           }
 
           {
             this.data.resultOfTrash.map(function(cat){
-              return  <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
+              return <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
             })
           }
         </div>   
@@ -126,10 +126,10 @@ var CategoriesItem = React.createClass({
             <large> 
               {this.props.data.title}
             </large>
-            <small> 
-              (<em>Alias:{this.props.data.alias}</em>)
-            </small> 
           </a>
+          <small> 
+            &nbsp;(<em>Alias:&nbsp;{this.props.data.alias}</em>)
+          </small> 
         </td>
         <td>
           <div className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >

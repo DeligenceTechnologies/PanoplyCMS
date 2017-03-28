@@ -426,27 +426,27 @@ if(Meteor.isServer){
 		});
 	}
 	_.each(homepageListCategory,function(listCategory){
-		if(PanoplyCMSCollections.Categories.find().count() == 0){
+		if(PanoplyCMSCollections.Categories.find({_id:listCategory._id}).count() == 0){
 			PanoplyCMSCollections.Categories.insert(listCategory);
 		}
 	});
 	_.each(homepageListArticle,function(listArticles){
-		if(PanoplyCMSCollections.Articles.find().count() == 0){
+		if(PanoplyCMSCollections.Articles.find({_id:listArticles._id}).count() == 0){
 			PanoplyCMSCollections.Articles.insert(listArticles);
 		}
 	});
 	_.each(homepageListMenus,function(listMenus){
-		if(PanoplyCMSCollections.Menus.find().count() == 0){
+		if(PanoplyCMSCollections.Menus.find({_id:listMenus._id}).count() == 0){
 			PanoplyCMSCollections.Menus.insert(listMenus);
 		}
 	});
 	_.each(homepageListMenuItems,function(listMenuItems){
-		if(PanoplyCMSCollections.MenuItems.find().count() == 0){
+		if(PanoplyCMSCollections.MenuItems.find({_id:listMenuItems._id}).count() == 0){
 			PanoplyCMSCollections.MenuItems.insert(listMenuItems);
 		}
 	});
 	_.each(homepageListModules,function(listModules){
-		if(PanoplyCMSCollections.Modules.find().count() == 0){
+		if(PanoplyCMSCollections.Modules.find({_id:listModules._id}).count() == 0){
 			PanoplyCMSCollections.Modules.insert(listModules);
 		}
 	});

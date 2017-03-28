@@ -1,6 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:menumodule',
-  version: '0.0.2',
+  version: '0.0.3',
   // Brief, one-line summary of the package.
   summary: 'Create module of type menumodule and display selected menu on position in frontend',
   // URL to the Git repository containing the source code for this package.
@@ -32,7 +32,6 @@ Package.onUse(function(api) {
   api.use("http");
   api.use('kadira:flow-router@2.12.1');
   api.use('kadira:react-layout@1.5.3');
-  api.use('teamon:tinymce@4.3.13');
   api.use('cfs:standard-packages@0.5.9');
   api.use('cfs:gridfs@0.0.33');
   api.use('cfs:filesystem@0.1.2');

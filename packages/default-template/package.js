@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'deligencetechnologies:default-template',
-	version: '0.1.5',
+	version: '0.1.7',
 	// Brief, one-line summary of the package.
 	summary: 'Default Template for PanoplyCMS',
 	// URL to the Git repository containing the source code for this package.
@@ -33,7 +33,6 @@ Package.onUse(function(api) {
 	api.use('twbs:bootstrap@3.3.6');
 	api.use('kadira:flow-router@2.12.1');
 	api.use('kadira:react-layout@1.5.3');
-	api.use('teamon:tinymce@4.3.13');
 	api.use('cfs:standard-packages@0.5.9');
 	api.use('cfs:gridfs@0.0.33');
 	api.use('cfs:filesystem@0.1.2');

@@ -86,7 +86,7 @@ ListMenuItems = React.createClass({
       <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
         <div className="panel-heading"> 
-          <a className="btn btn-success btn-ico" onClick={this.storeMenuid}><i className="fa fa-plus-circle fa-lg "></i>&nbsp;
+          <a className="btn btn-success btn-ico" onClick={this.storeMenuid}><i className="fa fa-plus-circle fa-lg"></i>&nbsp;
             {i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}
           </a>
           <div className="pull-right" >
@@ -185,7 +185,7 @@ var Trvalue = React.createClass({
     var c=0;
     return (
       <tr>
-        <td id="edit_menuItem" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="javascript:void(0)"><large style={anchorStyle}> {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias:'+this.props.data.alias}</span>) </small></div></td>
+        <td id="edit_menuItem" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="javascript:void(0)"><large style={anchorStyle}> {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias: '+this.props.data.alias}</span>) </small></div></td>
         <td style={{width:"50%"}}>{this.props.data.desc}</td>
         <td style={{width:"10%"}}>
           <span style={style} className={classname} onClick={this.changeDefaultValue}></span>

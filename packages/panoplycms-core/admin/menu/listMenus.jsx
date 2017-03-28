@@ -35,7 +35,7 @@ ListMenus = React.createClass({
       <div className="col-md-10 content">
         <Heading  data={i18n('ADMIN_MENU')} />
         <div className="panel-heading"> 
-          <a  className="btn btn-success btn-ico" href={FlowRouter.path('addMenu')} >
+          <a className="btn btn-success btn-ico" href={FlowRouter.path('addMenu')} >
             <i className="fa fa-plus-circle fa-lg "></i>&nbsp;
               {i18n('ADMIN_MENU_ADDMENU')}
           </a>
@@ -106,7 +106,10 @@ var Trvalue = React.createClass({
     var c=0;
     return (
       <tr>
-        <td id="edit_menu"><a onClick={this.storeMenuid} ><large> {this.props.data.title}</large><small> (<em>{this.props.data.alias}</em>) </small> </a></td>
+        <td id="edit_menu">
+          <a onClick={this.storeMenuid}><large> {this.props.data.title}</large></a>
+          <small> (<em>Alias:&nbsp;{this.props.data.alias}</em>) </small>
+        </td>
         <td>{this.props.data.desc}</td>  
         <td>
           <div  id="delete_article"  className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>

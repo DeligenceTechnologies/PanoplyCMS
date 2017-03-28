@@ -36,10 +36,10 @@ twbs:bootstrap
 # react-meteor-data
 # aldeed:simple-schema
 
+deligencetechnologies:sample-data
 deligencetechnologies:panoplycms-core
 deligencetechnologies:default-template
 deligencetechnologies:panoplycms-tag
 deligencetechnologies:menumodule
 deligencetechnologies:htmlblock
-deligencetechnologies:sample-data
-# summernote:summernote
+# summernote:summernote@0.8.1

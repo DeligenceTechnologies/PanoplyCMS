@@ -125,16 +125,16 @@ var Trvalue = React.createClass({
 						<large>
 							{this.props.data.title}
 						</large>
-						<small> 
-							(<em>Alias:{this.props.data.alias}</em>) 
-						</small> 
 					</a>
+					<small>
+						&nbsp;(<em>Alias:&nbsp;{this.props.data.alias}</em>) 
+					</small>
 				</td>
 				<td>
 					{this.data.results?this.data.results.title:''}
 				</td>
 				<td>
-					<div  id="delete_article" onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
+					<div id="delete_article" onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
 						{
 							this.props.stateVal ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o"  title="Trash" ></i> 
 						}

@@ -2,7 +2,7 @@
 
 ## Installation Method - 1
 - Create a meteor application using `meteor create panoplycms`
-- Go inside folder location through terminal or command prompt and
+- Go inside folder location through terminal or command prompt and,
 - Run following commands :-
 	* `meteor add deligencetechnologies:panoplycms-core`
 	* `meteor add deligencetechnologies:default-template`
@@ -10,20 +10,20 @@
 	* `meteor add deligencetechnologies:menumodule`
 	* `meteor add deligencetechnologies:htmlblock`
 	* `meteor add deligencetechnologies:panoplycms-tag`
-	* `meteor add deligencetechnologies:sample-data` // remove after running once
+	* `meteor add deligencetechnologies:sample-data`
 	
 - Install React using: `meteor npm install --save meteor-node-stubs react react-dom react-addons-transition-group react-addons-css-transition-group react-addons-linked-state-mixin react-addons-create-fragment react-addons-update react-addons-pure-render-mixin react-addons-test-utils react-addons-perf`
 
-
+- Remove unnecessray code from `client/main.html` and `client/main.js` file.
 - Type: `meteor` and hit Enter key.
-- Once it start running, goto your browser and type: http://localhost:3000
+- Once it start running, go to your browser and type: http://localhost:3000
 - Thats it! You have installed PanoplyCMS on your system successfully.
 
 ## Installation Method - 2
-- Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine
+- Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine.
 - Go to folder location through terminal or command prompt
-- Type: `meteor` and hit Enter key. Please wait for server to get start. It will automatically install all dependencies and will start running
-- Once it start running, goto your browser and type: http://localhost:3000
+- Type: `meteor` and hit Enter key. Please wait for server to get start. It will automatically install all dependencies and will start running.
+- Once it start running, go to your browser and type: http://localhost:3000
 - Thats it! You have installed PanoplyCMS on your system successfully.
 
 - Frontend Link: http://localhost:3000

@@ -106,7 +106,7 @@ AddArticle=React.createClass({
 			let objOfTags=$('#tokenfield').tokenfield('getTokens');
 			tags=_.pluck(objOfTags, 'value');
 			that=this;
-			/*Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
+			Meteor.call('addArticles',title,alias,category,tags,article,metaKeyword,metaDescription,(err,data) => {
 				if(err){
 					that.setState({errorMsg : 'Internal server error or duplicate article can not insert.'})
 				}else{
@@ -120,7 +120,7 @@ AddArticle=React.createClass({
 					ReactDOM.findDOMNode(that.refs.keyword).value='';
 					ReactDOM.findDOMNode(this.refs.desc).value='';
 				}
-			});*/
+			});
 		}
 	},
 	resetSuccessMsg(){

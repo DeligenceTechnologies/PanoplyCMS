@@ -26,7 +26,8 @@ AddHtmlblock = React.createClass({
 		if(this.state.valid.form()){
 			let name=ReactDOM.findDOMNode(this.refs.name).value.trim();
 			let position=$('#position').val()
-			let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+			// let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+			let article = $('#article').summernote('code');
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
 			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
@@ -47,7 +48,8 @@ AddHtmlblock = React.createClass({
 				}else{
 					this.setState({successMsg:true});
 					ReactDOM.findDOMNode(this.refs.name).value=''
-					tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
+					// tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
+					$("#article").summernote("code", "");
 					$("input").prop("checked", false);
 					$('#position').val('')
 				}
@@ -83,14 +85,17 @@ AddHtmlblock = React.createClass({
 		this.setState({valid:validObj})
 		$('.options').toggleClass('active');
 		$('.option').button();
-		tinymce.remove();
+
+		$('#article').summernote({height: 200});
+		/*tinymce.remove();
 		tinymce.init({
 			selector: 'textarea',
 			skin_url: '/packages/teamon_tinymce/skins/lightgray',
-		});
+		});*/
 	},
 	componentWillUnmount: function() {
-		tinymce.remove();
+		// tinymce.remove();
+		$('#article').summernote('destroy');
 	},
 	resetSuccessMsg(){
 		this.setState({'successMsg':false})
@@ -111,7 +116,7 @@ AddHtmlblock = React.createClass({
 				{msg}
 				<div className="panel-body">
 					<div id="notification"></div>
-					<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+					<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
 						<div className = "form-group">
 							<label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
 							<div className = "col-sm-10">
@@ -123,7 +128,7 @@ AddHtmlblock = React.createClass({
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className = "col-sm-10">
 								<div className="summernote">
-									<textarea ref="editor1" name="editor" id="article" />
+									<textarea id="article" className="form-control"></textarea>
 								</div>
 							</div>
 						</div>

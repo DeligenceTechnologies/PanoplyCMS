@@ -110,7 +110,7 @@ AddMenuModule = React.createClass({
 		}
 		return (
 			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-				<Heading  data={'Add Menu Module'} />
+				<Heading data={'Add Menu Module'} />
 				{msg}
 				<div className="panel-body">
 					<div id="notification"></div>

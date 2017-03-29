@@ -36,7 +36,7 @@ EditArticle=React.createClass({
 		$('#tokenfield').tokenfield('destroy');
 		document.title = "Edit Article";
 
-		$('#article').summernote();
+		$('#article').summernote({height:200});
 		
 		/*tinymce.init({
 			selector: 'textarea',

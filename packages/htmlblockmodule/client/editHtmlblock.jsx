@@ -28,7 +28,7 @@ EditHtmlblock = React.createClass({
 		if(this.state.valid.form()){
 			let name=ReactDOM.findDOMNode(this.refs.name).value.trim();
 			let position=$('#position').val()
-			let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
+			let article=$('#article').summernote('code');
 			let showTitle=$('input[name="options"]:checked').val()
 			let allPage=$('.allPage').is(':checked')
 			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
@@ -86,14 +86,19 @@ EditHtmlblock = React.createClass({
 		this.setState({valid:validObj})  
 		$('.options').toggleClass('active');
 		$('.option').button();
-		tinymce.remove();
+		/*tinymce.remove();
 		tinymce.init({
 			selector: 'textarea',
 			skin_url: '/packages/teamon_tinymce/skins/lightgray',
-		});
+		});*/
+		$('#article').summernote({height: 200});
+	},
+	componentDidUpdate: function() {
+		$('#article').summernote({height: 200});
 	},
 	componentWillUnmount: function() {
-		tinymce.remove();
+		// tinymce.remove();
+		$('#article').summernote('destroy');
 	},
 	resetSuccessMsg(){
 		this.setState({'successMsg':false})
@@ -126,7 +131,7 @@ EditHtmlblock = React.createClass({
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className = "col-sm-10">
 								<div className="summernote">
-									<textarea ref="editor1" name="editor" id="article" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.moduleData.html:''} />
+									<textarea type="text" id="article" className="form-control" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.moduleData.html:''}></textarea>
 								</div>
 							</div>
 						</div>

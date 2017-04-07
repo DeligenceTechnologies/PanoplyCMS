@@ -45,13 +45,13 @@ ddp-client@1.2.8
 ddp-common@1.2.6
 ddp-rate-limiter@1.0.5
 ddp-server@1.2.8
-deligencetechnologies:default-template@0.1.7
-deligencetechnologies:htmlblock@0.0.3
+deligencetechnologies:default-template@0.1.8
+deligencetechnologies:htmlblock@0.0.4
 deligencetechnologies:menumodule@0.0.3
 deligencetechnologies:panoplycms-collections@0.0.1
-deligencetechnologies:panoplycms-core@0.1.8
-deligencetechnologies:panoplycms-tag@0.0.4
-deligencetechnologies:sample-data@0.1.8
+deligencetechnologies:panoplycms-core@0.1.9
+deligencetechnologies:panoplycms-tag@0.0.5
+deligencetechnologies:sample-data@0.1.9
 deps@1.0.12
 diff-sequence@1.0.6
 ecmascript@0.4.6
@@ -69,6 +69,7 @@ http@1.1.7
 id-map@1.0.8
 insecure@1.0.7
 jquery@1.11.9
+kadira:dochead@1.5.0
 kadira:flow-router@2.12.1
 kadira:react-layout@1.5.3
 launch-screen@1.0.12
@@ -113,7 +114,6 @@ spacebars@1.0.12
 spacebars-compiler@1.0.12
 srp@1.0.9
 summernote:summernote@0.8.1
-teamon:tinymce@4.3.13
 templating@1.1.12
 templating-tools@1.0.4
 themeteorchef:jquery-validation@1.0.0

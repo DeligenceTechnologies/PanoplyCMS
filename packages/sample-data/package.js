@@ -1,6 +1,6 @@
 Package.describe({
   name: 'deligencetechnologies:sample-data',
-  version: '0.1.8',
+  version: '0.1.9',
   // Brief, one-line summary of the package.
   summary: 'Sample Data for Panoply CMS',
   // URL to the Git repository containing the source code for this package.
@@ -35,7 +35,6 @@ Package.onUse(function(api) {
   api.use("http");
   api.use('kadira:flow-router@2.12.1');
   api.use('kadira:react-layout@1.5.3');
-  api.use('teamon:tinymce@4.3.13');
   api.use('cfs:standard-packages@0.5.9');
   api.use('cfs:gridfs@0.0.33');
   api.use('cfs:filesystem@0.1.2');

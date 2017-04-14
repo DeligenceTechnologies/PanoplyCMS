@@ -35,33 +35,29 @@ TemplateManger = React.createClass({
 		$('#view.modal').modal()
 	},
 	render() {
-		that=this;
-		nodata='';
 		return (
-			<div>
-				<div className="panel panel-black col-md-10">
-					<Heading  data={'Template Manger'} />
-					<div className="panel-heading">
-					</div>
-					<div className="panel-body"> 
-						<div className="table-responsive" >
-							<table className="table  table-bordered">
-								<thead>
-									<tr>
-										<th>Template Name</th>
-										<th>Default</th>
-										<th>Preview</th>
-									</tr>
-								</thead>
-								<tbody>
-									{
-										this.data.registeredPackages.templates.map( (tem) => {
-											return <TemplateName key={tem.name} {...tem} func={this.setDefaultTemp} show={this.showLayout} />
-										})
-									}
-								</tbody>
-							</table>
-						</div>
+			<div className="col-md-10">
+				<Heading  data={'Template Manager'} />
+				<div className="panel-heading">
+				</div>
+				<div className="panel-body"> 
+					<div className="table-responsive" >
+						<table className="table  table-bordered">
+							<thead>
+								<tr>
+									<th>Template Name</th>
+									<th>Default</th>
+									<th>Preview</th>
+								</tr>
+							</thead>
+							<tbody>
+								{
+									this.data.registeredPackages.templates.map((tem) => {
+										return <TemplateName key={tem.name} {...tem} func={this.setDefaultTemp} show={this.showLayout} />
+									})
+								}
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<ViewLayout url={this.state.url} />

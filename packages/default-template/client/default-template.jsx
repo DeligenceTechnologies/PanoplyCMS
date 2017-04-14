@@ -7,6 +7,7 @@ DefaultTemplate = React.createClass({
 	},
 	componentDidMount: function() {
 		require('../imports/style.css')
+		// console.log(this.data.result)
 		document.title = this.data.result.name;
 		if(PanoplyRouter.current().path == '/'){
 			if($('meta[name=keywords]').length){
@@ -84,46 +85,55 @@ DefaultArticle = React.createClass({
 	getMeteorData(){
 		Meteor.subscribe('articlesFind')
 		return {
-			article: PanoplyCMSCollections.Articles.findOne({_id: this.props.id, trash:false})
+			article: PanoplyCMSCollections.Articles.findOne({_id: this.props.id, trash:false}),
+			siteData: PanoplyCMSCollections.Sites.findOne()
 		}
 	},
 	componentDidMount: function() {
+		// console.log("---------- componentDidMount", this.data.siteData)
+		// console.log("==========", this.data.article ? this.data.article.metaKeyword != '' ? this.data.article.metaKeyword : this.data.siteData && this.data.siteData.siteMetaKeyword != '' ? this.data.siteData.siteMetaKeyword :'':'')
 		if(PanoplyRouter.current().path != '/'){
 			if($('meta[name=keywords]').length){
-				this.data.article && this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : '';
+				this.data.article ? this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : this.data.siteData && this.data.siteData.siteMetaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.siteData.siteMetaKeyword) :'':'';
 			} else {
 				let metakey = document.createElement('meta');
 				metakey.name = "keywords"
-				metakey.content = this.data.article && this.data.article.metaKeyword ? this.data.article.metaKeyword :''
-				this.data.article && this.data.article.metaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+				metakey.content = this.data.article ? this.data.article.metaKeyword ? this.data.article.metaKeyword :this.data.siteData && this.data.siteData.siteMetaKeyword ? this.data.siteData.siteMetaKeyword:'':''
+				// this.data.article && this.data.article.metaKeyword && this.data.siteData.siteMetaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+				document.getElementsByTagName('head')[0].appendChild(metakey)
 			}
 			if($('meta[name=description]').length){
-				this.data.article && this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : '';
+				this.data.article ? this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : this.data.siteData && this.data.siteData.siteMetaDesc != '' ? $('meta[name=description]').attr('content', this.data.siteData.siteMetaDesc) : '' :'';
 			} else {
 				let metadesc = document.createElement('meta');
 				metadesc.name = "description"
-				metadesc.content = this.data.article && this.data.article.metaDescription ? this.data.article.metaDescription:''
-				this.data.article && this.data.article.metaDescription != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+				metadesc.content = this.data.article ? this.data.article.metaDescription ? this.data.article.metaDescription:this.data.siteData && this.data.siteData.siteMetaDesc ? this.data.siteData.siteMetaDesc :'':''
+				// this.data.article && this.data.article.metaDescription && this.data.siteData.siteMetaDesc != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+				document.getElementsByTagName('head')[0].appendChild(metadesc)
 			}
 		}
 	},
 	componentDidUpdate: function() {
+		// console.log("=========componentDidUpdate", this.data.siteData)
+		// console.log("-----------", this.data.article ? this.data.article.metaKeyword != '' ? this.data.article.metaKeyword : this.data.siteData && this.data.siteData.siteMetaKeyword != '' ? this.data.siteData.siteMetaKeyword :'':'')
 		if(PanoplyRouter.current().path != '/'){
 			if($('meta[name=keywords]').length){
-				this.data.article && this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : '';
+				this.data.article ? this.data.article.metaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.article.metaKeyword) : this.data.siteData && this.data.siteData.siteMetaKeyword != '' ? $('meta[name=keywords]').attr('content', this.data.siteData.siteMetaKeyword) :'':'';
 			} else {
 				let metakey = document.createElement('meta');
 				metakey.name = "keywords"
-				metakey.content = this.data.article && this.data.article.metaKeyword ? this.data.article.metaKeyword :''
-				this.data.article && this.data.article.metaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+				metakey.content = this.data.article ? this.data.article.metaKeyword ? this.data.article.metaKeyword :this.data.siteData && this.data.siteData.siteMetaKeyword ? this.data.siteData.siteMetaKeyword:'':''
+				// this.data.article && this.data.article.metaKeyword && this.data.siteData.siteMetaKeyword != '' ? document.getElementsByTagName('head')[0].appendChild(metakey) : '';
+				document.getElementsByTagName('head')[0].appendChild(metakey)
 			}
 			if($('meta[name=description]').length){
-				this.data.article && this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : ''
+				this.data.article ? this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : this.data.siteData && this.data.siteData.siteMetaDesc != '' ? $('meta[name=description]').attr('content', this.data.siteData.siteMetaDesc) : '' :'';
 			} else {
 				let metadesc = document.createElement('meta');
 				metadesc.name = "description"
-				metadesc.content = this.data.article && this.data.article.metaDescription ? this.data.article.metaDescription:''
-				this.data.article && this.data.article.metaDescription != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+				metadesc.content = this.data.article ? this.data.article.metaDescription ? this.data.article.metaDescription:this.data.siteData && this.data.siteData.siteMetaDesc ? this.data.siteData.siteMetaDesc :'':''
+				// this.data.article && this.data.article.metaDescription && this.data.siteData.siteMetaDesc != '' ? document.getElementsByTagName('head')[0].appendChild(metadesc) : ''
+				document.getElementsByTagName('head')[0].appendChild(metadesc)
 			}
 		}
 	},

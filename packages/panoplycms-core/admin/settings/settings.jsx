@@ -82,9 +82,9 @@ SystemLayout = React.createClass({
 			msg=''
 		}
 		return (
-			<div>
+			<div className="col-md-10">
 				<Heading data={i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION')} />
-				{msg}
+				{ msg }
 				<div onClick={this.resetSuccessMsg}>
 					<form className = "form-horizontal" onSubmit={this.submitForm}>
 						<div className="form-group">

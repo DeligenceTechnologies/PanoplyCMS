@@ -425,6 +425,17 @@ if(Meteor.isServer){
 			"ownerId" : ""
 		});
 	}
+
+	if(PanoplyCMSCollections.Sites.find().count() == 0){
+		PanoplyCMSCollections.Sites.insert({
+			"_id" : "q3oGP4r7mc8oFcjZm",
+			"name" : "PanoplyCMS",
+			"siteMetaKeyword" : "Meteor with Backend, Node js, Mongodb",
+			"siteMetaDesc" : "PanoplyCMS is an Open Source CMS, based on Meteor Framework",
+			"siteOffline" : false
+		});
+	}
+
 	_.each(homepageListCategory,function(listCategory){
 		if(PanoplyCMSCollections.Categories.find({_id:listCategory._id}).count() == 0){
 			PanoplyCMSCollections.Categories.insert(listCategory);

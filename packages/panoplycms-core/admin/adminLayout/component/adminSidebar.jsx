@@ -23,6 +23,7 @@ AdminSidebar = React.createClass({
 						</ul>
 					</div>
 				</nav>
+				<AdminFooter />
 			</div>
 		);
 	}

@@ -43,9 +43,9 @@ ListArticles = React.createClass({
 		}
 		return (
 			<div className="col-md-10 content">
-				<Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
+				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
 				<div className="panel-heading">
-					<a  className="btn btn-success btn-ico" href={FlowRouter.path('addArticle')}>
+					<a className="btn btn-success btn-ico" href={FlowRouter.path('addArticle')}>
 						<i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}
 					</a>
 					<div className="pull-right">
@@ -93,7 +93,7 @@ ListArticles = React.createClass({
 
 				{
 					this.data.resultOfTrash.map(function(result) {
-						return  <RestoreModalOfArticle key={result._id} data={result}/>         
+						return <RestoreModalOfArticle key={result._id} data={result}/>         
 					})
 				}
 

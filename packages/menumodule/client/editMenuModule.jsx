@@ -155,7 +155,7 @@ EditMenuModule = React.createClass({
 						<div className = "form-group">
 							<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
 							<div className = "col-sm-10">
-								<input type="checkbox" defaultValue={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" name="allPage" />
+								<input type="checkbox" defaultChecked={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" name="allPage" />
 							</div>
 						</div>
 						<MenuItemType value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>

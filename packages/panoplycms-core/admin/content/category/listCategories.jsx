@@ -39,68 +39,66 @@ ListCategories = React.createClass({
       nodata='';
     }
     return (
-      <div>
-        <div className="panel panel-black">
-          <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
-          <div className="panel-heading">
-            <a href={FlowRouter.path('addCategory')} className="btn btn-success btn-ico">
-              <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
-              {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
-            </a>
-            <div className="pull-right">
-              Display: 
-              <select id="display" onChange={this.showCategories}>
-                <option value="active">Active</option>
-                <option value="trash">Trash</option>
-              </select>
-            </div>
+      <div className="col-md-10">
+        <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
+        <div className="panel-heading">
+          <a href={FlowRouter.path('addCategory')} className="btn btn-success btn-ico">
+            <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
+            {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
+          </a>
+          <div className="pull-right">
+            Display: 
+            <select id="display" onChange={this.showCategories}>
+              <option value="active">Active</option>
+              <option value="trash">Trash</option>
+            </select>
           </div>
-          <div className="panel-body"> 
-            <div className="table-responsive">
-              {
-                nodata == '' ?
-                  <table className="table  table-bordered">
-                    <thead>
-                      <tr>
-                        <th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        this.state.trashListShow?
-                          this.data.resultOfTrash.map(function(cat){
-                            return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                          })
-                        :this.data.Categories.map(function(cat){
-                            return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                          })
-                      }
-                    </tbody>
-                  </table>
-                :''
-              }
-              {nodata}
-            </div>
+        </div>
+        <div className="panel-body"> 
+          <div className="table-responsive">
+            {
+              nodata == '' ?
+                <table className="table  table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      this.state.trashListShow?
+                        this.data.resultOfTrash.map(function(cat){
+                          return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
+                        })
+                      :this.data.Categories.map(function(cat){
+                          return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
+                        })
+                    }
+                  </tbody>
+                </table>
+              :''
+            }
+            {nodata}
           </div>
-          {
-            this.data.Categories.map(function(cat){
-              return  <ModalOfCat key={cat._id} resultOfArticles={that.data.resultOfArticles} data={cat} stateVal={that.state.trashListShow} /> 
-            })
-          }
+        </div>
+        {
+          this.data.Categories.map(function(cat){
+            return  <ModalOfCat key={cat._id} resultOfArticles={that.data.resultOfArticles} data={cat} stateVal={that.state.trashListShow} /> 
+          })
+        }
 
-          {
-            this.data.resultOfTrash.map(function(cat){
-              return <ModalOfRestoreCat key={cat._id} data={cat}/> 
-            })
-          }
+        {
+          this.data.resultOfTrash.map(function(cat){
+            return <ModalOfRestoreCat key={cat._id} data={cat}/> 
+          })
+        }
 
-          {
-            this.data.resultOfTrash.map(function(cat){
-              return <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
-            })
-          }
-        </div>   
+        {
+          this.data.resultOfTrash.map(function(cat){
+            return <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
+          })
+        }
         <ArticlesExistPopup />
       </div>
     );

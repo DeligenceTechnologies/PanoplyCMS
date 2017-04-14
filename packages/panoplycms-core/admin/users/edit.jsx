@@ -106,11 +106,11 @@ EditUser = React.createClass({
 		let imgUrl=Images.findOne({_id:Meteor.user().profile.imageId})
 
 		if(this.state.msg){
-			msg=<AlertMessage data={'changed your password.'} func={this.resetSuccessMsg}/>
+			msg = <AlertMessage data={'updated user profile.'} func={this.resetSuccessMsg} />
 		}else if(this.state.errorMsg){
-			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />
 		}else{
-			msg='';
+			msg = '';
 		}
 
 		return(

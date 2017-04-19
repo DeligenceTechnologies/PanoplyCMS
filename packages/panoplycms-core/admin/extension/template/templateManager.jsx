@@ -83,7 +83,7 @@ TemplateName = template => {
 			<td>{template.name}</td>
 			<td id={template.name} >
 			<span {...obj} onClick={() => {template.func(template.name,template.active)}}></span></td>
-			<td> <span className="glyphicon glyphicon-zoom-in" onClick={() => {template.show(template.packageName,template.layoutImage)}}></span> </td>
+			<td style={{cursor:'pointer'}}> <span className="glyphicon glyphicon-zoom-in" onClick={() => {template.show(template.packageName,template.layoutImage)}}></span> </td>
 		</tr>
 	);
 }

@@ -18,6 +18,9 @@ AdminLayout = React.createClass({
 							{this.props.content}
 						</div>
 					</div>
+					<div className="row">
+						<AdminFooter />
+					</div>
 				</div>
 			</div>
 		);

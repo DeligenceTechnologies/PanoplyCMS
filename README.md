@@ -48,6 +48,6 @@ Now go and create some categories, then articles and finally some menus. Look at
 - Articles Associated With Created Categories
 - Multiple & Multilevel Menus
 - Tags associated with articles
-- HTML Blocks that can load at any given position
 - Dynamic Template
+- Menu Module that can load at any given position
 - HTML Blocks that can load at any given position

@@ -64,7 +64,12 @@ Usersettings=React.createClass({
 		return(
 			<div>
 				<button type="button" className="btn btn-logged" data-toggle="dropdown">
-					<span className="custom-span" >{Meteor.user()?Meteor.user().profile?Meteor.user().profile.username:'':''}</span><img src={imgUrl?imgUrl.url():''} alt="Cinque Terre" width="50" height="20" />
+					<span className="custom-span" >{Meteor.user()?Meteor.user().profile?Meteor.user().profile.username:'':''}</span>
+					{
+						imgUrl ?
+							<img src={imgUrl.url()} alt="" width="50" height="20" />
+						:''
+					}
 					<span className="caret"></span>
 				</button>
 				<ul className="dropdown-menu pull-right">

@@ -40,7 +40,13 @@ UserList = React.createClass({
 							</thead>
 							<tbody>
 								<tr>
-									<td><img src={image ? image.url() :''} className="img-circle" alt="Profile Picture" width="50" height="50" /></td>
+									<td>
+										{
+											image ?
+												<img src={image.url()} className="img-circle" alt="Profile Picture" width="50" height="50" />
+											: 'No image'
+										}
+									</td>
 									<td>{this.data.user?this.data.user.profile?this.data.user.profile.username:'':''}</td>
 									<td>{this.data.user?this.data.user.emails[0].address:''}</td>
 									<td><a className = "btn btn-primary fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" href={FlowRouter.path('editUser',{_id:this.data.user._id})}></a></td>

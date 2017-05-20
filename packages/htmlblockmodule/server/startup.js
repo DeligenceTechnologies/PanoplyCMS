@@ -14,7 +14,7 @@ PanoplyCMSRegisterPackage(
 				"provides" : "dashboard",
 				"permission" : ["admin"]
 			},
-			{ 
+			{
 				"name" : "editHtmlblock",
 				"path" : "/modules/htmlblock/:_id",
 				"component" : "EditHtmlblock", 

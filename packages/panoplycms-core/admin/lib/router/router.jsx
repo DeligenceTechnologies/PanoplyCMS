@@ -1,266 +1,298 @@
+
+import AdminLayout from '../../../admin/adminLayout/adminLayout.jsx'
+import Dashboard from '../../../admin/dashboard/dashboard.jsx'
+
+import AddArticle from '../../../admin/content/article/addArticle.jsx'
+import EditArticle from '../../../admin/content/article/editArticle.jsx'
+import ListArticles from '../../../admin/content/article/listArticles.jsx'
+
+import ListMenus from '../../../admin/menu/listMenus.jsx'
+import AddMenu from '../../../admin/menu/addMenu.jsx'
+import EditMenu from '../../../admin/menu/editMenu.jsx'
+
+import ListMenuItems from '../../../admin/menu/menuItems/listMenuItems.jsx'
+import AddMenuItem from '../../../admin/menu/menuItems/addMenuItem.jsx'
+import EditMenuItem from '../../../admin/menu/menuItems/editMenuItem.jsx'
+
+import ListCategories from '../../../admin/content/category/listCategories.jsx'
+import AddCategory from '../../../admin/content/category/addCategory.jsx'
+import EditCategory from '../../../admin/content/category/editCategory.jsx'
+
+import UserList from '../../../admin/users/myProfile.jsx'
+import EditUser from '../../../admin/users/edit.jsx'
+import ChangePassword from '../../../admin/users/changePassword.jsx'
+
+import Login from '../../../admin/login/login.jsx'
+import TemplateManger from '../../../admin/extension/template/templateManager.jsx'
+import SystemLayout from '../../../admin/settings/settings.jsx'
+import ModulesLayout from '../../../admin/extension/modules/modulesLayout.jsx'
+
 PanoplyRouter = FlowRouter;
 PanoplyRouter.wait();
 
+
 _.extend(PanoplyRouter, {
-  init: () => {
-    Tracker.autorun( (c) => {
-      if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
-        packages = PanoplyCMSCollections.RegisteredPackages.find().fetch()
+	init: () => {
+		Tracker.autorun((c) => {
+			if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
 
-        // Get List of available Templates
-        let tmplArray = _.findWhere(packages, {name: "template"}) || []
+				/*Get list of all registered packages*/
+				let packages = PanoplyCMSCollections.RegisteredPackages.find().fetch()
 
-        let site = PanoplyCMSCollections.Sites.findOne({})
+				/*Get List of available Templates*/
+				let tmplArray = _.findWhere(packages, {name: "template"}) || []
 
-        // Get Default Template Parameters 
-        var defaultTemplate = _.find(tmplArray.templates, function(t){
-          if(t.active)
-            return t
-        })
-        // console.log("-------", site.siteOffline)
-        // console.log("======", defaultTemplate.offline)
-        if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
-          // console.log("*********", defaultTemplate.offline)
-          let offline = defaultTemplate.offline || 'CoreOfflineComponent';
-          // console.log("==>>", offline)          
-          PanoplyRouter.route('/', {
-            action: (p, q) => {
-              ReactLayout.render(eval(offline))
-            }
-          })
-        } else {
-          /* Front End Routing Starts */
-          menuItems = PanoplyCMSCollections.MenuItems.find({trash:false}).fetch()
+				let site = PanoplyCMSCollections.Sites.findOne({})
 
-          // Get List of available Modules
-          let moduleTypes = _.filter(packages, p => { return p.type == "module" }) || [];
+				/*Get Default Template Parameters*/
+				let defaultTemplate = _.find(tmplArray.templates, function(t){
+					if(t.active)
+						return t
+				})
+				let defaultModules = {};
+				/* Render offline component */
+				if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+					let offline = defaultTemplate.views.offline || 'CoreOfflineComponent';
+					PanoplyRouter.route('/', {
+						action: (p, q) => {
+							ReactLayout.render(eval(offline))
+						}
+					})
+				} else {
+					/* Front End Routing Starts */
 
-          let mod = _.pluck(moduleTypes, 'name') || [];
-          let positions = defaultTemplate.positions || [];
+					/* Get all available menuItems Data */
+					menuItems = PanoplyCMSCollections.MenuItems.find({ trash:false }).fetch()
 
-          var defaultModules = {};
-          var modules = {};
+					/* Get List of available Modules */
+					let moduleTypes = _.filter(packages, p => { return p.type == "module" }) || [];
+					// console.log("moduleTypes :: router.jsx ==>", moduleTypes)
 
-          if(!menuItems.length){
-            let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}]}).fetch();
-            let allModules = getModulesList(positions, modulesList, moduleTypes)
-            defaultModules = allModules.defaultModules
-          }
+					/* Get available module names */
+					let mod = _.pluck(moduleTypes, 'name') || [];
+					// console.log("module name :: router.jsx ==>", mod)
 
-          /* Get List of modules on position */
-          function getModulesList(positions, modulesList, moduleTypes){
-            var modules = {}, defaultModules = {}
-            _.each(positions, p => {
-              let mod = [], defaultMod = []
-              _.each(modulesList, m => {
-                if(m.position == p){
-                  _.each(moduleTypes, t => {
-                    if(t.name == m.type){
-                      m.moduleData?m.moduleData['key']=Math.random():m['moduleData'] = { key: Math.random() }
-                      if(m.showTitle) m.moduleData['module_title'] = m.name
-                      mod.push(React.createElement(eval(t.component), m.moduleData))
-                      if(m.allPages) defaultMod.push(React.createElement(eval(t.component), m.moduleData))
-                    }
-                  })
-                }
-              })
-              modules[p] = mod;
-              defaultModules[p] = defaultMod;
-            })
-            return { modules, defaultModules }
-          }
+					/* Get positions defined in template */
+					let positions = defaultTemplate.positions || [];
+					// console.log("positions :: router.jsx ==>", positions)
 
-          _.each(menuItems, (i) => {
-            if(i.MenuItemType == 'url') return;
+					
+					let modules = {};
 
-            let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}, {menuItems: i._id}]}).fetch();
+					/* Modules show on all pages (No menuItem id assigned) */
+					if(!menuItems.length){
+						// console.log("-------- No menuItem id assigned --------")
+						let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}]}).fetch();
+						// console.log("---------", modulesList)
 
-            let allModules = getModulesList(positions, modulesList, moduleTypes)
+						let allModules = getModulesList(positions, modulesList, moduleTypes)
+						let defaultModules = allModules.defaultModules
+					}
 
-            modules = allModules.modules
-            defaultModules = allModules.defaultModules
+					/* Get List of modules on position */
+					function getModulesList(positions, modulesList, moduleTypes){
+						let modules = {}, defaultModules = {};
+						_.each(positions, position => {
+							let mod = [], defaultMod = [];
+							_.each(modulesList, modules => {
+								if(modules.position == position){
+									_.each(moduleTypes, moduleType => {
+										if(moduleType.name == modules.type){
+											modules.moduleClass ? modules.moduleData['moduleClass']=modules.moduleClass:modules.moduleData['moduleClass']=''
+											modules.moduleData ? modules.moduleData['key']=Math.random() : modules['moduleData'] = { key: Math.random() }
+											if(modules.showTitle) modules.moduleData['module_title'] = modules.name
+											mod.push(React.createElement(eval(moduleType.component), modules.moduleData))
+											if(modules.allPages) defaultMod.push(React.createElement(eval(moduleType.component), modules.moduleData))
+										}
+									})
+								}
+							})
+							modules[position] = mod;
+							defaultModules[position] = defaultMod;
+						})
+						// console.log("///// >>>>>>", modules)
+						return { modules, defaultModules }
+					}
 
-            let content;
-            switch(i.MenuItemType){
-              case 'category':
-                content = defaultTemplate.categoryView;
-                break;
-              case 'article':
-                content = defaultTemplate.articleView;
-                break;
-            }
+					/* Modules show on only specified menuItem */
 
-            let route = {
-              action: (params, queryParams) => {
-                params = { id: i.MenuItemTypeId };
-                ReactLayout.render(eval(defaultTemplate.layout), { 
-                  content: React.createElement(eval(content), params),
-                  ...modules
-                })
-              }
-            }
-            
-            if(i.MenuItemType == 'category'){
-              let articles = PanoplyCMSCollections.Articles.find({category: i.MenuItemTypeId, trash:false},{_id:1, alias: 1}).fetch()
+					_.each(menuItems, (i) => {
+						// console.log("========== Menu Item Id assigned ==========")
+						if(i.MenuItemType == 'url') return;
+						
+						/* Get Modules List with specified menuItem id */
+						// debugger;
+						// Reactive Value
+						let modulesList = PanoplyCMSCollections.Modules.find({type: {$in: mod}, trash: false, position: {$in: positions}, $or: [{allPages: true}, {menuItems: i._id}]}).fetch();
+						// console.log("==========", modulesList)
+						// debugger;
+						let allModules = getModulesList(positions, modulesList, moduleTypes)
+						// console.log("allModules =======", allModules)
+						let modules = allModules.modules
+						let defaultModules = allModules.defaultModules
+						
+						
+						//	Set default notFound view if Menu view not found
+						let content = defaultTemplate.views[i.MenuItemType];
+						if(content === undefined)
+							content = defaultTemplate.views.notFound;
+						
+						// switch(i.MenuItemType){
+						// 	case 'category':
+						// 		content = defaultTemplate.categoryView;
+						// 		break;
+						// 	case 'article':
+						// 		content = defaultTemplate.articleView;
+						// 		break;
+						// 	case 'module':
+						// 		content = defaultTemplate.noArticleView;
+						// 		break;
+						// }
 
-              _.each(articles, a => {
-                let route = {
-                  action: (params, queryParams) => {
-                    ReactLayout.render(eval(defaultTemplate.layout), { content: React.createElement(eval(defaultTemplate.articleView), { id: a._id }),
-                      ...modules
-                    })
-                  }
-                }
-                PanoplyRouter.route('/'+i.alias+'/'+a.alias, route)
-              })
-            }
-            if(i.homepage) PanoplyRouter.route('/', route)
-            PanoplyRouter.route('/'+i.alias, route)
-          });
+						if( i.MenuItemType == "module")
+							delete modules.sidebar;
 
-          /* Front End Routing Ends */
-        }
+						// console.log("modules >>>>>>>---", modules)
 
-        /* Old Route Code with menu only */
-        /*menuItems.forEach( (i) => {
-          let route = {
-            action: (params, queryParams) => {
-              // renderLayout(defaultTemplate.layout, null, params, queryParams)
-              renderLayout(null, null, params, queryParams)
-            }
-          }
-          PanoplyRouter.route('/'+i.alias, route)
-          console.log(PanoplyRouter, "<--- Its router")
-        });*/
+						// React.createElement(type, props, children);
 
-        // if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-          admin = PanoplyRouter.group({
-            name: "admin",
-            prefix: '/admin',
-            triggersEnter: [ (context, redirect) => {
-              if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
-                redirect('login');
-              }
-            }]
-          });
-          admin.route('/', {
-            action: (params) => {
-              PanoplyRouter.go('admin/dashboard');
-            }, 
-            triggersEnter: [(context, redirect) => {
-              redirect('dashboard')
-            }]
-          });
 
-        /*} else {
-          admin = PanoplyRouter.group({
-            name: "admin",
-            prefix: '/admin',
-            triggersEnter: [ ]
-          });
-        }*/
+						let route = {
+							action: (params, queryParams) => {
+								params = { id: i.MenuItemTypeId };
+								// , modules: modules
+								ReactLayout.render(eval(defaultTemplate.layout), {
+									content: React.createElement(eval(content), params),
+									...modules
+								})
+							}
+						}
 
-        // if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-          /* Create Admin Route Group */
-          packages.forEach( (p) => {
-            if(p.routes){              
-              p.routes.forEach( (r) => {
-                let route = {
-                  name: r.name,
-                  layout : r.layout,
-                  template : r.component,
-                  action: (params, queryParams) => {
-                    renderLayout(r.layout, r.component, params, queryParams)
-                  }
-                }
-                if(r.provides == 'dashboard'){
-                  if(Roles.userIsInRole(Meteor.userId(), ['admin'])) admin.route(r.path, route)
-                } else {
-                  if(route.name == 'login'){
-                    route.triggersEnter = [ (context, redirect) => {
-                      if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-                        // console.log('Already Loggedin')
-                        redirect('/');
-                      }
-                    }]
-                  }
-                  PanoplyRouter.route(r.path, route)
-                }
-              })
-            }
-          })
-        // }
+						if(i.MenuItemType == 'category'){
+							let articles = PanoplyCMSCollections.Articles.find({category: i.MenuItemTypeId, trash:false},{_id:1, alias: 1}).fetch()
 
-        /* Render React Layout */
-        function renderLayout(layout, component, params, queryParams){
-          ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
-        }
+							_.each(articles, a => {
+								let route = {
+									action: (params, queryParams) => {
+										ReactLayout.render(eval(defaultTemplate.layout), { content: React.createElement(eval(defaultTemplate.views.article), { id: a._id }),
+											...modules
+										})
+									}
+								}
+								PanoplyRouter.route('/'+i.alias+'/'+a.alias, route)
+							})
+						}
+						// console.log(" ==> ",i)
+						if(i.homepage) PanoplyRouter.route('/', route)
+						PanoplyRouter.route('/'+i.alias, route)
+					});
 
-        /* Page Not Found Route */
-        let notFound = defaultTemplate.notFound || 'CoreComponentNotFound'
-        PanoplyRouter.notFound = {
-          action: function(a, b) {
-            let cp = PanoplyRouter.current().path;
-            if(cp.split('/')[1] == 'admin')
-              ReactLayout.render(AdminLayout, { 
-                content: React.createElement(eval('CoreComponentNotFound'))
-              })
-            else 
-              ReactLayout.render(eval(defaultTemplate.layout), {
-                content: React.createElement(eval(notFound)),
-                ...defaultModules
-              })
-          }
-        };
-        
-        // console.log('---------------------')
-        // console.log(PanoplyRouter)
-        try {
-          PanoplyRouter.initialize();
-        } catch(err) {
-          PanoplyRouter.reload();
-        }
-      }
-    });
-  },
+					/* Front End Routing Ends */
+				}
+
+				/* Old Route Code with menu only */
+				/*menuItems.forEach( (i) => {
+					let route = {
+						action: (params, queryParams) => {
+							// renderLayout(defaultTemplate.layout, null, params, queryParams)
+							renderLayout(null, null, params, queryParams)
+						}
+					}
+					PanoplyRouter.route('/'+i.alias, route)
+					console.log(PanoplyRouter, "<--- Its router")
+				});*/
+
+				// if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+					admin = PanoplyRouter.group({
+						name: "admin",
+						prefix: '/admin',
+						triggersEnter: [ (context, redirect) => {
+							if(!Roles.userIsInRole(Meteor.userId(), ['admin'])){
+								redirect('login');
+							}
+						}]
+					});
+					admin.route('/', {
+						action: (params) => {
+							PanoplyRouter.go('admin/dashboard');
+						}, 
+						triggersEnter: [(context, redirect) => {
+							redirect('dashboard')
+						}]
+					});
+
+				/*} else {
+					admin = PanoplyRouter.group({
+						name: "admin",
+						prefix: '/admin',
+						triggersEnter: [ ]
+					});
+				}*/
+
+				// if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+					/* Create Admin Route Group */
+					packages.forEach( (p) => {
+						if(p.routes){
+							p.routes.forEach( (r) => {
+								let route = {
+									name: r.name,
+									layout : r.layout,
+									template : r.component,
+									action: (params, queryParams) => {
+										renderLayout(r.layout, r.component, params, queryParams)
+									}
+								}
+								if(r.provides == 'dashboard'){
+									if(Roles.userIsInRole(Meteor.userId(), ['admin'])) admin.route(r.path, route)
+								} else {
+									if(route.name == 'login'){
+										route.triggersEnter = [ (context, redirect) => {
+											if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+												redirect('/');
+											}
+										}]
+									}
+									PanoplyRouter.route(r.path, route)
+								}
+							})
+						}
+					})
+				// }
+
+				/* Render React Layout */
+				function renderLayout(layout, component, params, queryParams){
+					ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
+				}
+
+				/* Page Not Found Route */
+				let notFound = defaultTemplate.views.notFound || 'CoreComponentNotFound'
+				PanoplyRouter.notFound = {
+					action: function(a, b) {
+						let cp = PanoplyRouter.current().path;
+						if(cp.split('/')[1] == 'admin')
+							ReactLayout.render(AdminLayout, { 
+								content: React.createElement(eval('CoreComponentNotFound'))
+							})
+						else 
+							ReactLayout.render(eval(defaultTemplate.layout), {
+								content: React.createElement(eval(notFound)),
+								...defaultModules
+							})
+					}
+				};
+
+				try {
+					PanoplyRouter.initialize();
+				} catch(err) {
+					PanoplyRouter.reload();
+				}
+			}
+		});
+	},
 });
 
 if(Meteor.isClient){
-  Meteor.startup(() => {
-    PanoplyRouter.init();
-  })
+	Meteor.startup(() => {
+		PanoplyRouter.init();
+	})
 }
-/*
-HTMLBlock = data => {
-  showTitle = '';
-  if(data.module_title) showTitle = <h4>{data.module_title}</h4>;
-  return <div>
-    {showTitle}
-    {data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
-  </div>
-}
-
-MenuModuleFront = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData: function(){
-    return { items: PanoplyCMSCollections.MenuItems.find({_id: this.props.menuItem, trash:false}).fetch() }
-  },
-  onClick(a){
-    FlowRouter.go('/'+a)
-  },
-  render(){
-    showTitle = '';
-    if(this.props.module_title) showTitle = <h4>{this.props.module_title}</h4>;
-    return (<div>
-          {showTitle}
-          <ul>
-          {this.data.items?
-            this.data.items.map(i => {
-              return (<li key={i._id}>
-                <a onClick={()=>{this.onClick(i.alias)}}>{i.title}</a>
-              </li>)
-            }):'<li></li>'}
-          </ul>
-        </div>)
-  }
-})*/

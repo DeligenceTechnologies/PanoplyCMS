@@ -15,7 +15,7 @@ Language=React.createClass({
 	render(){
 		return (
 			
-					<div className="col-md-10 content" >
+					<div className="" >
             <h2 className="sub-header">Language</h2>
               <div className = "form-group">
                 <label htmlFor = "firstname" className = "col-sm-2 control-label" >English</label>

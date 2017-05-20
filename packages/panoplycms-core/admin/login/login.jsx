@@ -1,21 +1,23 @@
-Login = React.createClass({
-  mixins:[ReactMeteorData],
-    getMeteorData(){
-    return {
-      result: PanoplyCMSCollections.Sites.findOne()
-    };
-  },
-  componentDidMount: function() {
-    document.title = this.data.result.name + ' Login';
-  },
-  getInitialState(){
-    return {
-      msg:false,
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
+
+// import AlertMessageOfError from '../common/alertMessageOfError.jsx';
+import { AlertMessage } from '../common/alertMessage.jsx';
+
+var createReactClass = require('create-react-class');
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
       valid: '',
-      errorMsg:false,
-    }
-  },
+    };
+  }
   componentDidMount(){
+    document.title = this.props.siteData.name + ' Login';
+
     let validObj=$("#loginForm").validate({
       rules: {
         email: {
@@ -51,80 +53,79 @@ Login = React.createClass({
         }
       }
     });
-    this.setState({valid:validObj})
-  },
-  resetSuccessMsg(){
+    this.setState({ valid:validObj })
+  }
+  /*resetSuccessMsg(){
     this.setState({'msg': false})
     this.setState({'errorMsg': false})
-  },
+  }*/
   submitData(event){
     event.preventDefault();
-    var email=ReactDOM.findDOMNode(this.refs.email).value.trim();
-    var password=ReactDOM.findDOMNode(this.refs.password).value.trim();
-    // console.log(email,password,this);
-    // self=this;
-    Meteor.loginWithPassword(email,password,(err,data) =>{
+    let email = $('#email').val();
+    let password = $('#password').val();
+    Meteor.loginWithPassword(email, password, (err,data) =>{
       if(err){
         // console.log("Error while log in ->>", err);
-        this.setState({errorMsg: err.reason})
+        // this.setState({ errorMsg: err.reason })
+        AlertMessage('ERROR', err.reason, 'error');
       }else{
-        this.setState({data:data})
+        this.setState({ data:data })
         setTimeout(() => {
           FlowRouter.go('dashboard');
         },1000)
       }
     });
-  },
+  }
   render() {
     return (
       <div>
-       <div className="container-fluid main-container">
-       <div className="content">
-          <div className="panel panel-default">
-            {this.state.errorMsg?<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />:'' }
-            <section>
-              <div className="container">
-                <br />
-                <div className="row">
-                  <div className="col-md-offset-2 col-md-6">
-                    <div className="panel panel-default">
-                      <div className="panel-heading">
-                        <span className="lead form-signin-heading">{this.data.result.name} Log In</span>
+        <div className="container-fluid main-container">
+          <div className="content">
+            <div className="panel panel-default">
+              {
+                /*this.state.errorMsg ?
+                  <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />
+                : ''*/
+              }
+              <section>
+                <div className="container">
+                  <br />
+                  <div className="row">
+                    <div className="col-md-offset-2 col-md-6">
+                      <div className="panel panel-default">
+                        <div className="panel-heading">
+                          <span className="lead form-signin-heading">{this.props.siteData.name} Log In</span>
+                        </div>
+                        <form className="form-signin" id="loginForm" onSubmit={this.submitData.bind(this)}>
+                          <label htmlFor="email" className="sr-only">Email address</label>
+                          <input type="email" id="email" className="form-control" placeholder="Email address" required />
+                          <label htmlFor="password" className="sr-only">Password</label>
+                          <input type="password" id="password" className="form-control" placeholder="Password" required />
+                          <input type="submit" value="Login" className="btn btn-lg btn-primary btn-block" />
+                        </form>
                       </div>
-                      <form className="form-signin" id="loginForm" onSubmit={this.submitData}>
-                        <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                        <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email address" required />
-                        <label htmlFor="inputPassword" className="sr-only">Password</label>
-                        <input type="password" ref="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                        <input type="submit" value="Login" className="btn btn-lg btn-primary btn-block" />
-                      </form>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
-          </div>  
+              </section>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     );
   }
-});
+}
 
-AdminLoginLayout = React.createClass({
-  render() { 
+export default createContainer(() => {
+  return {
+    siteData: PanoplyCMSCollections.Sites.findOne()
+  };
+}, Login)
+
+
+
+AdminLoginLayout = createReactClass({
+  render() {
     return <div>{this.props.content}</div>
   }
 })
-
-/*ShowAlert=React.createClass({
-  render(){
-    // console.log(this.props.err)
-    return (
-      <div className="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error! </strong>{this.props.err}
-      </div>
-    )        
-  }
-})*/

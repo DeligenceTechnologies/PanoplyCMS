@@ -3,6 +3,7 @@ Images = new FS.Collection("images", {
 });
 
 export default Images;
+
 generateAlias = function(alias){
 	return alias.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-')
 };

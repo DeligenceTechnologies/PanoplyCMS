@@ -37,6 +37,11 @@ Package.onUse(function(api) {
 	api.use('cfs:gridfs@0.0.33');
 	api.use('cfs:filesystem@0.1.2');
 	api.use('cfs:s3@0.1.3');
+	api.use('richsilv:owl-carousel@0.1.0');
+	api.use('themeteorchef:bert@2.1.2');
+	api.use('kadira:dochead@1.5.0');
+	api.use('reactive-dict@1.1.8');
+	api.use('shell-server@0.2.3');
 
 	api.use("deligencetechnologies:panoplycms-core@0.0.3");
 	api.use("deligencetechnologies:panoplycms-collections@0.0.1");
@@ -71,8 +76,8 @@ Package.onUse(function(api) {
 		'DefaultTemplate',
 		'DefaultCategory',
 		'DefaultArticle',
+		'ModuleOnly',
 		'DefaultNotFound',
 		'DefaultOffline'
 	],['client']);
-	
 });

@@ -15,7 +15,7 @@
 - Install React using: `meteor npm install --save meteor-node-stubs react react-dom react-addons-transition-group react-addons-css-transition-group react-addons-linked-state-mixin react-addons-create-fragment react-addons-update react-addons-pure-render-mixin react-addons-test-utils react-addons-perf`
 
 - Remove unnecessary code from `client/main.html` and `client/main.js` file from command :- `rm client/* server/*`
-- Type: `meteor` and hit Enter key.
+- Type: `meteor --settings settings.json` and hit Enter key.
 - Once it start running, go to your browser and type: http://localhost:3000
 - Thats it! You have installed PanoplyCMS on your system successfully.
 

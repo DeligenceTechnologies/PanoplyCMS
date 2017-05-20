@@ -1,52 +1,76 @@
-import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
 
-AddHtmlblock = React.createClass({
-	componentWillUnmount(){
-	},
+import MenuItemType from './menuItemTypes.jsx'
+import Positions from './positions.jsx'
+
+var createReactClass = require('create-react-class');
+
+AddHtmlblock = createReactClass({
 	getInitialState(){
 		return {
 			valid:'',
-			successMsg:false,
-			errorMsg:false,
+			gridLength:0,
+			checkAllPage:null
 		}
 	},
+
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
-			menuResults:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
-			templateRegister:PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'})
+			menuResults: PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
+			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'})
 		};
+	},
+	checkAllPage(){
+		this.setState({
+			checkAllPage:$("#checkAllPage").is(':checked')
+		});
+	},
+	changePostion(val){
+		let modules = PanoplyCMSCollections.Modules.find({position:val}).fetch();
+		let gridLength = 0;
+		if(modules.length && modules.gridLength){
+			for(let i in modules){
+				gridLength += modules.gridLength;
+			}
+		}
+		this.setState({
+			gridLength:val
+		});
 	},
 	submitData(event){
 		event.preventDefault()
-		var menuItems = [];
+		let menuItems = [];
 		$.each($("input[name='menucheck']:checked"), function(){
 			menuItems.push($(this).val());
 		});
 		if(this.state.valid.form()){
-			let name=ReactDOM.findDOMNode(this.refs.name).value.trim();
-			let position=$('#position').val()
+			let name = ReactDOM.findDOMNode(this.refs.name).value.trim();
+			let position = $('#position').val()
 			// let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
 			let article = $('#article').summernote('code');
-			let showTitle=$('input[name="options"]:checked').val()
-			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
+			let showTitle = $('input[name="options"]:checked').val() == 0?false:true;
+			let allPage = $('#checkAllPage').is(':checked');
 			obj = {
 				name: name,
-				type:'htmlblock',
-				position:position,
-				showTitle:showTitle,
-				menuItems:menuItems,
-				allPages:allPage,
+				type: 'htmlblock',
+				position: position,
+				showTitle: showTitle,
+				menuItems: menuItems,
+				moduleClass: $("#module-class").val(),
+				allPages: allPage,
 				moduleData:{
-					html:article
+					gridLength:$("#gridSize").val() && $("#gridSize").val() != 0?$("#gridSize").val():12,
+					html: article
 				}
 			}
 			Meteor.call('addModule', obj, (error,data) => {
 				if(error){
-					this.setState({errorMsg:error.reason})
+					AlertMessage('ERROR', error.reason, 'error');
 				}else{
-					this.setState({successMsg:true});
+					AlertMessage('SUCCESS', 'Successfully! added htmlblock.', 'success');
 					ReactDOM.findDOMNode(this.refs.name).value=''
 					// tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
 					$("#article").summernote("code", "");
@@ -54,10 +78,13 @@ AddHtmlblock = React.createClass({
 					$('#position').val('')
 				}
 			})
+			return dispatch => {
+				dispatch(insertModule(obj))
+			}
 		}
 	},
 	componentDidMount(){
-		let validObj=$("#menuModule").validate({
+		let validObj = $("#menuModule").validate({
 			rules: {
 				name: {
 					required: true
@@ -82,110 +109,191 @@ AddHtmlblock = React.createClass({
 				}
 			}
 		});
-		this.setState({valid:validObj})
+		this.setState({ valid:validObj })
 		$('.options').toggleClass('active');
 		$('.option').button();
 
-		$('#article').summernote({height: 200});
-		/*tinymce.remove();
-		tinymce.init({
-			selector: 'textarea',
-			skin_url: '/packages/teamon_tinymce/skins/lightgray',
-		});*/
+		$('#article').summernote({ height: 200 });
 	},
 	componentWillUnmount: function() {
 		// tinymce.remove();
 		$('#article').summernote('destroy');
 	},
-	resetSuccessMsg(){
+	/*resetSuccessMsg(){
 		this.setState({'successMsg':false})
 		this.setState({'errorMsg':false})
-	},
+	},*/
 	render(){
-		c=0;
+		/*let msg= '';
 		if(this.state.successMsg){
-			msg=<AlertMessage data={'added htmlblock.'} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageSuccess data={'added htmlblock.'} func={this.resetSuccessMsg}/>
 		}else if(this.state.errorMsg){
-			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
 		}else{
-			msg='';
-		}
+			msg = '';
+		}*/
 		return (
-			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-				<Heading data={'Add Htmlblock'} />
-				{msg}
-				<div className="panel-body">
-					<div id="notification"></div>
-					<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
-						<div className = "form-group">
-							<label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
-							<div className = "col-sm-10">
-								<input type = "text" name="name" ref="name" className = "form-control" placeholder = "Enter title" required/>
-							</div>
-						</div>
-						<Position key={this.data.templateRegister._id} data={this.data.templateRegister} />
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
-							<div className = "col-sm-10">
-								<div className="summernote">
-									<textarea id="article" className="form-control"></textarea>
-								</div>
-							</div>
-						</div>
-						<div className="form-group">
-							<label className="col-sm-2 control-label">Show Title</label>
-							<div className="col-sm-10">
-								<div className="btn-group" data-toggle="buttons">
-									<label className='active option btn btn-primary' ref="option">
-										<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
-									</label>
-									<label className='option btn btn-primary' ref="option" >
-										<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
-									</label>
-								</div>
-							</div>
-						</div>
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
-							<div className = "col-sm-10">
-								<input type="checkbox" className="allPage" ref="desc" name="allPage" />
-							</div>
-						</div>
-						<MenuItemType value={[]} />
-						<div className="form-group">
-							<div className = "col-sm-offset-2 col-sm-10">
-								<button className="btn btn-primary">SAVE</button>
-								&nbsp;&nbsp;
-								<a className="btn btn-danger" href={FlowRouter.path('modulesManager')}>CANCEL</a>
-							</div>
-						</div>
-					</form>
+			<div className="">
+				<div className="page-header">
+					<h3 className="sub-header">Add Htmlblock</h3>
 				</div>
+				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
+					<div className="controls-header">
+						<div className="form-group">
+							<div className = "col-sm-12">
+								<button className="btn custom-default-btn">SAVE</button>
+								&nbsp;&nbsp;
+								<a className="btn custom-default-btn" href={FlowRouter.path('modulesManager')}>CANCEL</a>
+							</div>
+						</div>
+					</div>
+					<div className="panel-body custom-panel">
+						<div id="notification"></div>
+						
+						<div className="custom-tab">
+							<ul className="nav nav-tabs">
+							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+							</ul>
+							<div className="tab-content">
+								{/* =======> MODULE START<======= */}
+		    						<div id="module-home" className="tab-pane active">
+										<div className = "form-group">
+											<label htmlFor = "firstname" className = "col-sm-2 control-label">Title</label>
+											<div className = "col-sm-10">
+												<input type = "text" name="name" ref="name" className = "form-control" placeholder = "Enter title" required/>
+											</div>
+										</div>
+										<div className="form-group switch-btn">
+											<label className="col-sm-2 control-label">Show Title</label>
+											<div className="col-sm-10">
+												<div className="btn-group switch-btn" data-toggle="buttons">
+													<label className='active option btn btn-primary' ref="option">
+														<input type="radio" className="rad" name="options" ref="options" id="option2" value={1}/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
+													</label>
+													<label className='option btn btn-primary' ref="option" >
+														<input type="radio" className="rad" ref="options" name="options" id="option3" value={0} /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<Positions key={this.data.templateRegister._id} changePostion={this.changePostion} data={this.data.templateRegister} value={this.data.templateRegister} />
+
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
+											<div className = "col-sm-10">
+												<div className="summernote">
+													<textarea id="article" className="form-control"></textarea>
+												</div>
+											</div>
+										</div>								
+									</div>
+								{/* =======> MODULE END<======= */}
+
+
+								{/* =======> MENU ASSIGNMENT START<======= */}
+									<div id="module-menu-assign" className="tab-pane">
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
+											<div className = "col-sm-10">
+												<input type="checkbox" onChange={this.checkAllPage} id="checkAllPage" className="allPage" ref="desc" name="allPage" />
+											</div>
+										</div>
+										{ 
+											!this.state.checkAllPage ?
+												<MenuItemType value={[]} />
+											:
+												''
+										}
+									</div>
+								{/* =======> MENU ASSIGNMENT END<======= */}
+
+
+								{/* =======> ADVANCED SETTING START<======= */}
+									<div id="module-advanced" className="tab-pane">
+										<div className="advance-htmlBlock">
+											<div className = "form-group">
+												<label htmlFor = "firstname" className = "col-sm-2 control-label">Module Suffix Class</label>
+												<div className = "col-sm-10">
+													<input type = "text" name="moduleClass" ref="moduleClass" id="module-class" className = "form-control" placeholder = "Enter Module Suffix class" />
+												</div>
+											</div>
+											<div className = "form-group">
+												<label htmlFor = "gridSize" className = "col-sm-2 control-label">Bootstrap Grid Size</label>
+												<div className = "col-sm-10">
+													<input type="number" className="gridSize form-control" ref="gridSize" id="gridSize" defaultValue={0} min={0} max={12-this.state.gridLength} name="gridSize" />
+												</div>
+											</div>
+										</div>
+									</div>
+								{/* =======> ADVANCED SETTING END<======= */}
+							</div>							
+						</div>
+					</div>
+				</form>
 			</div>
 		)
 	}
 });
 
-MenuList = React.createClass({
-	propTypes:{
-		menu: React.PropTypes.object.isRequired,
-	},
+/*MenuList = createReactClass({
 	render(){
 		return (
 			<option value={this.props.menu._id}>{this.props.menu.title}</option>
 		);
 	}
-});
+});*/
 
 HTMLBlock = data => {
 	showTitle = '';
-	if(data.module_title) showTitle = <h4>{data.module_title}</h4>;
+	if(data.module_title) showTitle = <h3>{data.module_title}</h3>;
 	return (
-		<div>
+		<div className={data.moduleClass}>
 			{showTitle}
 			{data.html?<div dangerouslySetInnerHTML={{__html: data.html}} />:'Nothing Here'}
 		</div>
 	);
 }
+
+
+AlertMessage = (title, message, messageType) => {
+  // TODO -> change icons (a/c to your need)
+  let type = '', icon = '';
+  if(messageType == 'warning'){
+    type = 'warning-msg';
+    icon =  'fa-exclamation-triangle';
+  }else if(messageType == 'success'){
+    type = 'success-msg';
+    icon =  'fa-check';
+  }else if(messageType == 'error'){
+    type = 'error-msg';
+    icon =  'fa-remove';
+  }
+  return (
+    Bert.alert({
+      title: title,
+      message: message,
+      type: type,
+      style: 'growl-top-right',
+      icon: icon
+    })
+  );
+}
+
+/*class AlertMessageError extends Component {
+  render(){
+    return (
+      <div className="successMsg alert alert-danger">
+        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Error! </strong>
+        {this.props.data}
+      </div>
+    )
+  }
+}*/
 
 export default AddHtmlblock;

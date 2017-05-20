@@ -1,26 +1,50 @@
-import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
 
-EditHtmlblock = React.createClass({
-	componentWillUnmount(){
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+import MenuItemT from './menuItemTypes.jsx'
+import Positions from './positions.jsx'
+
+var createReactClass = require('create-react-class');
+
+EditHtmlblock = createReactClass({
+	
+	getMeteorData() {
+		return {
+			menuResults: PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
+			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
+			htmlblockModuleData: PanoplyCMSCollections.Modules.findOne({_id:this.props._id})
+		};
 	},
 	getInitialState(){
 		return {
 			valid:'',
-			successMsg:false,
-			errorMsg:false,
+			gridLength:0,
+			checkAllPage:null
 		}
 	},
 	mixins: [ReactMeteorData],
-	getMeteorData() {
-		return {
-			menuResults:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
-			templateRegister:PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
-			htmlblockModuleData:PanoplyCMSCollections.Modules.findOne({_id:this.props._id})
-		};
+	
+	checkAllPage(){
+		this.setState({
+			checkAllPage:$("#all-page").is(':checked')?"true":"false"
+		});
+	},
+	changePostion(val){
+		let modules = PanoplyCMSCollections.Modules.find({position:val}).fetch();
+		let gridLength = 0;
+		if(modules.length && modules.gridLength){
+			for(let i in modules){
+				gridLength += modules.gridLength;
+			}
+		}
+		this.setState({
+			gridLength:val
+		});
 	},
 	submitData(event){
 		event.preventDefault()
-		var menuItems = [];
+		let menuItems = [];
 		$.each($("input[name='menucheck']:checked"), function(){            
 			menuItems.push($(this).val());
 		});
@@ -29,32 +53,48 @@ EditHtmlblock = React.createClass({
 			let name=ReactDOM.findDOMNode(this.refs.name).value.trim();
 			let position=$('#position').val()
 			let article=$('#article').summernote('code');
-			let showTitle=$('input[name="options"]:checked').val()
-			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
+			let allPage=$('#all-page').is(':checked')
+			let showTitle=true;
+			if($('input[name="options"]:checked').val()){
+				if($('input[name="options"]:checked').val() == 1){
+					showTitle = true
+				}else{
+					showTitle = false
+				}
+			}else if(this.data.htmlblockModuleData.showTitle){
+				showTitle = this.data.htmlblockModuleData.showTitle
+			}else{
+				showTitle = false
+			}
 			obj = {
 				name: name,
 				type:'htmlblock',
 				position:position,
 				showTitle:showTitle,
 				menuItems:menuItems,
+				moduleClass: $("#moduleClass").val(),
 				allPages:allPage,
 				moduleData:{
+					gridLength:$("#editGridSize").val() && $("#editGridSize").val() != 0?$("#editGridSize").val():12,
 					html:article
 				}
 			}
-			select={
+			select = {
 				_id:this.props._id
 			}
 
-			Meteor.call('editModule',select,obj,(error,data)=>{
+			Meteor.call('editModule', select, obj,(error,data)=>{
 				if(error){
-					this.setState({errorMsg:error.reason})
+					AlertMessage('ERROR', error.reason, 'error');
 				}else{
-					this.setState({successMsg:true});
+					console.log("module edit success")
+					AlertMessage('SUCCESS', 'Successfully! updated htmlblock.', 'success');
 				}
 			})
+			return dispatch => {
+				dispatch(updateModule(select, obj))
+			}
 		}
 	},
 	componentDidMount(){
@@ -86,11 +126,6 @@ EditHtmlblock = React.createClass({
 		this.setState({valid:validObj})  
 		$('.options').toggleClass('active');
 		$('.option').button();
-		/*tinymce.remove();
-		tinymce.init({
-			selector: 'textarea',
-			skin_url: '/packages/teamon_tinymce/skins/lightgray',
-		});*/
 		$('#article').summernote({height: 200});
 	},
 	componentDidUpdate: function() {
@@ -100,76 +135,176 @@ EditHtmlblock = React.createClass({
 		// tinymce.remove();
 		$('#article').summernote('destroy');
 	},
-	resetSuccessMsg(){
+	/*resetSuccessMsg(){
 		this.setState({'successMsg':false})
 		this.setState({'errorMsg':false})
-	},
+	},*/
 	render(){
-		c=0;
+		c = 0;
+
+		/*let msg = '';
 		if(this.state.successMsg){
-			msg=<AlertMessage data={'updated htmlblock.'} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageSuccess data={'updated htmlblock.'} func={this.resetSuccessMsg} />
 		}else if(this.state.errorMsg){
-			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg} />
 		}else{
-			msg='';
-		}
+			msg = '';
+		}*/
 		return (
-			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-				<Heading  data={'Edit Htmlblock'} />
-				{msg}
-				<div className="panel-body">
-					<div id="notification"></div>
-					<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
-						<div className = "form-group">
-							<label htmlFor = "firstname" className = "col-sm-2 control-label">Name</label>
-							<div className = "col-sm-10">
-								<input type = "text" name="name" ref="name"  className = "form-control"  placeholder = "Enter title" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.name:''} required/>
-							</div>
-						</div>
-						<Position key={this.data.templateRegister._id} data={this.data.templateRegister} value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.position:''}/>
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
-							<div className = "col-sm-10">
-								<div className="summernote">
-									<textarea type="text" id="article" className="form-control" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.moduleData.html:''}></textarea>
-								</div>
-							</div>
-						</div>
-						<div className="form-group">
-							<label className="col-sm-2 control-label">Show Title</label>
-							<div className="col-sm-10">
-								<div className="btn-group" data-toggle="buttons">
-									<label className={this.data.htmlblockModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
-										<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
-									</label>
-									<label className={this.data.htmlblockModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option">
-									<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
-									</label>
-								</div>
-							</div>
-						</div>
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
-							<div className = "col-sm-10">
-								<input type="checkbox" defaultChecked={this.data.htmlblockModuleData.allPages} className="allPage" ref="desc" name="allPage" />
-							</div>
-						</div>
-
-						<MenuItemType value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:[]} />
-
-						<div className="form-group">
-							<div className = "col-sm-offset-2 col-sm-10">
-								<button className="btn btn-primary">UPDATE</button>
-								&nbsp;&nbsp;
-								<a className="btn btn-danger" href={FlowRouter.path('modulesManager')}>CANCEL</a>
-							</div>
-						</div> 
-					</form>
+			<div className="">
+				<div className="page-header">
+					<h3 className="sub-header">Edit Htmlblock</h3>
 				</div>
+
+				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
+					<div className="controls-header">
+						<div className="form-group">
+							<div className = "col-sm-12">
+								<button className="btn custom-default-btn">UPDATE</button>
+								&nbsp;&nbsp;
+								<a className="btn custom-default-btn" href={FlowRouter.path('modulesManager')}>CANCEL</a>
+							</div>
+						</div>
+					</div>
+
+					<div className="panel-body custom-panel">
+						<div id="notification"></div>
+					 	<div className="custom-tab">
+							<ul className="nav nav-tabs">
+							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+							</ul>
+							<div className="tab-content">
+								{/* =======> MODULE START<======= */}
+			    					<div id="module-home" className="tab-pane active">
+
+										<div className = "form-group">
+											<label htmlFor = "firstname" className = "col-sm-2 control-label">Title</label>
+											<div className = "col-sm-10">
+												<input type = "text" name="name" ref="name"  className = "form-control"  placeholder = "Enter title" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.name:''} required/>
+											</div>
+										</div>
+										<div className="form-group switch-btn">
+											<label className="col-sm-2 control-label">Show Title</label>
+											<div className="col-sm-10">
+												<div className="btn-group switch-btn" data-toggle="buttons">
+													<label className={this.data.htmlblockModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
+														<input type="radio" className="rad" name="options" ref="options" id="option2" value={1}/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
+													</label>
+													<label className={this.data.htmlblockModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option">
+													<input type="radio" className="rad" ref="options" name="options" id="option3" value={0} /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
+													</label>
+												</div>
+
+											</div>
+										</div>
+										
+										<Positions key={this.data.templateRegister._id} changePostion={this.changePostion} data={this.data.templateRegister} value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.position:''}/>
+
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
+											<div className = "col-sm-10">
+												<div className="summernote">
+													<textarea type="text" id="article" className="form-control" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.moduleData.html:''}></textarea>
+												</div>
+											</div>
+										</div>								
+									</div>
+
+								{/* =======> MODULE END<======= */}
+
+
+								{/* =======> MENU ASSIGNMENT START<======= */}
+									<div id="module-menu-assign" className="tab-pane">
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
+											<div className = "col-sm-10">
+												<input type="checkbox" onChange={this.checkAllPage} defaultChecked={this.data.htmlblockModuleData.allPages} className="allPage" id="all-page" ref="desc" name="allPage" />
+											</div>
+										</div>
+										{ 
+											this.state.checkAllPage?
+												this.state.checkAllPage == "false" ?
+													<MenuItemT value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:[]} />
+													:
+														''
+												:
+													!this.data.htmlblockModuleData.allPages?
+														<MenuItemT value={this.data.htmlblockModuleData?this.data.htmlblockModuleData.menuItems:[]} />
+													:
+													''
+										}
+									</div>
+								{/* =======> MENU ASSIGNMENT END<======= */}
+
+
+								{/* =======> ADVANCED SETTING START<======= */}
+									<div id="module-advanced" className="tab-pane">
+										<div className="advance-htmlBlock">
+											<div className = "form-group">
+												<label htmlFor = "firstname" className = "col-sm-2 control-label">Module Suffix Class</label>
+												<div className = "col-sm-10">
+													<input type = "text" name="moduleClass" ref="moduleClass" id="moduleClass" className = "form-control" defaultValue={this.data.htmlblockModuleData?this.data.htmlblockModuleData.moduleClass:''} />
+												</div>
+											</div>
+											<div className = "form-group">
+												<label htmlFor = "editGridSize" className = "col-sm-2 control-label">Bootstrap Grid Size</label>
+												<div className = "col-sm-10">
+													<input type="number" className="editGridSize form-control" ref="editGridSize" id="editGridSize" defaultValue={this.data.htmlblockModuleData.moduleData.gridLength?this.data.htmlblockModuleData.moduleData.gridLength:0} min={0} max={12-this.state.gridLength} name="gridSize" />
+												</div>
+											</div>
+
+										</div>
+									</div>
+								{/* =======> ADVANCED SETTING END<======= */}
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		)
 	}
 });
+
+AlertMessage = (title, message, messageType) => {
+  // TODO -> change icons (a/c to your need)
+  let type = '', icon = '';
+  if(messageType == 'warning'){
+    type = 'warning-msg';
+    icon =  'fa-exclamation-triangle';
+  }else if(messageType == 'success'){
+    type = 'success-msg';
+    icon =  'fa-check';
+  }else if(messageType == 'error'){
+    type = 'error-msg';
+    icon =  'fa-remove';
+  }
+  return (
+    Bert.alert({
+      title: title,
+      message: message,
+      type: type,
+      style: 'growl-top-right',
+      icon: icon
+    })
+  );
+}
+
+/*class AlertMessageError extends Component {
+  render(){
+    return (
+      <div className="successMsg alert alert-danger">
+        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Error! </strong>
+        {this.props.data}
+      </div>
+    )
+  }
+}*/
+
 
 /*MenuList = React.createClass({
 	propTypes:{
@@ -181,5 +316,4 @@ EditHtmlblock = React.createClass({
 		);
 	}
 });*/
-
 export default EditHtmlblock;

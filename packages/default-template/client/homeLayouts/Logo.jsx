@@ -1,28 +1,34 @@
-Logo = React.createClass({
-	mixins:[ReactMeteorData],
-	getMeteorData(){
-		return {
-			results: PanoplyCMSCollections.Sites.findOne()
-		};
-	},
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
+
+// var createReactClass = require('create-react-class');
+
+class Logo extends Component {
 	onClick(){
 		PanoplyRouter.go('/')
-	},
+	}
 	render(){
-		let imgUrl=Images.findOne({_id:this.data.results.logoId})
+		let img = Images.findOne({ _id:this.props.siteData.logoId })
 		return(
 			<div>
 				{
-					imgUrl?
-						<img style={{margin:"10px 0",maxWidth: "100%",maxHeight: "100px"}} src={imgUrl.url()} />
+					img ?
+						<img style={{margin:"10px 0", maxWidth: "100%", maxHeight: "100px"}} src={img.url()} />
 					:
 						<div>
 							<h3>Welcome to</h3>
-							<h2 className="blog-title" onClick={this.onClick}>{this.props.data?this.props.data.name:''}</h2>
+							<h2 className="blog-title" onClick={this.onClick.bind(this)}>{this.props.siteData?this.props.siteData.name:''}</h2>
 						</div>
 				}
-				<p className="lead blog-description">{this.props.data?this.props.data.summary:''}</p>
+				<p className="lead blog-description">{this.props.siteData?this.props.siteData.summary:''}</p>
 			</div>
 		);
 	}
-});
+}
+
+export default createContainer(()=>{
+	return {
+		siteData: PanoplyCMSCollections.Sites.findOne()
+	};
+}, Logo)

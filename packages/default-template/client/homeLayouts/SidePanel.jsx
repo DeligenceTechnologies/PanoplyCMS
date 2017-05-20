@@ -10,4 +10,5 @@ SidePanel = data => {
 			}
 		</div>
 	);
+
 }

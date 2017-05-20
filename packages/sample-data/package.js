@@ -45,6 +45,8 @@ Package.onUse(function(api) {
   api.use('anti:i18n@0.4.3');
   api.use('themeteorchef:jquery-validation@1.0.0');
   api.use('arillo:flow-router-helpers@0.4.7');
+  api.use('richsilv:owl-carousel@0.1.0');
+  api.use('themeteorchef:bert@2.1.2');
 
   api.use('deligencetechnologies:panoplycms-collections@0.0.1');
   api.addFiles(['server/sample-data.js'],['client','server'])

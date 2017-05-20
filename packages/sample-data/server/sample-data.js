@@ -130,6 +130,21 @@ if(Meteor.isServer){
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : ""
+		},
+		{
+			"_id" : "McwCH6S4cMGsqPags",
+			"title" : "Welcome To Deligence",
+			"alias" : "welcome-to-deligence",
+			"category" : "WjkfAjSTBQMBk4e6y",
+			"tags" : [ ],
+			"article" : "<h1 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-size: 30px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; text-rendering: optimizeLegibility; background-color: #ffffff;\">Welcome to Deligence Technologies</h1>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Deligence Technologies is a team of highly qualified and experienced professionals. We value our words and fulfill our commitments. We deliver on time and when we are not able to do so, we inform in advance. Communication, Commitment and Quality are our Key Values.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We are experts of PHP/MySQL and we mainly work in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Joomla\" href=\"http://www.deligence.com/technologies/php-mysql/joomla\">Joomla</a>, and&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"WordPress\" href=\"http://www.deligence.com/technologies/php-mysql/wordpress\">WordPress</a>&nbsp;CMSs.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We also have expertise in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"MeteorJS\" href=\"http://www.deligence.com/technologies/nodejs-mongodb/meteor\">MeteorJS</a>&nbsp;which is a web framework based on NodeJS and uses MongoDB as backend.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Concerns/Vision of the Company&nbsp;</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">1. We are in action to fulfill the aspirations of our team members.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">2. Deligence Technologies is a well known and trusted Brand in IT Services Industry.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">raison d'&ecirc;tre</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">fulfilling the aspirations of our team members.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Promoters of the Company</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Sanjay Kumar and Nidhi Aggarwal are the 2 promoters &amp; Directors of this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Sanjay Kumar</span>&nbsp;is CEO and Sales Manager of Deligence Technologies Pvt. Ltd. He has done DOEACC 'B\" Level which is equivalent to MCA. He is a Zend Certified Engineer (<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Zend\" href=\"http://www.zend.com/en/yellow-pages/ZEND003862\" target=\"_blank\">http://www.zend.com/en/yellow-pages/ZEND003862</a>) and also an Oracle Certified Professional (OCP-DBA). Sanjay has 10 years of experience in Open Source. He has worked for 5 years with&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Value One\" href=\"http://value-one.com/\" target=\"_blank\">Value One InfoTech Pvt. Ltd.</a>&nbsp;He started there as a Software Engineer, then become Sr. Software Engineer, and then Lead Developer, and then Team Leader. After that&nbsp;he founded&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"OST\" href=\"http://www.opensourcetechnologies.com/\" target=\"_blank\">Open Source Technologies Pvt. Ltd.</a>&nbsp;with one of his friend in July 2009. Sanjay had played various roles in that&nbsp;company. The roles include Project Manager, Sr. Project Manager, Sales Manager, and CEO. Recently he has discontinued with&nbsp;Open Source Technologies Pvt. Ltd. and has formed this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Nidhi Aggarwal</span>&nbsp;is the other promoter and director of the company. Her qualifications include M.Com., and MBA (Finance). She started her career with Open Source Technologies Pvt. Ltd. in July 2009 and she had played various roles during her stay of 5 years. She started as a developer and HR assistant. Then she started leading the team and from last 2.5 years - her major roles were - Project Manager and HR Manager. Now she is going to play the role of HR Manager and COO (Chief Operating Officer) in Deligence Technologies Pvt. Ltd.</p>",
+			"metaKeyword" : "About Us",
+			"metaDescription" : "About Us",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : ""
 		}
 	];
 	homepageListMenus=[
@@ -255,19 +270,6 @@ if(Meteor.isServer){
 			"trash" : false
 		},
 		{
-			"_id" : "52MrttTEnfcY7bSrs",
-			"title" : "Item8",
-			"desc" : "Item 8",
-			"mainParentId" : "5h3uv4CkbM8k8MoGm",
-			"MenuItemType" : "article",
-			"MenuItemTypeId" : "472Dgsst3bf4d7KAZ",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "item8",
-			"trash" : false
-		},
-		{
 			"_id" : "EfRWXxGF7euKRiq8y",
 			"title" : "Item9",
 			"desc" : "Item 9",
@@ -353,7 +355,7 @@ if(Meteor.isServer){
 		},
 		{
 			"_id" : "sau4un2XnpBgxzsmf",
-			"name" : "Our Links",
+			"name" : "Quick Links",
 			"type" : "menumodule",
 			"position" : "footer",
 			"showTitle" : true,

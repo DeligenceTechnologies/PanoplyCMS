@@ -41,6 +41,11 @@ Package.onUse(function(api) {
   api.use('anti:i18n@0.4.3');
   api.use('themeteorchef:jquery-validation@1.0.0');
   api.use('arillo:flow-router-helpers@0.4.7');
+  api.use('richsilv:owl-carousel@0.1.0');
+  api.use('themeteorchef:bert@2.1.2');
+  api.use('kadira:dochead@1.5.0');
+  api.use('reactive-dict@1.1.8');
+  api.use('shell-server@0.2.3');
 
   api.use('deligencetechnologies:panoplycms-core@0.0.3')
   api.use('deligencetechnologies:panoplycms-collections@0.0.1')
@@ -49,5 +54,4 @@ Package.onUse(function(api) {
   api.addFiles('client/editHtmlblock.jsx',"client");
   api.addFiles('server/startup.js',"server");
   api.export(['AddHtmlblock', 'EditHtmlblock', 'HTMLBlock'], "client")
-
 });

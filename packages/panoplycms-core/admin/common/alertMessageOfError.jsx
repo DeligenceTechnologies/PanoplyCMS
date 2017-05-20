@@ -1,7 +1,17 @@
-AlertMessageOfError=React.createClass({
-	render:function(){
+/**
+*	No need of this component any more
+**/
+
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+import PropTypes from 'prop-types';
+
+export default class AlertMessageOfError extends Component {
+	render(){
 		return (
-			<div className="successMsg alert alert-danger ">
+			<div className="successMsg alert alert-danger">
 				<button type="button" onClick={this.props.func} className="close" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -10,6 +20,9 @@ AlertMessageOfError=React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-export default AlertMessageOfError;
+/*AlertMessageOfError.propTypes = {
+  data: PropTypes.string.isRequired,
+  func: PropTypes.func.isRequired
+};*/

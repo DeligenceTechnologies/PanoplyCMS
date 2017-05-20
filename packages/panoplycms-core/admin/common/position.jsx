@@ -1,15 +1,19 @@
-Position=React.createClass({
-	render:function(){
-		c=0;
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+import PropTypes from 'prop-types';
+
+export default class Position extends Component {
+	render(){
 		return(
-			<div className = "form-group">
-				<label htmlFor = "lastname" className = "col-sm-2 control-label">Position</label>
+			<div className="form-group">
+				<label htmlFor="position" className="col-sm-2 control-label">Position</label>
 				<div className = "col-sm-10">
-					<select defaultValue='select' defaultValue={this.props.value?this.props.value:''} name="position" ref="position" id="position" className="selectpicker form-control" data-style="btn-primary" >
+					<select defaultValue={this.props.value?this.props.value:''} name="position" ref="position" id="position" className="selectpicker form-control" data-style="btn-primary">
 						<option value="">--select--</option>
 						{
-							this.props.data.templates.map(function(result){
-								c++
+							this.props.data.templates.map((result) => {
+								c ++;
 								return <optgroup key={c} value={result._id} label={result.name}>  
 									{
 										result.positions.map( p => {
@@ -22,8 +26,10 @@ Position=React.createClass({
 					</select>
 				</div>
 			</div>
-		)
+		);
 	}
-})
+}
 
-export default Position;
+/*Position.propTypes = {
+  data: PropTypes.object.isRequired
+};*/

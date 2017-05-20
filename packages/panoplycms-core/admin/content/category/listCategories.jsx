@@ -1,232 +1,173 @@
-ListCategories = React.createClass({
-  mixins:[ReactMeteorData],
-  getMeteorData(){
-    const categoriesSubscription = Meteor.subscribe('Categories')
-    return{
-      pageLoading:! categoriesSubscription.ready(),
-      Categories: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
-      resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true}).fetch(),
-      resultOfArticles: PanoplyCMSCollections.Articles.find({trash:false},{category:1}).fetch()
-    }
-  },
-  submitForm(event){
-  	event.preventDefault();
-    var name = React.findDOMNode(this.refs.sitename).value.trim();
-  },
-  showCategories(){
-    if($('#display').val()=='trash'){
-      this.setState({trashListShow:true})
-    }else{
-      this.setState({trashListShow:false})
-    }
-  },
-  getInitialState(){
-    return{
-      trashListShow:false
-    }
-  },
-  render() {
-    that=this;
-    nodata='';
-    if (this.data.pageLoading) {
-      return <LoadingSpinner />;
-    }
-    if((this.data.Categories).length==0  && this.state.trashListShow==false){
-      nodata=<NotFoundComp/>
-    }else if((this.data.resultOfTrash).length==0 && this.state.trashListShow==true){
-      nodata=<NotFoundComp/>
-    }else{
-      nodata='';
-    }
-    return (
-      <div className="col-md-10">
-        <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
-        <div className="panel-heading">
-          <a href={FlowRouter.path('addCategory')} className="btn btn-success btn-ico">
-            <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
-            {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
-          </a>
-          <div className="pull-right">
-            Display: 
-            <select id="display" onChange={this.showCategories}>
-              <option value="active">Active</option>
-              <option value="trash">Trash</option>
-            </select>
-          </div>
-        </div>
-        <div className="panel-body"> 
-          <div className="table-responsive">
-            {
-              nodata == '' ?
-                <table className="table  table-bordered">
-                  <thead>
-                    <tr>
-                      <th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      this.state.trashListShow?
-                        this.data.resultOfTrash.map(function(cat){
-                          return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                        })
-                      :this.data.Categories.map(function(cat){
-                          return <CategoriesItem key={cat._id} data={cat} stateVal={that.state.trashListShow} />
-                        })
-                    }
-                  </tbody>
-                </table>
-              :''
-            }
-            {nodata}
-          </div>
-        </div>
-        {
-          this.data.Categories.map(function(cat){
-            return  <ModalOfCat key={cat._id} resultOfArticles={that.data.resultOfArticles} data={cat} stateVal={that.state.trashListShow} /> 
-          })
-        }
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
 
-        {
-          this.data.resultOfTrash.map(function(cat){
-            return <ModalOfRestoreCat key={cat._id} data={cat}/> 
-          })
-        }
+import Heading from '../../common/heading.jsx';
+import NotFoundComp from '../../common/notFoundComp.jsx';
+import LoadingSpinner from '../../common/loadingSpinner.jsx';
+import CategoriesItem from './categoriesItem.jsx';
+import ModalOfCat from './modalOfCat.jsx';
+import ModalOfRestoreCat from './modalOfRestoreCat.jsx';
 
-        {
-          this.data.resultOfTrash.map(function(cat){
-            return <ModalOfCat key={cat._id} data={cat} resultOfArticles={that.data.resultOfArticles} stateVal={that.state.trashListShow} /> 
-          })
-        }
-        <ArticlesExistPopup />
-      </div>
-    );
-  }
-});
+class ListCategories extends Component {
+	constructor(props) {
+		super(props);
 
-var CategoriesItem = React.createClass({
-  deleteCategory(){
-    Meteor.call('delete_category',this.props.data._id,function(err,data){
-      // console.log(err,data)
-    });
-  },
-  editCategory(){
-    Meteor.call('editCategory',this.props.data._id,function(err,data){
-      // console.log(err,data)
-    });
-  },
-  render(){
-    return(
-      <tr>
-        <td>
-          <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})} >
-            <large> 
-              {this.props.data.title}
-            </large>
-          </a>
-          <small> 
-            &nbsp;(<em>Alias:&nbsp;{this.props.data.alias}</em>)
-          </small> 
-        </td>
-        <td>
-          <div className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}} >
-            {
-              this.props.stateVal ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o" title="Trash"></i>
-            }
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {
-            this.props.stateVal? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" style={{cursor:'pointer'}}></i> : <a href={FlowRouter.path('editCategory',{_id:this.props.data._id})}> <i style={{color:"#142849", cursor:'pointer'}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
-          }
-        </td>
-      </tr>    
-    )
-  }
-})
+		this.state = {
+			trashListShow: false
+		};
+		this.props.dict.set('limit', Meteor.settings.public.limit)
+	}
+	showCategories(){
+		if($('#display').val() == 'trash'){
+			this.setState({trashListShow:true})
+		}else{
+			this.setState({trashListShow:false})
+		}
+		if(Meteor.settings.public && Meteor.settings.public.limit)
+			this.props.dict.set('limit', Meteor.settings.public.limit)
+		else
+			this.props.dict.set('limit',20)
+	}
+	loadMore(event){
+		event.preventDefault();
+		this.props.dict.set('limit', this.props.dict.get('limit')+10)
+	}
+	render() {
+		let nodata = '';
+		
+		/*if (this.props.pageLoading) {
+			return <LoadingSpinner />;
+		}*/
+		if(this.props.Categories.length == 0  && this.state.trashListShow == false){
+			nodata = <NotFoundComp />
+		}else if(this.props.resultOfTrash.length == 0 && this.state.trashListShow == true){
+			nodata = <NotFoundComp />
+		}else{
+			nodata = '';
+		}
+		return (
+			<div className="">
+				<Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
+				<div className="custom-table">
+				   	<div className="row">
+               			<div className="col-sm-12">
+                   			<div className="controls-header form-inline ">
+                   	   			<a href={FlowRouter.path('addCategory')} className="btn custom-default-btn">
+					              <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
+						            {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
+				            	</a>
+				            	<div className="dataTables_length dataTables_wrapper pull-right">
+					            	<label> Display
+						              <select id="display" className="form-control input-sm" onChange={this.showCategories.bind(this)}>
+						              	<option value="active">Active</option>
+						              	<option value="trash">Trash</option>
+						               </select>
+						           </label>
+					           </div>
+                   			</div>
+               			</div>
+				   </div>
+           			<div className="panel panel-default panel-table">
+			     		<div className="panel-body">
+							<div className="table-responsive">
+								{
+									nodata == '' ?
+										<table className="table table-striped table-bordered table-list table-hover">
 
-ModalOfCat=React.createClass({
-  deleteCategory(){
-    if(this.props.stateVal){
-      Meteor.call('delete_category_parma',this.props.data._id,function(err,data){
-        // console.log(err,'data')
-      });
-    }else{
-      let isExistArticle = _.findWhere(this.props.resultOfArticles, {category: this.props.data._id}) || []
-      isExistArticle=_.isEmpty(isExistArticle);
-      if(isExistArticle){
-        Meteor.call('delete_category',this.props.data._id,function(err,data){
-          // console.log(err,data)
-        });
-      }else{
-       $('#articlExist.modal').modal()
-      }
-    }
-  },
-  render:function(){
-    return(
-      <div id={this.props.data._id} className="modal fade" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Do you really want to remove ?</h4>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={this.deleteCategory} data-dismiss="modal">YES</button>
-              <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )     
-  }
-})
+											<thead>
+												<tr>
+													<th>{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{
+													this.state.trashListShow ?
+														this.props.resultOfTrash.map((cat)=>{
+															return <CategoriesItem key={cat._id} data={cat} stateVal={this.state.trashListShow} />
+														})
+													:
+														this.props.Categories.map((cat)=>{
+															return <CategoriesItem key={cat._id} data={cat} stateVal={this.state.trashListShow} />
+														})
+												}
+											</tbody>
+										</table>
+									:''
+								}
+								{ nodata }
+							</div>
+							<div className="col-md-3 col-md-offset-5">
+								{
+									!nodata ?
+										!this.state.trashListShow ?
+											this.props.dict.get('limit') < this.props.categoriesCount ?
+												<button className="btn custom-default-btn" id="load-more" onClick={this.loadMore.bind(this)}>Load more</button>
+											: ''
+										:this.props.dict.get('limit') < this.props.categoriesCountTrash ?
+											<button className="btn custom-default-btn" id="load-more" onClick={this.loadMore.bind(this)}>Load more</button>
+										: ''
+									:''
+								}
+							</div>
+				     	</div>
+				   </div>
+				</div>
+				{
+					this.props.Categories.map((cat)=>{
+						return <ModalOfCat key={cat._id} resultOfArticles={this.props.resultOfArticles} data={cat} stateVal={this.state.trashListShow} /> 
+					})
+				}
 
-ModalOfRestoreCat=React.createClass({
-  restoreCategory(){
-    Meteor.call('restore_category',this.props.data._id,function(err,data){
-      if(err){
-        console.log(err)
-      }else{
-        // console.log(data)
-      }
-    });
-  },
-  render:function(){
-    return(
-      <div id={this.props.data._id+'restoreCategory'} className="modal fade" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Do you really want to restore ?</h4>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={this.restoreCategory} data-dismiss="modal">YES</button>
-              <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )     
-  }
-})
+				{
+					this.props.resultOfTrash.map((cat)=>{
+						return <ModalOfRestoreCat key={cat._id} data={cat} />
+					})
+				}
+
+				{
+					this.props.resultOfTrash.map((cat)=>{
+						return <ModalOfCat key={cat._id} data={cat} resultOfArticles={this.props.resultOfArticles} stateVal={this.state.trashListShow} /> 
+					})
+				}
+				<ArticlesExistPopup />
+			</div>
+		);
+	}
+}
+
+export default createContainer((props)=>{
+	Tracker.autorun(()=> {
+		const categoriesSubscription1 = Meteor.subscribe('category', props.dict.get('limit'))
+		const categoriesSubscription2 = Meteor.subscribe('categoryTrash', props.dict.get('limit'))
+		ready = categoriesSubscription1.ready() && categoriesSubscription2.ready();
+	});
+	return{
+		// pageLoading: !ready,
+		Categories: PanoplyCMSCollections.Categories.find({trash:false},{limit: props.dict.get('limit')}).fetch(),
+		categoriesCount: PanoplyCMSCollections.Categories.find({trash:false}).count(),
+		categoriesCountTrash: PanoplyCMSCollections.Categories.find({trash:true}).count(),
+		resultOfTrash: PanoplyCMSCollections.Categories.find({trash:true},{limit: props.dict.get('limit')}).fetch(),
+		resultOfArticles: PanoplyCMSCollections.Articles.find({trash:false},{category:1}).fetch()
+	}
+}, ListCategories)
+
 
 ArticlesExistPopup = (m) => {
-  return(
-    <div id="articlExist" className="modal fade" role="dialog">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-body">
-            <button type="button" className="close" data-dismiss="modal">&times;</button>
-            <h4 className="modal-title">You can not remove this category because articles exist of that category. Please remove the article first after you can delete category.</h4>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-danger" data-dismiss="modal">CANCEL</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+	return(
+		<div id="articlExist" className="modal fade" role="dialog">
+			<div className="modal-dialog">
+				<div className="modal-content">
+					<div className="modal-body">
+						<button type="button" className="close" data-dismiss="modal">&times;</button>
+						<h4 className="modal-title">You can not remove this category because articles exist of that category. Please remove the article first after you can delete category.</h4>
+					</div>
+					<div className="modal-footer">
+						<button type="button" className="btn btn-danger" data-dismiss="modal">CANCEL</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }

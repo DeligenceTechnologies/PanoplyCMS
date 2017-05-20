@@ -1,211 +1,153 @@
-import 'meteor/twbs:bootstrap';
-import 'meteor/jquery';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
 
-ListArticles = React.createClass({
-	mixins:[ReactMeteorData],
-	getMeteorData(){
-		const articleSubscription = Meteor.subscribe('articlesFind');
-		return {
-			pageLoading:! articleSubscription.ready(),
-			results: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
-			resultOfTrash: PanoplyCMSCollections.Articles.find({trash:true}).fetch()
-		}
-	},
-	componentDidMount(){
-	},
-	/*componentDidUpdate(){
-		$('[data-toggle="tooltip"]').tooltip();
-	},*/
+import Heading from '../../common/heading.jsx';
+import NotFoundComp from '../../common/notFoundComp.jsx';
+import LoadingSpinner from '../../common/loadingSpinner.jsx';
+import ArticleDataList from './articleDataList.jsx';
+import ModalOfArticles from './modalOfArticles.jsx';
+import RestoreModalOfArticles from './restoreModalOfArticles.jsx';
+
+class ListArticles extends Component {
+	constructor(props) {
+    super(props);
+ 
+    this.state = {
+      trashListShow: false
+    };
+    this.props.dict.set('limit', Meteor.settings.public.limit)
+  }
 	showArticles(){
 		if($('#display').val()=='trash'){
-			this.setState({trashListShow:true})
+			this.setState({ trashListShow:true })
 		}else{
-			this.setState({trashListShow:false})
+			this.setState({ trashListShow:false })
 		}
-	},
-	getInitialState(){
-		return{
-			trashListShow:false
-		}
-	},
+		if(Meteor.settings.public && Meteor.settings.public.limit)
+			this.props.dict.set('limit', Meteor.settings.public.limit)
+		else
+			this.props.dict.set('limit', 20)
+	}
+	loadMore(event){
+		event.preventDefault();
+		this.props.dict.set('limit', this.props.dict.get('limit')+10)
+	}
 	render() {
-		that=this;
-		nodata='';
-		if (this.data.pageLoading) {
+		let nodata = '';
+		/*if (this.props.pageLoading) {
 			return <LoadingSpinner />;
-		}
-		if(this.data.results.length==0  && this.state.trashListShow==false){
-			nodata=<NotFoundComp/>
-		}else if(this.data.resultOfTrash.length==0 && this.state.trashListShow==true){
-			nodata=<NotFoundComp/>
+		}*/
+		if(this.props.results.length == 0  && this.state.trashListShow == false){
+			nodata = <NotFoundComp />
+		}else if(this.props.resultOfTrash.length == 0 && this.state.trashListShow == true){
+			nodata = <NotFoundComp />
 		}else{
-			nodata='';
+			nodata = '';
 		}
 		return (
-			<div className="col-md-10 content">
+			<div className="">
 				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
-				<div className="panel-heading">
-					<a className="btn btn-success btn-ico" href={FlowRouter.path('addArticle')}>
-						<i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}
-					</a>
-					<div className="pull-right">
-						Display: 
-						<select id="display" onChange={this.showArticles}>
-							<option value="active">Active</option>
-							<option value="trash">Trash</option>
-						</select>
+		        <div className="custom-table">
+	           		<div className="row">
+		              	<div className="col-sm-12">
+		                 	<div className="controls-header form-inline ">
+			                    <a className="btn custom-default-btn" href={FlowRouter.path('addArticle')}>
+									<i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}
+								</a>
+								<div className="dataTables_length dataTables_wrapper pull-right">
+								  	<label> Display
+									    <select id="display" className="form-control input-sm" onChange={this.showArticles.bind(this)}>
+										    <option value="active">Active</option>
+										    <option value="trash">Trash</option>
+									     </select>
+								    </label>
+						      	</div>
+                 			</div>
+      					</div>
+   					</div>
+		            <div className="panel panel-default panel-table">
+		           		<div className="panel-body">
+					    	<div className="table-responsive" id="non-editable">
+								{
+									nodata == '' ?
+										<table className="table table-striped table-bordered table-list table-hover">
+
+											<thead>
+												<tr>
+													<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</th>
+													<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CATEGORY')}</th>
+													<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
+												</tr>
+											</thead>
+											<tbody>
+												{
+													this.state.trashListShow ?
+														this.props.resultOfTrash.map((result) => {
+															return <ArticleDataList key={result._id} data={result} stateVal={this.state.trashListShow} />;
+														})
+													:this.props.results.map((result) => {
+														return <ArticleDataList key={result._id} data={result} stateVal={this.state.trashListShow} />;
+													})
+												}
+											</tbody>
+										</table>
+									: 
+										''
+								}
+					    	</div>
+					     	{ nodata }
+					     	<div className="col-md-3 col-md-offset-5">
+
+								{
+									!nodata ?
+									  !this.state.trashListShow ?
+										  this.props.dict.get('limit') < this.props.articlesCount ?
+										    <button className="btn custom-default-btn" id="load-more" onClick={this.loadMore.bind(this)}>Load more</button>
+										  : ''
+										:this.props.dict.get('limit') < this.props.articlescountTrash ?
+									    <button className="btn custom-default-btn" id="load-more" onClick={this.loadMore.bind(this)}>Load more</button>
+									  : ''
+									:''
+								}
+			      			</div>
+						</div>
 					</div>
 				</div>
-				<div className="panel-body">
-					<div className="table-responsive" id="non-editable">
-						{
-							nodata == '' ?
-								<table className="table table-bordered">
-									<thead>
-										<tr>
-											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</th>
-											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_CATEGORY')}</th>
-											<th>{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ACTIONS')}</th>
-										</tr>
-									</thead>
-									<tbody>
-										{
-											this.state.trashListShow ?
-												this.data.resultOfTrash.map(function(result) {
-													return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-												})
-											:this.data.results.map(function(result) {
-												return <Trvalue key={result._id} data={result} stateVal={that.state.trashListShow}/>;
-											})
-										}
-									</tbody>
-								</table>
-							:''
-						}
-					</div>
-					{nodata}
-				</div>
+				
 				{
-					this.data.results.map(function(result) {
-						return <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
+					this.props.results.map((result) => {
+						return <ModalOfArticles key={result._id} data={result} stateVal={this.state.trashListShow} />         
 					})
 				}
 
 				{
-					this.data.resultOfTrash.map(function(result) {
-						return <RestoreModalOfArticle key={result._id} data={result}/>         
+					this.props.resultOfTrash.map((result) => {
+						return <RestoreModalOfArticles key={result._id} data={result} />
 					})
 				}
 
 				{
-					this.data.resultOfTrash.map(function(result) {
-						return <ModalOfArticle key={result._id} data={result} stateVal={that.state.trashListShow} />         
+					this.props.resultOfTrash.map((result) => {
+						return <ModalOfArticles key={result._id} data={result} stateVal={this.state.trashListShow} />         
 					})
 				}
 			</div>
 		);
 	}
-});
+}
 
-var Trvalue = React.createClass({
-	mixins:[ReactMeteorData],
-	getMeteorData(){
-		Meteor.subscribe('findCategory',this.props.data.category);
-		return {
-			results: PanoplyCMSCollections.Categories.findOne({_id:this.props.data.category})
-		}
-	},
-	render:function() {
-		var c = 0;
-
-		return (
-			<tr>
-				<td id="edit_article">
-					<a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}>
-						<large>
-							{this.props.data.title}
-						</large>
-					</a>
-					<small>
-						&nbsp;(<em>Alias:&nbsp;{this.props.data.alias}</em>) 
-					</small>
-				</td>
-				<td>
-					{this.data.results?this.data.results.title:''}
-				</td>
-				<td>
-					<div id="delete_article" onClick={this.deleteArticle} className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
-						{
-							this.props.stateVal ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o"  title="Trash" ></i> 
-						}
-					</div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					{
-					this.props.stateVal? <i style={{cursor:'pointer'}} data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" ></i> : <a href={FlowRouter.path('editArticle',{_id:this.props.data._id})}> <i style={{color:"#142849",cursor:'pointer'}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" ></i> </a> 
-					}
-				</td>
-			</tr>
-		)
+export default createContainer((props) => {
+	// let articleSubscription = Meteor.subscribe('articlesFind');
+	Tracker.autorun(()=> {
+    let articles_Sub = Meteor.subscribe('articles', props.dict.get('limit'))
+    ready = articles_Sub.ready();
+	});
+	return {
+		// pageLoading: !ready,
+		results: PanoplyCMSCollections.Articles.find({trash:false},{limit: props.dict.get('limit')}).fetch(),
+		articlesCount: PanoplyCMSCollections.Articles.find({trash:false}).count(),
+		articlescountTrash: PanoplyCMSCollections.Articles.find({trash:true}).count(),
+		resultOfTrash: PanoplyCMSCollections.Articles.find({trash:true},{limit: props.dict.get('limit')}).fetch()
 	}
-});
-
-ModalOfArticle=React.createClass({
-	deleteArticle(event){
-		event.preventDefault();
-		if(this.props.stateVal){
-			Meteor.call('deleteArticleParma',this.props.data._id,function(err,data){
-			});
-		}else{
-			Meteor.call('deleteArticle',this.props.data._id,function(err,data){
-			});
-		}
-	},
-	render:function(){
-		return(
-			<div id={this.props.data._id} className="modal fade" role="dialog">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body">
-							<button type="button" className="close" data-dismiss="modal">&times;</button>
-							<h4 className="modal-title">Do you really want to remove ?</h4>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-primary" onClick={this.deleteArticle} data-dismiss="modal">YES</button>
-							<button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
-})
-
-RestoreModalOfArticle=React.createClass({
-	restoreArticle(){
-		Meteor.call('restoreArticles',this.props.data._id,function(err,data){
-			if(err){
-				console.log(err)
-			}else{
-				// console.log(data)
-			}
-		});
-	},
-	render:function(){
-		return(
-			<div id={this.props.data._id+'restoreArticle'} className="modal fade" role="dialog">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body">
-							<button type="button" className="close" data-dismiss="modal">&times;</button>
-							<h4 className="modal-title">Do you really want to restore ?</h4>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-primary" onClick={this.restoreArticle} data-dismiss="modal">YES</button>
-							<button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
-})
+}, ListArticles)

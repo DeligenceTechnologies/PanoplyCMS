@@ -1,104 +1,122 @@
-AddMenuItem=React.createClass({
-  mixins:[ReactMeteorData],  
-  getMeteorData: function() {
-    var menu = Meteor.subscribe('menus')
-    var handle = Meteor.subscribe('articlesFind')
-    var handle1 = Meteor.subscribe('Categories')
-    var handle2 = Meteor.subscribe('menuItemsByMainParentId')
-    return {
-      pageLoading: ! handle.ready(),
-      pageLoading: ! handle1.ready(), 
-      categoryData: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
-      articleData: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
-      MenuItemData: PanoplyCMSCollections.MenuItems.find({trash:false}).fetch(),
-      Menu1:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
+
+import Heading from '../../common/heading.jsx';
+// import AlertMessage from '../../common/alertMessage.jsx';
+// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
+import LoadingSpinner from '../../common/loadingSpinner.jsx';
+import { AlertMessage } from '../../common/alertMessage.jsx';
+
+import { addMenuItem } from '../../actions/menuItem_action.js';
+
+class AddMenuItem extends Component {
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      language: i18n.getLanguage(),
+      valid: '',
+      itemType: '',
+      MenuItemTypeValue: '',
+      MenuValue: this.props._id
     };
-  },
-  getInitialState(){
-    return {
-      language:i18n.getLanguage(),
-      msg:false,
-      valid:'',
-      errorMsg:false,
-      itemType:'',
-      MenuItemTypeValue:'',
-      MenuValue:this.props._id
-    }
-  },
+  }
   selectMenuItemType(event){
     event.preventDefault();
-    this.setState({itemType : ReactDOM.findDOMNode(this.refs.selectMenuItemType).value.trim()})
-  },
+    this.setState({itemType: $('#selectMenuItemType').val()})
+  }
   getMenuItemTypeValue(val){
-    this.setState({MenuItemTypeValue :val})
-  },
+    this.setState({ MenuItemTypeValue: val })
+  }
   getMenuValue(val){
-    this.setState({MenuValue :ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()})
-  },
-  componentDidMount: function(){
+    this.setState({MenuValue: $('#selectMenu').val()})
+  }
+  componentDidMount(){
     document.title = "Add Menu Item"
-  },
-  componentWillUnmount: function() {
-  },
-  componentDidUpdate: function() {
-  },
-  submitData(event){
-    var that=this;
+  }
+  errorMessageHide(event){
     event.preventDefault();
-    var insert = {
-      "title":ReactDOM.findDOMNode(this.refs.title).value.trim(),
-      "desc":ReactDOM.findDOMNode(this.refs.desc).value.trim(),
-      "mainParentId":ReactDOM.findDOMNode(this.refs.selectMenu).value.trim(),//FlowRouter.getParam("_id"),
-      "MenuItemType":this.state.itemType,
-      "MenuItemTypeId":/*ReactDOM.findDOMNode(that.refs.url).value?'':*/ReactDOM.findDOMNode(that.refs.select).value.trim(),
-      /*"externalUrl":ReactDOM.findDOMNode(that.refs.url).value?ReactDOM.findDOMNode(that.refs.url).value.trim():'#',*/
-      "parentId":ReactDOM.findDOMNode(this.refs.selectParent).value.trim(),
-      "homepage":false
-    }
-    Meteor.call("insertMenuItem", insert,function(err,data){
-      if(err){
-        that.setState({errorMsg : err})
-        console.log(err);
-      }else{
-        that.setState({msg : true})
-        that.setState({itemType :''});
-        ReactDOM.findDOMNode(that.refs.title).value="";
-        ReactDOM.findDOMNode(that.refs.desc).value="";
-        ReactDOM.findDOMNode(that.refs.selectParent).value="";
-        ReactDOM.findDOMNode(that.refs.selectMenu).value=that.props._id;
-        ReactDOM.findDOMNode(that.refs.selectMenuItemType).value="";
+    $( "#alias-error-message" ).text('').css({
+        "display":'none'
+      });
+  }
+  submitData(event){
+    event.preventDefault();
+    let alias = $('#alias').val()?$('#alias').val():$('#title').val();
+    alias = alias.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-');
+    let menuItem = PanoplyCMSCollections.MenuItems.find({alias:alias}).fetch();
+    console.log("====> ",menuItem.length)
+    if(menuItem.length != 0){
+      let menu = PanoplyCMSCollections.Menus.findOne({_id:menuItem[0].mainParentId});
+      let html = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" style={{\"display\":'none'}}>"+
+              "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"+
+              "<p> Save failed with the following error: The alias test is already being used by "+ menuItem[0].title +" menu item in the "+ menu.title +" menu (remember it may be a trashed item). </p>"+
+            "</div>";
+      $( "#alias-error-message" ).css({
+        "display":'block'
+      }).append(html);
+    }else{
+      let menuItemsData = {
+        "title": $('#title').val(),
+        "desc": $('#desc').val(),
+        "target":$('#selectTragetWindow').val(),
+        "mainParentId": $('#selectMenu').val(),//FlowRouter.getParam("_id"),
+        "MenuItemType": this.state.itemType,
+        "MenuItemTypeId": $('#mainMenu').val() ? $('#mainMenu').val() : '',
+        "link": this.state.itemType == 'link'?$('#link').val():'',
+        "parentId": $('#selectParent').val(),
+        "alias":alias,
+        "homepage": false
       }
-    });
-  },
-  resetSuccessMsg(){
+      Meteor.call("insertMenuItem", menuItemsData, (err,data)=>{
+        if(err){
+          AlertMessage('ERROR', err.reason, 'error');
+          // console.log(err);
+        }else{
+          AlertMessage('SUCCESS', 'Successfully! added menu item.', 'success');
+          this.setState({ itemType :'' });
+          $('#title').val('');
+          $('#desc').val('');
+          $('#selectParent').val('');
+          $('#selectMenu').val(this.props._id);
+          $('#selectMenuItemType').val('');
+        }
+      });
+      return dispatch => {
+        dispatch(addMenuItem(menuItemsData))
+      }
+    }
+  }
+  /*resetSuccessMsg(){
     this.setState({'msg':false})
     this.setState({'errorMsg':false})
-    this.setState({'msg':false})
-    this.setState({'errorMsg':false})
-  },
+  }*/
   fecthCategoryArticles(event){
     event.preventDefault();
-  },
+  }
   getchild(id){
     childData=[];
-    _.each(this.data.MenuItemData,function(a){
-      if(id==a.parentId){
-        childData.push({_id:a._id,title:a.title});
+    _.each(this.props.MenuItemData,function(a){
+      if(id == a.parentId){
+        childData.push({_id:a._id, title:a.title});
       }
     });
     return childData;
-  },
+  }
   getDropDown(){
-    var menus=this.listOfMenu();
+    let menus=this.listOfMenu();
     level = 1;
+    let menuArr = [];
     function getElem(submenu, alias){
-      var list='';
-      var ar=[];
+      let list='';
+      let ar=[];
 
       if(submenu && alias){
-        var menuArr = submenu;
+        menuArr = submenu;
       } else {
-        var menuArr = menus;
+        menuArr = menus;
       }
 
       menuArr.forEach(function (menu) {
@@ -121,25 +139,23 @@ AddMenuItem=React.createClass({
       return list;
     }
      
-    var list = getElem();
+    let list = getElem();
     return list;
-  },
-
-
+  }
   listOfMenu(){ 
     that=this;
    
-    var elements = this.data.MenuItemData;
-    var menu = new Array();
+    let elements = this.props.MenuItemData;
+    let menu = new Array();
 
     function getElements(parent_id){
       if(parent_id){
         return getChild(parent_id);
       } else {
-        var element = new Array();
+        let element = new Array();
         elements.forEach(function (elem1) {
           if(that.state.MenuValue==elem1.mainParentId){
-            var child = getChild(elem1._id);
+            let child = getChild(elem1._id);
             if(elem1.parentId==''){
               element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, child: child });
             }
@@ -150,7 +166,7 @@ AddMenuItem=React.createClass({
     }
 
     function getChild(parent_id){
-      var child = new Array();
+      let child = new Array();
       elements.forEach(function (elem2) {
         if(elem2.parentId){
           if(parent_id== elem2.parentId){
@@ -161,49 +177,74 @@ AddMenuItem=React.createClass({
       return child;
     }
     return getElements();
-  },
-
+  }
   render(){
-    that=this
-    var msg='';
+    /*let msg = '';
     if(this.state.msg){
-      msg=<AlertMessage data={'added menu item.'} func={this.resetSuccessMsg}/>
+      msg = <AlertMessage data={'added menu item.'} func={this.resetSuccessMsg.bind(this)}/>
     }else if(this.state.errorMsg){
-      msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)}/>
     }else{
-      msg='';
-    }
-    if (this.data.pageLoading) {
+      msg = '';
+    }*/
+    if (this.props.pageLoading) {
       return <LoadingSpinner />;
     }
 
-    var a={__html: '<option value="">Root</option>'+this.getDropDown()};
+    let a = {__html: '<option value="">Root</option>'+this.getDropDown()};
     return (
-      <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
+      <div className="">
         <Heading  data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} />
-        {msg}
-        <div className="panel-body">
-          <div id="notification"></div>
-          <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData} >
+        <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
+           <div className="controls-header">
+             <div className="form-group">
+              <div className = "col-sm-12">
+                <button className="btn custom-default-btn">SAVE</button>
+               
+                <a className="btn custom-default-btn" href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>CANCEL</a>
+              </div>
+             </div>
+           </div>
+
+         <div className="panel-body custom-panel">
+            <div id="notification"></div>
+          
+            <div id="alias-error-message"></div>
             <div className = "form-group">
               <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TITLE')}</label>
-              <div className = "col-sm-10">
-                <input type = "text" name="title" ref="title"  className = "form-control"  placeholder = "Enter title" required/>
+              <div className = "col-sm-7">
+                <input type = "text" name="title" id="title" className = "form-control"  placeholder = "Enter title" onChange={this.errorMessageHide.bind(this)} required />
+              </div>
+            </div>
+            <div className = "form-group">
+              <label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_ALIAS')}</label>
+              <div className = "col-sm-7">
+                <input type = "text" name="alias" id="alias" className = "form-control"  placeholder = "Auto-generate from title" onChange={this.errorMessageHide.bind(this)} />
               </div>
             </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_DESCRIPTION')}</label>
-              <div className = "col-sm-10"  > 
-                <input type="text" ref="desc" className="form-control" id="desc" />
+              <div className = "col-sm-7"> 
+                <textarea className="form-control" id="desc"></textarea>
+              </div>
+            </div>
+            
+            <div className = "form-group">
+              <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_TARGETWINDOW')}</label>
+              <div className = "col-sm-7"> 
+                <select className = "form-control" id="selectTragetWindow" required> 
+                  <option className="form-control" value={0}>Parent</option>
+                  <option className="form-control" value={1}>New Tab</option>
+                </select>
               </div>
             </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENU')}</label>
-              <div className = "col-sm-10"  > 
-                <select id="mainMenu" ref="selectMenu" className = "form-control" onChange={this.getMenuValue} defaultValue={that.props._id}>
-                  <option className="form-control" value="">Select </option>
+              <div className = "col-sm-7"> 
+                <select id="selectMenu" className = "form-control" onChange={this.getMenuValue.bind(this)} defaultValue={this.props._id}>
+                  <option className="form-control" value="">Select</option>
                   {
-                    this.data.Menu1.map(function(result) {
+                    this.props.Menu1.map((result) => {
                       return <option value={result._id} key={result._id}>{result.title} </option>;
                     })
                   } 
@@ -212,105 +253,85 @@ AddMenuItem=React.createClass({
             </div>
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_MENUITEMTYPE')}</label>
-              <div className = "col-sm-10"  > 
-                <select className = "form-control" ref="selectMenuItemType" onChange={that.selectMenuItemType} required> 
-                  <option className="form-control" value="" >Select </option>
-                  <option className="form-control" value="category"  >Category</option>
-                  <option className="form-control" value="article" >Article</option>
-                  {/*<option className="form-control" value="url" >External Url</option>*/}
+              <div className = "col-sm-7"> 
+                <select className = "form-control" id="selectMenuItemType" onChange={this.selectMenuItemType.bind(this)} required> 
+                  <option className="form-control" value="">Select</option>
+                  <option className="form-control" value="category">Category</option>
+                  <option className="form-control" value="article">Article</option>
+                  <option className="form-control" value="module">Module</option>
+                  <option className="form-control" value="link">External Link</option>
                 </select>
               </div>
             </div>
-            <div className = "form-group">
-              <label htmlFor = "lastname" className = "col-sm-2 control-label">{this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1)}</label>
-              <div className = "col-sm-10" id="token" > 
-                  {
-                    this.state.itemType=='category'?
-                      <select id="mainMenu" ref="select" className = "form-control" required >
-                        <option className="form-control" value="" >Select </option>
-                        {
-                          this.data.categoryData.map(function(result) {
-                            return <option key={result._id} value={result._id}  >{result.title} </option>;
-                          })
-                        } 
-                      </select>
-                    :this.state.itemType=='article'?
-                      <select id="mainMenu" ref="select" className = "form-control" required >
-                        <option className="form-control" value="" >Select </option>
+            {
+              !this.state.itemType == 'module' || this.state.itemType == 'article' || this.state.itemType == 'category' || this.state.itemType == 'link'?
+                <div className = "form-group">
+                  <label htmlFor = "lastname" className = "col-sm-2 control-label">
+                    {
+                      !this.state.itemType == 'module' || this.state.itemType == 'article' || this.state.itemType == 'category' ?
+                        this.state.itemType.charAt(0).toUpperCase() + this.state.itemType.slice(1)
+                      : 
+                        this.state.itemType == 'link'?
+                          'External Link'
+                        :
+                          ''
+                    }
+                  </label>
+                  <div className = "col-sm-7" id="token"> 
+                    {
+                      this.state.itemType=='category'?
+                        <select id="mainMenu" className = "form-control" required>
+                          <option className="form-control" value="">Select</option>
                           {
-                            this.data.articleData.map(function(result) {
-                              return <option key={result._id} value={result._id} >{result.title} </option>;
+                            this.props.categoryData.map((result)=> {
+                              return <option key={result._id} value={result._id}>{result.title}</option>;
                             })
-                          }
-                      </select>
-                    :/*this.state.itemType=='url'?<input type="text" ref="url" name="url" className="form-control"  />:*/''
-                  }  
-              </div>  
-            </div>
+                          } 
+                        </select>
+                      : 
+                        this.state.itemType=='article' ?
+                          <select id="mainMenu" className = "form-control" required>
+                            <option className="form-control" value="">Select</option>
+                              {
+                                this.props.articleData.map((result)=> {
+                                  return <option key={result._id} value={result._id}>{result.title}</option>;
+                                })
+                              }
+                          </select>
+                        :
+                          this.state.itemType=='link'?
+                            <input type = "text" name="link" id="link" className = "form-control"  placeholder = "Enter link" required />
+                          :
+                            ''
+                    }
+                  </div>
+                </div>
+              : ''
+            }
             <div className = "form-group">
               <label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_FORM_PARENT')}</label>
-              <div className = "col-sm-10" id="token" > 
-                <select className="form-control" ref="selectParent"  dangerouslySetInnerHTML={a} ></select>
+              <div className = "col-sm-7" id="token" > 
+                <select className="form-control" id="selectParent" dangerouslySetInnerHTML={a} ></select>
               </div>
             </div>         
-            <div className="form-group">
-              <div className = "col-sm-offset-2 col-sm-10">
-                <button className="btn btn-primary " >SAVE</button>
-                &nbsp;&nbsp;
-                <a className="btn btn-danger " href={FlowRouter.path('listMenuItems',{_id:FlowRouter.getParam("_id")})}>CANCEL</a>
-              </div>
-            </div>
-          </form>
-        </div>
+           
+          </div>
+        </form>
       </div>
     )
   }
-})
+}
 
-
-SelectCategory = React.createClass({
-  mixins:[ReactMeteorData],  
-  getMeteorData: function() {
-    var handle1 = Meteor.subscribe('Categories')
-    return {
-      dataList: PanoplyCMSCollections.Categories.find({trash:false}).fetch()
-    };
-  },
-  setValue(event){
-    event.preventDefault();
-    this.props.func(this.refs.select.value.trim());
-  },
-  render: function() {
-    var c=0;
-    return (
-      <select className = "col-sm-10" ref="select" onChange={this.setValue} > 
-        {
-          this.data.dataList.map(function(result) {
-            return <option key={result._id} value={result._id} > {result.title} </option>;
-          })
-        }
-      </select>
-    )
-  }
-});
-
-SelectArticle = React.createClass({
-  mixins:[ReactMeteorData],  
-  getMeteorData: function() {
-    var handle1 = Meteor.subscribe('articlesFind')
-    return {
-      dataList: PanoplyCMSCollections.Articles.find({trash:false}).fetch()
-    };
-  },
-  render: function() {
-    return (
-      <select className = "col-sm-10" ref="select" onChange={this.setValue}> 
-        {
-          this.data.dataList.map(function(result) {
-           return <option key={result._id} value={result._id}> {result.title} </option>;
-          })
-        }
-      </select>
-    )
-  }
-});
+export default createContainer(()=>{
+  let menu = Meteor.subscribe('menus')
+  let handle = Meteor.subscribe('articlesFind')
+  let handle1 = Meteor.subscribe('Categories')
+  let handle2 = Meteor.subscribe('menuItemsByMainParentId')
+  return {
+    pageLoading: ! handle.ready() && ! handle1.ready(),
+    categoryData: PanoplyCMSCollections.Categories.find({trash:false}).fetch(),
+    articleData: PanoplyCMSCollections.Articles.find({trash:false}).fetch(),
+    MenuItemData: PanoplyCMSCollections.MenuItems.find({trash:false}).fetch(),
+    Menu1:PanoplyCMSCollections.Menus.find({trash:false}).fetch()
+  };
+}, AddMenuItem)

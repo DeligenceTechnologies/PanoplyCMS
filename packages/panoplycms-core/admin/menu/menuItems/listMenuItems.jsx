@@ -1,37 +1,41 @@
-ListMenuItems = React.createClass({
-  mixins:[ReactMeteorData],
-  getMeteorData(){
-    that=this
-    var handle2 = Meteor.subscribe('menuItems',FlowRouter.getParam("_id"),that.state.trashListShow);
-    var Menus = Meteor.subscribe('menus');
-    //var DefaultItem=Meteor.subscribe('defaultMenuItem');
-    return {
-      MenuItemsData : PanoplyCMSCollections.MenuItems.find({mainParentId:FlowRouter.getParam("_id"),trash:that.state.trashListShow}).fetch(),
-      results : PanoplyCMSCollections.MenuItems.find().fetch(),
-      Menus:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
-      defaultMenuItem : PanoplyCMSCollections.MenuItems.findOne({homepage:true}),
-    } 
-  },
-  getInitialState(){
-    return{
-      trashListShow:false,
-    }
-  },
-  listOfMenu(){  
-    var elements = this.data.MenuItemsData;
-    var menu = new Array();
-    var element = new Array();
-    var level=0;
-    elements.forEach(function (elem1) {
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
+
+import NotFoundComp from '../../common/notFoundComp.jsx';
+import Heading from '../../common/heading.jsx';
+import MenuItemsDataList from './menuItemsDataList.jsx';
+import LoadingSpinner from '../../common/loadingSpinner.jsx';
+
+class ListMenuItems extends Component {
+  constructor(props) {
+    super(props);
+
+    // Session.setDefault("trashListShow", false)
+ 
+    this.state = {
+      trashListShow: false,
+    };
+    this.props.dict.set('limit', Meteor.settings.public.limit);
+    this.props.dict.set('trashListShow', false);
+  }
+  listOfMenu() {
+    let elements = this.props.MenuItemsData;
+    let trashListShow = this.props.dict.get('trashListShow')
+    let menu = new Array();
+    let element = new Array();
+    let level=0;
+    elements.forEach(function(elem1) {
       if(elem1.parentId=='' || elem1.trash==true){
         element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, level:level });
-        var child= getChild(elem1._id,level+1);
+        let child = getChild(elem1._id,level+1);
       }else if(elem1.parentId==''){
         element.push({ _id: elem1._id, title: elem1.title, alias: elem1.alias, desc:elem1.desc, level:level });
-        var child= getChild(elem1._id,level+1);
+        let child = getChild(elem1._id,level+1);
       }
     });
-    function getChild(parent_id,level){
+    function getChild(parent_id, level){
       elements.forEach(function (elem2) {
         if(elem2.parentId){
           if(parent_id== elem2.parentId){
@@ -44,252 +48,152 @@ ListMenuItems = React.createClass({
           }
         }
       });
-      if(Session.get("trashListShow")){
+      if(trashListShow){
         return element;
       }else{
         return _.sortBy(element,'level');
       }
     }
-    // console.log(element,"----",'level')
     return element;
-  },
+  }
   showArticles(){
-    if($('#display').val()=='trash'){
-      Session.set("trashListShow",true);
-      this.setState({trashListShow:true})
+    if($('#display').val() == 'trash'){
+      // Session.set("trashListShow", true);
+      this.props.dict.set('trashListShow', true)
+      this.setState({trashListShow: true})
     }else{
-      Session.set("trashListShow",false);
-      this.setState({trashListShow:false})
+      // Session.set("trashListShow", false);
+      this.props.dict.set('trashListShow', false)
+      this.setState({trashListShow: false})
     }
-  },
+    this.props.dict.set('limit', Meteor.settings.public.limit)
+  }
   showMenu(){
+    this.props.dict.set('limit', Meteor.settings.public.limit);
     Session.set('MenuId',$('#mainMenu').val());
-    FlowRouter.go('listMenuItems',{_id:$('#mainMenu').val()})
-  },
+    FlowRouter.go('listMenuItems',{_id: $('#mainMenu').val()})
+  }
   storeMenuid(event){
     event.preventDefault();
-    // console.log(FlowRouter.getParam("_id"),"routes")
-    FlowRouter.go(''+'\addMenuItem',{_id:FlowRouter.getParam("_id")})
-  },
+    FlowRouter.go(''+'\addMenuItem',{_id: FlowRouter.getParam("_id")})
+  }
+  loadMore(event){
+    event.preventDefault();
+    this.props.dict.set('limit', this.props.dict.get('limit')+10)
+  }
   render() {
-    that=this;
-    var m =this.listOfMenu();
-    nodata='';
-    if((m).length==0  && this.state.trashListShow==false){
-      nodata=<NotFoundComp/>;
-    }else if((m).length==0 && this.state.trashListShow==true){
-      nodata=<NotFoundComp/>
+    let m = this.listOfMenu();
+    let nodata = '';
+    if(m.length == 0  && this.state.trashListShow == false){
+      nodata = <NotFoundComp />;
+    }else if(m.length == 0 && this.state.trashListShow == true){
+      nodata = <NotFoundComp />;
     }else{
-      nodata='';
+      nodata = '';
+    }
+
+    if (this.props.pageLoading) {
+      <LoadingSpinner />
     }
     return (
-      <div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-        <Heading  data={i18n('ADMIN_MENU_MENUITEMS')} />
-        <div className="panel-heading"> 
-          <a className="btn btn-success btn-ico" onClick={this.storeMenuid}><i className="fa fa-plus-circle fa-lg"></i>&nbsp;
-            {i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}
-          </a>
-          <div className="pull-right" >
-            Menus:  
-            <select id="mainMenu" ref="mainMenu" onChange={this.showMenu} defaultValue={FlowRouter.getParam("_id")}>
-              {
-                this.data.Menus.map(function(result) {
-                  return <option key={result._id} value={result._id} >{result.title}</option>;
-                })
-              } 
-            </select>
-          </div>  
-          <div className="pull-right col-md-3 ">
-            Display: 
-            <select id="display" onChange={this.showArticles} >
-              <option value="all">Active</option>
-              <option value="trash">Trash</option>
-            </select>
-          </div>  
-        </div>
-       
-        <div className="table-responsive" id="non-editable">
-          {
-            nodata == '' ?
-              <table className="table table-bordered"  >
-                <thead>
-                  <tr>
-                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
-                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
-                    <th>{/*i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')*/}</th>
-                    <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    m.map(function (menu) {
-                      return  <Trvalue key={menu._id} data={menu} homepage={that.data.defaultMenuItem? that.data.defaultMenuItem._id: ""} />
-                    })
-                  }
-                </tbody>
-              </table>
-            :''
-          }
-          {nodata}
+      <div className="">
+        <Heading data={i18n('ADMIN_MENU_MENUITEMS')} />
+        <div className="custom-table">
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="controls-header form-inline"> 
+                <div className="row">                  
+                  <a className="btn custom-default-btn" onClick={this.storeMenuid.bind(this)}><i className="fa fa-plus-circle fa-lg"></i>&nbsp;
+                    {i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')}
+                  </a>                
+                  <div className="dataTables_length dataTables_wrapper pull-right">
+                    <label>
+                      Menus
+                      <select id="mainMenu" className="form-control input-sm" onChange={this.showMenu.bind(this)} defaultValue={FlowRouter.getParam("_id")}>
+                        {
+                          this.props.Menus.map((result) => {
+                            return <option key={result._id} value={result._id}>{result.title}</option>;
+                          })
+                        }
+                      </select>
+                    </label>
+                    <label> Display
+                      <select id="display" className="form-control input-sm" onChange={this.showArticles.bind(this)}>
+                        <option value="all">Active</option>
+                        <option value="trash">Trash</option>
+                      </select>
+                    </label>
+                  </div>                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default panel-table">
+            <div className="panel-body"> 
+              <div className="table-responsive" id="non-editable">
+                {
+                  nodata == '' ?
+                    <table className="table table-striped table-bordered table-list table-hover">
+                      <thead>
+                        <tr>
+                          <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
+                          <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
+                          <th>{/*i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')*/}</th>
+                          <th><em className="fa fa-cog"></em>  {i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          m.map((menu) => {
+                            return <MenuItemsDataList key={menu._id} dict={this.props.dict} data={menu} homepage={this.props.defaultMenuItem? this.props.defaultMenuItem._id: ""} />
+                          })
+                        }
+                      </tbody>
+                    </table>
+                  : ''
+                }
+                { nodata }
+              </div>
+                <div className="panel-footer">
+                  <div className="row">
+                    <div className="col col-xs-4">
+                    </div>
+                    <div className="col col-xs-8">
+                      {
+                        this.props.dict.get('limit') < this.props.menuItemsCount ?
+                          <button className="btn custom-default-btn" id="load-more" onClick={this.loadMore.bind(this)}>Load more</button>
+                        : ''
+                      }
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
         </div>
         <DefaultItemParentPopup />
       </div>
     );
   }
-});
+}
 
-var Trvalue = React.createClass({
-  mixins:[ReactMeteorData],
-  getMeteorData(){
-    that=this
-    Meteor.subscribe('menuParentItems',this.props.data._id,false);
-    return {
-      MenuItemData: PanoplyCMSCollections.MenuItems.find({trash:false}).fetch(),
-      defaultMenuItem1 : PanoplyCMSCollections.MenuItems.findOne({homepage:true})
-    }
-  }, 
-  changeDefaultValue(){
-    Meteor.call("updateDefaultMenuItem",this.props.data._id,this.props.homepage,function(err,data){
-      if(err){
-        console.log(err)
-      }else{    
-        // console.log(data,"Response")
-      }
-    });
-  },
-  render: function() {
-    if(this.props.data._id==this.props.homepage){
-      style={color:'#2574ab',cursor:'pointer'}
-      classname="fa fa-star fa-lg"
-    }else{
-      classname='fa fa-star-o fa-lg'
-      style={cursor:'pointer'}
-    }
-    var iconStyle={
-      display:"inline-block",
-      fontSize:"1.8em",
-      verticalAlign:"top",
-    };
-    var divStyle = {
-      display: "inline-block",
-    };
-    var anchorStyle= {
-      display:"block",
-    }
-    var list='|-';
-    for(i=0;i<that.props.data.level;i++){
-      list +='|-';
-    }
-    //console.log(that.props.data.level,"====>",that.props.data.title)
-    
-    var c=0;
-    return (
-      <tr>
-        <td id="edit_menuItem" style={{lineHeight: "1em",width:"20%"}}> <large style={iconStyle}>{list}</large><div style={divStyle}><a href="javascript:void(0)"><large style={anchorStyle}> {this.props.data.title}</large> </a><small style={anchorStyle}> (<span>{'Alias: '+this.props.data.alias}</span>) </small></div></td>
-        <td style={{width:"50%"}}>{this.props.data.desc}</td>
-        <td style={{width:"10%"}}>
-          <span style={style} className={classname} onClick={this.changeDefaultValue}></span>
-        </td>
-        <td style={{width:"10%"}}>
-          <div id="delete_menuItem" className="delete_btn" data-toggle="modal" data-target={"#"+this.props.data._id} style={{display:'inline-block'}}>
-            {
-              Session.get("trashListShow") ? <i style={{color:'red', cursor:'pointer'}} title="Delete" className="fa fa-times" aria-hidden="true"></i> : <i style={{color:"red", cursor:'pointer'}} className="fa fa-trash-o" title="Trash"></i>
-            }
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {
-            Session.get("trashListShow")? <i data-toggle="modal" data-target={'#'+this.props.data._id+'restoreArticle'} className="fa fa-undo" aria-hidden="true" onClick={this.restoreArticle} title="Restore" style={{cursor:'pointer'}}></i> : <a href={FlowRouter.path('editMenuItem',{_id:this.props.data._id})}> <i style={{color:"#142849"}} className="fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" style={{cursor:'pointer'}}></i> </a> 
-          }
-          <Modal key={this.props.data._id} data={this.props.data} stateVal={Session.get("trashListShow")} homepage={this.data.defaultMenuItem1? this.data.defaultMenuItem1._id: ""} />
-          <RestoreModal key={this.props.data._id+"restore"} data={this.props.data}/>
-        </td>
-      </tr>
-    );
+export default createContainer((props) => {
+  Tracker.autorun(()=> {
+    let handle1 = Meteor.subscribe('menuItems', FlowRouter.getParam("_id"), props.dict.get("trashListShow"), props.dict.get('limit'));
+    let handle2 = Meteor.subscribe('menus');
+    ready = handle1.ready() && handle2.ready();
+  });
+  //let DefaultItem=Meteor.subscribe('defaultMenuItem');
+  return {
+    pageLoading: ! ready,
+    MenuItemsData: PanoplyCMSCollections.MenuItems.find({ mainParentId: FlowRouter.getParam("_id"), trash: props.dict.get("trashListShow")},{limit:props.dict.get('limit')}).fetch(),
+    menuItemsCount: PanoplyCMSCollections.MenuItems.find({ mainParentId: FlowRouter.getParam("_id"), trash: props.dict.get("trashListShow")}).count(),
+    results: PanoplyCMSCollections.MenuItems.find().fetch(),
+    Menus: PanoplyCMSCollections.Menus.find({ trash:false }).fetch(),
+    defaultMenuItem: PanoplyCMSCollections.MenuItems.findOne({ homepage:true }),
   }
-});
+}, ListMenuItems)
 
-Modal=React.createClass({
-  deleteMenuItem(){
-    if(Session.get("trashListShow")){
-      Meteor.call('deleteMenu',this.props.data._id,function(err,data){
-        // console.log(err,data);
-      });
-    }else{
-      Meteor.call('deleteMenuItem',this.props.data._id,this.props.homepage,function(err,data){
-        if(data){
-          // console.log(data);
-          if(data=="Its the parent of default")
-          $('#defaultItemParentPopup.modal').modal()
-        }else{
-          console.log(err)
-        }
-      });
-    } 
-  },
-  render:function(){
-    return(
-      <div id={this.props.data._id} className="modal fade" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            {
-              this.props.data._id==this.props.homepage?
-                <div>
-                  <div className="modal-body">
-                    <button type="button" className="close" data-dismiss="modal">&times;</button>
-                    <h4 className="modal-title">Default Item can not be deleted</h4>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" data-dismiss="modal">Ok</button>
-                  </div>
-                </div> 
-              :
-                <div>
-                  <div className="modal-body">
-                    <button type="button" className="close" data-dismiss="modal">&times;</button>
-                    <h4 className="modal-title">Do you really want to remove ?</h4>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" onClick={this.deleteMenuItem} data-dismiss="modal">YES</button>
-                    <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-                  </div>
-                </div>
-            }
-          </div>
-        </div>
-      </div>
-    )    
-  }
-})
-
-RestoreModal=React.createClass({
-  restoreMenuItem(){
-    Meteor.call('restoreMenuItem',this.props.data._id,function(err,data){
-      if(err){
-        console.log(err)
-      }else{
-        // console.log(data)
-      }
-    });
-  },
-  render:function(){
-    return(
-      <div id={this.props.data._id+'restoreArticle'} className="modal fade" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Do you really want to restore ?</h4>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={this.restoreMenuItem} data-dismiss="modal">YES</button>
-              <button type="button" className="btn btn-danger" data-dismiss="modal">NO</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )     
-  }
-})
 
 DefaultItemParentPopup = (m) => {
   return(

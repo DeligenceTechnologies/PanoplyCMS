@@ -1,5 +1,5 @@
 i18n.map('en', {
-	ADMIN_FOOTER_DELIGENCE: 'Deligence',
+	ADMIN_FOOTER_DELIGENCE: 'Deligence Technologies',
 	ADMIN_FOOTER_COPYRIGHT:'Copyright',
 	ADMIN_FOOTER_COPY     :'&COPY',
 

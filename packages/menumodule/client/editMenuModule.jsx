@@ -1,22 +1,42 @@
-import {Heading,AlertMessageOfError,AlertMessage} from 'meteor/deligencetechnologies:panoplycms-core';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
-EditMenuModule = React.createClass({
-	componentWillUnmount(){
-	},
+import Positionn from './positionn.jsx'
+import MenuItemTypes from './menuItemTypes.jsx'
+var createReactClass = require('create-react-class');
+
+EditMenuModule = createReactClass({
 	getInitialState(){
 		return {
 			valid:'',
-			successMsg:false,
-			errorMsg:false,
+			gridLength:0,
+			checkAllPage:null
 		}
 	},
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
-			menuResults:PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
-			templateRegister:PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
-			menuModuleModuleData:PanoplyCMSCollections.Modules.findOne({_id:this.props._id})
+			menuResults: PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
+			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
+			menuModuleModuleData: PanoplyCMSCollections.Modules.findOne({_id:this.props._id})
 		};
+	},
+	checkAllPage(){
+		this.setState({
+			checkAllPage:$("#allPages").is(':checked')?"true":"false"
+		});
+	},
+	changePostion(val){
+		let modules = PanoplyCMSCollections.Modules.find({position:val}).fetch();
+		let gridLength = 0;
+		if(modules.length && modules.gridLength){
+			for(let i in modules){
+				gridLength += modules.gridLength;
+			}
+		}
+		this.setState({
+			gridLength:val
+		});
 	},
 	submitData(event){
 		event.preventDefault()
@@ -26,21 +46,33 @@ EditMenuModule = React.createClass({
 		});
 
 		if(this.state.valid.form()){
-			let title=ReactDOM.findDOMNode(this.refs.title).value.trim();
+			let title=ReactDOM.findDOMNode(this.refs.title).value.trim()
 			let position=$('#position').val()
 			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
-			let showTitle=$('input[name="options"]:checked').val()
-			let allPage=$('.allPage').is(':checked')
-			showTitle = showTitle=='yes'?true:typeof showTitle=='undefined'?true:false
 
+			let allPage=$('#allPages').is(':checked')
+			let showTitle=true;
+			if($('input[name="options"]:checked').val()){
+				if($('input[name="options"]:checked').val() == 1){
+					showTitle = true
+				}else{
+					showTitle = false
+				}
+			}else if(this.data.menuModuleModuleData.showTitle){
+				showTitle = this.data.menuModuleModuleData.showTitle
+			}else{
+				showTitle = false
+			}
 			obj = {
 				name: title,
 				type:'menumodule',
 				position:position,
 				showTitle:showTitle,
 				menuItems:menuItems,
+				moduleClass: $("#ModuleClass").val(),
 				allPages:allPage,
 				moduleData:{
+					gridLength:$("#editGridSize").val() && $("#editGridSize").val()!=0?$("#editGridSize").val():12,
 					menuItem:menu
 				}
 			}
@@ -49,14 +81,16 @@ EditMenuModule = React.createClass({
 			}
 
 			Meteor.call('editModule', select, obj,(error,data)=>{
-				// console.log(error,data,'error,data')
 				if(error){
-					this.setState({errorMsg:error.reason})
+					AlertMessage('ERROR', error.reason, 'error');
 					// console.log(error,'error')
 				}else{
-					this.setState({successMsg:true});
+					AlertMessage('SUCCESS', 'Successfully! updated menu module.', 'success');
 				}
 			})
+			return dispatch => {
+				dispatch(updateModule(select, obj))
+			}
 		}
 	},
 	componentDidMount(){
@@ -89,96 +123,140 @@ EditMenuModule = React.createClass({
 		$('.options').toggleClass('active');
 		$('.option').button();
 	},
-	resetSuccessMsg(){
+	/*resetSuccessMsg(){
 		this.setState({'successMsg':false})
 		this.setState({'errorMsg':false})
-	},
+	},*/
 	render(){
-		c=0;
+		let c = 0;
+
+		/*let msg = '';
 		if(this.state.successMsg){
-			msg=<AlertMessage data={'updated menu module.'} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageSuccess data={'updated menu module.'} func={this.resetSuccessMsg}/>
 		}else if(this.state.errorMsg){
-			msg=<AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
+			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
 		}else{
 			msg='';
-		}
+		}*/
 		return (
-			<div className="col-md-10 content" onClick={this.resetSuccessMsg}>
-				<Heading data={'Edit Menu Module'} />
-				{msg}
-				<div className="panel-body">
-					<div id="notification"></div>
-					<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
-						<div className = "form-group">
-							<label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
-							<div className = "col-sm-10">
-								<input type = "text" name="title" ref="title"  className = "form-control"  placeholder = "Enter title" defaultValue={this.data.menuModuleModuleData?this.data.menuModuleModuleData.name:''} required/>
-							</div>
-						</div>
-						<Position key={this.data.templateRegister._id} data={this.data.templateRegister} value={this.data.menuModuleModuleData?this.data.menuModuleModuleData.position:''}/>
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">Select Menu</label>
-							<div className = "col-sm-10">
-								<select defaultValue='select' defaultValue={this.data.menuModuleModuleData?this.data.menuModuleModuleData.moduleData.menuItem:''} name="selectMenu" ref="selectMenu" className="selectpicker form-control " data-style="btn-primary" >
-									<option value="">--select--</option>
-									{
-										this.data.menuResults.map(function(result){
-											return <option key={result._id} value={result._id}>{result.title}</option>
-										})
-									}
-								</select>
-							</div>
-						</div>
-						{/*
-							<div className = "form-group">
-								<label htmlFor = "lastname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
-								<div className = "col-sm-10">
-									<div className="summernote">
-										<textarea ref="editor1" name="editor" id="article" />
-									</div>
-								</div>
-							</div>
-						*/}
-					<div className="form-group">
-						<label className="col-sm-2 control-label">Show Title</label>
-							<div className="col-sm-10">
-								<div className="btn-group" data-toggle="buttons">
-									<label className={this.data.menuModuleModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
-										<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
-									</label>
-									<label className={this.data.menuModuleModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option" >
-										<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
-									</label>
-								</div>
-							</div>
-						</div>
-						<div className = "form-group">
-							<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
-							<div className = "col-sm-10">
-								<input type="checkbox" defaultChecked={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" name="allPage" />
-							</div>
-						</div>
-						<MenuItemType value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>
-						<div className="form-group">
-							<div className = "col-sm-offset-2 col-sm-10">
-								<button className="btn btn-primary ">UPDATE</button>
-								&nbsp;&nbsp;
-								<a className="btn btn-danger" href={FlowRouter.path('modulesManager')}>CANCEL</a>
-							</div>
-						</div>
-					</form>
+			<div className="">
+				<div className="page-header">
+					<h3 className="sub-header">Edit Menu Module</h3>
 				</div>
+				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
+					<div className="controls-header">
+						<div className="form-group">
+							<div className = "col-sm-12">
+								<button className="btn custom-default-btn">UPDATE</button>
+								&nbsp;&nbsp;
+								<a className="btn custom-default-btn" href={FlowRouter.path('modulesManager')}>CANCEL</a>
+							</div>
+						</div>
+					</div>
+					<div className="panel-body custom-panel">
+
+						<div id="notification"></div>
+						<div className="custom-tab">
+							<ul className="nav nav-tabs">
+							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+							</ul>
+							<div className="tab-content">
+								{/* =======> MODULE START<======= */}
+			    					<div id="module-home" className="tab-pane active">
+										<div className = "form-group">
+											<label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
+											<div className = "col-sm-10">
+												<input type = "text" name="title" ref="title" className = "form-control"  placeholder = "Enter title" defaultValue={this.data.menuModuleModuleData?this.data.menuModuleModuleData.name:''} required />
+											</div>
+										</div>
+										<Positionn key={this.data.templateRegister._id} data={this.data.templateRegister} value={this.data.menuModuleModuleData?this.data.menuModuleModuleData.position:''} />
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">Select Menu</label>
+											<div className = "col-sm-10">
+												<select defaultValue='select' defaultValue={this.data.menuModuleModuleData?this.data.menuModuleModuleData.moduleData.menuItem:''} name="selectMenu" ref="selectMenu" className="selectpicker form-control " data-style="btn-primary" >
+													<option value="">--select--</option>
+													{
+														this.data.menuResults.map(function(result){
+															return <option key={result._id} value={result._id}>{result.title}</option>
+														})
+													}
+												</select>
+											</div>
+										</div>
+										<div className="form-group switch-btn">
+											<label className="col-sm-2 control-label">Show Title</label>
+											<div className="col-sm-10">
+												<div className="btn-group switch-btn" data-toggle="buttons">
+													<label className={this.data.menuModuleModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
+														<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
+													</label>
+													<label className={this.data.menuModuleModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option" >
+														<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								{/* =======> MODULE END<======= */}
+
+
+								{/* =======> MENU ASSIGNMENT START<======= */}
+									<div id="module-menu-assign" className="tab-pane">
+										<div className = "form-group">
+											<label htmlFor = "lastname" className = "col-sm-2 control-label">All Page</label>
+											<div className = "col-sm-10">
+												<input onChange={this.checkAllPage} type="checkbox" defaultChecked={this.data.menuModuleModuleData.allPages} className="allPage" ref="desc" id="allPages" name="allPage" />
+											</div>
+										</div>
+										{ 
+											this.state.checkAllPage?
+												this.state.checkAllPage == "false"?
+													<MenuItemTypes value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>
+												:
+													''
+											:
+												!this.data.menuModuleModuleData.allPages?
+													<MenuItemTypes value={this.data.menuModuleModuleData.menuItems?this.data.menuModuleModuleData.menuItems:[]}/>
+												:
+													''
+										}
+									</div>
+								{/* =======> MENU ASSIGNMENT END<======= */}
+
+
+								{/* =======> ADVANCED SETTING START<======= */}
+									<div id="module-advanced" className="tab-pane">
+										<div className = "form-group">
+												<label htmlFor = "firstname" className = "col-sm-2 control-label">Module Suffix Class</label>
+												<div className = "col-sm-10">
+
+													<input type = "text" name="moduleClass" ref="moduleClass" id="ModuleClass" className = "form-control" defaultValue={this.data.menuModuleModuleData?this.data.menuModuleModuleData.moduleClass:''} required />
+												</div>
+											</div>
+										<div className="advance-htmlBlock">
+											<div className = "form-group">
+												<label htmlFor = "editGridSize" className = "col-sm-2 control-label">Bootstrap Grid Size</label>
+												<div className = "col-sm-10">
+													<input type="number" className="gridSize form-control" ref="editGridSize" id="editGridSize" defaultValue={this.data.menuModuleModuleData.moduleData.gridLength?this.data.menuModuleModuleData.moduleData.gridLength:0} min={0} max={12-this.state.gridLength} name="editGridSize" />
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								{/* =======> ADVANCED SETTING END<======= */}
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		)
 	}
 });
 
-MenuList = React.createClass({
-	propTypes:{
-		menu: React.PropTypes.object.isRequired,
-	},
+MenuList = createReactClass({
 	render(){
-		// console.log(this.props.menu._id,'Skadoooosh!!')
 		return (
 			<option value={this.props.menu._id}>{this.props.menu.title}</option>
 		);
@@ -186,3 +264,42 @@ MenuList = React.createClass({
 });
 
 export default EditMenuModule;
+
+AlertMessage = (title, message, messageType) => {
+  // TODO -> change icons (a/c to your need)
+  let type = '', icon = '';
+  if(messageType == 'warning'){
+    type = 'warning-msg';
+    icon =  'fa-exclamation-triangle';
+  }else if(messageType == 'success'){
+    type = 'success-msg';
+    icon =  'fa-check';
+  }else if(messageType == 'error'){
+    type = 'error-msg';
+    icon =  'fa-remove';
+  }
+  return (
+    Bert.alert({
+      title: title,
+      message: message,
+      type: type,
+      style: 'growl-top-right',
+      icon: icon
+    })
+  );
+}
+
+/*class AlertMessageError extends Component {
+  render(){
+    return (
+      <div className="successMsg alert alert-danger">
+        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Error! </strong>
+        {this.props.data}
+      </div>
+    )
+  }
+}*/
+

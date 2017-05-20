@@ -1,0 +1,144 @@
+@media (min-width: 1025px) {
+}
+@media(max-width: 1024px) {    
+}
+@media(max-width: 768px) {
+	.logo{
+	text-align:center;
+}
+#main_nav{
+	margin:0;
+	padding:0px;
+	width:100%;
+}
+
+#main_nav ul{
+	display: none;
+}
+	
+#main_nav>ul>li{
+	display: block;
+	border-top: 1px solid #fbf9f6;
+}
+
+#main_nav>ul>li:after{
+	display: table;
+	content: '';
+	clear: both;
+}
+
+#main_nav>ul>li>a{
+	color: #484747;
+	text-align: left;
+	float: left;
+	padding: 0;
+	padding: 10px;
+}
+
+#main_nav ul li span{
+	display: block;
+	float: right;
+	color: rgba(234,91,31,1);
+	cursor: pointer;
+	padding: 10px;
+}
+
+#main_nav ul li:hover .dropdown{
+	display: none;
+}
+
+#main_nav ul li .dropdown{
+	position: relative;
+    clear: both;
+    background-color: #f9f9f9;
+    padding: 10px 0px;
+    margin: 0px 0px 0px 0px;
+    box-shadow: none;
+}
+
+#main_nav button{
+	display: block;
+	background: #2196f3;
+	border: none;
+	padding: 10px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+	margin-bottom:10px;
+}
+
+#main_nav button:focus{
+	outline: none;
+}
+
+#main_nav button span{
+	float: left;
+}
+
+#main_nav button i{
+	float: right;
+}
+	
+}
+
+@media (max-width: 640px) {
+}
+@media (max-width: 480px) {
+	.top-head {
+    display:none;
+}
+.counter-wrap {
+     margin: 50px 10px 20px 10px;
+}
+.about-tagline {
+    margin: 10px 5px 40px 5px;
+}
+.why-choose-us {
+    background: url(../images/activities-bg.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: 100% 50%;
+}
+.why-us {
+    margin-top: 140px;
+    padding: 0px 10px;
+}
+
+.heading-left h2 {
+    color: #e2e1e1;
+}
+
+.why-us-leftside p.lead {
+    color: #dcdada;
+}
+.why-choose-us .icon-1 {
+    margin-left: 15px;
+}
+
+.why-choose-us .block-info p {
+    line-height: 25px;
+}
+.white-bg{
+	background:#fff;
+	margin:-40px 10px -40px 10px;
+	background: #f3f3f3;
+    padding: 20px;
+	
+}
+.internal-banner h2 {
+    margin-right: 30px;
+    margin-left: 30px;
+	font-size: 25px;
+}
+.gallery-item .image-box {
+    margin-bottom: 20px;
+}
+
+.gallery {
+    padding: 20px 0px 100px;
+}
+.blue-block {
+    margin-right: 0px;
+}
+}
+

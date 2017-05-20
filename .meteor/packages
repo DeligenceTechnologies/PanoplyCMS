@@ -4,16 +4,16 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-base             # Packages every Meteor app needs to have
-mobile-experience       # Packages for a great mobile UX
-mongo                   # The database Meteor supports right now
+meteor-base@1.0.4             # Packages every Meteor app needs to have
+mobile-experience@1.0.4       # Packages for a great mobile UX
+mongo@1.1.16                   # The database Meteor supports right now
 blaze-html-templates    # Compile .html files into Meteor Blaze views
-session                 # Client-side reactive dictionary for your app
+session@1.1.7                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
-tracker                 # Meteor's client-side reactive programming library
+tracker@1.1.2                 # Meteor's client-side reactive programming library
 
-es5-shim                # ECMAScript 5 compatibility for older browsers.
-ecmascript              # Enable ECMAScript2015+ syntax in app code
+es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.7.2              # Enable ECMAScript2015+ syntax in app code
 
 kadira:flow-router
 kadira:react-layout
@@ -36,13 +36,20 @@ twbs:bootstrap
 # react-meteor-data
 # aldeed:simple-schema
 
-deligencetechnologies:sample-data
-deligencetechnologies:panoplycms-core
-deligencetechnologies:default-template
-deligencetechnologies:panoplycms-tag
-deligencetechnologies:menumodule
-deligencetechnologies:htmlblock
 # summernote:summernote@0.8.1
 # dferber:prerender
+# richsilv:owl-carousel
 
-kadira:dochead
+# themeteorchef:bert
+
+# kadira:dochead
+shell-server@0.2.3
+# reactive-dict@1.1.8
+
+deligencetechnologies:default-template
+deligencetechnologies:htmlblock
+deligencetechnologies:menumodule
+deligencetechnologies:panoplycms-core
+deligencetechnologies:panoplycms-tag
+deligencetechnologies:sample-data
+deligencetechnologies:slidermodule

@@ -1,41 +1,34 @@
-UserList = React.createClass({
-	mixins:[ReactMeteorData],
-	getMeteorData(){
-		// return {
-		//   results: Images.findOne(),
-		//   user: Meteor.users.findOne(),
-		// } 
-		// console.log(Meteor.users.findOne(),'<----')
-		var handle = Meteor.subscribe('usersProfile')
-		return {
-			pageLoading: !handle.ready(), 
-			user: Meteor.users.findOne(),
-			// image: Images.findOne()
-		};
-	},
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
 
+import Heading from '../common/heading.jsx';
+import LoadingSpinner from '../common/loadingSpinner.jsx';
+
+class UserList extends Component {
 	render() {
-		if (this.data.pageLoading) {
+		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
 		}
-		// console.log(this.data.user.profile.imageId)
-		if(this.data.user && this.data.user.profile.imageId){
-			var image = Images.findOne({_id: this.data.user.profile.imageId})
+		// console.log(this.props.user.profile.imageId)
+		if(this.props.user && this.props.user.profile.imageId){
+			var image = Images.findOne({_id: this.props.user.profile.imageId})
 		}
 		// console.log(image)
 		return(
-			<div className="col-md-10 content">
+			<div className="">
 				<Heading data={'User List'} />
-				<div className="panel-body">
-					<div className="table-responsive" id="non-editable">
-						<table className="table">
+				<div className="custom-table">
+				  <div className="panel panel-default panel-table">
+				     	<div className="panel-body">
+					 <div className="table-responsive" id="non-editable">
+						<table className="table table-striped table-bordered table-list table-hover">
 							<thead>
 								<tr>
 									<th>{i18n('ADMIN_USERS_PROFILE_PICTURE')}</th>
 									<th>{i18n('ADMIN_USERS_EDIT_USERNAME')}</th>
 									<th>{i18n('ADMIN_USERS_EDIT_EMAIL')}</th>
-									<th>{i18n('ADMIN_USERS_PROFILE_EDIT')}</th>
-									<th>Delete</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -47,16 +40,34 @@ UserList = React.createClass({
 											: 'No image'
 										}
 									</td>
-									<td>{this.data.user?this.data.user.profile?this.data.user.profile.username:'':''}</td>
-									<td>{this.data.user?this.data.user.emails[0].address:''}</td>
-									<td><a className = "btn btn-primary fa fa-pencil-square-o" data-toggle="tooltip" title="Edit" href={FlowRouter.path('editUser',{_id:this.data.user._id})}></a></td>
-									<td><button disabled='true' className = "btn btn-danger fa fa-trash-o" href={FlowRouter.path('dashboard')} data-toggle="tooltip" title="Delete" ></button></td> 
+									<td>{this.props.user?this.props.user.profile?this.props.user.profile.username:'':''}</td>
+									<td>{this.props.user?this.props.user.emails[0].address:''}</td>
+									<td>
+										<a className = "btn btn-default " data-toggle="tooltip" title="Edit" href={FlowRouter.path('editUser',{_id:this.props.user._id})}>
+											<i className="fa fa-pencil-square-o"> </i>
+										</a> &nbsp;&nbsp;
+								    	<a disabled='true' className="btn btn-danger " href={FlowRouter.path('dashboard')} data-toggle="tooltip" title="Delete"> 
+								      		<i className="fa fa-trash-o"></i>
+								      	</a>
+									</td>
 								</tr> 
 							</tbody>
 						</table>
-					</div>
+					 </div>
+			   	</div>
+				  </div>
+			   
 				</div>
 			</div>
 		)
 	}
-})
+}
+
+export default createContainer(() => {
+	let handle = Meteor.subscribe('usersProfile')
+	return {
+		pageLoading: ! handle.ready(), 
+		user: Meteor.users.findOne()
+	};
+
+}, UserList)

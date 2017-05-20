@@ -146,7 +146,7 @@ Meteor.startup(function () {
 				{
 					label:'Website',
 					routeName:'Website',
-					url:'http://www.deligence.com/blog/panoply-cms-meteor-based-open-source-cms',
+					url:'http://www.panoplycms.com/',
 					template:'',
 					providers:''
 				}
@@ -157,15 +157,17 @@ Meteor.startup(function () {
 		_.each(sidebarList,function(list){
 			PanoplyCMSCollections.AdminSidebarMenu.insert(list);	
 		})
-		
-	    
 	} else {
-		
+
 	}
 	if(PanoplyCMSCollections.Sites.find().count() === 0){
-		PanoplyCMSCollections.Sites.insert({name:'PanoplyCMS',siteMetaKeyword:'',siteMetaDesc:'',siteOffline:''});
-	}else{
-		
+		PanoplyCMSCollections.Sites.insert({
+			"_id" : "q3oGP4r7mc8oFcjZm",
+			"name" : "PanoplyCMS",
+			"siteMetaKeyword" : "Meteor with Backend, Node js, Mongodb",
+			"siteMetaDesc" : "PanoplyCMS is an Open Source CMS, based on Meteor Framework",
+			"siteOffline" : false
+		});
 	}
 
 	if(!PanoplyCMSCollections.RegisteredPackages.find({'name': 'template'}).count()){
@@ -173,24 +175,22 @@ Meteor.startup(function () {
 	}
 
 	if ( Meteor.users.find().count() === 0 ) {
-	    id=Accounts.createUser({
-	        email: 'info@deligence.com',
-	        password: 'Pass@123',
-	        profile: {
-	        	username: 'deligence'
-	        }
-	    });
-	   	console.log('********************************************');
-	    console.log('*                                          *');
-	    console.log('*                                          *');
-	    console.log('*     Username: info@deligence.com         *');
-	    console.log('*     Password: Pass@123                   *');
-	    console.log('*                                          *');
-	    console.log('*                                          *');
-	    console.log('********************************************');
-	    Roles.addUsersToRoles(id,['admin','owner']);
-	} else {
-			
+		id=Accounts.createUser({
+			email: 'info@deligence.com',
+			password: 'Pass@123',
+			profile: {
+				username: 'deligence'
+			}
+		});
+		console.log('********************************************');
+		console.log('*                                          *');
+		console.log('*                                          *');
+		console.log('*     Username: info@deligence.com         *');
+		console.log('*     Password: Pass@123                   *');
+		console.log('*                                          *');
+		console.log('*                                          *');
+		console.log('********************************************');
+		Roles.addUsersToRoles(id,['admin','owner']);
 	}
 
 	PanoplyCMSRegisterPackage(
@@ -421,6 +421,16 @@ Meteor.startup(function () {
 						"admin"
 					]
 				},
+				{
+					"name" : "slidermodule",
+					"path" : "/slider",
+					"component" : "ListSliderModule",
+					"layout" : "AdminLayout",
+					"provides" : "dashboard",
+					"permission" : [
+						"admin"
+					]
+				},
 			]
 		}
 	)
@@ -429,7 +439,3 @@ Meteor.startup(function () {
 	PanoplyCMSCollections.Articles._ensureIndex({ "title": 1 }, { unique: true });
 	PanoplyCMSCollections.Categories._ensureIndex({ "title": 1 }, { unique: true });
 });
-
-
-
- 

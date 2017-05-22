@@ -1,4 +1,9 @@
-DefaultNotFound = React.createClass({
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+var createReactClass = require('create-react-class');
+
+DefaultNotFound = createReactClass({
 	render() {
 		return (
 			<div>

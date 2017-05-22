@@ -1,4 +1,4 @@
 /*Meteor.startup(function() {
-    ReactDOM.render( <DefaultTemplate /> , document.getElementById("target"));
+	ReactDOM.render( <DefaultTemplate /> , document.getElementById("target"));
 });
 */

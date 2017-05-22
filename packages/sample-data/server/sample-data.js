@@ -8,182 +8,82 @@ if(Meteor.isServer){
 
 	homepageListCategory=[
 		{
-			"_id" : "WjkfAjSTBQMBk4e6y",
-			"title" : "Category1",
-			"alias" : "category1",
+			"_id" : "qJmvAbE3zZi3ANbJJ",
+			"title" : "LIFE INSURANCE",
+			"alias" : "life-insurance",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : ""
+			"ownerId" : "xo4S5G9a32RJnumwb"
 		},
 		{
-			"_id" : "wT75z3GXDijmiygcQ",
-			"title" : "Category2",
-			"alias" : "category2",
+			"_id" : "MMrdixNaveR7vSzkm",
+			"title" : "Blog Details",
+			"alias" : "blog-details",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "8LagPWd8TyWauB8Bi",
-			"title" : "Category3",
-			"alias" : "category3",
-			"createdAt" : new Date(),
-			"updateAt" : new Date(),
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
+			"ownerId" : "xo4S5G9a32RJnumwb"
 		}
 	];
 	homepageListArticle=[
 		{
-			"_id" : "eQBWG4DXMsEp8NX7x",
-			"title" : "Article1",
-			"alias" : "article1",
-			"category" : "wT75z3GXDijmiygcQ",
+			"_id" : "xdrSMwzaGaw4KBbPL",
+			"title" : "LIFE INSURANCE",
+			"alias" : "life-insurance",
+			"category" : "qJmvAbE3zZi3ANbJJ",
 			"tags" : [
-				"KbNnewPfXkkXEGdMB"
+				"QSREa4P24WaPTw4eL"
 			],
-			"article" : "<p>Meteor is really an awesome tool to build great Web apps and get productive fast. I absolutely love it. That&rsquo;s why 6 months ago I created a package that allows you to plug Webpack with Meteor.</p><p> I though if we could add a real-time hot reload, ES6 modules, bundle assets with the code and do code splitting, it would make Meteor 2x cooler and it did.</span></p>",
-			"metaKeyword" : "sidebar",
-			"metaDescription" : "sidebar",
-			"createdAt" : new Date(),
-			"updateAt" : "",
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "McwCH6S4cMGsqPags",
-			"title" : "Welcome To Deligence",
-			"alias" : "welcome-to-deligence",
-			"category" : "WjkfAjSTBQMBk4e6y",
-			"tags" : [ ],
-			"article" : "<h1 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-size: 30px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; text-rendering: optimizeLegibility; background-color: #ffffff;\">Welcome to Deligence Technologies</h1>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Deligence Technologies is a team of highly qualified and experienced professionals. We value our words and fulfill our commitments. We deliver on time and when we are not able to do so, we inform in advance. Communication, Commitment and Quality are our Key Values.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We are experts of PHP/MySQL and we mainly work in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Joomla\" href=\"http://www.deligence.com/technologies/php-mysql/joomla\">Joomla</a>, and&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"WordPress\" href=\"http://www.deligence.com/technologies/php-mysql/wordpress\">WordPress</a>&nbsp;CMSs.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We also have expertise in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"MeteorJS\" href=\"http://www.deligence.com/technologies/nodejs-mongodb/meteor\">MeteorJS</a>&nbsp;which is a web framework based on NodeJS and uses MongoDB as backend.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Concerns/Vision of the Company&nbsp;</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">1. We are in action to fulfill the aspirations of our team members.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">2. Deligence Technologies is a well known and trusted Brand in IT Services Industry.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">raison d'&ecirc;tre</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">fulfilling the aspirations of our team members.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Promoters of the Company</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Sanjay Kumar and Nidhi Aggarwal are the 2 promoters &amp; Directors of this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Sanjay Kumar</span>&nbsp;is CEO and Sales Manager of Deligence Technologies Pvt. Ltd. He has done DOEACC 'B\" Level which is equivalent to MCA. He is a Zend Certified Engineer (<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Zend\" href=\"http://www.zend.com/en/yellow-pages/ZEND003862\" target=\"_blank\">http://www.zend.com/en/yellow-pages/ZEND003862</a>) and also an Oracle Certified Professional (OCP-DBA). Sanjay has 10 years of experience in Open Source. He has worked for 5 years with&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Value One\" href=\"http://value-one.com/\" target=\"_blank\">Value One InfoTech Pvt. Ltd.</a>&nbsp;He started there as a Software Engineer, then become Sr. Software Engineer, and then Lead Developer, and then Team Leader. After that&nbsp;he founded&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"OST\" href=\"http://www.opensourcetechnologies.com/\" target=\"_blank\">Open Source Technologies Pvt. Ltd.</a>&nbsp;with one of his friend in July 2009. Sanjay had played various roles in that&nbsp;company. The roles include Project Manager, Sr. Project Manager, Sales Manager, and CEO. Recently he has discontinued with&nbsp;Open Source Technologies Pvt. Ltd. and has formed this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Nidhi Aggarwal</span>&nbsp;is the other promoter and director of the company. Her qualifications include M.Com., and MBA (Finance). She started her career with Open Source Technologies Pvt. Ltd. in July 2009 and she had played various roles during her stay of 5 years. She started as a developer and HR assistant. Then she started leading the team and from last 2.5 years - her major roles were - Project Manager and HR Manager. Now she is going to play the role of HR Manager and COO (Chief Operating Officer) in Deligence Technologies Pvt. Ltd.</p>",
-			"metaKeyword" : "About Us",
-			"metaDescription" : "About Us",
-			"createdAt" : new Date(),
-			"updateAt" : "",
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "472Dgsst3bf4d7KAZ",
-			"title" : "Article2",
-			"alias" : "article2",
-			"category" : "WjkfAjSTBQMBk4e6y",
-			"tags" : [ ],
-			"article" : "<h6 class=\"widget-title\" style=\"box-sizing: inherit; margin: 0px 0px 16px; font-size: 20px; line-height: 1.1; font-family: 'Alegreya Sans'; color: #4a4a4a; padding-top: 20px; padding-bottom: 10px; background-color: #f7f7f7;\">Contacts info</h6>\n<div class=\"textwidget\" style=\"box-sizing: inherit; color: #949494; font-family: 'Alegreya Sans', sans-serif; font-size: 20px; line-height: 24px; background-color: #f7f7f7;\">\n<ul class=\"contacts-list\" style=\"box-sizing: inherit; margin: 0px; padding: 0px; color: #616262;\">\n<li class=\"phones fa  fa-phone\" style=\"box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; margin-top: 0px; list-style: none; position: relative; padding-left: 30px;\"><a style=\"box-sizing: inherit; text-decoration: none; transition: all 0.3s ease; color: #949494; background-color: transparent;\" href=\"tel:555%E2%80%93123%E2%80%932323\"><em style=\"box-sizing: inherit; display: inline-block; margin-bottom: 9px; transition: all 0.3s ease; font-family: 'Alegreya Sans', sans-serif;\">555&ndash;123&ndash;2323</em></a><em style=\"box-sizing: inherit; display: inline-block; margin-bottom: 9px; transition: all 0.3s ease; font-family: 'Alegreya Sans', sans-serif;\">;</em>&nbsp;<a style=\"box-sizing: inherit; text-decoration: none; transition: all 0.3s ease; color: #949494; background-color: transparent;\" href=\"tel:555%E2%80%93123%E2%80%932323\"><em style=\"box-sizing: inherit; display: inline-block; margin-bottom: 9px; transition: all 0.3s ease; font-family: 'Alegreya Sans', sans-serif;\">555&ndash;123&ndash;2323</em></a></li>\n&nbsp;\n<li class=\"fa  fa-envelope\" style=\"box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; margin-top: 9px; list-style: none; position: relative; padding-left: 30px;\"><a style=\"box-sizing: inherit; text-decoration: none; transition: all 0.3s ease; color: #ff6465; background-color: transparent;\" href=\"mailto:celaningpro@demolink.org\"><em style=\"box-sizing: inherit; display: inline-block; margin-bottom: 9px; transition: all 0.3s ease; font-family: 'Alegreya Sans', sans-serif;\">celaningpro@demolink.org</em></a></li>\n&nbsp;\n<li class=\"fa fa-map-marker\" style=\"box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; margin-top: 9px; list-style: none; position: relative; padding-left: 30px;\"><address style=\"box-sizing: inherit; margin: 0px 0px 1.5em; color: #949494;\"><em style=\"box-sizing: inherit; display: inline-block; margin-bottom: 9px; transition: all 0.3s ease; font-family: 'Alegreya Sans', sans-serif;\">22 St. Black Road Orlando, PL 3457</em></address></li>\n</ul>\n</div>",
-			"metaKeyword" : "contect us",
-			"metaDescription" : "contect us",
-			"createdAt" : new Date(),
-			"updateAt" : "",
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "sQxFCncirtu4gEzJ7",
-			"title" : "Article",
-			"alias" : "article",
-			"category" : "8LagPWd8TyWauB8Bi",
-			"tags" : [ ],
-			"article" : "<p><span style=\"color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 19px; background-color: #ffffff;\">And this is just a beginning. Anyone can write a Meteor package to wrap a specific Webpack configuration. If you feel like something is missing, please open an issue and I would love to add the missing features or packages&nbsp;</span></p>",
-			"metaKeyword" : "Footer3 Article",
-			"metaDescription" : "Footer3 Article",
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n        <div class=\"section-heading heading-center\">\n            <span>Our Services</span>\n            <h2>Life Insurance</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"images/blog-img2.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. </p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"metaKeyword" : "LIFE INSURANCE",
+			"metaDescription" : "LIFE INSURANCE",
 			"createdAt" : new Date(),
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : ""
+			"ownerId" : "xo4S5G9a32RJnumwb"
 		},
 		{
-			"_id" : "ZAEfAHBASGAJDmJcb",
-			"title" : "Article3",
-			"alias" : "article3",
-			"category" : "WjkfAjSTBQMBk4e6y",
-			"tags" : [ ],
-			"article" : "<div class=\"items-row cols-1 row-0 row-fluid clearfix\" style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff;\">\n<div class=\"span12\" style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 0px 0px !important;\">\n<div class=\"item column-1\" style=\"box-sizing: border-box; margin: 0px; padding: 0px;\">\n<div class=\"page-header\" style=\"box-sizing: border-box; margin: 40px 0px 20px; padding: 0px 0px 9px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #eeeeee;\">\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility;\"><a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" href=\"http://www.deligence.com/blog/mobile-app-marketing\">Mobile App Marketing</a></h2>\n</div>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\">Mobile App marketing aim is to drive more revenue and engagement from the people who already use your app and making new users.</p>\n<h4 style=\"box-sizing: border-box; margin: 10px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 18px; text-rendering: optimizeLegibility;\">Factors of App Marketing:-</h4>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>First, make app website&ndash; For better Mobile App Marketing first create a mobile app website and put unique and targeted audience based content.</p>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>Make website responsive&ndash; Mobile App website should be responsive.</p>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>SEO&ndash; Do proper SEO for better results.</p>\n<div class=\"jcomments-links\" style=\"box-sizing: border-box; margin: 10px 0px 0px; padding: 0px; clear: both;\">&nbsp;</div>\n</div>\n</div>\n</div>\n<div class=\"items-row cols-1 row-1 row-fluid clearfix\" style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff;\">\n<div class=\"span12\" style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 0px 0px !important;\">\n<div class=\"item column-1\" style=\"box-sizing: border-box; margin: 0px; padding: 0px;\">\n<div class=\"page-header\" style=\"box-sizing: border-box; margin: 40px 0px 20px; padding: 0px 0px 9px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #eeeeee;\">\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility;\"><a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" href=\"http://www.deligence.com/blog/app-store-optimization-aso\">App Store Optimization(ASO)</a></h2>\n</div>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\">App store optimization or ASO is the process of improving the visibility of a&nbsp;mobile app&nbsp;like (an&nbsp;iPhone,&nbsp;iPad,&nbsp;Android,&nbsp;BlackBerry&nbsp;or&nbsp;Windows Phone&nbsp;app) in an&nbsp;app store&nbsp;(such as&nbsp;iTunes&nbsp;for iOS,&nbsp;Google Play for Android, Windows Store for Windows Phone or&nbsp;BlackBerry World&nbsp;for BlackBerry).</p>\n<h4 style=\"box-sizing: border-box; margin: 10px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 18px; text-rendering: optimizeLegibility;\">Top Important Factors</h4>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>App functionality&ndash; Better app functionality.</p>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>Content&ndash; Content should be service, brand or product based with uniqueness.</p>\n<p style=\"box-sizing: border-box; padding: 0px; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; line-height: 16.1px; font-family: Wingdings;\">&Oslash;&nbsp;</span>Service&ndash; Service should be clear.</p>\n</div>\n</div>\n</div>\n<div class=\"items-row cols-1 row-3 row-fluid clearfix\" style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff;\">&nbsp;</div>",
-			"metaKeyword" : "blog",
-			"metaDescription" : "blog",
+			"_id" : "dwWqfcHyCCakeJLmb",
+			"title" : "Cum sociis natoque penatibus et magnis dis parturient",
+			"alias" : "cum-sociis-natoque-penatibus-et-magnis-dis-parturient",
+			"category" : "MMrdixNaveR7vSzkm",
+			"tags" : [
+				"eAhjeGCkxYdD5ggyh"
+			],
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"images/blog.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"metaKeyword" : "Blog Details",
+			"metaDescription" : "Blog Detail",
 			"createdAt" : new Date(),
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "mMDKNW7wxwnkR7c2g",
-			"title" : "Article5",
-			"alias" : "article5",
-			"category" : "WjkfAjSTBQMBk4e6y",
-			"tags" : [ ],
-			"article" : "<h3 style=\"margin: 15px 0px; padding: 0px; font-weight: bold; text-align: left; font-size: 14px;\">The standard Lorem Ipsum passage, used since the 1500s</h3>\n<div id=\"Translation\" style=\"margin: 0px 28.7969px; padding: 0px; text-align: left; color: #000000; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;\">\n<p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify;\">\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</p>\n</div>\n<h3 style=\"margin: 15px 0px; padding: 0px; font-weight: bold; text-align: left; font-size: 14px;\">Section 1.10.32 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC</h3>\n<div style=\"margin: 0px 28.7969px; padding: 0px; text-align: left; color: #000000; font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;\">\n<p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify;\">\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"</p>\n</div>\n<h3 style=\"margin: 15px 0px; padding: 0px; font-weight: bold; text-align: left; font-size: 14px;\">&nbsp;</h3>",
-			"metaKeyword" : "Home Page",
-			"metaDescription" : "Home Page",
-			"createdAt" : new Date(),
-			"updateAt" : new Date(),
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
-		},
-		{
-			"_id" : "McwCH6S4cMGsqPags",
-			"title" : "Welcome To Deligence",
-			"alias" : "welcome-to-deligence",
-			"category" : "WjkfAjSTBQMBk4e6y",
-			"tags" : [ ],
-			"article" : "<h1 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-size: 30px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; text-rendering: optimizeLegibility; background-color: #ffffff;\">Welcome to Deligence Technologies</h1>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Deligence Technologies is a team of highly qualified and experienced professionals. We value our words and fulfill our commitments. We deliver on time and when we are not able to do so, we inform in advance. Communication, Commitment and Quality are our Key Values.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We are experts of PHP/MySQL and we mainly work in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Joomla\" href=\"http://www.deligence.com/technologies/php-mysql/joomla\">Joomla</a>, and&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"WordPress\" href=\"http://www.deligence.com/technologies/php-mysql/wordpress\">WordPress</a>&nbsp;CMSs.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">We also have expertise in&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"MeteorJS\" href=\"http://www.deligence.com/technologies/nodejs-mongodb/meteor\">MeteorJS</a>&nbsp;which is a web framework based on NodeJS and uses MongoDB as backend.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Concerns/Vision of the Company&nbsp;</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">1. We are in action to fulfill the aspirations of our team members.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">2. Deligence Technologies is a well known and trusted Brand in IT Services Industry.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">raison d'&ecirc;tre</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">fulfilling the aspirations of our team members.</p>\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 22px; text-rendering: optimizeLegibility; background-color: #ffffff;\">Promoters of the Company</h2>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Sanjay Kumar and Nidhi Aggarwal are the 2 promoters &amp; Directors of this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Sanjay Kumar</span>&nbsp;is CEO and Sales Manager of Deligence Technologies Pvt. Ltd. He has done DOEACC 'B\" Level which is equivalent to MCA. He is a Zend Certified Engineer (<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Zend\" href=\"http://www.zend.com/en/yellow-pages/ZEND003862\" target=\"_blank\">http://www.zend.com/en/yellow-pages/ZEND003862</a>) and also an Oracle Certified Professional (OCP-DBA). Sanjay has 10 years of experience in Open Source. He has worked for 5 years with&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"Value One\" href=\"http://value-one.com/\" target=\"_blank\">Value One InfoTech Pvt. Ltd.</a>&nbsp;He started there as a Software Engineer, then become Sr. Software Engineer, and then Lead Developer, and then Team Leader. After that&nbsp;he founded&nbsp;<a style=\"box-sizing: border-box; margin: 0px; padding: 0px; color: #04659f; text-decoration: none; background-color: transparent;\" title=\"OST\" href=\"http://www.opensourcetechnologies.com/\" target=\"_blank\">Open Source Technologies Pvt. Ltd.</a>&nbsp;with one of his friend in July 2009. Sanjay had played various roles in that&nbsp;company. The roles include Project Manager, Sr. Project Manager, Sales Manager, and CEO. Recently he has discontinued with&nbsp;Open Source Technologies Pvt. Ltd. and has formed this company.</p>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-weight: bold;\">Nidhi Aggarwal</span>&nbsp;is the other promoter and director of the company. Her qualifications include M.Com., and MBA (Finance). She started her career with Open Source Technologies Pvt. Ltd. in July 2009 and she had played various roles during her stay of 5 years. She started as a developer and HR assistant. Then she started leading the team and from last 2.5 years - her major roles were - Project Manager and HR Manager. Now she is going to play the role of HR Manager and COO (Chief Operating Officer) in Deligence Technologies Pvt. Ltd.</p>",
-			"metaKeyword" : "About Us",
-			"metaDescription" : "About Us",
-			"createdAt" : new Date(),
-			"updateAt" : "",
-			"status" : 1,
-			"trash" : false,
-			"ownerId" : ""
+			"ownerId" : "xo4S5G9a32RJnumwb"
 		}
 	];
 	homepageListMenus=[
 		{
 			"_id" : "dGBtw92nTceAkThKq",
-			"title" : "menu1",
-			"desc" : "menu1",
+			"title" : "Main Header Nevigation",
+			"desc" : "Main Header Nevigation",
 			"createdAt" : new Date(),
-			"alias" : "menu1",
+			"alias" : "main-header-nevigation",
 			"item" : [ ],
-			"trash" : false
-		},
-		{
-			"_id" : "D2rrdhBncpZ7Rm2XC",
-			"title" : "menu2",
-			"desc" : "menu2",
-			"createdAt" : new Date(),
-			"alias" : "menu2",
-			"item" : [ ],
-			"trash" : false
-		},
-		{
-			"_id" : "MMcnHBRKFw4FQ9THH",
-			"title" : "menu3",
-			"desc" : "menu3",
-			"createdAt" : new Date(),
-			"alias" : "menu3",
-			"item" : [ ],
-			"trash" : false
+			"trash" : false,
+			"updatedAt" : new Date(),
 		}
 	];
 	homepageListMenuItems=[
 		{
 			"_id" : "T8sgLe9oEToTApsfZ",
 			"title" : "Home",
-			"desc" : "Menu Item1",
+			"desc" : "module type",
 			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "article",
-			"MenuItemTypeId" : "mMDKNW7wxwnkR7c2g",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
 			"parentId" : "",
 			"homepage" : true,
 			"createdAt" : new Date(),
@@ -192,64 +92,58 @@ if(Meteor.isServer){
 			"updatedAt" : new Date()
 		},
 		{
-			"_id" : "RLSgd9NZTfmSyFLyw",
-			"title" : "Item2",
-			"desc" : "Item2 ",
-			"mainParentId" : "D2rrdhBncpZ7Rm2XC",
-			"MenuItemType" : "category",
-			"MenuItemTypeId" : "wT75z3GXDijmiygcQ",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "item2",
-			"trash" : false
-		},
-		{
-			"_id" : "WHL9jpdewRzs3DP24",
-			"title" : "Item3",
-			"desc" : "Item 3",
-			"mainParentId" : "MMcnHBRKFw4FQ9THH",
-			"MenuItemType" : "category",
-			"MenuItemTypeId" : "jbGsFCaz6JBC85nC6",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "item3",
-			"trash" : false
-		},
-		{
-			"_id" : "h3juW4EZMHxijqME6",
-			"title" : "Item4",
-			"desc" : "Item 4",
-			"mainParentId" : "MMcnHBRKFw4FQ9THH",
-			"MenuItemType" : "category",
-			"MenuItemTypeId" : "g9RSQYgkMuLwkf78k",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "item4",
-			"trash" : false
-		},
-		{
-			"_id" : "oXFTuq9PGpj6fYEwu",
-			"title" : "Item5",
-			"desc" : "Item 5",
-			"mainParentId" : "MMcnHBRKFw4FQ9THH",
-			"MenuItemType" : "category",
-			"MenuItemTypeId" : "8LagPWd8TyWauB8Bi",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "item5",
-			"trash" : false
-		},
-		{
 			"_id" : "NWwGpMkjoCmehFegb",
-			"title" : "Item6",
-			"desc" : "Item 6",
+			"title" : "About Us",
+			"desc" : "module type",
 			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "article",
-			"MenuItemTypeId" : "ZAEfAHBASGAJDmJcb",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "about-us",
+			"trash" : false,
+			"updatedAt" : new Date(),
+			"target" : "0",
+			"link" : ""
+		},
+		{
+			"_id" : "KzZZECf8FZBPuYZAu",
+			"title" : "Services",
+			"desc" : "Services",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "services",
+			"trash" : false,
+			"updatedAt" : new Date(),
+			"target" : "0",
+			"link" : ""
+		},
+		{
+			"_id" : "oc4agcZr6XLsmi9mL",
+			"title" : "Gallery",
+			"desc" : "Gallery",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "gallery",
+			"trash" : false,
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "mDopsGQLGakQJWwcf",
+			"title" : "Blog",
+			"desc" : "Blog",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
 			"parentId" : "",
 			"homepage" : false,
 			"createdAt" : new Date(),
@@ -257,72 +151,610 @@ if(Meteor.isServer){
 			"trash" : false
 		},
 		{
-			"_id" : "KzZZECf8FZBPuYZAu",
-			"title" : "Item7",
-			"desc" : "Item 7",
+			"_id" : "SawyKvjuzXEEYKNyD",
+			"title" : "Services Style 1",
+			"desc" : "Services Style 1",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "KzZZECf8FZBPuYZAu",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "services-style-1",
+			"trash" : false,
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "yYMrfCohfJZFu8DR7",
+			"title" : "Services Style 2",
+			"desc" : "Services Style 2",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "KzZZECf8FZBPuYZAu",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "services-style-2",
+			"trash" : false
+		},
+		{
+			"_id" : "9AwxN97eJ4EtxoJDc",
+			"title" : "Services Detail",
+			"desc" : "Services Detail",
 			"mainParentId" : "dGBtw92nTceAkThKq",
 			"MenuItemType" : "article",
-			"MenuItemTypeId" : "McwCH6S4cMGsqPags",
-			"parentId" : "",
+			"MenuItemTypeId" : "xdrSMwzaGaw4KBbPL",
+			"parentId" : "KzZZECf8FZBPuYZAu",
 			"homepage" : false,
 			"createdAt" : new Date(),
-			"alias" : "item7",
+			"alias" : "services-detail",
+			"trash" : false,
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "LiFqNSdyTyRr9crPu",
+			"title" : "Services Style 2.1",
+			"desc" : "Services Style 2.1",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"parentId" : "yYMrfCohfJZFu8DR7",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"alias" : "services-style-21",
 			"trash" : false
 		},
 		{
-			"_id" : "EfRWXxGF7euKRiq8y",
-			"title" : "Item9",
-			"desc" : "Item 9",
-			"mainParentId" : "D2rrdhBncpZ7Rm2XC",
+			"_id" : "Cu5ME64CTqDfFFFie",
+			"title" : "Blog Details",
+			"desc" : "Blog Detail",
+			"mainParentId" : "moCES3RXKNgPvLPg4",
 			"MenuItemType" : "article",
-			"MenuItemTypeId" : "McwCH6S4cMGsqPags",
+			"MenuItemTypeId" : "eQBWG4DXMsEp8NX7x",
 			"parentId" : "",
 			"homepage" : false,
 			"createdAt" : new Date(),
-			"alias" : "item9",
-			"trash" : false
+			"alias" : "blog-details",
+			"trash" : true
 		},
 		{
-			"_id" : "hTri9FcKsEv7K2aKs",
-			"title" : "Sub Item1",
-			"desc" : "sub Item1",
-			"mainParentId" : "D2rrdhBncpZ7Rm2XC",
+			"_id" : "CToCHY38NchyEccMe",
+			"title" : "Blog Details",
+			"desc" : "Blog Details",
+			"mainParentId" : "dGBtw92nTceAkThKq",
 			"MenuItemType" : "article",
-			"MenuItemTypeId" : "ZAEfAHBASGAJDmJcb",
-			"parentId" : "RLSgd9NZTfmSyFLyw",
+			"MenuItemTypeId" : "dwWqfcHyCCakeJLmb",
+			"parentId" : "mDopsGQLGakQJWwcf",
 			"homepage" : false,
 			"createdAt" : new Date(),
-			"alias" : "sub-item1",
-			"trash" : false
+			"alias" : "blog-details",
+			"trash" : false,
+			"updatedAt" : new Date()
 		},
 		{
-			"_id" : "XsmoRxpXcZPeNLSGa",
-			"title" : "Item10",
-			"desc" : "item 10",
-			"mainParentId" : "D2rrdhBncpZ7Rm2XC",
-			"MenuItemType" : "article",
-			"MenuItemTypeId" : "472Dgsst3bf4d7KAZ",
+			"_id" : "7kJYmPrAXhXo2GvBA",
+			"title" : "jhhh",
+			"desc" : "jkhkj",
+			"target" : "0",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
 			"parentId" : "",
+			"alias" : "jhhh",
 			"homepage" : false,
 			"createdAt" : new Date(),
-			"alias" : "item10",
-			"trash" : false
+			"trash" : true
 		},
 		{
-			"_id" : "pxDBqwHDJMdgKeruw",
-			"title" : "item11",
-			"desc" : "item 11",
-			"mainParentId" : "D2rrdhBncpZ7Rm2XC",
-			"MenuItemType" : "article",
-			"MenuItemTypeId" : "sQxFCncirtu4gEzJ7",
+			"_id" : "kf34w98iuQHqoMbwq",
+			"title" : "Contact",
+			"desc" : "Contact Us",
+			"target" : "0",
+			"mainParentId" : "dGBtw92nTceAkThKq",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
 			"parentId" : "",
+			"alias" : "contact",
 			"homepage" : false,
 			"createdAt" : new Date(),
-			"alias" : "item11",
 			"trash" : false
 		}
 	];
 	homepageListModules=[
+		{
+			"_id" : "btzfnsMesobufaaiB",
+			"name" : "Footer Social Networking Links",
+			"type" : "htmlblock",
+			"position" : "mainFooter",
+			"showTitle" : false,
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "6",
+				"html" : "<div class=\"footer-social\">\n              <h3><strong>Connect with us</strong></h3>\n              <ul>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-google-plus\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-skype\"></i></a></li>\n\t\t\t  </ul>\n           </div>"
+			},
+			"menuItems" : [ ],
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date(),
+			"moduleClass" : "Footer"
+		},
+		{
+			"_id" : "dw2MPsFDMzW4cN7F4",
+			"name" : "Footer Legal",
+			"type" : "htmlblock",
+			"position" : "mainFooter",
+			"showTitle" : false,
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "6",
+				"html" : "<div class=\"legal-links\">\n           <h3>Legal</h3>\n           <ul>\n\t\t\t\t\t<li><a href=\"\">Privacy Statement</a></li>\n                    <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Terms &amp; Condinition</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Disclaimer</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Legal Information</a></li>\n\t\t\t</ul>\n          </div>"
+			},
+			"menuItems" : [ ],
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date(),
+			"moduleClass" : "FooterRight"
+		},
+		{
+			"_id" : "GfBsB74mXxAAZeG9j",
+			"name" : "CopyRight",
+			"type" : "htmlblock",
+			"position" : "copyright",
+			"showTitle" : false,
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : " <div class=\"copyright pull-left\">Copyright © 2017  All rights reserved. </div>"
+			},
+			"menuItems" : [ ],
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date(),
+			"moduleClass" : "CopyRight"
+		},
+		{
+			"_id" : "jM9azkQ9tMQn9LrjN",
+			"name" : "Top header Contact",
+			"type" : "htmlblock",
+			"position" : "topHeader",
+			"showTitle" : false,
+			"menuItems" : [ ],
+			"moduleClass" : "top-header-left",
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "9",
+				"html" : "<div class=\"top-left\">\n                    <ul class=\"top-contact-info\">\n                        <li><i class=\"fa fa-phone\"></i>+91 9910130340</li>    \n                        <li><i class=\"fa fa-envelope\"></i><a href=\"mailto:sanjay@deligence.com\">sanjay@deligence.com</a></li>    \n                        <li><i class=\"fa fa-globe\"></i>Janakpuri ,New Delhi - 110058, India</li>    \n                    </ul>   \n                 </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "rtC4dqRYw573AGqQt",
+			"name" : "Top header Social Networking Link",
+			"type" : "htmlblock",
+			"position" : "topHeader",
+			"showTitle" : false,
+			"menuItems" : [ ],
+			"moduleClass" : "top-header-right",
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "3",
+				"html" : "<div class=\"social-icons text-right\">\n                    <ul>\n                     <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n                     <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n                     <li><a href=\"#\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i></a></li>\n                     <li><a href=\"#\"><i class=\"fa fa-skype\" aria-hidden=\"true\"></i></a></li>\n                   </ul>\n              </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "7bwkzcXSHrqiqDpSB",
+			"name" : "Main Header Nevgation",
+			"type" : "menumodule",
+			"position" : "mainHeader",
+			"showTitle" : false,
+			"menuItems" : [ ],
+			"moduleClass" : "main-header-right",
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : 12,
+				"menuItem" : "dGBtw92nTceAkThKq"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "QzgvkSF3yTZLmtbeD",
+			"name" : "About Us bannaer",
+			"type" : "htmlblock",
+			"position" : "utility",
+			"showTitle" : false,
+			"menuItems" : [
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "internal-banner int-banner-img",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"internal-banner int-banner-img\">\n<h2>ABOUT US</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">About Us</li>\n             </ul>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "EPSbvPRQ4TKBbCZpN",
+			"name" : "WHO WE ARE",
+			"type" : "htmlblock",
+			"position" : "feature",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "feature",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"container\">\n<div class=\"section-heading heading-center animated fadeInLeft\">\n            <span>About Us</span>\n            <h2>WHO WE ARE</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        <div class=\"about-content\">\n          <p class=\"text-center animated fadeInLeft\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>\n          \n          <div class=\"counter-wrap\">\n          <div class=\"row\">\n            <div class=\"col-sm-3\">\n              <div class=\"work-counter animated fadeInRight\">\n                   <i class=\"fa fa-users count-icon\" aria-hidden=\"true\"></i>\n                   <h3 class=\"Count\">200</h3>\n                   <p>Team Members</p>\n               </div>\n            </div>\n            <div class=\"col-sm-3\">\n               <div class=\"work-counter animated fadeInRight\">\n                   <i class=\"fa fa-globe count-icon\" aria-hidden=\"true\"></i>\n                   <h3 class=\"Count\">80</h3>\n                   <p>COUNTRIES</p>\n               </div>\n            </div>\n            <div class=\"col-sm-3\">\n               <div class=\"work-counter animated fadeInRight\">\n                   <i class=\"fa fa-smile-o count-icon\" aria-hidden=\"true\"></i>\n                   <h3 class=\"Count\">21930</h3>\n                   <p> Happy Customers </p>\n               </div>\n            </div>\n            <div class=\"col-sm-3\">\n               <div class=\"work-counter animated fadeInRight\">\n                   <i class=\"fa fa-coffee count-icon\" aria-hidden=\"true\"></i>\n                   <h3 class=\"Count\">90</h3>\n                   <p>Coffee</p>\n               </div>\n            </div>\n          </div>\n        </div>\n        \n           <div class=\"about-tagline animated fadeInLeft\">\n             <p><span>We're</span> Your ONE STOP SHOP <br>\n             <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n           </div>\n       </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "tKfsfJCXjJRqKSPwg",
+			"name" : "01. ABOUT US",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "mainTop",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"why-choose-us\">\n<div class=\"row\">\n       <div class=\"col-sm-6\">\n         <div class=\"why-us-leftside animated fadeInLeft\">\n           <div class=\"section-heading heading-left\">\n                <span>About Us</span>\n                <h2>Why Choose Us ?</h2>\n                <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor, Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>\n            </div>\n         </div>\n       </div>\n       <div class=\"col-sm-6\">\n         <div class=\"why-us-right animated fadeInRight\">\n                            <div class=\"block-1 color-1\">\n                               <div class=\"icon-1 \"><i class=\"fa fa-trophy\"></i></div>\n                               <div class=\"block-info\">\n                                 <h1>01. ABOUT US</h1>\n                                 <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit</p>\n                               </div>\n                            </div>\n                            \n                            <div class=\"block-1 color-2\">\n                               <div class=\"icon-1\"><i class=\"fa fa-suitcase\"></i></div>\n                               <div class=\"block-info\">\n                                 <h1>02. Experienced</h1>\n                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>\n                               </div>\n                            </div>\n                            \n                            <div class=\"block-1 color-3\">\n                               <div class=\"icon-1\"><i class=\"fa fa-eye\"></i></div>\n                               <div class=\"block-info\">\n                                 <h1>03. Our Vision</h1>\n                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>\n                               </div>\n                            </div>\n                            \n                            <div class=\"block-1 color-4\">\n                               <div class=\"icon-1\"><i class=\"fa fa-file\"></i></div>\n                               <div class=\"block-info\">\n                                 <h1>04. Business Plan</h1>\n                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>\n                               </div>\n                            </div>\n                            \n                        </div>\n       </div>\n     </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "PrhfHZ8cKJ47njZEn",
+			"name" : "Our Services",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"KzZZECf8FZBPuYZAu",
+				"SawyKvjuzXEEYKNyD",
+				"yYMrfCohfJZFu8DR7",
+				"LiFqNSdyTyRr9crPu"
+			],
+			"moduleClass" : "mainTop",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"container\">\n<div class=\"section-heading heading-center animated fadeInLeft\">\n            <span>Our Services</span>\n            <h2>What We Do</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n        <div class=\"our-services animated fadeInUp\">\n           <div class=\"container\">\n              <div class=\"row\">\n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-1.png\"></div>\n                        <div class=\"title\"> <h3>Life Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-2.png\"></div>\n                        <div class=\"title\"> <h3>Travel Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-3.png\"></div>\n                        <div class=\"title\"> <h3>Home Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-4.png\"></div>\n                        <div class=\"title\"> <h3>Health Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-5.png\"></div>\n                        <div class=\"title\"> <h3>Business Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n                <div class=\"col-sm-4\">\n                    <div class=\"service-box\">\n                       <div class=\"icon\"><img src=\"images/insurance-6.png\"></div>\n                        <div class=\"title\"> <h3>Car Insurance </h3> </div>\n                        <div class=\"service-info\"> <p>Lorem Ipsum is simply dummy text of the print been the industry's standard.</p></div>\n                    </div>\n                </div>\n                \n              </div>\n           </div>\n        </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "a5rghXvjjNNjvGtr9",
+			"name" : "Our Blog",
+			"type" : "htmlblock",
+			"position" : "mainBottom",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"mDopsGQLGakQJWwcf"
+			],
+			"moduleClass" : "mainBottom",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"section-space blog-wrap\"> \n<div class=\"section-heading heading-center animated fadeInLeft\">\n            <span></span>\n            <h2>Our Blog</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n       <div class=\"row\">\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img1.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\"> Aenean commodo ligula eget dolor </a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img2.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\">Aenean commodo ligula eget dolor</a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img1.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\">Aenean commodo ligula eget dolor</a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n        </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "fyQnimHojxT5ASX2s",
+			"name" : "We're Your",
+			"type" : "htmlblock",
+			"position" : "mainbody",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ"
+			],
+			"moduleClass" : "mainBody",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"contact.html\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "qTSc2dvHmZJQuWmRJ",
+			"name" : "Slider",
+			"type" : "slidermodule",
+			"showTitle" : false,
+			"position" : "showcase",
+			"allPages" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ"
+			],
+			"moduleData" : [
+				{
+					"title" : "Our Plans Are Based on Yours",
+					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
+					"linkTitle" : "google",
+					"linkUrl" : "https://google.com",
+					"published" : true,
+					"bgImageId" : ""
+				},
+				{
+					"title" : "Our Plans Are Based on Yours",
+					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
+					"linkTitle" : "facebook",
+					"linkUrl" : "https://facebook.com",
+					"published" : true,
+					"bgImageId" : ""
+				},
+				{
+					"title" : "Our Plans Are Based on Yours",
+					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
+					"linkTitle" : "deligence",
+					"linkUrl" : "https://deligence.com",
+					"published" : true,
+					"bgImageId" : ""
+				}
+			],
+			"trash" : false,
+			"createdAt" : new Date()
+		},
+		{
+			"_id" : "5dZHMFQ2PDSqCFiyb",
+			"name" : "Our Team",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
+			"menuItems" : [
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "ourTeam",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"section-heading heading-center\">\n            <h2>OUR TEAM</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n        <div class=\"row\">\n          <div class=\"col-sm-4\">\n             <div class=\"team-box\">\n        <div class=\"team-inner\"> <img src=\"images/member-1.png\" alt=\"\">\n          <div class=\"mask\"></div>\n          <ul class=\"team-social-list\">\n            <li><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n          </ul>\n        </div>\n        <div class=\"team-content\">\n          <h6>Mark Warren</h6>\n          <div class=\"subtext\">CEO</div>\n        </div>\n      </div>\n          </div>\n          <div class=\"col-sm-4\">\n             <div class=\"team-box\">\n        <div class=\"team-inner\"> <img src=\"images/member-2.png\" alt=\"\">\n          <div class=\"mask\"></div>\n          <ul class=\"team-social-list\">\n            <li><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n          </ul>\n        </div>\n        <div class=\"team-content\">\n          <h6>Henry  Gilbert</h6>\n          <div class=\"subtext\">Supervisor</div>\n        </div>\n      </div>\n          </div>\n          <div class=\"col-sm-4\">\n             <div class=\"team-box\">\n        <div class=\"team-inner\"> <img src=\"/images/member-3.png\" alt=\"\">\n          <div class=\"mask\"></div>\n          <ul class=\"team-social-list\">\n            <li><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n            <li><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n          </ul>\n        </div>\n        <div class=\"team-content\">\n          <h6>Elaine Steinbet</h6>\n          <div class=\"subtext\">Manager</div>\n        </div>\n      </div>\n          </div>\n        </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "CHF8egPKLoXSamded",
+			"name" : "Roberta ball",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "testinomial",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"row section-space testimonial-wrap parallax\">\n          <div class=\"col-md-8 col-md-offset-2 text-center\">\n              <div class=\"owl-carousel\" id=\"testimonial\">\n                  <div class=\"item\">\n                     <div class=\"single-testimonial\">\n                       <p class=\"quot\"><i class=\"fa fa-quote-left\"></i></p>\n                       <p class=\"comment\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis .</p>\n                       <p class=\"name\"> - Roberta  Ball</p>\n                      <p class=\"job\">Director</p>\n                     </div>\n                  </div>\n                  <div class=\"item\">\n                     <div class=\"single-testimonial\">\n                       <p class=\"quot\"><i class=\"fa fa-quote-left\"></i></p>\n                       <p class=\"comment\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis .</p>\n                       <p class=\"name\"> - Roberta  Ball</p>\n                      <p class=\"job\">Director</p>\n                     </div>\n                  </div>\n               </div>\n               <div class=\"customNavigation\">\n                 <a class=\"prev-arrow\"><i class=\"fa fa-chevron-left\"></i></a>\n                 <a class=\"next-arrow\"><i class=\"fa fa-chevron-right\"></i></a>\n             </div>\n           </div>           \n      </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "TXfx7TngwTjxkscih",
+			"name" : "Our Parnter",
+			"type" : "htmlblock",
+			"position" : "fullWidth",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ",
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "ourPartner",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"section-space our-partner\">\n<div class=\"section-heading heading-center\">\n            <span></span>\n            <h2>Our Partner</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n          <div class=\"owl-carousel\" id=\"clients\">\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n      </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "Cahb4T6NjymztiaEZ",
+			"name" : "Our Services Banner",
+			"type" : "htmlblock",
+			"position" : "feature",
+			"showTitle" : false,
+			"menuItems" : [
+				"KzZZECf8FZBPuYZAu",
+				"SawyKvjuzXEEYKNyD",
+				"yYMrfCohfJZFu8DR7",
+				"LiFqNSdyTyRr9crPu"
+			],
+			"moduleClass" : "serviceBanner",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"internal-banner int-banner-img\">\n<h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Services</li>\n             </ul>\n</div>\n"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "dSJ7bEexan5xk8buW",
+			"name" : "Get in touch",
+			"type" : "htmlblock",
+			"position" : "extension",
+			"showTitle" : false,
+			"menuItems" : [
+				"T8sgLe9oEToTApsfZ"
+			],
+			"moduleClass" : "getInTouch",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"get-in-touch\">\n<div class=\"container\">\n     <div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"contact.html\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>\n</div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "8gg4KmeNXWwSw3Q8Q",
+			"name" : "Our Services 2",
+			"type" : "htmlblock",
+			"position" : "feature",
+			"showTitle" : false,
+			"menuItems" : [
+				"9AwxN97eJ4EtxoJDc"
+			],
+			"moduleClass" : "internal-banner int-banner-img",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"internal-banner int-banner-img\">\n<div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li><a href=\"services.html\">Services</a></li>\n                  <li class=\"active\">Life Insurance</li>\n             </ul>\n          </div>\n        </div>\n</div></div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "K35Dijpp6o3jwva9g",
+			"name" : "Our Gallery",
+			"type" : "htmlblock",
+			"position" : "utility",
+			"showTitle" : false,
+			"menuItems" : [
+				"oc4agcZr6XLsmi9mL"
+			],
+			"moduleClass" : "ourGallery",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Gallery</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Gallery</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
+		},
+		{
+			"_id" : "JjpieaRKQFqoFMrMB",
+			"name" : "Our Gallery Images",
+			"type" : "htmlblock",
+			"position" : "feature",
+			"showTitle" : false,
+			"menuItems" : [
+				"oc4agcZr6XLsmi9mL"
+			],
+			"moduleClass" : "galleryImages",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : " <div class=\"section-space gallery\">\n        <div class=\"container\">       \n              <div class=\"row\">\n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                 <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                 <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n          \n                       \n            </div>\n                                    \n        </div>\n    </div>\n"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
+		},
+		{
+			"_id" : "Hu4h3JHs5uRs7XoAB",
+			"name" : "Our Blog Sidbar",
+			"type" : "htmlblock",
+			"position" : "sidebar",
+			"showTitle" : false,
+			"menuItems" : [
+				"CToCHY38NchyEccMe"
+			],
+			"moduleClass" : "ourBlogSidbar",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "3",
+				"html" : "<div class=\"blog-sidebar\">\n             <div class=\"categories-post widget\">\n             <h2>CATEGORIES</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Life Insurance</a>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t<a href=\"#\">Travel Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\">Home Insurance</a>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t<a href=\"#\">Health Insurance</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\"> Business Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n           \n           \n            \n                \n             \n                \n           </div>\n         \n"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "waCowaD6QCsq4FoWY",
+			"name" : "Contact Us Banner",
+			"type" : "htmlblock",
+			"position" : "utility",
+			"showTitle" : false,
+			"menuItems" : [
+				"kf34w98iuQHqoMbwq"
+			],
+			"moduleClass" : "contactUsBanner",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Contact Us</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Contact</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "6es5uaLRCjhetbHgE",
+			"name" : "Contact Us",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
+			"menuItems" : [
+				"kf34w98iuQHqoMbwq"
+			],
+			"moduleClass" : "contactUs",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : " <div class=\"section-space contact-us\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-sm-6\">\n       <h4>Our Office Address</h4>\n         <div class=\"contact-info\">\n             \n              <div class=\"contact-address\">\n                    <h2><i class=\"fa fa-map-marker\"></i> Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n               \n             <div class=\"contact-phone\">\n                    <h2><i class=\"fa fa-mobile\"></i> Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n               \n             <div class=\"contact-email\">\n                    <h2><i class=\"fa fa-envelope\"></i> Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n \n          </div>\n       </div>\n       <div class=\"col-sm-6\">\n         <h4>Stay Connected</h4>\n         <div class=\"blue-block \">\n           \n    <div class=\"form-group\">\n        <label>Name</label>\n        <input class=\"form-control\" placeholder=\"Your Name\" type=\"text\">\n    </div>\n    \n      <div class=\"form-group\">\n        <label>Email</label>\n        <input class=\"form-control valid\" placeholder=\"Your Email\" type=\"email\">\n    </div>\n    <div class=\"form-group\">\n        <label>Mobile</label>\n        <input class=\"form-control\" placeholder=\"Your Mobile No.\" type=\"text\">\n    </div>\n   \n    <div class=\"form-group\">\n        <label>Message</label>\n       <textarea class=\"form-control\"></textarea>\n    </div>\n    <div class=\"center-block\"><button type=\"submit\" class=\"btn submit-btn\">SUBMIT</button></div>\n\n         </div>\n       </div>\n     </div>\n   </div> \n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "PxRsE7pcHrugWdged",
+			"name" : "Our Blog Sidbar 2",
+			"type" : "htmlblock",
+			"position" : "sidebar",
+			"showTitle" : false,
+			"menuItems" : [
+				"CToCHY38NchyEccMe"
+			],
+			"moduleClass" : "ourBlogSidbar",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "3",
+				"html" : "<div class=\"blog-sidebar\">\n<div class=\"recent-post widget\">\n             <h2>Recent Posts</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>\n                      <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t        <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                          <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t         <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                           <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t          <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                            <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t        <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                         <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
+		},
 		{
 			"_id" : "FFocjg2zgMZWEACJf",
 			"name" : "Home",
@@ -332,21 +764,6 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"menuItem" : "dGBtw92nTceAkThKq"
-			},
-			"menuItems" : [ ],
-			"trash" : false,
-			"createdAt" : new Date(),
-			"updatedAt" : ""
-		},
-		{
-			"_id" : "btzfnsMesobufaaiB",
-			"name" : "Footer",
-			"type" : "htmlblock",
-			"position" : "footer",
-			"showTitle" : false,
-			"allPages" : true,
-			"moduleData" : {
-				"html" : "<div class=\"title\" style=\"box-sizing: border-box; margin: 0px; padding: 10px 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff;\">\n<h3 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 20px; text-rendering: optimizeLegibility;\">ABOUT Us</h3>\n</div>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">Deligence Technologies is an open source development company with highly qualified and experienced professionals.</p>"
 			},
 			"menuItems" : [ ],
 			"trash" : false,
@@ -366,65 +783,22 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date()
-		},
-		{
-			"_id" : "dw2MPsFDMzW4cN7F4",
-			"name" : "Footer3",
-			"type" : "htmlblock",
-			"position" : "footer",
-			"showTitle" : false,
-			"allPages" : true,
-			"moduleData" : {
-				"html" : "<div class=\"title\" style=\"box-sizing: border-box; margin: 0px; padding: 10px 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff;\">\n<h3 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 20px; text-rendering: optimizeLegibility;\">Address</h3>\n</div>\n<p style=\"box-sizing: border-box; padding: 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff; margin: 0px 0px 10px !important 0px;\">106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, District Centre, Janakpuri , New Delhi - 110058, India</p>"
-			},
-			"menuItems" : [ ],
-			"trash" : false,
-			"createdAt" : new Date(),
-			"updatedAt" : ""
-		},
-		{
-			"_id" : "GfBsB74mXxAAZeG9j",
-			"name" : "Footer3",
-			"type" : "htmlblock",
-			"position" : "footer",
-			"showTitle" : false,
-			"allPages" : true,
-			"moduleData" : {
-				"html" : "<div class=\"title\" style=\"box-sizing: border-box; margin: 0px; padding: 10px 0px; color: #333333; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 25.2px; text-align: center; background-color: #ffffff;\">\n<h3 style=\"box-sizing: border-box; margin: 0px 0px 15px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.1; color: #292723; font-size: 20px; text-rendering: optimizeLegibility;\">Contact Us</h3>\n<p>Phone: +91 9910130340 http://www.deligence.com/ Email: sanjay@deligence.com</p>\n</div>"
-			},
-			"menuItems" : [ ],
-			"trash" : false,
-			"createdAt" : new Date(),
-			"updatedAt" : ""
-		},
-		{
-			"_id" : "Yqvr5BQaJeTeXYMmt",
-			"name" : "Sidebar Items",
-			"type" : "menumodule",
-			"position" : "sidebar",
-			"showTitle" : true,
-			"menuItems" : [ ],
-			"allPages" : true,
-			"moduleData" : {
-				"menuItem" : "D2rrdhBncpZ7Rm2XC"
-			},
-			"trash" : false,
-			"createdAt" : new Date()
 		}
+
 	];
 
 	if(PanoplyCMSCollections.Tags.find().count() == 0){
 		PanoplyCMSCollections.Tags.insert({
-			"_id" : "KbNnewPfXkkXEGdMB",
-			"title" : "tag1",
-			"alias" : "tag1",
-			"desc" : "test1",
-			"metaKeyword" : "test1",
-			"metaDescription" : "test1",
+			"_id" : "eAhjeGCkxYdD5ggyh",
+			"title" : "Blog Detail",
+			"alias" : "blog-detail",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
 			"createdAt" : new Date(),
 			"updateAt" : "",
 			"status" : 1,
-			"ownerId" : ""
+			"ownerId" : "xo4S5G9a32RJnumwb"
 		});
 	}
 

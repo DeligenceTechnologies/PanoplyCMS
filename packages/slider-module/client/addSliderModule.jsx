@@ -338,6 +338,7 @@ SliderBlock = data => {
 	let showTitle = '';
 	if(data.module_title) showTitle = <h3>{data.module_title}</h3>;
 	let dataArr = _.values(data)
+	let defaultImageIndex = -1;
 	return(
 		<section className="main-slider" data-start-height="600" data-slide-overlay="yes">
 			<div className="tp-banner-container">
@@ -345,11 +346,15 @@ SliderBlock = data => {
 					<ul>
 						{
 							dataArr.map((value, index) => {
-								let img = Images.findOne({ _id: value.bgImageId })
+								let img = value && value.bgImageId?Images.findOne({ _id: value.bgImageId }):null;
+								defaultImageIndex ++;
+								if(defaultImageIndex >2){
+									defaultImageIndex = 0;
+								}
 								if(value.published){
 									return(
 										<li key={index} data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="">
-											<img src={img ? img.url() :''} alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" />
+											<img src={img ? img.url() :Meteor.settings.public.defaultImages[defaultImageIndex]} alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" />
 											<div className="tp-caption sfr sfb tp-resizeme"
 												data-x="center" data-hoffset="0"
 												data-y="center" data-voffset="-10"

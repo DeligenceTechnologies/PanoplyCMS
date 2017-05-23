@@ -861,6 +861,9 @@ ul.listModules > li {
     background:#5a5858;
     margin: 0px 40px 0px 40px;
  }
+ .controls-header a.btn{
+ 	color: #fff;
+ }
 .controls-header .form-group {
     margin-bottom: 0px;
 }

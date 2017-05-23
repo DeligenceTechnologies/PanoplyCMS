@@ -75,7 +75,7 @@ export default class Dashboard extends Component {
                             </a>
                         </div>
                         <div className="col-sm-4">
-                            <a href={FlowRouter.path('modulesManager')}>
+                            <a href={FlowRouter.path('templates')}>
                             <div className="white-box info-stats">
                                <div className="info-header bg-purple"><i className="fa fa-picture-o"></i></div>
                                <div className="info-content">

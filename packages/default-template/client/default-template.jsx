@@ -35,6 +35,10 @@ DefaultTemplate = createReactClass({
 		require('../imports/plugin/rs-plugin/js/jquery.themepunch.revolution.min.js');
 		// require('../imports/plugin/rs-plugin/js/jquery.themepunch.tools.min.js');
 
+		/***************************************************
+				Scroll To Top While Page Change
+		***************************************************/
+		$(window).scrollTop(0);
 
 		/***************************************************
 				Scroll To Top
@@ -272,6 +276,12 @@ DefaultTemplate = createReactClass({
 		require('../imports/plugin/rs-plugin/css/settings.css');
 		require('../imports/plugin/rs-plugin/js/jquery.themepunch.revolution.min.js');
 
+
+		/***************************************************
+				Scroll To Top While Page Change
+		***************************************************/
+		$(window).scrollTop(0);
+
 		// Testimonial initialization
 		$("#testimonial").owlCarousel({
 			navigation : false,
@@ -393,7 +403,7 @@ DefaultTemplate = createReactClass({
 		}
 	},
 	render() {
-		let img = Images.findOne({ _id:this.data.result.logoId })
+		let img = this.data.result && this.data.result.logoId?Images.findOne({ _id:this.data.result.logoId }):null
 		let grid = 12;
 		return (
 			<div>
@@ -407,14 +417,14 @@ DefaultTemplate = createReactClass({
 								<div className="top-head animated bounceInDown">
 									<div className="row">
 										{
-											this.props.topHeader.map((topHeader) => {
+											this.props.topHeader.map((topHeader,index) => {
 												if(topHeader.props.gridLength){
 													grid = topHeader.props.gridLength;
 												}else{
 													grid = 12/this.props.topHeader.length;
 												}
 												return (
-													<div className={"col-sm-"+grid}>
+													<div key={index} className={"col-sm-"+grid}>
 														{ topHeader }
 													</div>
 												);
@@ -437,7 +447,7 @@ DefaultTemplate = createReactClass({
 												<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src={img.url()} /></a>
 											:
 												<div>
-													<h2 style={{marginTop: "5px"}} className="blog-title" onClick={()=>PanoplyRouter.go('/')}>{this.data.result ? this.data.result.name:''}</h2>
+													<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src="/logo.png" alt={this.data.result ? this.data.result.name:''}/></a>
 												</div>
 										}
 									</div>
@@ -446,14 +456,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 							    		{
 						      				this.props.mainHeader && this.props.mainHeader.length?
-							      				this.props.mainHeader.map((mainHeader) => {
+							      				this.props.mainHeader.map((mainHeader,index) => {
 							      					if(mainHeader.props.gridLength){
 							      						grid = mainHeader.props.gridLength;
 							      					}else{
 							      						grid = 8/this.props.mainHeader.length;
 							      					}
 							      					return (
-							        					<div className={"col-sm-"+grid}>
+							        					<div key={index} className={"col-sm-"+grid}>
 							        						<div id="" className="main_nav pull-right animated fadeInRight">
 							        							<button><span>Menu</span> <i className="fa fa-bars"></i></button>
 							        							{mainHeader}
@@ -480,14 +490,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 										{
 											
-											this.props.showcase.map((showcase) => {
+											this.props.showcase.map((showcase,index) => {
 												if(showcase.props.gridLength){
 													grid = showcase.props.gridLength;
 												}else{
 													grid = 12/this.props.showcase.length;
 												}
 												return (
-													<div className={"col-sm-"+grid}>
+													<div key={index} className={"col-sm-"+grid}>
 														{showcase}
 													</div>
 												);
@@ -512,14 +522,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.utility.map((utility) => {
+						      				this.props.utility.map((utility,index) => {
 						      					if(utility.props.gridLength){
 						      						grid = utility.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.utility.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{utility}
 						        					</div>
 						        				);
@@ -543,14 +553,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.feature.map((feature) => {
+						      				this.props.feature.map((feature,index) => {
 						      					if(feature.props.gridLength){
 						      						grid = feature.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.feature.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{feature}
 						        					</div>
 						        				);
@@ -574,14 +584,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.mainTop.map((mainTop) => {
+						      				this.props.mainTop.map((mainTop,index) => {
 						      					if(mainTop.props.gridLength){
 						      						grid = mainTop.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.mainTop.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{mainTop}
 						        					</div>
 						        				);
@@ -608,14 +618,14 @@ DefaultTemplate = createReactClass({
 												<div className="row">
 									      			{
 									      				
-									      				this.props.contentTop.map((contentTop) => {
+									      				this.props.contentTop.map((contentTop,index) => {
 									      					if(contentTop.props.gridLength){
 									      						grid = contentTop.props.gridLength;
 									      					}else{
 									      						grid = 12/this.props.contentTop.length;
 									      					}
 									        				return (
-									        					<div className={"col-sm-"+grid}>
+									        					<div key={index} className={"col-sm-"+grid}>
 									        						{contentTop}
 									        					</div>
 									        				);
@@ -641,14 +651,14 @@ DefaultTemplate = createReactClass({
 												<div className="row">
 									      			{
 									      				
-									      				this.props.contentBottom.map((contentBottom) => {
+									      				this.props.contentBottom.map((contentBottom,index) => {
 									      					if(contentBottom.props.gridLength){
 									      						grid = contentBottom.props.gridLength;
 									      					}else{
 									      						grid = 12/this.props.contentBottom.length;
 									      					}
 									        				return (
-									        					<div className={"col-sm-"+grid}>
+									        					<div key={index} className={"col-sm-"+grid}>
 									        						{contentBottom}
 									        					</div>
 									        				);
@@ -669,43 +679,7 @@ DefaultTemplate = createReactClass({
 					</div>
 				</div>
 
-				{/*<div>
-					{
-						this.props.showcase && this.props.showcase.length > 0 ?
-							this.props.showcase.map((value) => {
-								return value;
-							})
-						: ''
-					}
-					{
-						this.props.utility && this.props.utility.length > 0 ?
-							this.props.utility.map((value) => {
-								return value;
-							})
-						: ''
-					}
-					{
-						this.props.feature && this.props.feature.length > 0 ?
-							this.props.feature.map((value) => {
-								return value;
-							})
-						: ''
-					}
-					{
-						this.props.extension && this.props.extension.length > 0 ?
-							this.props.extension.map((value) => {
-								return value;
-							})
-						: ''
-					}
-					{
-						this.props.bottom && this.props.bottom.length > 0 ?
-							this.props.bottom.map((value) => {
-								return value;
-							})
-						: ''
-					}
-				</div>*/}
+				
 
 
 				{/* FRONT MAIN BOTTOM START */}
@@ -716,14 +690,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.mainBottom.map((mainBottom) => {
+						      				this.props.mainBottom.map((mainBottom,index) => {
 						      					if(mainBottom.props.gridLength){
 						      						grid = mainBottom.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.mainBottom.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{mainBottom}
 						        					</div>
 						        				);
@@ -747,14 +721,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.extension.map((extension) => {
+						      				this.props.extension.map((extension,index) => {
 						      					if(extension.props.gridLength){
 						      						grid = extension.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.extension.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{extension}
 						        					</div>
 						        				);
@@ -778,14 +752,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.fullWidth.map((fullWidth) => {
+						      				this.props.fullWidth.map((fullWidth,index) => {
 						      					if(fullWidth.props.gridLength){
 						      						grid = fullWidth.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.fullWidth.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{fullWidth}
 						        					</div>
 						        				);
@@ -809,14 +783,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 						      				
-						      				this.props.bottom.map((bottom) => {
+						      				this.props.bottom.map((bottom,index) => {
 						      					if(bottom.props.gridLength){
 						      						grid = bottom.props.gridLength;
 						      					}else{
 						      						grid = 12/this.props.bottom.length;
 						      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{bottom}
 						        					</div>
 						        				);
@@ -839,14 +813,14 @@ DefaultTemplate = createReactClass({
 									<div className="row">
 						      			{
 							      				
-						      				this.props.mainFooter.map((mainFooter) => {
+						      				this.props.mainFooter.map((mainFooter,index) => {
 						      						if(mainFooter.props.gridLength){
 							      						grid = mainFooter.props.gridLength;
 							      					}else{
 							      						grid = 12/this.props.mainFooter.length;
 							      					}
 						        				return (
-						        					<div className={"col-sm-"+grid}>
+						        					<div key={index} className={"col-sm-"+grid}>
 						        						{mainFooter}
 						        					</div>
 						        				);
@@ -866,14 +840,14 @@ DefaultTemplate = createReactClass({
 								<div className="copyright-content container">
 									<div className="row">
 							    		{
-					      				this.props.copyright.map((copyright) => {
+					      				this.props.copyright.map((copyright,index) => {
 					      					if(copyright.props.gridLength){
 					      						grid = copyright.props.gridLength;
 					      					}else{
 					      						grid = 12/this.props.copyright.length;
 					      					}
 					        				return (
-					        					<div className={"col-sm-"+grid}>
+					        					<div key={index} className={"col-sm-"+grid}>
 					        						{copyright}
 					        					</div>
 					        				);

@@ -2,7 +2,7 @@ Meteor.startup(function() {
 	PanoplyCMSRegisterPackage({
 		"name" : "template",
 		"templates": {
-			name: "Default Template",
+			name: "Donnish",
 			packageName: "deligencetechnologies:default-template",
 			layoutImage: "public/templateLayout.jpg",
 			active: true,

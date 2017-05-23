@@ -44,6 +44,12 @@ class AdminLayout extends Component {
 		// });
 
 	}
+	componentDidUpdate(){
+		/***************************************************
+				Scroll To Top While Page Change
+		***************************************************/
+		$(window).scrollTop(0);
+	}
 	render() {
 		return (
 			<div>

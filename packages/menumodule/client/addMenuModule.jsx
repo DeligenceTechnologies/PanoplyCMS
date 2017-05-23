@@ -267,7 +267,7 @@ MenuModuleFront = createReactClass({
 							desc:elem1.desc, 
 							child: child 
 						}
-						console.log(elem1.title," ===> ",elem1.MenuItemType)
+						// console.log(elem1.title," ===> ",elem1.MenuItemType)
 						if(elem1.MenuItemType == 'link') obj.url = elem1.link
 						element.push(obj);
 					}
@@ -311,13 +311,13 @@ MenuModuleFront = createReactClass({
 		)
 	},
 	printMenu: function(items){
-		console.log(items," =====> ",items[0])
+		// console.log(items," =====> ",items[0])
 		return (
 			<ul className={items[0] && items[0].parentId?'dropdown':''}>
 				{
 					items.map(item => {
 						if(item.url && !/^(f|ht)tps?:\/\//i.test(item.url)) item.url = '/'+item.url;
-						console.log(" ===> ",item)
+						// console.log(" ===> ",item)
 						return (
 							<li key={item._id}>
 								{

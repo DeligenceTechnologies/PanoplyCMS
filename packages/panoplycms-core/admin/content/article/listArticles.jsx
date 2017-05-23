@@ -45,9 +45,18 @@ class ListArticles extends Component {
 		}else{
 			nodata = '';
 		}
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Articles",
+	      url:"/admin/articles",
+	      active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} />
+				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} url={url}/>
 		        <div className="custom-table">
 	           		<div className="row">
 		              	<div className="col-sm-12">

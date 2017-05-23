@@ -55,38 +55,52 @@ class EditCategory extends Component {
     }else{
       msg = ''
     }*/
-
+    let url=[{
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title:"Categories",
+      url:"/admin/categories",
+      active:false
+    },{
+      title:"edit Category",
+      url:"/admin/categories/edit/"+this.props._id,
+      active:true
+    }];
     return (
-      <div className="">
-        <Heading data= {i18n('ADMIN_COTNENTS_CATEGORY_EDITCATEGORY')} />
-        { /*msg*/ }
-        <form className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
-         <div className="controls-header">
-            <div className="form-group">
-              <div className="col-sm-12">
-                <input type = "submit" className="btn custom-default-btn" value='UPDATE' />
-                <a href={FlowRouter.path('listCategories')} className="btn custom-default-btn">CANCEL</a>
+        <div className="">
+          <Heading key={this.props.pageLoading} data= {i18n('ADMIN_COTNENTS_CATEGORY_EDITCATEGORY')} url={url}/>
+          { /*msg*/ }
+          <form className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
+           <div className="controls-header">
+              <div className="form-group">
+                <div className="col-sm-12">
+                  <input type = "submit" className="btn custom-default-btn" value='UPDATE' />
+                  <a href={FlowRouter.path('listCategories')} className="btn custom-default-btn">CANCEL</a>
+                </div>
+               </div>
+            </div>
+           <div className="panel-body custom-panel">
+             <div className="form-group">
+              <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</label>
+              <div className="col-sm-7">
+                <input key={this.props.pageLoading} type = "text" id="title" className="form-control" defaultValue={this.props.categoryData && this.props.categoryData.title?this.props.categoryData.title:''} placeholder = "Enter title" required />
               </div>
-             </div>
-          </div>
-         <div className="panel-body custom-panel">
-           <div className="form-group">
-            <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</label>
-            <div className="col-sm-7">
-              <input type = "text" id="title" className="form-control" defaultValue={this.props.categoryData.title} placeholder = "Enter title" required />
+              </div>
             </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    )
+          </form>
+        </div>
+      )
+    
   }
 }
 
 export default createContainer((data)=>{
   let handle = Meteor.subscribe('Categories', data._id)
+  // console.log("data._id ==> ",data._id)
   return {
-    pageLoading: ! handle.ready(),
+    pageLoading: !handle.ready(),
     categoryData: PanoplyCMSCollections.Categories.findOne({_id: data._id})
   };
 }, EditCategory)

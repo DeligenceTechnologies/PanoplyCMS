@@ -88,10 +88,22 @@ class EditUser extends Component {
 		}else{
 			msg = '';
 		}*/
-
+		let url=[{
+	        title:"Dashboard",
+	        url:"/admin/dashboard",
+	        active:false
+	    },{
+	        title: 'User List',
+	        url: "/admin/users",
+	        active:false
+	    },{
+	    	title:i18n('ADMIN_USERS_EDIT'),
+	    	url:"/admin/users/"+FlowRouter.getParam('_id'),
+	    	active:true
+	    }];
 		return(
 			<div className="">
-				<Heading data={i18n('ADMIN_USERS_EDIT')} />
+				<Heading key={this.props.pageLoading} data={i18n('ADMIN_USERS_EDIT')} url={url}/>
 				<form className="form-horizontal" id="userEditForm" onSubmit={this.updateuser.bind(this)}>
 				  <div className="controls-header">
           	<div className = "form-group">

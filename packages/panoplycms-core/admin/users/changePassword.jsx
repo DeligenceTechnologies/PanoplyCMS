@@ -96,10 +96,14 @@ class ChangePassword extends Component {
 		}else{
 			msg = '';
 		}*/
-
+		let url=[{
+	        title:i18n('ADMIN_USERS_CHANGE_PASSWORD'),
+	        url:"/admin/changepassword",
+	        active:true
+	    }];
 		return(
 			<div className="">
-				<Heading data={i18n('ADMIN_USERS_CHANGE_PASSWORD')} />
+				<Heading key={this.props.pageLoading} data={i18n('ADMIN_USERS_CHANGE_PASSWORD')} url={url} />
 				{ /*msg*/ }
 
 				<form className="form-horizontal" id="changePasswordForm" onSubmit={this.updateuser.bind(this)}> 

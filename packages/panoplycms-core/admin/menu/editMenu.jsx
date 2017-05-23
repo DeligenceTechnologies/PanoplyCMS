@@ -59,9 +59,22 @@ class EditMenu extends Component {
     if (this.props.pageLoading) {
       return <LoadingSpinner />;
     }
+    let url=[{
+        title:"Dashboard",
+        url:"/admin/dashboard",
+        active:false
+      },{
+        title: 'Menus',
+        url: "/admin/menus",
+        active:false
+      },{
+        title:i18n('ADMIN_MENU_EDITMENU'),
+        url:"/admin/menus/edit/"+this.props._id,
+        active:true
+      }];
     return (
       <div className="">
-        <Heading data={i18n('ADMIN_MENU_EDITMENU')} />
+        <Heading key={this.props.pageLoading} data={i18n('ADMIN_MENU_EDITMENU')} url={url}/>
          <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
           <div className="controls-header">
                <div className="form-group">

@@ -129,9 +129,22 @@ class AddArticle extends Component {
 		}else{
 			msg = '';
 		}*/
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Articles",
+	      url:"/admin/articles",
+	      active:false
+	    },{
+	    	title:"Add Article",
+	    	url:"/admin/articles/add",
+	    	active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} />
+				<Heading key={this.props.pageLoading} data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} url={url}/>
 				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
 				  <div className="controls-header">
 				    <div className="form-group">

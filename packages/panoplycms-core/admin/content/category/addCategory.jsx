@@ -53,9 +53,22 @@ export default class AddCategory extends Component {
     }else{
       msg = ''
     }*/
+    let url=[{
+        title:"Dashboard",
+        url:"/admin/dashboard",
+        active:false
+      },{
+        title:"Categories",
+        url:"/admin/categories",
+        active:false
+      },{
+        title:"Add Category",
+        url:"/admin/categories/add",
+        active:true
+      }];
     return(
       <div className="">
-        <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')} />
+        <Heading data={i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')} url={url}/>
         { /*msg*/ }
         <form className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
           <div className="controls-header">

@@ -9,8 +9,28 @@ export default class Heading extends Component {
 	}
 	render(){
 		return (
-			<div className="page-header">
-				<h3 className="sub-header">{this.props.data}</h3>
+			<div className="page-header row">
+				<h3 className="sub-header pull-left">{this.props.data}</h3>
+				{
+					this.props.url?
+						<ol className="breadcrumb pull-right">
+						{
+							this.props.url.map((value,index)=>{
+								if(value.active){
+									return(
+										<li key={index} className="active">{value.title}</li> 
+									)
+								}else{
+									return(
+										<li key={index}><a href={value.url}>{value.title}</a></li>
+									)
+								}
+							})
+						}
+						</ol>
+					:
+						''
+				}
 			</div>
 		)
 	}

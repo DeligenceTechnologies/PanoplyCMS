@@ -37,9 +37,18 @@ class TemplateManger extends Component {
 	}
 	render() {
 		nodata = '';
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Template Manager",
+	      url:"/admin/templates",
+	      active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={'Template Manager'} />
+				<Heading data={'Template Manager'} url={url}/>
 				<div className="custom-table">
 				  <div className="panel panel-default panel-table">
 						<div className="panel-body">

@@ -15,9 +15,18 @@ class UserList extends Component {
 			var image = Images.findOne({_id: this.props.user.profile.imageId})
 		}
 		// console.log(image)
+		let url=[{
+	        title:"Dashboard",
+	        url:"/admin/dashboard",
+	        active:false
+	    },{
+	        title: 'User List',
+	        url: "/admin/users",
+	        active:true
+	    }];
 		return(
 			<div className="">
-				<Heading data={'User List'} />
+				<Heading key={this.props.pageLoading} data={'User List'} url={url} />
 				<div className="custom-table">
 				  <div className="panel panel-default panel-table">
 				     	<div className="panel-body">

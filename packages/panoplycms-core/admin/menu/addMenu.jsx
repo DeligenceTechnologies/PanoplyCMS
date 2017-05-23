@@ -53,9 +53,22 @@ export default class AddMenu extends Component {
     }else{
       msg = '';
     }*/
+    let url=[{
+        title:"Dashboard",
+        url:"/admin/dashboard",
+        active:false
+      },{
+        title: 'Menus',
+        url: "/admin/menus",
+        active:false
+      },{
+        title:i18n('ADMIN_MENU_ADDMENU'),
+        url:"/admin/menus/add",
+        active:true
+      }];
     return (
       <div className="">
-        <Heading data={i18n('ADMIN_MENU_ADDMENU')} />
+        <Heading data={i18n('ADMIN_MENU_ADDMENU')} url={url}/>
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}> 
           <div className="controls-header">
             <div className="form-group">

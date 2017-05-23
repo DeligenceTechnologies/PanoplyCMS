@@ -46,9 +46,18 @@ class ListCategories extends Component {
 		}else{
 			nodata = '';
 		}
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Categories",
+	      url:"/admin/categories",
+	      active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} />
+				<Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} url={url}/>
 				<div className="custom-table">
 				   	<div className="row">
                			<div className="col-sm-12">

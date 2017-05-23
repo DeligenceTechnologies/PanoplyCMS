@@ -105,9 +105,18 @@ class ModulesLayout extends Component {
 		}else{
 			nodata = '';
 		}
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:i18n('ADMIN_EXTENSION_MODULES_MANAGER'),
+	      url:"/admin/modules",
+	      active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={i18n('ADMIN_EXTENSION_MODULES_MANAGER')} />
+				<Heading key={this.props.isReady} data={i18n('ADMIN_EXTENSION_MODULES_MANAGER')} url={url} />
 				<div className="custom-table">
 				   	<div className="row">
 				      	<div className="col-sm-12">

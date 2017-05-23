@@ -95,9 +95,22 @@ class ListMenuItems extends Component {
     if (this.props.pageLoading) {
       <LoadingSpinner />
     }
+    let url=[{
+        title:"Dashboard",
+        url:"/admin/dashboard",
+        active:false
+      },{
+        title: 'Menus',
+        url: "/admin/menus",
+        active:false
+      },{
+        title:i18n('ADMIN_MENU_MENUITEMS'),
+        url:"/admin/menus/"+FlowRouter.getParam('_id')+"/MenuItems",
+        active:true
+      }];
     return (
       <div className="">
-        <Heading data={i18n('ADMIN_MENU_MENUITEMS')} />
+        <Heading key={this.props.pageLoading} data={i18n('ADMIN_MENU_MENUITEMS')} url={url} />
         <div className="custom-table">
           <div className="row">
             <div className="col-sm-12">

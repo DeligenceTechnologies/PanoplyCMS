@@ -113,9 +113,14 @@ class SystemLayout extends Component {
 		}else{
 			msg = ''
 		}*/
+		let url=[{
+	        title:i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION'),
+	        url:"/admin/settings",
+	        active:true
+	    }];
 		return (
 			<div className="">
-				<Heading data={i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION')} />
+				<Heading data={i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION')} url={url} />
 
 				<div>
 					<form className = "form-horizontal" onSubmit={this.submitForm.bind(this)}>

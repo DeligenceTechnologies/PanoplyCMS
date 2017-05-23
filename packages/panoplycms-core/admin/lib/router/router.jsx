@@ -248,7 +248,7 @@ _.extend(PanoplyRouter, {
 									if(route.name == 'login'){
 										route.triggersEnter = [ (context, redirect) => {
 											if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-												redirect('/');
+												redirect('/admin/dashboard');
 											}
 										}]
 									}

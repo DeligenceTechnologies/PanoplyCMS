@@ -1,5 +1,10 @@
 {
   "public": {
-  	"limit": 20
+  	"limit": 20,
+  	"defaultImages": [
+  		"/images/slider/banner-1.jpg",
+  		"/images/slider/banner-2.jpg",
+  		"/images/slider/banner.jpg"
+  	]
   }
 }

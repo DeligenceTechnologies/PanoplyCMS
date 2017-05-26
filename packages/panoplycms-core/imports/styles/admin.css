@@ -1316,48 +1316,54 @@ ul.listModules > li {
 .add-popup{
 
 }
+
+.modal-title {
+	margin: 0;
+	line-height: 1.42857143;
+	text-transform: none;
+}
 .add-popup .modal-header {
-    background: #d86b0b!important;
+	background: #d86b0b!important;
 }
 .add-popup .modal-title {
-    color: #fff!important;
+	color: #fff!important;
 }
 .add-popup .close {
-    float: right;
-    font-size: 21px;
-    font-weight: bold;
-    line-height: 1;
-    color: #fff;
-    text-shadow: 0 1px 0 #fff;
-    opacity:0.7;
+	float: right;
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1;
+	color: #fff;
+	text-shadow: 0 1px 0 #fff;
+	opacity:0.7;
 }
 .add-popup ul.listModules > li {
-    border: none;
-    border-radius: 3px;
-    box-shadow: none;
-    display: block;
-    line-height: 1.5em;
-    margin: 2px 0;
-    padding: 10px 10px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    background: #eaeaea;
-    font-weight: 600;
-    font-size: 16px;
+	border: none;
+	border-radius: 3px;
+	box-shadow: none;
+	display: block;
+	line-height: 1.5em;
+	margin: 2px 0;
+	padding: 10px 10px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	background: #eaeaea;
+	font-weight: 600;
+	font-size: 16px;
 }
 
 .add-popup ul.listModules > li:hover{
-   background:#5a5858;
-   color:#fff;
+	background:#5a5858;
+	color:#fff;
 }
 .menuitemlist{
 	padding:20px;
 }
 .menuitemlist li {
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 0px 10px;
-        font-weight: 600;
+	font-size: 15px;
+	margin-bottom: 10px;
+	padding: 0px 10px;
+	font-weight: 600;
 }
 .menuitemlist li ul{
 	padding:5px 3px;
@@ -1366,17 +1372,17 @@ ul.listModules > li {
 }
 
 .panel-default > .menuitem-heading {
-    color: #fff!important;
-    background-color: #c5a588!important;
-    border-color: #c5a588!important;
+	color: #fff!important;
+	background-color: #c5a588!important;
+	border-color: #c5a588!important;
 }
 
 .dropdown-menu > li > a {
-    font-size: 15px;
-    border-radius: 2px;
-    padding: 10px 10px;
-    color: #4c4c4c;
-    cursor: pointer;
+	font-size: 15px;
+	border-radius: 2px;
+	padding: 10px 10px;
+	color: #4c4c4c;
+	cursor: pointer;
 }
 
 .dropdown-menu > li > a i{

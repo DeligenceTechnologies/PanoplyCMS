@@ -18,7 +18,7 @@ export default class AdminFooter extends Component {
 				      </ul>
 				 </div>
 				<div className="pull-right">
-			     <div className="footer-version">	Version: 11.1.1.1. </div>
+			     <div className="footer-version">	Version: 2.0 </div>
 				</div>
 			</footer>
 		)

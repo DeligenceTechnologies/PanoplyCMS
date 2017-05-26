@@ -1,4 +1,4 @@
-# PanoplyCMS 1.3
+# PanoplyCMS 2.0
 
 ## Installation Method - 1
 - Create a meteor application using `meteor create panoplycms`

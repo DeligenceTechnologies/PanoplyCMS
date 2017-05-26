@@ -67,7 +67,7 @@ export default class Dashboard extends Component {
                         <div className="col-sm-4">
                             <a href={FlowRouter.path('users')}>
                             <div className="white-box info-stats">
-                               <div className="info-header bg-blue"><i className="fa fa-user-plus"></i></div>
+                               <div className="info-header bg-gray"><i className="fa fa-users"></i></div>
                                <div className="info-content">
                                  <h3>User Manager</h3>
                                </div>

@@ -368,7 +368,7 @@ SliderBlock = data => {
 												data-endspeed="1200"
 												data-endeasing="Power4.easeIn"
 											>
-												<h2 className="big-title text-center">{value && value.title ? value.title :''}</h2>
+												<h2 className="big-title text-center">{value && value.description ? value.description :''}</h2>
 											</div>
 
 											<div className="tp-caption sfr sfb tp-resizeme"
@@ -384,7 +384,7 @@ SliderBlock = data => {
 												data-endspeed="1200"
 												data-endeasing="Power4.easeIn"
 											>
-												<div className="normal-text text-center">{value && value.description ? value.description :''}</div>
+												<div className="normal-text text-center">{value && value.title ? value.title :''}</div>
 												{/*<!--Slider Separeter Line-->*/}
 												<div className="slider-separeter-line">
 													<div className="line-one"></div>
@@ -393,20 +393,20 @@ SliderBlock = data => {
 											</div>
 
 											<div className="tp-caption sfl sfb tp-resizeme"
-		                    data-x="center" data-hoffset="0"
-		                    data-y="center" data-voffset="70"
-		                    data-speed="1500"
-		                    data-start="1000"
-		                    data-easing="easeOutExpo"
-		                    data-splitin="none"
-		                    data-splitout="none"
-		                    data-elementdelay="0.01"
-		                    data-endelementdelay="0.3"
-		                    data-endspeed="1200"
-		                    data-endeasing="Power4.easeIn"
-		                  >
-		                    <a href={value && value.linkUrl ? value.linkUrl :''} className="white-btn">{value && value.linkTitle ? value.linkTitle :''}</a>
-		                  </div>
+							                    data-x="center" data-hoffset="0"
+							                    data-y="center" data-voffset="70"
+							                    data-speed="1500"
+							                    data-start="1000"
+							                    data-easing="easeOutExpo"
+							                    data-splitin="none"
+							                    data-splitout="none"
+							                    data-elementdelay="0.01"
+							                    data-endelementdelay="0.3"
+							                    data-endspeed="1200"
+							                    data-endeasing="Power4.easeIn"
+						                  	>
+	                    						<a href={value && value.linkUrl ? value.linkUrl :''} className="theme-btn btn-style-one">{value && value.linkTitle ? value.linkTitle :''}</a>
+	                  						</div>
 										</li>
 									);
 								}else{

@@ -26,6 +26,17 @@ if(Meteor.isServer){
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "xo4S5G9a32RJnumwb"
+		},
+		{
+			"_id" : "KHQBBYzHo4niSBbcT",
+			"title" : "Blog",
+			"alias" : "blog",
+			"createdAt" : new Date(),
+			"updateAt" : new Date(),
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "KYjfJkbgimWbEbmiC",
+			"column" : "2"
 		}
 	];
 	homepageListArticle=[
@@ -35,16 +46,16 @@ if(Meteor.isServer){
 			"alias" : "life-insurance",
 			"category" : "qJmvAbE3zZi3ANbJJ",
 			"tags" : [
-				"QSREa4P24WaPTw4eL"
+				"b8T3f4YAYfeiPMGu6"
 			],
-			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n        <div class=\"section-heading heading-center\">\n            <span>Our Services</span>\n            <h2>Life Insurance</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"images/blog-img2.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. </p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"images/blog-img2.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. </p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
 			"metaKeyword" : "LIFE INSURANCE",
 			"metaDescription" : "LIFE INSURANCE",
 			"createdAt" : new Date(),
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : "xo4S5G9a32RJnumwb"
+			"ownerId" : "KYjfJkbgimWbEbmiC"
 		},
 		{
 			"_id" : "dwWqfcHyCCakeJLmb",
@@ -52,16 +63,86 @@ if(Meteor.isServer){
 			"alias" : "cum-sociis-natoque-penatibus-et-magnis-dis-parturient",
 			"category" : "MMrdixNaveR7vSzkm",
 			"tags" : [
-				"eAhjeGCkxYdD5ggyh"
+				"eAhjeGCkxYdD5ggyh",
+				"C38ASQc42Nhpgyrxu",
+				"XcqDzMxWSQGmKB8vz"
 			],
-			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"images/blog.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"/images/blog.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
 			"metaKeyword" : "Blog Details",
 			"metaDescription" : "Blog Detail",
 			"createdAt" : new Date(),
 			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : "xo4S5G9a32RJnumwb"
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "7mY594GEgG2c3g7B5",
+			"title" : "Aenean commodo ligula eget dolor 1",
+			"alias" : "aenean-commodo-ligula-eget-dolor-1",
+			"category" : "KHQBBYzHo4niSBbcT",
+			"tags" : [
+				"C38ASQc42Nhpgyrxu"
+			],
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"/images/blog-img1.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"metaKeyword" : "Aenean commodo ligula eget dolor",
+			"metaDescription" : "Aenean commodo ligula eget dolor",
+			"createdAt" : new Date(),
+			"updateAt" : new Date(),
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "pBuFgx3X86HCqts6y",
+			"title" : "Aenean commodo ligula eget dolor 2",
+			"alias" : "aenean-commodo-ligula-eget-dolor-2",
+			"category" : "KHQBBYzHo4niSBbcT",
+			"tags" : [
+				"C38ASQc42Nhpgyrxu"
+			],
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"/images/blog-img2.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"metaKeyword" : "Aenean commodo ligula eget dolor",
+			"metaDescription" : "Aenean commodo ligula eget dolor",
+			"createdAt" : new Date(),
+			"updateAt" : new Date(),
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "grB3RxPJGnCEs6ku8",
+			"title" : "Aenean commodo ligula eget dolor 3",
+			"alias" : "aenean-commodo-ligula-eget-dolor-3",
+			"category" : "KHQBBYzHo4niSBbcT",
+			"tags" : [
+				"C38ASQc42Nhpgyrxu"
+			],
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"/images/blog.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"metaKeyword" : "Aenean commodo ligula eget dolor",
+			"metaDescription" : "Aenean commodo ligula eget dolor",
+			"createdAt" : new Date(),
+			"updateAt" : new Date(),
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "JBFd8A2dmT7RPBD6k",
+			"title" : "Aenean commodo ligula eget dolor 4",
+			"alias" : "aenean-commodo-ligula-eget-dolor-4",
+			"category" : "KHQBBYzHo4niSBbcT",
+			"tags" : [
+				"C38ASQc42Nhpgyrxu"
+			],
+			"article" : "<div class=\"blog-post-header\">\n              \n               \n            </div>\n            <div class=\"blog-post-image\">\n              <img src=\"/images/blog-img1.jpg\">\n            </div>\n            <div class=\"blog-post-text\">\n              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>\n              \n            </div>\n         \n",
+			"metaKeyword" : "Aenean commodo ligula eget dolor 1",
+			"metaDescription" : "Aenean commodo ligula eget dolor 1",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
 		}
 	];
 	homepageListMenus=[
@@ -73,7 +154,43 @@ if(Meteor.isServer){
 			"alias" : "main-header-nevigation",
 			"item" : [ ],
 			"trash" : false,
-			"updatedAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "qsezyJ5C4FsDokzcN",
+			"title" : "my menu",
+			"desc" : "new menu",
+			"createdAt" : new Date(),
+			"alias" : "my-menu",
+			"item" : [ ],
+			"trash" : false
+		},
+		{
+			"_id" : "a4D369kAXSWfnrTqM",
+			"title" : "Legal",
+			"desc" : "Footer Legal",
+			"createdAt" : new Date(),
+			"alias" : "legal",
+			"item" : [ ],
+			"trash" : false
+		},
+		{
+			"_id" : "57E9282t68emxeFT4",
+			"title" : "Categories",
+			"desc" : "side bar Categories",
+			"createdAt" : new Date(),
+			"alias" : "categories",
+			"item" : [ ],
+			"trash" : false
+		},
+		{
+			"_id" : "dMwW7XdXrhb43etGE",
+			"title" : "RECENT POSTS",
+			"desc" : "RECENT POSTS side bar",
+			"createdAt" : new Date(),
+			"alias" : "recent-posts",
+			"item" : [ ],
+			"trash" : false
 		}
 	];
 	homepageListMenuItems=[
@@ -142,13 +259,16 @@ if(Meteor.isServer){
 			"title" : "Blog",
 			"desc" : "Blog",
 			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "category",
+			"MenuItemTypeId" : "KHQBBYzHo4niSBbcT",
 			"parentId" : "",
 			"homepage" : false,
 			"createdAt" : new Date(),
 			"alias" : "blog",
-			"trash" : false
+			"trash" : false,
+			"target" : "0",
+			"link" : "",
+			"updatedAt" : new Date()
 		},
 		{
 			"_id" : "SawyKvjuzXEEYKNyD",
@@ -260,6 +380,231 @@ if(Meteor.isServer){
 			"homepage" : false,
 			"createdAt" : new Date(),
 			"trash" : false
+		},
+		{
+			"_id" : "mY2cGxG9f6ZYCjpG9",
+			"title" : "Item4",
+			"desc" : "item4",
+			"target" : "0",
+			"mainParentId" : "qsezyJ5C4FsDokzcN",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "item4",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "ApiwAYNXaysqqQCfH",
+			"title" : "Privacy Statement",
+			"desc" : "Privacy Statement",
+			"target" : "0",
+			"mainParentId" : "a4D369kAXSWfnrTqM",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "privacy-statement",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "nKaQ2YBLcMiJfXN9o",
+			"title" : "Terms & Condinition",
+			"desc" : "Terms & Condition",
+			"target" : "0",
+			"mainParentId" : "a4D369kAXSWfnrTqM",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "terms-condinition",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "vaFDxKhiMRAZSiDNa",
+			"title" : "Disclaimer",
+			"desc" : "Disclaimer",
+			"target" : "0",
+			"mainParentId" : "a4D369kAXSWfnrTqM",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "disclaimer",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "3Fhck4YLeyo8mZYwG",
+			"title" : "Legal Information",
+			"desc" : "Legal Information",
+			"target" : "0",
+			"mainParentId" : "a4D369kAXSWfnrTqM",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "legal-information",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "46kGgMQbkntHAvyna",
+			"title" : "Life Insurance",
+			"desc" : "Life Insurance",
+			"target" : "0",
+			"mainParentId" : "57E9282t68emxeFT4",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "life-insurance",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "fSYa6XdqwGXTuAtLB",
+			"title" : "Travel Insurance",
+			"desc" : "Travel Insurance",
+			"target" : "0",
+			"mainParentId" : "57E9282t68emxeFT4",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "travel-insurance",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "hxciBcJCDWPuEyJdz",
+			"title" : "Home Insurance",
+			"desc" : "Home Insurance",
+			"target" : "0",
+			"mainParentId" : "57E9282t68emxeFT4",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "home-insurance",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "jR5osG7p3emeKE86c",
+			"title" : "Health Insurance",
+			"desc" : "Health Insurance",
+			"target" : "0",
+			"mainParentId" : "57E9282t68emxeFT4",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "health-insurance",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "4js8vWjP7Wp95yokZ",
+			"title" : "Business Insurance",
+			"desc" : "Business Insurance",
+			"target" : "0",
+			"mainParentId" : "57E9282t68emxeFT4",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "business-insurance",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "zYvDv5zRDn5tA3ukR",
+			"title" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",
+			"desc" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",
+			"target" : "0",
+			"mainParentId" : "dMwW7XdXrhb43etGE",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "lorem-ipsum-dolor-sit-amet-consectetuer-adipiscing-elit",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "didGAMYj4qp3ifx4H",
+			"title" : "Aenean commodo ligula eget dolor",
+			"desc" : "Aenean commodo ligula eget dolor",
+			"target" : "0",
+			"mainParentId" : "dMwW7XdXrhb43etGE",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "aenean-commodo-ligula-eget-dolor",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "ebbxzt2xWEEMYXtLK",
+			"title" : "Etiam ultricies nisi vel augue",
+			"desc" : "Etiam ultricies nisi vel augue",
+			"target" : "0",
+			"mainParentId" : "dMwW7XdXrhb43etGE",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "etiam-ultricies-nisi-vel-augue",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "WCvFnpeGEFh8ZywSK",
+			"title" : "Aenean commodo ligula eget dolor3",
+			"desc" : "Aenean commodo ligula eget dolor",
+			"target" : "0",
+			"mainParentId" : "dMwW7XdXrhb43etGE",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "aenean-commodo-ligula-eget-dolor3",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
+		},
+		{
+			"_id" : "znAwgDsizjR93aCfA",
+			"title" : "Etiam ultricies nisi vel augue 1",
+			"desc" : "Etiam ultricies nisi vel augue",
+			"target" : "0",
+			"mainParentId" : "dMwW7XdXrhb43etGE",
+			"MenuItemType" : "module",
+			"MenuItemTypeId" : "",
+			"link" : "",
+			"parentId" : "",
+			"alias" : "etiam-ultricies-nisi-vel-augue-1",
+			"homepage" : false,
+			"createdAt" : new Date(),
+			"trash" : false
 		}
 	];
 	homepageListModules=[
@@ -272,7 +617,7 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "6",
-				"html" : "<div class=\"footer-social\">\n              <h3><strong>Connect with us</strong></h3>\n              <ul>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-google-plus\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t<li><a href=\"\"><i class=\"fa fa-skype\"></i></a></li>\n\t\t\t  </ul>\n           </div>"
+				"html" : "<div class=\"footer-social\">\n              <h3><strong>Connect with us</strong></h3>\n              <ul>\n\t\t\t\t<li><a href=\"https://www.facebook.com/deligencetechnologies\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t<li><a href=\"https://twitter.com/deligence1\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t<li><a href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t<li><a href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\"></i></a></li>\n\t\t\t  </ul>\n           </div>"
 			},
 			"menuItems" : [ ],
 			"trash" : false,
@@ -292,7 +637,7 @@ if(Meteor.isServer){
 				"html" : "<div class=\"legal-links\">\n           <h3>Legal</h3>\n           <ul>\n\t\t\t\t\t<li><a href=\"\">Privacy Statement</a></li>\n                    <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Terms &amp; Condinition</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Disclaimer</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Legal Information</a></li>\n\t\t\t</ul>\n          </div>"
 			},
 			"menuItems" : [ ],
-			"trash" : false,
+			"trash" : true,
 			"createdAt" : new Date(),
 			"updatedAt" : new Date(),
 			"moduleClass" : "FooterRight"
@@ -342,7 +687,7 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "3",
-				"html" : "<div class=\"social-icons text-right\">\n                    <ul>\n                     <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n                     <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n                     <li><a href=\"#\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i></a></li>\n                     <li><a href=\"#\"><i class=\"fa fa-skype\" aria-hidden=\"true\"></i></a></li>\n                   </ul>\n              </div>"
+				"html" : "<div class=\"social-icons text-right\">\n                    <ul>\n                     <li><a href=\"https://www.facebook.com/deligencetechnologies\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n                     <li><a href=\"https://twitter.com/deligence1\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n                     <li><a href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></a></li>\n                     <li><a href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\" aria-hidden=\"true\"></i></a></li>\n                   </ul>\n              </div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -358,7 +703,7 @@ if(Meteor.isServer){
 			"moduleClass" : "main-header-right",
 			"allPages" : true,
 			"moduleData" : {
-				"gridLength" : 12,
+				"gridLength" : "12",
 				"menuItem" : "dGBtw92nTceAkThKq"
 			},
 			"trash" : false,
@@ -378,7 +723,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n<h2>ABOUT US</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">About Us</li>\n             </ul>\n</div>"
+				"html" : "<div class=\"\">\n<h2>ABOUT US</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">About Us</li>\n             </ul>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -451,7 +796,7 @@ if(Meteor.isServer){
 			"_id" : "a5rghXvjjNNjvGtr9",
 			"name" : "Our Blog",
 			"type" : "htmlblock",
-			"position" : "mainBottom",
+			"position" : "feature",
 			"showTitle" : false,
 			"menuItems" : [
 				"T8sgLe9oEToTApsfZ",
@@ -461,7 +806,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"section-space blog-wrap\"> \n<div class=\"section-heading heading-center animated fadeInLeft\">\n            <span></span>\n            <h2>Our Blog</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n       <div class=\"row\">\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img1.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\"> Aenean commodo ligula eget dolor </a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img2.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\">Aenean commodo ligula eget dolor</a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n          <div class=\"col-sm-4\"> \n             <div class=\"blog-box animated fadeInUp\">\n                <div class=\"blog-image\"><img src=\"images/blog-img1.jpg\" class=\"img-responsive border_radius\"></div>\n                <div class=\"news_box border_radius\">\n                  <h4><a href=\"#\">Aenean commodo ligula eget dolor</a></h4>\n                  <ul class=\"commment\">\n                    <li><a href=\"#\"><i class=\"fa fa-calendar\"></i>April 25, 2017</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-comment\"></i> 02</a></li>\n                  </ul>\n                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\"http://localhost:3000/blog-details\" class=\"readmore\">Read More...</a>\n                </div>\n             </div>\n          </div>\n        </div>\n</div>"
+				"html" : "<div class=\"section-space blog-wrap\"> \n<div class=\"section-heading heading-center animated fadeInLeft\">\n            <span></span>\n            <h2>Our Blog</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n       \n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -500,30 +845,32 @@ if(Meteor.isServer){
 				{
 					"title" : "Our Plans Are Based on Yours",
 					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
-					"linkTitle" : "google",
-					"linkUrl" : "https://google.com",
+					"linkTitle" : "CONTACT US",
+					"linkUrl" : "/contact",
 					"published" : true,
 					"bgImageId" : ""
 				},
 				{
 					"title" : "Our Plans Are Based on Yours",
 					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
-					"linkTitle" : "facebook",
-					"linkUrl" : "https://facebook.com",
+					"linkTitle" : "CONTACT US",
+					"linkUrl" : "/contact",
 					"published" : true,
 					"bgImageId" : ""
 				},
 				{
 					"title" : "Our Plans Are Based on Yours",
 					"description" : "IT'S NECESSARY TO INSURING YOUR FUTURE, TODAY!",
-					"linkTitle" : "deligence",
-					"linkUrl" : "https://deligence.com",
+					"linkTitle" : "CONTACT US",
+					"linkUrl" : "/contact",
 					"published" : true,
 					"bgImageId" : ""
 				}
 			],
 			"trash" : false,
-			"createdAt" : new Date()
+			"createdAt" : new Date(),
+			"moduleClass" : "",
+			"updatedAt" : new Date()
 		},
 		{
 			"_id" : "5dZHMFQ2PDSqCFiyb",
@@ -534,7 +881,7 @@ if(Meteor.isServer){
 			"menuItems" : [
 				"NWwGpMkjoCmehFegb"
 			],
-			"moduleClass" : "ourTeam",
+			"moduleClass" : "ourTeam section-space",
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
@@ -596,11 +943,11 @@ if(Meteor.isServer){
 				"yYMrfCohfJZFu8DR7",
 				"LiFqNSdyTyRr9crPu"
 			],
-			"moduleClass" : "serviceBanner",
+			"moduleClass" : "serviceBanner internal-banner int-banner-img",
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n<h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Services</li>\n             </ul>\n</div>\n"
+				"html" : "<div class=\"\">\n<h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Services</li>\n             </ul>\n</div>\n"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -638,7 +985,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n<div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li><a href=\"services.html\">Services</a></li>\n                  <li class=\"active\">Life Insurance</li>\n             </ul>\n          </div>\n        </div>\n</div></div>"
+				"html" : "<div class=\"\">\n<div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li><a href=\"services.html\">Services</a></li>\n                  <li class=\"active\">Life Insurance</li>\n             </ul>\n          </div>\n        </div>\n</div></div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -686,16 +1033,14 @@ if(Meteor.isServer){
 			"type" : "htmlblock",
 			"position" : "sidebar",
 			"showTitle" : false,
-			"menuItems" : [
-				"CToCHY38NchyEccMe"
-			],
+			"menuItems" : [ ],
 			"moduleClass" : "ourBlogSidbar",
-			"allPages" : false,
+			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "3",
 				"html" : "<div class=\"blog-sidebar\">\n             <div class=\"categories-post widget\">\n             <h2>CATEGORIES</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Life Insurance</a>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t<a href=\"#\">Travel Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\">Home Insurance</a>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t<a href=\"#\">Health Insurance</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\"> Business Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n           \n           \n            \n                \n             \n                \n           </div>\n         \n"
 			},
-			"trash" : false,
+			"trash" : true,
 			"createdAt" : new Date(),
 			"updatedAt" : new Date()
 		},
@@ -731,7 +1076,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : " <div class=\"section-space contact-us\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-sm-6\">\n       <h4>Our Office Address</h4>\n         <div class=\"contact-info\">\n             \n              <div class=\"contact-address\">\n                    <h2><i class=\"fa fa-map-marker\"></i> Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n               \n             <div class=\"contact-phone\">\n                    <h2><i class=\"fa fa-mobile\"></i> Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n               \n             <div class=\"contact-email\">\n                    <h2><i class=\"fa fa-envelope\"></i> Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n \n          </div>\n       </div>\n       <div class=\"col-sm-6\">\n         <h4>Stay Connected</h4>\n         <div class=\"blue-block \">\n           \n    <div class=\"form-group\">\n        <label>Name</label>\n        <input class=\"form-control\" placeholder=\"Your Name\" type=\"text\">\n    </div>\n    \n      <div class=\"form-group\">\n        <label>Email</label>\n        <input class=\"form-control valid\" placeholder=\"Your Email\" type=\"email\">\n    </div>\n    <div class=\"form-group\">\n        <label>Mobile</label>\n        <input class=\"form-control\" placeholder=\"Your Mobile No.\" type=\"text\">\n    </div>\n   \n    <div class=\"form-group\">\n        <label>Message</label>\n       <textarea class=\"form-control\"></textarea>\n    </div>\n    <div class=\"center-block\"><button type=\"submit\" class=\"btn submit-btn\">SUBMIT</button></div>\n\n         </div>\n       </div>\n     </div>\n   </div> \n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
+				"html" : " <div class=\"section-space contact-us\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-sm-6\">\n       <h4>Our Office Address</h4>\n         <div class=\"contact-info\">\n             \n              <div class=\"contact-address\">\n                    <h2><i class=\"fa fa-map-marker\"></i> Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n               \n             <div class=\"contact-phone\">\n                    <h2><i class=\"fa fa-mobile\"></i> Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n               \n             <div class=\"contact-email\">\n                    <h2><i class=\"fa fa-envelope\"></i> Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n \n          </div>\n       </div>\n       <div class=\"col-sm-6\">\n         <h4>Stay Connected</h4>\n         <div class=\"blue-block \">\n       <form>    \n    <div class=\"form-group\">\n        <label>Name</label>\n        <input class=\"form-control\" placeholder=\"Your Name\" type=\"text\">\n    </div>\n    \n      <div class=\"form-group\">\n        <label>Email</label>\n        <input class=\"form-control valid\" placeholder=\"Your Email\" type=\"email\">\n    </div>\n    <div class=\"form-group\">\n        <label>Mobile</label>\n        <input class=\"form-control\" placeholder=\"Your Mobile No.\" type=\"text\">\n    </div>\n   \n    <div class=\"form-group\">\n        <label>Message</label>\n       <textarea class=\"form-control\"></textarea>\n    </div>\n    <div class=\"center-block\"><button type=\"submit\" class=\"btn submit-btn\">SUBMIT</button></div>\n</form>\n         </div>\n       </div>\n     </div>\n   </div> \n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -752,7 +1097,7 @@ if(Meteor.isServer){
 				"gridLength" : "3",
 				"html" : "<div class=\"blog-sidebar\">\n<div class=\"recent-post widget\">\n             <h2>Recent Posts</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>\n                      <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t        <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                          <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t         <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                           <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t          <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                            <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t        <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                         <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n</div>"
 			},
-			"trash" : false,
+			"trash" : true,
 			"createdAt" : new Date()
 		},
 		{
@@ -783,24 +1128,134 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date()
+		},
+		{
+			"_id" : "N9N47y44967jPymBR",
+			"name" : "Our Blog banner",
+			"type" : "htmlblock",
+			"position" : "utility",
+			"showTitle" : false,
+			"menuItems" : [
+				"mDopsGQLGakQJWwcf",
+				"CToCHY38NchyEccMe"
+			],
+			"moduleClass" : "internal-banner int-banner-img",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : 12,
+				"html" : "<div>\n<h2>Our Blog</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Blog</li>\n             </ul>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
+		},
+		{
+			"_id" : "oyJqiwemiWingkcX5",
+			"name" : "LEGAL",
+			"type" : "menumodule",
+			"position" : "mainFooter",
+			"showTitle" : true,
+			"menuItems" : [ ],
+			"moduleClass" : "legal-links",
+			"allPages" : true,
+			"moduleData" : {
+				"gridLength" : "6",
+				"menuItem" : "a4D369kAXSWfnrTqM"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "aupQALdspGBe8trvQ",
+			"name" : "Categories",
+			"type" : "menumodule",
+			"position" : "sidebar",
+			"showTitle" : true,
+			"menuItems" : [
+				"mDopsGQLGakQJWwcf",
+				"CToCHY38NchyEccMe"
+			],
+			"moduleClass" : "categories-post widget",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"menuItem" : "57E9282t68emxeFT4"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
+		},
+		{
+			"_id" : "Sfi2X4C6u9CYikBWS",
+			"name" : "RECENT POSTS",
+			"type" : "menumodule",
+			"position" : "sidebar",
+			"showTitle" : true,
+			"menuItems" : [
+				"mDopsGQLGakQJWwcf",
+				"CToCHY38NchyEccMe"
+			],
+			"moduleClass" : "recent-post widget",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"menuItem" : "dMwW7XdXrhb43etGE"
+			},
+			"trash" : false,
+			"createdAt" : new Date(),
+			"updatedAt" : new Date()
 		}
-
 	];
-
-	if(PanoplyCMSCollections.Tags.find().count() == 0){
-		PanoplyCMSCollections.Tags.insert({
+	homepageListTags=[
+		{
 			"_id" : "eAhjeGCkxYdD5ggyh",
 			"title" : "Blog Detail",
 			"alias" : "blog-detail",
+			"desc" : "Blog Detail",
+			"metaKeyword" : "Blog Detail",
+			"metaDescription" : "Blog Detail",
+			"createdAt" : new Date(),
+			"updateAt" : new Date(),
+			"status" : 1,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "C38ASQc42Nhpgyrxu",
+			"title" : "blog",
+			"alias" : "blog",
 			"desc" : "",
 			"metaKeyword" : "",
 			"metaDescription" : "",
 			"createdAt" : new Date(),
 			"updateAt" : "",
 			"status" : 1,
-			"ownerId" : "xo4S5G9a32RJnumwb"
-		});
-	}
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "XcqDzMxWSQGmKB8vz",
+			"title" : "insaurance",
+			"alias" : "insaurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "b8T3f4YAYfeiPMGu6",
+			"title" : "LIFE INSURANCE",
+			"alias" : "life-insurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "KYjfJkbgimWbEbmiC"
+		}
+	]
 
 	if(PanoplyCMSCollections.Sites.find().count() == 0){
 		PanoplyCMSCollections.Sites.insert({
@@ -835,6 +1290,11 @@ if(Meteor.isServer){
 	_.each(homepageListModules,function(listModules){
 		if(PanoplyCMSCollections.Modules.find({_id:listModules._id}).count() == 0){
 			PanoplyCMSCollections.Modules.insert(listModules);
+		}
+	});
+	_.each(homepageListTags,function(listTag){
+		if(PanoplyCMSCollections.Tags.find({_id:listTag._id}).count() == 0){
+			PanoplyCMSCollections.Tags.insert(listTag);
 		}
 	});
 }

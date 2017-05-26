@@ -300,7 +300,7 @@ MenuModuleFront = createReactClass({
 		return getElements();
 	},
 	render(){
-		// console.log(this.props)
+		console.log(this.props)
 		showTitle = '';
 		if(this.props.module_title) showTitle = <h3>{this.props.module_title}</h3>;
 		return (

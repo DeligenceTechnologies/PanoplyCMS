@@ -26,7 +26,8 @@ export default class AddCategory extends Component {
     let aliasData = generateAlias(titleData)
     let categoryObj = {
       title: titleData,
-      alias: aliasData
+      alias: aliasData,
+      column: $('#number').val()
     }
     Meteor.call('add_category', categoryObj, (err,data)=>{
       if(err){
@@ -85,6 +86,12 @@ export default class AddCategory extends Component {
                <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_CATEGORYNAME')}</label>
                 <div className="col-sm-7">
                  <input type = "text" id="title" className="form-control" placeholder = "Enter title" required />
+                </div>
+             </div>
+              <div className="form-group">
+               <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_ARTICLE_NUMBER')}</label>
+                <div className="col-sm-7">
+                 <input type = "number" id="number" min={1} max={12} className="form-control" placeholder = "Enter number" required />
                 </div>
              </div>
           </div>

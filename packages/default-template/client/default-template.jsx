@@ -32,6 +32,7 @@ DefaultTemplate = createReactClass({
 		require('../imports/plugin/owl-carousel/js/owl.carousel.min.js')
 
 		require('../imports/plugin/rs-plugin/css/settings.css');
+		// require('../imports/plugin/rs-plugin/font/revicons.woff');
 		require('../imports/plugin/rs-plugin/js/jquery.themepunch.revolution.min.js');
 		// require('../imports/plugin/rs-plugin/js/jquery.themepunch.tools.min.js');
 
@@ -172,7 +173,7 @@ DefaultTemplate = createReactClass({
 				thumbAmount:5,
 				navigationType:"bullet",
 				navigationArrows:"0",
-				navigationStyle:"preview3",
+				navigationStyle:"preview4",
 				touchenabled:"on",
 				onHoverStop:"off",
 				swipe_velocity: 0.7,
@@ -238,9 +239,10 @@ DefaultTemplate = createReactClass({
 				metadesc.content = this.data.result.siteMetaDesc
 				document.getElementsByTagName('head')[0].appendChild(metadesc)
 
-			}
-
+			} 
 		}
+		
+		
 		let meta1 = document.createElement('meta');
 		meta1.httpEquiv = "Content-Type";
 		meta1.content = "text/html; charset=utf-8";
@@ -548,7 +550,7 @@ DefaultTemplate = createReactClass({
 				{/* FRONT FEATURE START */}
 					{
 						this.props.feature && this.props.feature.length?
-							<section id="dt-feature" className="">
+							<section id="dt-feature" className="section-space">
 								<div className="top animated bounceInDown">
 									<div className="row">
 						      			{
@@ -672,7 +674,7 @@ DefaultTemplate = createReactClass({
 								}
 							{/* FRONT CONTENT BOTTOM END */}
 						</div>
-						<div className={_.isEmpty(this.props.sidebar) ? "":"col-sm-3 col-sm-offset-1 blog-sidebar"}>
+						<div className={_.isEmpty(this.props.sidebar) ? "":"col-sm-3 col-sm-offset-1 pull-right blog-sidebar"}>
 							<SidePanel module={this.props.sidebar} />
 						</div>
 
@@ -918,15 +920,15 @@ DefaultArticle = createReactClass({
 			} else {
 				let metakey = document.createElement('meta');
 				metakey.name = "keywords"
-				metakey.content = this.data.article ? this.data.article.metaKeyword ? this.data.article.metaKeyword :this.data.siteData && this.data.siteData.siteMetaKeyword ? this.data.siteData.siteMetaKeyword:'':''
+				metakey.content = this.data.article && this.data.article.metaKeyword ? this.data.article.metaKeyword :this.data.siteData && this.data.siteData.siteMetaKeyword ? this.data.siteData.siteMetaKeyword:''
 				document.getElementsByTagName('head')[0].appendChild(metakey)
 			}
 			if($('meta[name=description]').length){
-				this.data.article ? this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : this.data.siteData && this.data.siteData.siteMetaDesc != '' ? $('meta[name=description]').attr('content', this.data.siteData.siteMetaDesc) : '' :'';
+				this.data.article && this.data.article.metaDescription != '' ? $('meta[name=description]').attr('content', this.data.article.metaDescription) : this.data.siteData && this.data.siteData.siteMetaDesc != '' ? $('meta[name=description]').attr('content', this.data.siteData.siteMetaDesc) : '' ;
 			} else {
 				let metadesc = document.createElement('meta');
 				metadesc.name = "description"
-				metadesc.content = this.data.article ? this.data.article.metaDescription ? this.data.article.metaDescription:this.data.siteData && this.data.siteData.siteMetaDesc ? this.data.siteData.siteMetaDesc :'':''
+				metadesc.content = this.data.article && this.data.article.metaDescription ? this.data.article.metaDescription:this.data.siteData && this.data.siteData.siteMetaDesc ? this.data.siteData.siteMetaDesc :''
 				document.getElementsByTagName('head')[0].appendChild(metadesc)
 			}
 		}
@@ -953,9 +955,13 @@ ArticleFullView = data => {
 	return (
 		<div>
 			<div className="">
-				<div className="blog-post">
-					<h2 className="blog-post-title">{data.articles && data.articles.title ? data.articles.title.toUpperCase() :''}</h2>
-					<p className="post-meta-data"><i className="fa fa-calendar"></i>  {data.articles && data.articles.createdAt ? new Date(data.articles.createdAt).toDateString() :''} {userData && userData.profile && userData.profile.username ? 'by' :''} <strong>{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</strong></p>
+				<div className="blog-post-header">
+					<h3 className="blog-post-title">{data.articles && data.articles.title ? data.articles.title.toUpperCase() :''}</h3>
+					<ul className="blog-post-meta">
+						<li>
+							<i className="fa fa-calendar"></i>  {data.articles && data.articles.createdAt ? new Date(data.articles.createdAt).toDateString() :''} {userData && userData.profile && userData.profile.username ? 'by' :''} <strong>{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</strong>
+						</li>
+					</ul>
 					<br/>
 					<div dangerouslySetInnerHTML={{__html: data.articles && data.articles.article ? data.articles.article :''}} />
 					<ShowTags tags={data.articles && data.articles.tags ? data.articles.tags :''} />
@@ -969,9 +975,11 @@ DefaultCategory = createReactClass({
 	mixins:[ReactMeteorData],
 	getMeteorData(){
 		let sub = Meteor.subscribe('articlesFind');
+		let category = Meteor.subscribe('Categories', this.props.id);
 		return {
-			isReady: sub.ready(),
-			articles: PanoplyCMSCollections.Articles.find({category: this.props.id, trash:false}).fetch()
+			isReady: sub.ready() && category.ready(),
+			articles: PanoplyCMSCollections.Articles.find({category: this.props.id, trash:false}).fetch(),
+			category: PanoplyCMSCollections.Categories.findOne({_id: this.props.id, trash:false})
 		}
 	},
 	render(){
@@ -979,11 +987,16 @@ DefaultCategory = createReactClass({
 			if(!this.data.articles.length && this.data.isReady){
 				return <LoadingSpinner />;
 			}
+			let grid = 12;
+			if(this.data.category && this.data.category.column){
+				grid = 12 / this.data.category.column;
+			}
 			return (
-				<div>
+				<div className="row">
 					{
 						this.data.articles.map(a => {
-							return <ArticleListView key={a._id} {...a} />
+							a.grid = grid
+							return <ArticleListView key={a._id} {...a}/>
 						})
 					}
 				</div>
@@ -1008,14 +1021,51 @@ ArticleListView = data => {
 	} else {
 		alias = PanoplyRouter.current().route.path+data.alias
 	}
+	let regex = /<img.*?src=\"(.*?)\"/;
+	let url = data.article?regex.exec(data.article)[1]:'';
+	console.log(url)
 	return (
-		<div className="blog-post">
-			<h2 className="blog-post-title">{data && data.title ? data.title.toUpperCase() :''}</h2>
-			<p className="blog-post-meta">{data && data.createdAt ? new Date(data.createdAt).toDateString() :''} {userData && userData.profile && userData.profile.username ? 'by' : ''} <strong>{userData && userData.profile && userData.profile.username ? userData.profile.username :''}</strong></p>
-			<div dangerouslySetInnerHTML={{__html:data && data.article ? data.article.substr(0, 300)+'...':''}} />
-			<ShowTags tags={data && data.tags ? data.tags :''} />
-			<div className="pull-right"><a href={alias} className="btn btn-default">Read More</a></div>
-			<div className="clear-both"></div>
+		<div key={data._id} className={"blog-box animated fadeInUp col-md-"+data.grid}>
+			{
+				url!=''?
+					<div className="blog-image">
+						<img src={url} className="img-responsive border_radius" />
+					</div>
+				:
+					''
+			}
+			<div className="news_box border_radius">
+				<h4><a href="#">{data && data.title ? data.title.toUpperCase() :''}</a></h4>
+				<ul className="commment">
+					<li>
+						<a href="#">
+							<i className="fa fa-calendar"></i>
+							{
+								data && data.createdAt ? 
+									new Date(data.createdAt).toDateString() 
+								:
+									''
+							} 
+							{
+								userData && userData.profile && userData.profile.username ?
+									' by ' 
+								: 
+									''
+							}  
+							<strong>
+								{
+									userData && userData.profile && userData.profile.username ? 
+										userData.profile.username 
+									:
+										''
+								}
+							</strong>
+						</a>
+					</li>
+				</ul>
+				<p dangerouslySetInnerHTML={{__html:data && data.article ? data.article.replace(/<img[^>]*>/g,"").substr(0, 300)+'...':''}} />
+				<a href={alias} className="readmore">Read More...</a>
+			</div>
 		</div>
 	);
 }

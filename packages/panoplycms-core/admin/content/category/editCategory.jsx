@@ -25,7 +25,8 @@ class EditCategory extends Component {
     let alias = generateAlias(title);
     let categoryObj = {
       title: title,
-      alias: alias
+      alias: alias,
+      column: $('#number').val()
     }
     Meteor.call('update_category', this.props._id, categoryObj,(err,data)=>{
       if(err)
@@ -88,7 +89,14 @@ class EditCategory extends Component {
                 <input key={this.props.pageLoading} type = "text" id="title" className="form-control" defaultValue={this.props.categoryData && this.props.categoryData.title?this.props.categoryData.title:''} placeholder = "Enter title" required />
               </div>
               </div>
+              <div className="form-group">
+               <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_ARTICLE_NUMBER')}</label>
+                <div className="col-sm-7">
+                 <input key={this.props.pageLoading} type = "number" id="number" min={1} max={12} className="form-control" placeholder = "Enter number" defaultValue={this.props.categoryData && this.props.categoryData.column?this.props.categoryData.column:1} required />
+                </div>
+             </div>
             </div>
+
           </form>
         </div>
       )

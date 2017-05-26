@@ -19,6 +19,12 @@ body {
     overflow-x: hidden;
 }
 
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: #ebebeb!important;
+	-webkit-font-smoothing: antialiased;
+}
+
 a {
 	cursor: pointer;
 }
@@ -839,7 +845,7 @@ ul.listModules > li {
 .page-header h3{
 	margin:0px;
 	font-size:23px;
-	padding: 10px 0px 0px 0px;
+	padding: 15px 0px 0px 0px;
 }
 .custom-panel {
     padding: 25px 15px 15px 15px;
@@ -945,8 +951,6 @@ ul.listModules > li {
 	color: #fff;
 	background-color: #78aa65;
 	border-color: #78aa65;
-  background: #C39500;
-  color: #FFF
 }
 
 .side-nav{
@@ -1086,6 +1090,7 @@ ul.listModules > li {
 .custom-table .panel-table .panel-body .table-bordered{
   border-style: none;
   margin:0;
+  border: 1px solid #ddd !important;
 }
 
 .custom-table .panel-table .panel-body .table-bordered > thead > tr > td{
@@ -1170,7 +1175,9 @@ ul.listModules > li {
 		text-align: center;
 }
 
-
+#load-more{
+	margin: 10px 0px;
+}
 /*****************Dashboard ************************/
 
 .dashboard-wrap{
@@ -1211,6 +1218,11 @@ ul.listModules > li {
 .bg-purple{
 	    background: linear-gradient(60deg, #ab47bc, #8e24aa);
 }
+
+.bg-gray{
+	    background: linear-gradient(60deg, #6f6ce4, #5c6eea);
+}
+
 
 
 .info-stats{
@@ -1560,4 +1572,182 @@ ul.listModules > li {
 }
 .admin-social-icons a.youtube:before {
   content: "\f167";
+}
+
+
+
+
+.page-header .breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 0px!important;
+    list-style: none;
+    background-color: #ffffff!important;
+    border-radius: 4px;
+    margin-top: 13px;
+}
+
+
+/* Login Page */
+
+.login-header {
+	text-align:center;
+	margin-top: 3em;
+	opacity: 0.7;
+	padding: 0;
+	background: #f7f5f5;
+	padding: 10px 0px;
+}
+.login-header img { 
+    width:50%; 
+}
+.loginForm form {
+	padding: 30px;
+	padding-top: 60px;
+	background: #fff;
+}
+.powered {
+	padding: 10px;
+	margin-top: -16px;
+	line-height: 25px;
+	    background: #03a9f4;
+    color: #e9ece9;
+}
+.powered a {
+	color: #faffbd;
+	text-decoration: none;
+}
+.powered a:hover { font-style:italic; }
+.group {
+	position: relative;
+	margin-bottom: 45px;
+}
+.loginForm form input {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	-webkit-appearance: none;
+	display: block;
+	background: transparent;
+	color: #03a9f4;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #ddd;
+}
+.loginForm form input:focus { outline: none; }
+/* Label */
+.loginForm form label {
+    color: #65a5d7;
+    font-size: 21px;
+    font-weight: 600;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+/* active */
+
+.loginForm form input:focus ~ label, .loginForm  input.used ~ label {
+top: -20px;
+-webkit-transform: scale(.75);
+transform: scale(.75);
+left: -10px;
+
+}
+/* Underline */
+.loginForm  .bar {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+.loginForm  .bar:before, .bar:after {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: #4a89dc;
+	-webkit-transition:all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.loginForm  .bar:before { left: 50%; }
+.loginForm  .bar:after { right: 50%; }
+
+/* active */
+.loginForm form input:focus ~ .bar:before, .loginForm  input:focus ~ .bar:after {
+  width: 50%;
+}
+/* Highlight */
+.loginForm  .highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+/* active */
+.loginForm form input:focus ~ .highlight {
+-webkit-animation: inputHighlighter 0.3s ease;
+animation: inputHighlighter 0.3s ease;
+}
+
+.loginForm  .buttonui {
+	position: relative;
+    padding: 9px 25px;
+    line-height: 30px;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    background-color: #615f5e;
+    color: #ecf0f1;
+    transition: background-color .3s;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.loginForm  .buttonui:hover{
+	background:#7eb573;
+}
+
+.loginForm  .buttonui span {
+	padding: 12px 24px;
+	font-size:16px;
+}
+.loginForm {
+	width: 420px;
+	margin: 0 auto;
+	z-index: 99;
+	display: block;
+	margin-top: 5%;
+	background: transparent;
+	border-radius: .25em .25em .4em .4em;
+	text-align: center;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	color: #fff;
+}
+ @media screen and (max-width: 460px) {
+ 	.loginForm {
+		width: 100%;
+		max-width: 420px;
+	}
+}
+ input:-webkit-autofill {
+   
+}
+.loginForm textarea, input, *:focus { 
+	outline: none !important; 
+}
+.loginForm input:-webkit-autofill, .loginForm textarea:-webkit-autofill, .loginForm select:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px white;
+    background-color: rgb(250, 255, 189) !important;
+	background-image: none;
+    color: #03a9f4!important;
 }

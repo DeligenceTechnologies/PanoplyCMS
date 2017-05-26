@@ -200,7 +200,7 @@ class EditMenuItem extends Component {
       url:"/admin/menus/"+menuId+"/MenuItems",
       active:false
     },{
-      title:"Edit Menu Item",
+      title:i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM'),
       url:"/admin/menus/editMenuItem"+this.props._id,
       active:true
     }];

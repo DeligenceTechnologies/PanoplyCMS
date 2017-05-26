@@ -134,9 +134,23 @@ class EditArticle extends Component {
 			msg = '';
 		}*/
 
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Articles",
+	      url:"/admin/articles",
+	      active:false
+	    },{
+	    	title:i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE'),
+	    	url:"/admin/articles/edit/"+FlowRouter.getParam("_id"),
+	    	active:true
+	    }];
+
 		return (
 			<div className="">
-				<Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE')} />
+				<Heading key={this.props.pageLoading}  data={i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE')} url={url} />
 			<form id="edit-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
 			  <div className="controls-header">
             <div className="form-group">

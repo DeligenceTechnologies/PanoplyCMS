@@ -8,6 +8,7 @@ if(Meteor.isServer) {
 				$set: {
 					title: data.title,
 					alias: data.alias,
+			    	column:data.column,
 					updateAt: new Date()
 				}
 			});
@@ -18,8 +19,9 @@ if(Meteor.isServer) {
 				alias: data.alias,
 				createdAt: new Date(),
 				updateAt: '',
-		    status:1,
-		    trash:false,
+			    status:1,
+			    trash:false,
+			    column:data.column,
 				ownerId: Meteor.userId()
 			});
 		},

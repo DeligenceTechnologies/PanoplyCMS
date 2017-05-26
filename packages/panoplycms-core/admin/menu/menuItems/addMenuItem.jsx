@@ -187,14 +187,35 @@ class AddMenuItem extends Component {
     }else{
       msg = '';
     }*/
+    let menuId = '';
     if (this.props.pageLoading) {
       return <LoadingSpinner />;
+    }else{
+      if(this.props._id ){
+        menuId = this.props._id;
+      }
     }
-
+    let url=[{
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title: 'Menus',
+      url: "/admin/menus",
+      active:false
+    },{
+      title:"Menu Items",
+      url:"/admin/menus/"+menuId+"/MenuItems",
+      active:false
+    },{
+      title:i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM'),
+      url:"/admin/menus/editMenuItem"+this.props._id,
+      active:true
+    }];
     let a = {__html: '<option value="">Root</option>'+this.getDropDown()};
     return (
       <div className="">
-        <Heading  data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} />
+        <Heading key={this.props.pageLoading} data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} url={url} />
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
            <div className="controls-header">
              <div className="form-group">

@@ -138,7 +138,7 @@ class AddArticle extends Component {
 	      url:"/admin/articles",
 	      active:false
 	    },{
-	    	title:"Add Article",
+	    	title:i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES'),
 	    	url:"/admin/articles/add",
 	    	active:true
 	    }];

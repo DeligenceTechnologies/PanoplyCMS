@@ -190,10 +190,10 @@ EditMenuModule = createReactClass({
 											<div className="col-sm-10">
 												<div className="btn-group switch-btn" data-toggle="buttons">
 													<label className={this.data.menuModuleModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
-														<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
+														<input type="radio" className="rad" name="options" ref="options" id="option2"  value={1}/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
 													</label>
 													<label className={this.data.menuModuleModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option" >
-														<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
+														<input type="radio" className="rad" ref="options" name="options" id="option3" value={0} /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
 													</label>
 												</div>
 											</div>

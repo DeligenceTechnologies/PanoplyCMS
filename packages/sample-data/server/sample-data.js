@@ -271,33 +271,6 @@ if(Meteor.isServer){
 			"updatedAt" : new Date()
 		},
 		{
-			"_id" : "SawyKvjuzXEEYKNyD",
-			"title" : "Services Style 1",
-			"desc" : "Services Style 1",
-			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"parentId" : "KzZZECf8FZBPuYZAu",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "services-style-1",
-			"trash" : false,
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "yYMrfCohfJZFu8DR7",
-			"title" : "Services Style 2",
-			"desc" : "Services Style 2",
-			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"parentId" : "KzZZECf8FZBPuYZAu",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "services-style-2",
-			"trash" : false
-		},
-		{
 			"_id" : "9AwxN97eJ4EtxoJDc",
 			"title" : "Services Detail",
 			"desc" : "Services Detail",
@@ -310,19 +283,6 @@ if(Meteor.isServer){
 			"alias" : "services-detail",
 			"trash" : false,
 			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "LiFqNSdyTyRr9crPu",
-			"title" : "Services Style 2.1",
-			"desc" : "Services Style 2.1",
-			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"parentId" : "yYMrfCohfJZFu8DR7",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "services-style-21",
-			"trash" : false
 		},
 		{
 			"_id" : "Cu5ME64CTqDfFFFie",
@@ -723,7 +683,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"\">\n<h2>ABOUT US</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">About Us</li>\n             </ul>\n</div>"
+				"html" : "<div class=\"\">\n<h2>ABOUT US</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">About Us</li>\n             </ul>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -947,7 +907,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"\">\n<h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Services</li>\n             </ul>\n</div>\n"
+				"html" : "<div class=\"\">\n<h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">Services</li>\n             </ul>\n</div>\n"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -985,7 +945,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"\">\n<div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li><a href=\"services.html\">Services</a></li>\n                  <li class=\"active\">Life Insurance</li>\n             </ul>\n          </div>\n        </div>\n</div></div>"
+				"html" : "<div class=\"\">\n<div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Services</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li><a href=\"/services\">Services</a></li>\n                  <li class=\"active\">Life Insurance</li>\n             </ul>\n          </div>\n        </div>\n</div></div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -1004,7 +964,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Gallery</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Gallery</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
+				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Gallery</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">Gallery</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date()
@@ -1057,7 +1017,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Contact Us</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Contact</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
+				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Contact Us</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">Contact</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -1143,7 +1103,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : 12,
-				"html" : "<div>\n<h2>Our Blog</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"index.html\">Home</a></li>\n                  <li class=\"active\">Blog</li>\n             </ul>\n</div>"
+				"html" : "<div>\n<h2>Our Blog</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">Blog</li>\n             </ul>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date()

@@ -8,14 +8,13 @@ import LoadingSpinner from '../../common/loadingSpinner.jsx'
 export default class UserSettings extends Component {
 	logout(event){
 		event.preventDefault();
-		console.log("logout button clicked >>>>>")
 		Meteor.logout();
 		FlowRouter.go('login');
 	}
 	render(){
-		if (this.props.pageLoading) {
+		/*if (this.props.pageLoading) {
 			return <LoadingSpinner />;
-		}
+		}*/
 		let img = Images.findOne({ _id: Meteor.user().profile.imageId })
 		return(
 			<div>

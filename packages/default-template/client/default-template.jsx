@@ -1023,7 +1023,6 @@ ArticleListView = data => {
 	}
 	let regex = /<img.*?src=\"(.*?)\"/;
 	let url = data.article?regex.exec(data.article)[1]:'';
-	console.log(url)
 	return (
 		<div key={data._id} className={"blog-box animated fadeInUp col-md-"+data.grid}>
 			{

@@ -1,40 +1,29 @@
-
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux'
-
 import Heading from '../common/heading.jsx';
-// import AlertMessage from '../common/alertMessage.jsx';
-// import AlertMessageOfError from '../common/alertMessageOfError.jsx';
 import { AlertMessage } from '../common/alertMessage.jsx';
 
+import store from '../store/store.js';
 import { updateWebsiteSettings } from '../actions/websiteSettings_action.js';
 
-/*let createHandlers = function(dispatch) {
-	console.log(dispatch)
-	let onClick = function(id, item) {
-		dispatch(updateWebsiteSettings(id, item)) // <<== undefined!!!!
+let settingHandler = function() {
+	let onClick = function(id, obj) {
+		store.dispatch(updateWebsiteSettings(id, obj))
 	};
 	return {
 		onClick
 	};
-};*/
+};
+
 
 class SystemLayout extends Component {
 	constructor(props) {
     super(props);
- 
-    this.state = {
-			name: ''
-    };
-    // this.handlers = createHandlers(this.props.dispatch);
+
+    this.handler = settingHandler();
   }
-	handleChange(event) {
-		this.setState({ name: event.target.value });
-	}
 	componentDidMount(){
 		$('.options').toggleClass('active');
 		$('.option').button();
@@ -44,9 +33,7 @@ class SystemLayout extends Component {
 		let files = $('#logoId')[0].files[0];
 		let name = $('#sitename').val();
 		let regex = /[^.]+$/;
-		// let siteOffline = $('input[name="options"]:checked').val() == "Yes" ? true : $('input[name="options"]:checked').val()
 		let siteOffline = $('input[name="options"]:checked').val() == 1 ? true : false;
-		// console.log(typeof(siteOffline))
 		let siteMetaKeyword = $('#siteMetaKeyword').val();
 		let siteMetaDesc = $('#siteMetaDesc').val();
 		let id = $('#sitename')[0].name;
@@ -64,40 +51,30 @@ class SystemLayout extends Component {
 				Images.insert(files, (err, fileObj) => {
 					if(fileObj){
 						settingObj.logoId = fileObj._id;
-						Meteor.call('updateSiteName', id, settingObj, (err,data) => {
+						/*Meteor.call('updateSiteName', id, settingObj, (err,data) => {
 							if(err){
 								AlertMessage('ERROR', err.reason, 'error');
 							}else{
-								// this.setState({'successMsg': true})
 								AlertMessage('SUCCESS', 'Successfully! updated website settings.', 'success');
 							}
-						});
-						// this.handlers.onClick(id, settingObj)
-						return dispatch => {
-							dispatch(updateWebsiteSettings(id, settingObj))
-						}
+						});*/
+						this.handler.onClick(id, settingObj)
 					}
 				});
 			}else{
 				AlertMessage('ERROR', 'Unsupported Image format', 'error');
 			}
 		}else{
-			Meteor.call('updateSiteName', id, settingObj, (err,data) => {
+			/*Meteor.call('updateSiteName', id, settingObj, (err,data) => {
 				if(err){
 					AlertMessage('ERROR', err.reason, 'error');
 				}else{
 					AlertMessage('SUCCESS', 'Successfully! updated website settings.', 'success');
 				}
-			});
-			return dispatch => {
-				dispatch(updateWebsiteSettings(id, settingObj))
-			}
+			});*/
+			this.handler.onClick(id, settingObj)
 		}
 	}
-	/*resetSuccessMsg(){
-		this.setState({'successMsg': false})
-		this.setState({'errorMsg': false})
-	}*/
 	restrictLength(event){
 		if (event.currentTarget.value.length > 250){
 			event.currentTarget.value = event.currentTarget.value.substring(0, 250);
@@ -105,36 +82,26 @@ class SystemLayout extends Component {
 	}
 	render() {
 		let img = Images.findOne({ _id:this.props.results.logoId })
-		/*let msg = '';
-		if (this.state.successMsg) {
-			msg = <AlertMessage data={'updated website settings.'} func={this.resetSuccessMsg.bind(this)} />;
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />;
-		}else{
-			msg = ''
-		}*/
 		let url=[{
-	        title:i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION'),
-	        url:"/admin/settings",
-	        active:true
-	    }];
+			title:i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION'),
+			url:"/admin/settings",
+			active:true
+		}];
 		return (
-			<div className="">
+			<div>
 				<Heading data={i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION')} url={url} />
 
-				<div>
-					<form className = "form-horizontal" onSubmit={this.submitForm.bind(this)}>
-					  <div className="controls-header">
-                        <div className="form-group">
-							
+				<form className = "form-horizontal" onSubmit={this.submitForm.bind(this)}>
+				  <div className="controls-header">
+            <div className="form-group">						
 							<div className="col-sm-12">
 								<input type="submit" className="btn custom-default-btn" value='UPDATE'/>
 								&nbsp;&nbsp;
 								<a className="btn custom-default-btn" href={FlowRouter.path('dashboard')}>CANCEL</a>
 							</div>
 						</div>
-					   </div>
-				      <div className="panel-body custom-panel">
+			   	</div>
+		      <div className="panel-body custom-panel">
 						<div className="form-group">
 							<label className="col-sm-2 control-label">Site Name</label>
 							<div className="col-sm-10">
@@ -171,14 +138,16 @@ class SystemLayout extends Component {
 							<div className = "col-sm-10">
 								<input id="logoId" type="file" className="validate" /><br/>
 								<div className="col-md-2">
-									<img src={img ? img.url() :''} className="img-rounded" style={{maxWidth: "100%"}} /> 
+								{
+									img ?
+										<img src={ img.url() } className="img-rounded" style={{maxWidth: "100%"}} /> 
+									: ''
+								}
 								</div>
 							</div>
 						</div>
-					 </div>
-					</form>
-				 
-				</div>
+				 	</div>
+				</form>
 			</div>
 		);
 	}
@@ -189,16 +158,3 @@ export default createContainer(() => {
 		results: PanoplyCMSCollections.Sites.findOne()
 	};
 }, SystemLayout)
-
-/*function mapStateToProps(state) {
-	return {
-		state: state
-	}
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(actions, dispatch)
-	}
-}*/
-

@@ -3,21 +3,26 @@ import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../common/heading.jsx';
-// import AlertMessage from '../common/alertMessage.jsx';
-// import AlertMessageOfError from '../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../common/loadingSpinner.jsx';
-import { AlertMessage } from '../common/alertMessage.jsx';
+// import { AlertMessage } from '../common/alertMessage.jsx';
 
+import store from '../store/store.js';
 import { editMenu } from '../actions/menu_action.js';
+
+let editMenuHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(editMenu(id, obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class EditMenu extends Component {
   constructor(props) {
     super(props);
  
-    /*this.state = {
-      msg: false,
-      errorMsg: false
-    };*/
+    this.handler = editMenuHandler();
   }
   componentDidMount(){
     document.title = "Edit Menu"
@@ -28,34 +33,16 @@ class EditMenu extends Component {
       "title": $('#title').val(),
       "desc": $('#desc').val()
     }
-    Meteor.call("updateMenu", this.props._id, menuData, (err,data) => {
+    /*Meteor.call("updateMenu", this.props._id, menuData, (err,data) => {
       if(err){
         AlertMessage('ERROR', err.reason, 'error');
-        // console.log(err);
       }else{
         AlertMessage('SUCCESS', 'Successfully! updated menu.', 'success');
-        // $('#title').val('')
-        // $('#desc').val('')
       }
-    });
-    return dispatch => {
-      dispatch(editMenu(this.props._id, menuData))
-    }
+    });*/
+    this.handler.onClick(this.props._id, menuData);
   }
-  /*resetSuccessMsg(){
-    this.setState({'msg':false})
-    this.setState({'errorMsg':false})
-  }*/
   render(){
-    /*let msg = '';
-    if(this.state.msg){
-      msg = <AlertMessage data={'updated menu.'} func={this.resetSuccessMsg.bind(this)} />
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-    }else{
-      msg = '';
-    }*/
-
     if (this.props.pageLoading) {
       return <LoadingSpinner />;
     }

@@ -3,18 +3,27 @@ import { render } from 'react-dom';
 
 import { restoreMenuItem } from '../../actions/menuItem_action.js';
 
+let restoreMenuItemHandler = function() {
+  let onClick = function(id) {
+    store.dispatch(restoreMenuItem(id))
+  };
+  return {
+    onClick
+  };
+};
+
 export default class RestoreModal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handler = restoreMenuItemHandler();
+  }
   restoreMenuItem(){
-    Meteor.call('restoreMenuItem', this.props.data._id, (err,data) => {
-      if(err){
-        console.log(err)
-      }else{
-        // console.log(data)
-      }
-    });
-    return dispatch => {
-      dispatch(restoreMenuItem(this.props.data._id))
-    }
+    /*Meteor.call('restoreMenuItem', this.props.data._id, (err,data) => {
+      if(err){}
+      else{}
+    });*/
+    this.handler.onClick(this.props.data._id);
   }
   render(){
     return(

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
@@ -7,8 +6,20 @@ import Positions from './positions.jsx'
 
 var createReactClass = require('create-react-class');
 
+// import store from '../store/store.js';
+import { updateHtmlModule } from '../actions/htmlblock_action.js';
+
+let editHtmlHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(updateHtmlModule(id, obj))
+  };
+  return {
+    onClick
+  };
+};
+
 EditHtmlblock = createReactClass({
-	
+	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
 			menuResults: PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
@@ -23,8 +34,39 @@ EditHtmlblock = createReactClass({
 			checkAllPage:null
 		}
 	},
-	mixins: [ReactMeteorData],
-	
+	componentDidMount(){
+		this.handler = editHtmlHandler();
+
+		let validObj=$("#menuModule").validate({
+			rules: {
+				name: {
+					required: true
+				},
+				position: {
+					required: true
+				},
+				selectMenu: { 
+					required: true
+				}
+			},
+			submitHandler: function (form) { // for demo
+				return false;
+			},
+			errorElement : 'div',
+			errorPlacement: function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		});
+		this.setState({valid:validObj})  
+		$('.options').toggleClass('active');
+		$('.option').button();
+		$('#article').summernote({height: 200});
+	},
 	checkAllPage(){
 		this.setState({
 			checkAllPage:$("#all-page").is(':checked')?"true":"false"
@@ -67,7 +109,7 @@ EditHtmlblock = createReactClass({
 			}else{
 				showTitle = false
 			}
-			obj = {
+			let htmlObj = {
 				name: name,
 				type:'htmlblock',
 				position:position,
@@ -84,74 +126,27 @@ EditHtmlblock = createReactClass({
 				_id:this.props._id
 			}
 
-			Meteor.call('editModule', select, obj,(error,data)=>{
+			/*Meteor.call('editModule', select, htmlObj,(error,data)=>{
 				if(error){
 					AlertMessage('ERROR', error.reason, 'error');
 				}else{
 					console.log("module edit success")
 					AlertMessage('SUCCESS', 'Successfully! updated htmlblock.', 'success');
 				}
-			})
-			return dispatch => {
-				dispatch(updateModule(select, obj))
-			}
+			})*/
+			this.handler.onClick(select, htmlObj);
 		}
-	},
-	componentDidMount(){
-		let validObj=$("#menuModule").validate({
-			rules: {
-				name: {
-					required: true
-				},
-				position: {
-					required: true
-				},
-				selectMenu: { 
-					required: true
-				}
-			},
-			submitHandler: function (form) { // for demo
-				return false;
-			},
-			errorElement : 'div',
-			errorPlacement: function(error, element) {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
-		});
-		this.setState({valid:validObj})  
-		$('.options').toggleClass('active');
-		$('.option').button();
-		$('#article').summernote({height: 200});
 	},
 	componentDidUpdate: function() {
 		$('#article').summernote({height: 200});
 	},
 	componentWillUnmount: function() {
-		// tinymce.remove();
 		$('#article').summernote('destroy');
 	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg':false})
-		this.setState({'errorMsg':false})
-	},*/
 	render(){
 		c = 0;
-
-		/*let msg = '';
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'updated htmlblock.'} func={this.resetSuccessMsg} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg} />
-		}else{
-			msg = '';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Edit Htmlblock</h3>
 				</div>
@@ -171,14 +166,13 @@ EditHtmlblock = createReactClass({
 						<div id="notification"></div>
 					 	<div className="custom-tab">
 							<ul className="nav nav-tabs">
-							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
-							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
-							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+								<li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+								<li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+								<li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
 							</ul>
 							<div className="tab-content">
 								{/* =======> MODULE START<======= */}
-			    					<div id="module-home" className="tab-pane active">
-
+		    					<div id="module-home" className="tab-pane active">
 										<div className = "form-group">
 											<label htmlFor = "firstname" className = "col-sm-2 control-label">Title</label>
 											<div className = "col-sm-10">

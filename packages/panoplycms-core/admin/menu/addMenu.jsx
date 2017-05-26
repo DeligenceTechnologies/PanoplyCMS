@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import Heading from '../common/heading.jsx';
-// import AlertMessage from '../common/alertMessage.jsx';
-// import AlertMessageOfError from '../common/alertMessageOfError.jsx';
-import { AlertMessage } from '../common/alertMessage.jsx';
+// import { AlertMessage } from '../common/alertMessage.jsx';
 
+import store from '../store/store.js';
 import { addMenu } from '../actions/menu_action.js';
+
+let addMenuHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(addMenu(obj))
+  };
+  return {
+    onClick
+  };
+};
 
 export default class AddMenu extends Component {
   constructor(props) {
@@ -16,6 +24,7 @@ export default class AddMenu extends Component {
       language:i18n.getLanguage(),
       valid:'',
     };
+    this.handler = addMenuHandler();
   }
   componentDidMount(){
     document.title = "Add Menu"
@@ -26,48 +35,35 @@ export default class AddMenu extends Component {
       "title": $('#title').val(),
       "desc": $('#desc').val()
     }
-    Meteor.call("insertMenu", menuData, (err, data) => {
+    /*Meteor.call("insertMenu", menuData, (err, data) => {
       if(err){
-        // console.log(err);
         AlertMessage('ERROR', err.reason, 'error');
       }else{
         AlertMessage('SUCCESS', 'Successfully! added menu.', 'success');
         $('#title').val('')
         $('#desc').val('')
       }
-    });
-    return dispatch => {
-      dispatch(addMenu(menuData))
-    }
+    });*/
+    this.handler.onClick(menuData);
+    $('#title').val('');
+    $('#desc').val('');
   }
-  /*resetSuccessMsg(){
-    this.setState({'msg': false})
-    this.setState({'errorMsg': ''})
-  }*/
   render() {
-    /*let msg = '';
-    if(this.state.msg){
-      msg = <AlertMessage data={'added menu.'} func={this.resetSuccessMsg.bind(this)} />
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-    }else{
-      msg = '';
-    }*/
     let url=[{
-        title:"Dashboard",
-        url:"/admin/dashboard",
-        active:false
-      },{
-        title: 'Menus',
-        url: "/admin/menus",
-        active:false
-      },{
-        title:i18n('ADMIN_MENU_ADDMENU'),
-        url:"/admin/menus/add",
-        active:true
-      }];
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title: 'Menus',
+      url: "/admin/menus",
+      active:false
+    },{
+      title:i18n('ADMIN_MENU_ADDMENU'),
+      url:"/admin/menus/add",
+      active:true
+    }];
     return (
-      <div className="">
+      <div>
         <Heading data={i18n('ADMIN_MENU_ADDMENU')} url={url}/>
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}> 
           <div className="controls-header">

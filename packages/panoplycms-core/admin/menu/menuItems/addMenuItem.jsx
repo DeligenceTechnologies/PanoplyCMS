@@ -1,15 +1,22 @@
-
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../../common/heading.jsx';
-// import AlertMessage from '../../common/alertMessage.jsx';
-// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../../common/loadingSpinner.jsx';
-import { AlertMessage } from '../../common/alertMessage.jsx';
+// import { AlertMessage } from '../../common/alertMessage.jsx';
 
+import store from '../../store/store.js';
 import { addMenuItem } from '../../actions/menuItem_action.js';
+
+let addMenuItemHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(addMenuItem(obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class AddMenuItem extends Component {
   constructor(props) {
@@ -22,6 +29,7 @@ class AddMenuItem extends Component {
       MenuItemTypeValue: '',
       MenuValue: this.props._id
     };
+    this.handler = addMenuItemHandler();
   }
   selectMenuItemType(event){
     event.preventDefault();
@@ -47,7 +55,6 @@ class AddMenuItem extends Component {
     let alias = $('#alias').val()?$('#alias').val():$('#title').val();
     alias = alias.toLowerCase().replace(/[^0-9a-zA-Z ]/g, "").replace(/\s+/g, '-');
     let menuItem = PanoplyCMSCollections.MenuItems.find({alias:alias}).fetch();
-    console.log("====> ",menuItem.length)
     if(menuItem.length != 0){
       let menu = PanoplyCMSCollections.Menus.findOne({_id:menuItem[0].mainParentId});
       let html = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\" style={{\"display\":'none'}}>"+
@@ -70,7 +77,7 @@ class AddMenuItem extends Component {
         "alias":alias,
         "homepage": false
       }
-      Meteor.call("insertMenuItem", menuItemsData, (err,data)=>{
+      /*Meteor.call("insertMenuItem", menuItemsData, (err,data)=>{
         if(err){
           AlertMessage('ERROR', err.reason, 'error');
           // console.log(err);
@@ -83,16 +90,16 @@ class AddMenuItem extends Component {
           $('#selectMenu').val(this.props._id);
           $('#selectMenuItemType').val('');
         }
-      });
-      return dispatch => {
-        dispatch(addMenuItem(menuItemsData))
-      }
+      });*/
+      this.handler.onClick(menuItemsData);
+      this.setState({ itemType :'' });
+      $('#title').val('');
+      $('#desc').val('');
+      $('#selectParent').val('');
+      $('#selectMenu').val(this.props._id);
+      $('#selectMenuItemType').val('');
     }
   }
-  /*resetSuccessMsg(){
-    this.setState({'msg':false})
-    this.setState({'errorMsg':false})
-  }*/
   fecthCategoryArticles(event){
     event.preventDefault();
   }
@@ -179,22 +186,35 @@ class AddMenuItem extends Component {
     return getElements();
   }
   render(){
-    /*let msg = '';
-    if(this.state.msg){
-      msg = <AlertMessage data={'added menu item.'} func={this.resetSuccessMsg.bind(this)}/>
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)}/>
-    }else{
-      msg = '';
-    }*/
+    let menuId = '';
     if (this.props.pageLoading) {
       return <LoadingSpinner />;
+    }else{
+      if(this.props._id ){
+        menuId = this.props._id;
+      }
     }
-
+    let url=[{
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title: 'Menus',
+      url: "/admin/menus",
+      active:false
+    },{
+      title:"Menu Items",
+      url:"/admin/menus/"+menuId+"/MenuItems",
+      active:false
+    },{
+      title:i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM'),
+      url:"/admin/menus/editMenuItem"+this.props._id,
+      active:true
+    }];
     let a = {__html: '<option value="">Root</option>'+this.getDropDown()};
     return (
       <div className="">
-        <Heading  data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} />
+        <Heading key={this.props.pageLoading} data={i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM')} url={url} />
         <form id="non-editable" className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
            <div className="controls-header">
              <div className="form-group">

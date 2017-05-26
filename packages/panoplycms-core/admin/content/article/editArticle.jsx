@@ -3,12 +3,19 @@ import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../../common/heading.jsx';
-// import AlertMessage from '../../common/alertMessage.jsx';
-// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../../common/loadingSpinner.jsx';
 import { AlertMessage } from '../../common/alertMessage.jsx';
 
 import { updateArticle } from '../../actions/article_action.js';
+
+let editArticleHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(updateArticle(id, obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class EditArticle extends Component {
 	constructor(props) {
@@ -18,6 +25,7 @@ class EditArticle extends Component {
 			valid:'',
 			tagTitle:''
     };
+    this.handlers = editArticleHandler();
   }
   componentDidMount(){
 		let arrayOftag = [];
@@ -96,58 +104,54 @@ class EditArticle extends Component {
 				title: title,
 				alias: alias,
 				category: $("#selectCategory").val(),
-				// article: tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim(),
 				article: $('#article').summernote('code'),
 				metaKeyword: $('#metaKeyword').val(),
 				metaDescription: $('#metaDescription').val(),
 				tags: _.pluck(objOfTags, 'value')
 			}
-			Meteor.call('editArticle', FlowRouter.getParam("_id"), articleData, (err,data) => {
+			/*Meteor.call('editArticle', FlowRouter.getParam("_id"), articleData, (err,data) => {
 				if(err){
-					// this.setState({ errorMsg: err.reason })
 					AlertMessage('ERROR', err.reason, 'error');
 				}else{
-					// this.setState({ successMsg: true });
 					AlertMessage('SUCCESS', 'Successfully! updated article.', 'success');
 				}
-			});
-			return dispatch => {
-				dispatch(updateArticle(FlowRouter.getParam("_id"), articleObj))
-			}
+			});*/
+			this.handlers.onClick(FlowRouter.getParam("_id"), articleData);
 		}
 	}
-	/*resetSuccessMsg(){
-		this.setState({ 'successMsg':false })
-		this.setState({ 'errorMsg':false })
-	}*/
 	render(){
 		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
 		}
-    
-		/*let msg = '';
-		if(this.state.successMsg){
-			msg = <AlertMessage data={'updated article.'} func={this.resetSuccessMsg.bind(this)} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-		}else{
-			msg = '';
-		}*/
+
+		let url=[{
+	      title:"Dashboard",
+	      url:"/admin/dashboard",
+	      active:false
+	    },{
+	      title:"Articles",
+	      url:"/admin/articles",
+	      active:false
+	    },{
+	    	title:i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE'),
+	    	url:"/admin/articles/edit/"+FlowRouter.getParam("_id"),
+	    	active:true
+	    }];
 
 		return (
-			<div className="">
-				<Heading  data={i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE')} />
-			<form id="edit-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
-			  <div className="controls-header">
+			<div>
+				<Heading key={this.props.pageLoading}  data={i18n('ADMIN_COTNENTS_ARTICLES_EDITARTICLE')} url={url} />
+				<form id="edit-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
+				  <div className="controls-header">
             <div className="form-group">
 							<div className="col-sm-12">
 								<button className="btn custom-default-btn" type="submit">UPDATE</button>
 								<a className="btn custom-default-btn" href={FlowRouter.path('articles')}>CANCEL</a>
 							</div>
 						</div>
-			  </div>
-				<div className="panel-body custom-panel">
-					<div id="notification"></div>
+				  </div>
+					<div className="panel-body custom-panel">
+						<div id="notification"></div>
 						<div className="form-group">
 							<label htmlFor="title" className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
 							<div className = "col-sm-10">
@@ -195,8 +199,7 @@ class EditArticle extends Component {
 								<input type="textarea" id='metaDescription' name="desc" defaultValue={this.props.results && this.props.results.metaDescription ? this.props.results.metaDescription : ''} className="form-control" />
 							</div>
 						</div>
-						
-			  	</div>
+					</div>
 			  </form>
 			</div>
 		)
@@ -212,5 +215,4 @@ export default createContainer(() => {
 		catdata: PanoplyCMSCollections.Categories.find().fetch(),
 		tags: PanoplyCMSCollections.Tags.find({}).fetch()
 	}
-
 }, EditArticle)

@@ -3,18 +3,28 @@ import { render } from 'react-dom';
 
 import { restoreCategory } from '../../actions/category_action.js';
 
+let restoreCategoryHandler = function() {
+  let onClick = function(id) {
+    store.dispatch(restoreCategory(id))
+  };
+  return {
+    onClick
+  };
+};
+
 export default class ModalOfRestoreCat extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handler = restoreCategoryHandler();
+  }
   restoreCategory(){
-    Meteor.call('restore_category', this.props.data._id,function(err,data){
+    /*Meteor.call('restore_category', this.props.data._id,function(err,data){
       if(err){
         console.log(err)
-      }else{
-        // console.log(data)
-      }
-    });
-    return dispatch => {
-      dispatch(restoreCategory(this.props.data._id))
-    }
+      }else{}
+    });*/
+    this.handler.onClick(this.props.data._id);
   }
   render(){
     return(

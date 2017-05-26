@@ -55,29 +55,29 @@ class ListArticles extends Component {
 	      active:true
 	    }];
 		return (
-			<div className="">
+			<div>
 				<Heading data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')} url={url}/>
-		        <div className="custom-table">
-	           		<div className="row">
-		              	<div className="col-sm-12">
-		                 	<div className="controls-header form-inline ">
-			                    <a className="btn custom-default-btn" href={FlowRouter.path('addArticle')}>
+        <div className="custom-table">
+       		<div className="row">
+          	<div className="col-sm-12">
+             	<div className="controls-header form-inline ">
+                <a className="btn custom-default-btn" href={FlowRouter.path('addArticle')}>
 									<i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')}
 								</a>
 								<div className="dataTables_length dataTables_wrapper pull-right">
-								  	<label> Display
-									    <select id="display" className="form-control input-sm" onChange={this.showArticles.bind(this)}>
-										    <option value="active">Active</option>
-										    <option value="trash">Trash</option>
-									     </select>
-								    </label>
-						      	</div>
-                 			</div>
-      					</div>
-   					</div>
-		            <div className="panel panel-default panel-table">
-		           		<div className="panel-body">
-					    	<div className="table-responsive" id="non-editable">
+							  	<label> Display
+								    <select id="display" className="form-control input-sm" onChange={this.showArticles.bind(this)}>
+									    <option value="active">Active</option>
+									    <option value="trash">Trash</option>
+								     </select>
+							    </label>
+				      	</div>
+         			</div>
+  					</div>
+ 					</div>
+          <div className="panel panel-default panel-table">
+         		<div className="panel-body">
+				    	<div className="table-responsive" id="non-editable">
 								{
 									nodata == '' ?
 										<table className="table table-striped table-bordered table-list table-hover">
@@ -104,10 +104,9 @@ class ListArticles extends Component {
 									: 
 										''
 								}
-					    	</div>
-					     	{ nodata }
-					     	<div className="col-md-3 col-md-offset-5">
-
+				     		{ nodata }
+				    	</div>
+				     	<div className="col-md-3 col-md-offset-5">
 								{
 									!nodata ?
 									  !this.state.trashListShow ?
@@ -119,11 +118,10 @@ class ListArticles extends Component {
 									  : ''
 									:''
 								}
-			      			</div>
+		      		</div>
 						</div>
 					</div>
-				</div>
-				
+				</div>				
 				{
 					this.props.results.map((result) => {
 						return <ModalOfArticles key={result._id} data={result} stateVal={this.state.trashListShow} />         

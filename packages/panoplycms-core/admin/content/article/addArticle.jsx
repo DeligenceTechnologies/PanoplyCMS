@@ -3,12 +3,20 @@ import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../../common/heading.jsx';
-// import AlertMessage from '../../common/alertMessage.jsx';
-// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../../common/loadingSpinner.jsx';
-import { AlertMessage } from '../../common/alertMessage.jsx';
+// import { AlertMessage } from '../../common/alertMessage.jsx';
 
+import store from '../../store/store.js';
 import { insertArticle } from '../../actions/article_action.js';
+
+let addArticleHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(insertArticle(obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class AddArticle extends Component {
 	constructor(props) {
@@ -18,6 +26,7 @@ class AddArticle extends Component {
 			language: i18n.getLanguage(),
 			valid: '',
 		};
+		this.handlers = addArticleHandler();
 	}
 	componentDidMount(){
 		$('#article').summernote({ height: 200 });
@@ -25,7 +34,7 @@ class AddArticle extends Component {
 		$('#tokenfield').tokenfield('destroy');
 		document.title = "Add Article";
 
-		setTimeout(() => {
+		/*setTimeout(() => {
 			let validObj = $("#add-article").validate({
 				rules: {
 					title: {
@@ -52,10 +61,9 @@ class AddArticle extends Component {
 				}
 			});
 			this.setState({ valid:validObj })
-		}, 3000)
+		}, 3000)*/
 	}
 	componentWillUnmount() {
-		// tinymce.remove();
 		$('#article').summernote('destroy');
 	}
 	componentDidUpdate() {
@@ -78,7 +86,7 @@ class AddArticle extends Component {
 	}
 	submitData(event){
 		event.preventDefault();
-		if(this.state.valid.form()){
+		// if(this.state.valid.form()){
 			let objOfTags=$('#tokenfield').tokenfield('getTokens');
 			let title = $('#title').val();
 			let alias = generateAlias(title);
@@ -86,64 +94,53 @@ class AddArticle extends Component {
 				title: title,
 				alias: alias,
 				category: $("#selectCategory").val(),
-				// article: tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim()
 				article: $('#article').summernote('code'),
 				metaKeyword: $("#metaKeyword").val(),
 				metaDescription: $("#metaDescription").val(),
 				tags: _.pluck(objOfTags, 'value')
 			}
 
-			Meteor.call('addArticles', articleObj, (err, data) => {
+			/*Meteor.call('addArticles', articleObj, (err, data) => {
 				if(err){
-					// this.setState({ errorMsg : 'Internal server error or duplicate article can not insert.'})
 					AlertMessage('ERROR', 'Internal server error or duplicate article can not insert.', 'error');
 				}else{
 					AlertMessage('SUCCESS', 'Successfully! added article.', 'success');
 					$('#title').val('');
 					$("#selectCategory").val('');
 					$('#tokenfield').tokenfield('setTokens', ' ');
-					// tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
 					$("#article").summernote("code", "");
 					$("#metaKeyword").val('');
 					$("#metaDescription").val('');
 				}
-			});
-			return dispatch => {
-				dispatch(insertArticle(articleObj))
-			}
-		}
+			});*/
+			this.handlers.onClick(articleObj);
+			$('#title').val('');
+			$("#selectCategory").val('');
+			$('#tokenfield').tokenfield('setTokens', ' ');
+			$("#article").summernote("code", "");
+			$("#metaKeyword").val('');
+			$("#metaDescription").val('');
+		// }
 	}
-	/*resetSuccessMsg(){
-		this.setState({ 'msg': false })
-		this.setState({ 'errorMsg': false })
-	}*/
 	render(){
 		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
 		}
-		/*let msg='';
-		if(this.state.msg){
-			msg = <AlertMessage data={'added article.'} func={this.resetSuccessMsg.bind(this)} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-		}else{
-			msg = '';
-		}*/
 		let url=[{
-	      title:"Dashboard",
-	      url:"/admin/dashboard",
-	      active:false
-	    },{
-	      title:"Articles",
-	      url:"/admin/articles",
-	      active:false
-	    },{
-	    	title:"Add Article",
-	    	url:"/admin/articles/add",
-	    	active:true
-	    }];
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title:"Articles",
+      url:"/admin/articles",
+      active:false
+    },{
+    	title:i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES'),
+    	url:"/admin/articles/add",
+    	active:true
+    }];
 		return (
-			<div className="">
+			<div>
 				<Heading key={this.props.pageLoading} data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} url={url}/>
 				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
 				  <div className="controls-header">

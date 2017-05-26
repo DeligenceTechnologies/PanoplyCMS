@@ -413,7 +413,101 @@ a:hover img {
 	7. Buttons
 ====================================================================
 ***/
+.theme-btn{
+ display:inline-block;
+ transition:all 0.3s ease;
+ -moz-transition:all 0.3s ease;
+ -webkit-transition:all 0.3s ease;
+ -ms-transition:all 0.3s ease;
+ -o-transition:all 0.3s ease;
+}
 
+
+
+/*Btn Style One*/
+
+.btn-style-one{
+ position:relative;
+ padding:10px 32px;
+ line-height:26px;
+ background:#FF5722;
+ color:#ffffff!important;
+ font-size:16px;
+ font-weight:400;
+ text-transform:uppercase;
+  border: 2px solid #fff;
+  margin-top:30px;
+  border-radius:4px;
+}
+
+.btn-style-one:hover{
+ background: none;
+ border-color:#fff;
+ color:#e5a62c;
+}
+
+/*Btn Style Two*/
+
+.btn-style-two{
+ position:relative;
+ padding:8px 30px;
+ line-height:26px;
+ text-transform:uppercase;
+ background:none;
+ color:#fff!important;
+ border: 2px solid #fff;
+ font-size:16px;
+ font-weight:700;
+  border-radius:4px;
+}
+
+.btn-style-two:hover{
+ color:#ffffff;
+ background-color:#FF5722;
+}
+
+/*Btn Style Three*/
+
+.btn-style-three{
+ position: relative;
+    padding: 8px 30px;
+    line-height: 26px;
+    background: #2196f3;
+    color: #ffffff!important;
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-transform: uppercase;
+ margin-top:10px;
+}
+
+.btn-style-three:hover{
+ background: none;
+ border-color:#2196f3;
+ color:#2196f3!important;
+}
+
+/*Btn Style Four*/
+
+.btn-style-four{
+ position:relative;
+ padding:8px 25px;
+ line-height:26px;
+ text-transform:uppercase;
+ background:none;
+ color:#fff!important;
+ border:2px solid #fff;
+ font-size:15px;
+ font-weight:400;
+ border-radius:4px;
+}
+
+.btn-style-four:hover{
+ color:#ffffff;
+ border-color:#fff;
+ background-color:#2196f3;
+}
 
 /*** 
 ====================================================================
@@ -708,11 +802,13 @@ a:hover img {
 	11. Header
 ====================================================================
 ***/
-.header {
-    width: 100%;
-    z-index: 99;    
-    height: 59px;
-    background: #2196f3;
+@media(min-width: 769px) {
+	.header {
+	    width: 100%;
+	    z-index: 99;    
+	    height: 61px;
+	    background: #2196f3;
+	}
 }
 
 #dt-mainHeader.sticky {
@@ -729,7 +825,7 @@ a:hover img {
     padding: 23px 5% 13px;
 }
 .top-head {
-    padding: 25px 0;
+    padding: 15px 0;
 }
 .top-left ul li {
     color: #ffffff;
@@ -955,12 +1051,13 @@ a:hover img {
   13. Main Slider 
 ================================================
 */
-
-.main-slider {
-	width: 100%;
-	position: relative;
-	margin-top: -30px;
-	background: #333;
+@media(min-width: 769px) {
+	.main-slider {
+		width: 100%;
+		position: relative;
+		margin-top: -30px;
+		background: #333;
+	}
 }
 
 .main-slider .tp-caption{
@@ -1396,6 +1493,8 @@ a:hover img {
 ================================================
 */
 
+
+
 .testimonial-wrap{
     background-image:url(/images/slider/testimonial-bg.jpg);
     background-position: center center;
@@ -1676,7 +1775,27 @@ a:hover img {
  }
  .categories-post{
 }
+.tag{
+	margin: 20px 0px;
+}
 
+.tag .label {
+    display: inline;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    margin: 10px 5px 10px 0px;
+}
+
+.tag .label-info {
+    background-color: #a0d498;
+}
 
  /*
 ================================================
@@ -1791,8 +1910,26 @@ footer{
     color: #FFF;
 }
 
-.legal-links {
+.legal-links li {
+    display: inline-block;
+    list-style: none;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 10px;
+	 position:relative;
+	 padding-right:20px;
+	 cursor: pointer;
 }
+.legal-links li:after {
+	 position:absolute;
+	 content:'/';
+	 right:0;
+	 top:0;
+	 color:#fff;
+}
+.legal-links li:last-child:after {
+ display:none;
+ }
 
 .legal-links h3 {
     color: #fff;
@@ -1842,7 +1979,7 @@ footer{
 	background: #3a3333;
 	text-align: center;
 	color: #fff;
-	margin-top: -30px;
+	margin-top: -50px;
 	margin-bottom: 40px;
 }
 
@@ -2335,6 +2472,11 @@ footer{
 	.logo{
 		text-align:center;
 	}
+	.header {
+	    width: 100%;
+	    z-index: 99;
+	    background: #2196f3;
+	}
 	.main_nav{
 		margin:0;
 		padding:0px;
@@ -2433,6 +2575,12 @@ footer{
 	    display:none;
 	}
 	
+	.main-slider{
+		width: 100%;
+	    position: relative;
+	    margin-top: -22px;
+	    background: #333;
+	}
 }
 
 
@@ -2617,5 +2765,4 @@ footer{
 .main_nav button {
   display: none;
 }
-   */
-
+*/

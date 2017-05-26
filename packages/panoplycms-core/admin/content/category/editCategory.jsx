@@ -3,21 +3,24 @@ import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../../common/heading.jsx';
-// import AlertMessage from '../../common/alertMessage.jsx';
-// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../../common/loadingSpinner.jsx';
-import { AlertMessage } from '../../common/alertMessage.jsx';
+// import { AlertMessage } from '../../common/alertMessage.jsx';
 
 import { editCategory } from '../../actions/category_action.js';
+
+let editCategoryHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(editCategory(id, obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class EditCategory extends Component {
   constructor(props) {
     super(props);
- 
-    /*this.state = {
-      errorMsg: false,
-      successMsg: false
-    };*/
+    this.handler = editCategoryHandler();
   }
   submitData(event){
     event.preventDefault();
@@ -25,36 +28,19 @@ class EditCategory extends Component {
     let alias = generateAlias(title);
     let categoryObj = {
       title: title,
-      alias: alias
+      alias: alias,
+      column: $('#number').val()
     }
-    Meteor.call('update_category', this.props._id, categoryObj,(err,data)=>{
+    /*Meteor.call('update_category', this.props._id, categoryObj,(err,data)=>{
       if(err)
         AlertMessage('ERROR', err.reason, 'error');
       else{
         AlertMessage('SUCCESS', 'Successfully! updated category.', 'success');
-        // $('#title').val('')
       }
-    });
-    return dispatch => {
-      dispatch(editCategory(this.props._id, categoryObj))
-    }
+    });*/
+    this.handler.onClick(this.props._id, categoryObj);
   }
-  /*resetSuccessMsg(){
-    this.setState({successMsg:false});
-    this.setState({errorMsg:false})
-  }*/
   render() {
-    /*let msg = '';
-    if (this.props.pageLoading) {
-      return <LoadingSpinner />;
-    }
-    if(this.state.successMsg){
-      msg = <AlertMessage data={'updated category.'} func={this.resetSuccessMsg.bind(this)} />
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-    }else{
-      msg = ''
-    }*/
     let url=[{
       title:"Dashboard",
       url:"/admin/dashboard",
@@ -69,9 +55,8 @@ class EditCategory extends Component {
       active:true
     }];
     return (
-        <div className="">
+        <div>
           <Heading key={this.props.pageLoading} data= {i18n('ADMIN_COTNENTS_CATEGORY_EDITCATEGORY')} url={url}/>
-          { /*msg*/ }
           <form className = "form-horizontal" role = "form" onSubmit={this.submitData.bind(this)}>
            <div className="controls-header">
               <div className="form-group">
@@ -88,7 +73,14 @@ class EditCategory extends Component {
                 <input key={this.props.pageLoading} type = "text" id="title" className="form-control" defaultValue={this.props.categoryData && this.props.categoryData.title?this.props.categoryData.title:''} placeholder = "Enter title" required />
               </div>
               </div>
+              <div className="form-group">
+               <label className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY_FORM_ARTICLE_NUMBER')}</label>
+                <div className="col-sm-7">
+                 <input key={this.props.pageLoading} type = "number" id="number" min={1} max={12} className="form-control" placeholder = "Enter number" defaultValue={this.props.categoryData && this.props.categoryData.column?this.props.categoryData.column:1} required />
+                </div>
+             </div>
             </div>
+
           </form>
         </div>
       )
@@ -98,7 +90,6 @@ class EditCategory extends Component {
 
 export default createContainer((data)=>{
   let handle = Meteor.subscribe('Categories', data._id)
-  // console.log("data._id ==> ",data._id)
   return {
     pageLoading: !handle.ready(),
     categoryData: PanoplyCMSCollections.Categories.findOne({_id: data._id})

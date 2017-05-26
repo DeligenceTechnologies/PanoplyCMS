@@ -6,6 +6,18 @@ var createReactClass = require('create-react-class');
 import MenuItemType from './menuItemTypes.jsx'
 import Positions from './positions.jsx';
 
+// import store from '../store/store.js';
+import { updateSliderModule } from '../actions/slidermodule_action.js';
+
+let editSliderHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(updateSliderModule(id, obj))
+  };
+  return {
+    onClick
+  };
+};
+
 EditSliderModule = createReactClass({
 	getInitialState(){
 		return {
@@ -21,11 +33,9 @@ EditSliderModule = createReactClass({
 			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'})
 		};
 	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg': false})
-		this.setState({'errorMsg': false})
-	},*/
 	componentDidMount(){
+		this.handler = editSliderHandler();
+
 		// $('#slider-content').summernote({ height: 200 });
 		$('.options').toggleClass('active');
 		$('.option').button();
@@ -111,16 +121,17 @@ EditSliderModule = createReactClass({
 								published: $(".published").is(':checked'),
 								bgImageId: fileObj. _id
 							})
-							select = {
+							let select = {
 								_id: this.props._id
 							}
-							Meteor.call('editModule', select, sliderObj, (error,data) => {
+							/*Meteor.call('editModule', select, sliderObj, (error,data) => {
 								if(error){
 									AlertMessage('ERROR', err.reason, 'error');
 								}else{
 									AlertMessage('SUCCESS', 'Successfully! Updated slider module.', 'success');
 								}
-							})
+							})*/
+							this.handler.onClick(select, sliderObj);
 						}
 					})
 				}else{
@@ -139,16 +150,17 @@ EditSliderModule = createReactClass({
 						})
 					})
 				: ''
-				select = {
+				let select = {
 					_id: this.props._id
 				}
-				Meteor.call('editModule', select, sliderObj, (error,data) => {
+				/*Meteor.call('editModule', select, sliderObj, (error,data) => {
 					if(error){
 						AlertMessage('ERROR', err.reason, 'error');
 					}else{
 						AlertMessage('SUCCESS', 'Successfully! Updated slider module.', 'success');
 					}
-				})
+				})*/
+				this.handler.onClick(select, sliderObj);
 			}
 		}else{
 			let title = [], content = [], linkText = [], linkUrl = [], published = [], imageObj = [];
@@ -174,16 +186,17 @@ EditSliderModule = createReactClass({
 									published: published[i],
 									bgImageId: fileObj. _id
 								});
-								select = {
+								let select = {
 									_id:this.props._id
 								}
-								Meteor.call('editModule', select, sliderObj, (error,data) => {
+								/*Meteor.call('editModule', select, sliderObj, (error,data) => {
 									if(error){
 										AlertMessage('ERROR', err.reason, 'error');
 									}else{
 										AlertMessage('SUCCESS', 'Successfully! Updated slider module.', 'success');
 									}
-								})
+								})*/
+								this.handler.onClick(select, sliderObj);
 							}
 						})
 					}else{
@@ -199,32 +212,25 @@ EditSliderModule = createReactClass({
 						bgImageId: imageId[i]
 					});
 					if(sliderObj.moduleData.length == content.length) {
-						select = {
+						let select = {
 							_id:this.props._id
 						}
-						Meteor.call('editModule', select, sliderObj, (error,data) => {
+						/*Meteor.call('editModule', select, sliderObj, (error,data) => {
 							if(error){
 								AlertMessage('ERROR', err.reason, 'error');
 							}else{
 								AlertMessage('SUCCESS', 'Successfully! Updated slider module.', 'success');
 							}
-						})
+						})*/
+						this.handler.onClick(select, sliderObj);
 					}
 				}
 			}
 		}
 	},
 	render() {
-		/*let msg = ''
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'Updated slider module.'} func={this.resetSuccessMsg} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg} />
-		}else{
-			msg = '';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Update Slider Module</h3>
 				</div>

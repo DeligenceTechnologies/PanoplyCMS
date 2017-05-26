@@ -3,8 +3,20 @@ import { render } from 'react-dom';
 
 var createReactClass = require('create-react-class');
 
-import MenuItemType from './menuItemTypes.jsx'
+import MenuItemType from './menuItemTypes.jsx';
 import Positions from './positions.jsx';
+
+import store from '../store/store.js';
+import { insertSliderModule } from '../actions/slidermodule_action.js';
+
+let addSliderHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(insertSliderModule(obj))
+  };
+  return {
+    onClick
+  };
+};
 
 AddSliderModule = createReactClass({
 	mixins: [ReactMeteorData],
@@ -19,11 +31,8 @@ AddSliderModule = createReactClass({
 			checkAllPage:null
 		}
 	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg': false})
-		this.setState({'errorMsg': false})
-	},*/
 	componentDidMount(){
+		this.handler = addSliderHandler();
 		// $('#slider-content').summernote({ height: 200 });
 		// $('.option').toggleClass('active');
     $('.option').button();
@@ -48,7 +57,6 @@ AddSliderModule = createReactClass({
 		});
 	},
 	componentWillUnmount: function() {
-		// tinymce.remove();
 		// $('#slider-content').summernote('destroy');
 	},
 	checkAllPage(){
@@ -89,7 +97,7 @@ AddSliderModule = createReactClass({
 							published: $(".published").is(':checked'),
 							bgImageId: fileObj. _id
 						})
-						Meteor.call('addModule', sliderObj, (error,data) => {
+						/*Meteor.call('addModule', sliderObj, (error,data) => {
 							if(error){
 								AlertMessage('ERROR', err.reason, 'error');
 							}else{
@@ -101,10 +109,16 @@ AddSliderModule = createReactClass({
 								$("#slider-content").val('');
 								$('#bg-image').val('');
 								// $("li.list-group-item.slider:not(:first-child)").remove();
-								// FlowRouter.go('modulesManager')
-
 							}
-						})
+						})*/
+						this.handler.onClick(sliderObj);
+						this.refs.name.value = '';
+						this.refs.title.value = '';
+						this.refs.linkText.value = '';
+						this.refs.linkUrl.value = '';
+						$("#slider-content").val('');
+						$('#bg-image').val('');
+						// $("li.list-group-item.slider:not(:first-child)").remove();
 					}
 				})
 			}else{
@@ -132,7 +146,7 @@ AddSliderModule = createReactClass({
 								bgImageId: fileObj. _id
 							});
 							if(sliderObj.moduleData.length == content.length) {
-								Meteor.call('addModule', sliderObj, (error,data) => {
+								/*Meteor.call('addModule', sliderObj, (error,data) => {
 									if(error){
 										AlertMessage('ERROR', err.reason, 'error');
 									}else{
@@ -143,10 +157,17 @@ AddSliderModule = createReactClass({
 										this.refs.linkUrl.value = '';
 										$("#slider-content").val('');
 										$('#bg-image').val('');
-										// FlowRouter.go('modulesManager')
 										$("li.list-group-item.slider:not(:first-child)").remove();
 									}
-								})
+								})*/
+								this.handler.onClick(sliderObj);
+								this.refs.name.value = '';
+								this.refs.title.value = '';
+								this.refs.linkText.value = '';
+								this.refs.linkUrl.value = '';
+								$("#slider-content").val('');
+								$('#bg-image').val('');
+								$("li.list-group-item.slider:not(:first-child)").remove();
 							}
 						}
 					})
@@ -157,16 +178,8 @@ AddSliderModule = createReactClass({
 		}
 	},
 	render() {
-		/*let msg = '';
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'added slider module.'} func={this.resetSuccessMsg} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg} />
-		}else{
-			msg = '';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Add Slider Module</h3>
 				</div>
@@ -342,7 +355,7 @@ SliderBlock = data => {
 	return(
 		<section className="main-slider" data-start-height="600" data-slide-overlay="yes">
 			<div className="tp-banner-container">
-				<div className={data.moduleClass+"tp-banner"}>
+				<div className={data.moduleClass+" tp-banner"}>
 					<ul>
 						{
 							dataArr.map((value, index) => {
@@ -368,7 +381,7 @@ SliderBlock = data => {
 												data-endspeed="1200"
 												data-endeasing="Power4.easeIn"
 											>
-												<h2 className="big-title text-center">{value && value.title ? value.title :''}</h2>
+												<h2 className="big-title text-center">{value && value.description ? value.description :''}</h2>
 											</div>
 
 											<div className="tp-caption sfr sfb tp-resizeme"
@@ -384,7 +397,7 @@ SliderBlock = data => {
 												data-endspeed="1200"
 												data-endeasing="Power4.easeIn"
 											>
-												<div className="normal-text text-center">{value && value.description ? value.description :''}</div>
+												<div className="normal-text text-center">{value && value.title ? value.title :''}</div>
 												{/*<!--Slider Separeter Line-->*/}
 												<div className="slider-separeter-line">
 													<div className="line-one"></div>
@@ -393,20 +406,20 @@ SliderBlock = data => {
 											</div>
 
 											<div className="tp-caption sfl sfb tp-resizeme"
-		                    data-x="center" data-hoffset="0"
-		                    data-y="center" data-voffset="70"
-		                    data-speed="1500"
-		                    data-start="1000"
-		                    data-easing="easeOutExpo"
-		                    data-splitin="none"
-		                    data-splitout="none"
-		                    data-elementdelay="0.01"
-		                    data-endelementdelay="0.3"
-		                    data-endspeed="1200"
-		                    data-endeasing="Power4.easeIn"
-		                  >
-		                    <a href={value && value.linkUrl ? value.linkUrl :''} className="white-btn">{value && value.linkTitle ? value.linkTitle :''}</a>
-		                  </div>
+							                    data-x="center" data-hoffset="0"
+							                    data-y="center" data-voffset="70"
+							                    data-speed="1500"
+							                    data-start="1000"
+							                    data-easing="easeOutExpo"
+							                    data-splitin="none"
+							                    data-splitout="none"
+							                    data-elementdelay="0.01"
+							                    data-endelementdelay="0.3"
+							                    data-endspeed="1200"
+							                    data-endeasing="Power4.easeIn"
+						                  	>
+	                    						<a href={value && value.linkUrl ? value.linkUrl :''} className="theme-btn btn-style-one">{value && value.linkTitle ? value.linkTitle :''}</a>
+	                  						</div>
 										</li>
 									);
 								}else{

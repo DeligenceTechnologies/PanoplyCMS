@@ -8,18 +8,30 @@ import LoadingSpinner from '../../common/loadingSpinner.jsx';
 
 import { editDefaultMenuItem } from '../../actions/menuItem_action.js';
 
+let defaultMenuItemHandler = function() {
+  let onClick = function(id, homepage) {
+    store.dispatch(editDefaultMenuItem(id, homepage))
+  };
+  return {
+    onClick
+  };
+};
+
 class MenuItemsDataList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handler = defaultMenuItemHandler();
+  }
   changeDefaultValue(event){
     event.preventDefault();
-    Meteor.call("updateDefaultMenuItem", this.props.data._id, this.props.homepage, (err,data)=>{
+    /*Meteor.call("updateDefaultMenuItem", this.props.data._id, this.props.homepage, (err,data)=>{
       if(err){
         console.log(err)
       }else{
       }
-    });
-    return dispatch => {
-      dispatch(editDefaultMenuItem(this.props.data._id, this.props.homepage))
-    }
+    });*/
+    this.handler.onClick(this.props.data._id, this.props.homepage);
   }
   render() {
     if(this.props.data._id == this.props.homepage){

@@ -3,7 +3,22 @@ import { render } from 'react-dom';
 
 import Positionn from './positionn.jsx'
 import MenuItemTypes from './menuItemTypes.jsx'
+
 var createReactClass = require('create-react-class');
+
+// import store from '../store/store.js';
+import { updateMenuModule } from '../actions/menumodule_action.js';
+
+var createReactClass = require('create-react-class');
+
+let editMenuModuleHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(updateMenuModule(id, obj))
+  };
+  return {
+    onClick
+  };
+};
 
 EditMenuModule = createReactClass({
 	getInitialState(){
@@ -20,6 +35,38 @@ EditMenuModule = createReactClass({
 			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'}),
 			menuModuleModuleData: PanoplyCMSCollections.Modules.findOne({_id:this.props._id})
 		};
+	},
+	componentDidMount(){
+		let validObj=$("#menuModule").validate({
+			rules: {
+				title: {
+					required: true
+				},
+				position: {
+					required: true
+				},
+				selectMenu: { 
+					required: true
+				}
+			},
+			submitHandler: function (form) { // for demo
+				return false;
+			},
+			errorElement : 'div',
+			errorPlacement: function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		});
+		this.setState({valid:validObj})  
+		$('.options').toggleClass('active');
+		$('.option').button();
+
+		this.handler = editMenuModuleHandler();
 	},
 	checkAllPage(){
 		this.setState({
@@ -63,7 +110,8 @@ EditMenuModule = createReactClass({
 			}else{
 				showTitle = false
 			}
-			obj = {
+
+			let menuModuleObj = {
 				name: title,
 				type:'menumodule',
 				position:position,
@@ -76,70 +124,25 @@ EditMenuModule = createReactClass({
 					menuItem:menu
 				}
 			}
-			select={
+			let select={
 				_id:this.props._id
 			}
 
-			Meteor.call('editModule', select, obj,(error,data)=>{
+			/*Meteor.call('editModule', select, menuModuleObj,(error,data)=>{
 				if(error){
 					AlertMessage('ERROR', error.reason, 'error');
-					// console.log(error,'error')
-				}else{
+				}else if(data){
 					AlertMessage('SUCCESS', 'Successfully! updated menu module.', 'success');
 				}
-			})
-			return dispatch => {
-				dispatch(updateModule(select, obj))
-			}
+			})*/
+			this.handler.onClick(select, menuModuleObj);
 		}
 	},
-	componentDidMount(){
-		let validObj=$("#menuModule").validate({
-			rules: {
-				title: {
-					required: true
-				},
-				position: {
-					required: true
-				},
-				selectMenu: { 
-					required: true
-				}
-			},
-			submitHandler: function (form) { // for demo
-				return false;
-			},
-			errorElement : 'div',
-			errorPlacement: function(error, element) {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
-		});
-		this.setState({valid:validObj})  
-		$('.options').toggleClass('active');
-		$('.option').button();
-	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg':false})
-		this.setState({'errorMsg':false})
-	},*/
 	render(){
 		let c = 0;
 
-		/*let msg = '';
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'updated menu module.'} func={this.resetSuccessMsg}/>
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
-		}else{
-			msg='';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Edit Menu Module</h3>
 				</div>
@@ -164,7 +167,7 @@ EditMenuModule = createReactClass({
 							</ul>
 							<div className="tab-content">
 								{/* =======> MODULE START<======= */}
-			    					<div id="module-home" className="tab-pane active">
+		    					<div id="module-home" className="tab-pane active">
 										<div className = "form-group">
 											<label htmlFor = "firstname" className = "col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
 											<div className = "col-sm-10">
@@ -190,10 +193,10 @@ EditMenuModule = createReactClass({
 											<div className="col-sm-10">
 												<div className="btn-group switch-btn" data-toggle="buttons">
 													<label className={this.data.menuModuleModuleData.showTitle?'active option btn btn-primary':'option btn btn-primary'} ref="option" >
-														<input type="radio" className="rad" name="options" ref="options" id="option2"  value="yes"/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
+														<input type="radio" className="rad" name="options" ref="options" id="option2" value={1}/>{i18n('ADMIN_SETTINGS_SITE_OFFLINE_YES')}
 													</label>
 													<label className={this.data.menuModuleModuleData.showTitle?'option btn btn-primary':'active option btn btn-primary'} ref="option" >
-														<input type="radio" className="rad" ref="options" name="options" id="option3" value="no" /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
+														<input type="radio" className="rad" ref="options" name="options" id="option3" value={0} /> {i18n('ADMIN_SETTINGS_SITE_OFFLINE_NO')}
 													</label>
 												</div>
 											</div>
@@ -264,42 +267,3 @@ MenuList = createReactClass({
 });
 
 export default EditMenuModule;
-
-AlertMessage = (title, message, messageType) => {
-  // TODO -> change icons (a/c to your need)
-  let type = '', icon = '';
-  if(messageType == 'warning'){
-    type = 'warning-msg';
-    icon =  'fa-exclamation-triangle';
-  }else if(messageType == 'success'){
-    type = 'success-msg';
-    icon =  'fa-check';
-  }else if(messageType == 'error'){
-    type = 'error-msg';
-    icon =  'fa-remove';
-  }
-  return (
-    Bert.alert({
-      title: title,
-      message: message,
-      type: type,
-      style: 'growl-top-right',
-      icon: icon
-    })
-  );
-}
-
-/*class AlertMessageError extends Component {
-  render(){
-    return (
-      <div className="successMsg alert alert-danger">
-        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Error! </strong>
-        {this.props.data}
-      </div>
-    )
-  }
-}*/
-

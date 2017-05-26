@@ -3,6 +3,20 @@ import { render } from 'react-dom';
 
 var createReactClass = require('create-react-class');
 
+// import store from '../store/store.js';
+import { updateTag } from '../actions/tag_action.js';
+
+var createReactClass = require('create-react-class');
+
+let editTagHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(updateTag(id, obj))
+  };
+  return {
+    onClick
+  };
+};
+
 EditTag = createReactClass({
   mixins:[ReactMeteorData],  
   getMeteorData: function() {
@@ -12,6 +26,15 @@ EditTag = createReactClass({
       tagsData: PanoplyCMSCollections.Tags.findOne({_id:this.props._id})
     };
   },
+  getInitialState(){
+    return {
+      language:i18n.getLanguage(),
+      valid:'',
+    }
+  },
+  componentDidMount(){
+    this.handler = editTagHandler();
+  },
   submitData(event){
     event.preventDefault();
     let tagObj = {
@@ -20,43 +43,22 @@ EditTag = createReactClass({
       metaKeyword: ReactDOM.findDOMNode(this.refs.metaKeyword).value.trim(),
       metaDesc: ReactDOM.findDOMNode(this.refs.metaDesc).value.trim()
     }
-    Meteor.call('editTag', this.props._id, tagObj, (err,data)=>{
+    /*Meteor.call('editTag', this.props._id, tagObj, (err,data)=>{
       if(err){
         AlertMessage('ERROR', err.reason, 'error');
       }else{
         AlertMessage('SUCCESS', 'Successfully! updated tag.', 'success');
       }
-    });
-    return dispatch => {
-      dispatch(updateTag(this.props._id, tagObj))
-    }
+    });*/
+    this.handler.onClick(this.props._id, tagObj);
   },
-  getInitialState(){
-    return {
-      language:i18n.getLanguage(),
-      valid:'',
-    }
-  },
-  /*resetSuccessMsg(){
-    this.setState({'msg':false})
-    this.setState({'errorMsg':false})
-  },*/
   render:function(){
     if (this.data.pageLoading) {
       return <div>Loading...</div>;
     }
-    
-    /*let msg = '';
-    if(this.state.msg){
-      msg = <AlertMessageSucess data={'updated tag.'} func={this.resetSuccessMsg}/>
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
-    }else{
-      msg = '';
-    }*/
 
     return(
-      <div className="">
+      <div>
         <div className="page-header">
           <h3 className="sub-header">{i18n('ADMIN_COMPONENTS_TAGS_EDITTAG')}</h3>
         </div>
@@ -65,7 +67,6 @@ EditTag = createReactClass({
              <div className="form-group">
               <div className="col-sm-12">
                 <input type = "submit" className="btn custom-default-btn" value='UPDATE' />
-               
                 <a href={FlowRouter.path('tags')} className="btn custom-default-btn">CANCEL</a>
                </div>
              </div>
@@ -104,42 +105,3 @@ EditTag = createReactClass({
 })
 
 export default EditTag;
-
-AlertMessage = (title, message, messageType) => {
-  // TODO -> change icons (a/c to your need)
-  let type = '', icon = '';
-  if(messageType == 'warning'){
-    type = 'warning-msg';
-    icon =  'fa-exclamation-triangle';
-  }else if(messageType == 'success'){
-    type = 'success-msg';
-    icon =  'fa-check';
-  }else if(messageType == 'error'){
-    type = 'error-msg';
-    icon =  'fa-remove';
-  }
-  return (
-    Bert.alert({
-      title: title,
-      message: message,
-      type: type,
-      style: 'growl-top-right',
-      icon: icon
-    })
-  );
-}
-
-/*class AlertMessageError extends Component {
-  render(){
-    return (
-      <div className="successMsg alert alert-danger">
-        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Error! </strong>
-        {this.props.data}
-      </div>
-    )
-  }
-
-}*/

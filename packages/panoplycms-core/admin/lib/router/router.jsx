@@ -251,8 +251,9 @@ _.extend(PanoplyRouter, {
 												redirect('/admin/dashboard');
 											}
 										}]
+										PanoplyRouter.route(r.path, route)
 									}
-									PanoplyRouter.route(r.path, route)
+									
 								}
 							})
 						}
@@ -261,7 +262,11 @@ _.extend(PanoplyRouter, {
 
 				/* Render React Layout */
 				function renderLayout(layout, component, params, queryParams){
-					ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
+					// console.log("params ===> ",layout, component)
+					if(Meteor.userId() || component == "Login")
+						ReactLayout.render(eval(layout), { content: React.createElement(eval(component), params)})
+					else
+						PanoplyRouter.go("/")
 				}
 
 				/* Page Not Found Route */
@@ -269,10 +274,15 @@ _.extend(PanoplyRouter, {
 				PanoplyRouter.notFound = {
 					action: function(a, b) {
 						let cp = PanoplyRouter.current().path;
-						if(cp.split('/')[1] == 'admin')
-							ReactLayout.render(AdminLayout, { 
-								content: React.createElement(eval('CoreComponentNotFound'))
-							})
+						if(cp.split('/')[1] == 'admin'){
+							if(Meteor.userId())
+								ReactLayout.render(AdminLayout, { 
+									content: React.createElement(eval('CoreComponentNotFound'))
+								})
+							else{
+								PanoplyRouter.go('/')
+							}
+						}
 						else 
 							ReactLayout.render(eval(defaultTemplate.layout), {
 								content: React.createElement(eval(notFound)),

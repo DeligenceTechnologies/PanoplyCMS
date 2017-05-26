@@ -1,28 +1,40 @@
 export const insertModule = params => {
   return dispatch => {
-    Meteor.call('addModule', params, (error)=>{
-      if(!error) return;
-      dispatch({
-        type: 'ADD_ERROR',
-        error,
-      });
+    Meteor.call('addModule', params, (error, data)=>{
+      if(!error){
+        dispatch({
+          type: 'SUCCESS',
+          data,
+        });
+      }else{
+        dispatch({
+          type: 'ERROR',
+          error,
+        });
+      }
     });
   };
 };
 
 export const updateModule = (id, params) => {
   return dispatch => {
-    Meteor.call('editModule', id, params, (error)=>{
-      if(!error) return;
-      dispatch({
-        type: 'ADD_ERROR',
-        error,
-      });
+    Meteor.call('editModule', id, params, (error, data)=>{
+      if(!error){
+        dispatch({
+          type: 'SUCCESS',
+          data,
+        });
+      }else{
+        dispatch({
+          type: 'ERROR',
+          error,
+        });
+      }
     });
   }
 }
 
-export const removeModule = id => {
+export const deleteModule = id => {
   return () => {
     Meteor.call('deleteModule', id)
   };

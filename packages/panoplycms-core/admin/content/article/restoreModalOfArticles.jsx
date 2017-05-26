@@ -3,18 +3,24 @@ import { render } from 'react-dom';
 
 import { restoreArticle } from '../../actions/article_action.js';
 
+let restoreArticleHandler = function() {
+  let onClick = function(id) {
+    store.dispatch(restoreArticle(id))
+  };
+  return {
+    onClick
+  };
+};
+
 export default class RestoreModalOfArticles extends Component {
+	constructor(props) {
+    super(props);
+    this.handler = restoreArticleHandler();
+  }
 	restoreArticle(){
-		Meteor.call('restoreArticles', this.props.data._id, (err,data) => {
-			if(err){
-				// console.log(err)
-			}else{
-				// console.log(data)
-			}
-		});
-		return dispatch => {
-			dispatch(restoreArticle(this.props.data._id))
-		}
+		/*Meteor.call('restoreArticles', this.props.data._id, (err,data) => {
+		});*/
+		this.handler.onClick(this.props.data._id);
 	}
 	render(){
 		return(

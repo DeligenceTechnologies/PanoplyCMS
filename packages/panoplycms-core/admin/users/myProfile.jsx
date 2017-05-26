@@ -10,22 +10,20 @@ class UserList extends Component {
 		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
 		}
-		// console.log(this.props.user.profile.imageId)
 		if(this.props.user && this.props.user.profile.imageId){
 			var image = Images.findOne({_id: this.props.user.profile.imageId})
 		}
-		// console.log(image)
 		let url=[{
-	        title:"Dashboard",
-	        url:"/admin/dashboard",
-	        active:false
-	    },{
-	        title: 'User List',
-	        url: "/admin/users",
-	        active:true
-	    }];
+			title:"Dashboard",
+			url:"/admin/dashboard",
+			active:false
+		},{
+			title: 'User List',
+			url: "/admin/users",
+			active:true
+		}];
 		return(
-			<div className="">
+			<div>
 				<Heading key={this.props.pageLoading} data={'User List'} url={url} />
 				<div className="custom-table">
 				  <div className="panel panel-default panel-table">

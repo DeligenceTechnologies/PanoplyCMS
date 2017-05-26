@@ -7,6 +7,18 @@ import Positions from './positions.jsx'
 
 var createReactClass = require('create-react-class');
 
+import store from '../store/store.js';
+import { insertHtmlModule } from '../actions/htmlblock_action.js';
+
+let addHtmlHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(insertHtmlModule(obj))
+  };
+  return {
+    onClick
+  };
+};
+
 AddHtmlblock = createReactClass({
 	getInitialState(){
 		return {
@@ -15,7 +27,6 @@ AddHtmlblock = createReactClass({
 			checkAllPage:null
 		}
 	},
-
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		return {
@@ -23,68 +34,9 @@ AddHtmlblock = createReactClass({
 			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'})
 		};
 	},
-	checkAllPage(){
-		this.setState({
-			checkAllPage:$("#checkAllPage").is(':checked')
-		});
-	},
-	changePostion(val){
-		let modules = PanoplyCMSCollections.Modules.find({position:val}).fetch();
-		let gridLength = 0;
-		if(modules.length && modules.gridLength){
-			for(let i in modules){
-				gridLength += modules.gridLength;
-			}
-		}
-		this.setState({
-			gridLength:val
-		});
-	},
-	submitData(event){
-		event.preventDefault()
-		let menuItems = [];
-		$.each($("input[name='menucheck']:checked"), function(){
-			menuItems.push($(this).val());
-		});
-		if(this.state.valid.form()){
-			let name = ReactDOM.findDOMNode(this.refs.name).value.trim();
-			let position = $('#position').val()
-			// let article=tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).getContent().trim();
-			let article = $('#article').summernote('code');
-			let showTitle = $('input[name="options"]:checked').val() == 0?false:true;
-			let allPage = $('#checkAllPage').is(':checked');
-			obj = {
-				name: name,
-				type: 'htmlblock',
-				position: position,
-				showTitle: showTitle,
-				menuItems: menuItems,
-				moduleClass: $("#module-class").val(),
-				allPages: allPage,
-				moduleData:{
-					gridLength:$("#gridSize").val() && $("#gridSize").val() != 0?$("#gridSize").val():12,
-					html: article
-				}
-			}
-			Meteor.call('addModule', obj, (error,data) => {
-				if(error){
-					AlertMessage('ERROR', error.reason, 'error');
-				}else{
-					AlertMessage('SUCCESS', 'Successfully! added htmlblock.', 'success');
-					ReactDOM.findDOMNode(this.refs.name).value=''
-					// tinyMCE.get(ReactDOM.findDOMNode(this.refs.editor1).id).setContent('')
-					$("#article").summernote("code", "");
-					$("input").prop("checked", false);
-					$('#position').val('')
-				}
-			})
-			return dispatch => {
-				dispatch(insertModule(obj))
-			}
-		}
-	},
 	componentDidMount(){
-		let validObj = $("#menuModule").validate({
+		this.handler = addHtmlHandler();
+		/*let validObj = $("#menuModule").validate({
 			rules: {
 				name: {
 					required: true
@@ -109,31 +61,79 @@ AddHtmlblock = createReactClass({
 				}
 			}
 		});
-		this.setState({ valid:validObj })
+		this.setState({ valid:validObj })*/
 		$('.options').toggleClass('active');
 		$('.option').button();
 
 		$('#article').summernote({ height: 200 });
 	},
+	checkAllPage(){
+		this.setState({
+			checkAllPage:$("#checkAllPage").is(':checked')
+		});
+	},
+	changePostion(val){
+		let modules = PanoplyCMSCollections.Modules.find({position:val}).fetch();
+		let gridLength = 0;
+		if(modules.length && modules.gridLength){
+			for(let i in modules){
+				gridLength += modules.gridLength;
+			}
+		}
+		this.setState({
+			gridLength:val
+		});
+	},
+	submitData(event){
+		event.preventDefault()
+		let menuItems = [];
+		$.each($("input[name='menucheck']:checked"), function(){
+			menuItems.push($(this).val());
+		});
+		// if(this.state.valid.form()){
+			let name = ReactDOM.findDOMNode(this.refs.name).value.trim();
+			let position = $('#position').val();
+			let article = $('#article').summernote('code');
+			let showTitle = $('input[name="options"]:checked').val() == 0?false:true;
+			let allPage = $('#checkAllPage').is(':checked');
+			let htmlObj = {
+				name: name,
+				type: 'htmlblock',
+				position: position,
+				showTitle: showTitle,
+				menuItems: menuItems,
+				moduleClass: $("#module-class").val(),
+				allPages: allPage,
+				moduleData:{
+					gridLength:$("#gridSize").val() && $("#gridSize").val() != 0?$("#gridSize").val():12,
+					html: article
+				}
+			}
+			/*Meteor.call('addModule', htmlObj, (error,data) => {
+				if(error){
+					AlertMessage('ERROR', error.reason, 'error');
+				}else{
+					AlertMessage('SUCCESS', 'Successfully! added htmlblock.', 'success');
+					ReactDOM.findDOMNode(this.refs.name).value=''
+					$("#article").summernote("code", "");
+					$("input").prop("checked", false);
+					$('#position').val('')
+				}
+			})*/
+			this.handler.onClick(htmlObj);
+			this.refs.name.value = '';
+			$("#article").summernote("code", "");
+			$("input").prop("checked", false);
+			$('#position').val('');
+			$('#module-class').val('');
+		// }
+	},
 	componentWillUnmount: function() {
-		// tinymce.remove();
 		$('#article').summernote('destroy');
 	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg':false})
-		this.setState({'errorMsg':false})
-	},*/
 	render(){
-		/*let msg= '';
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'added htmlblock.'} func={this.resetSuccessMsg}/>
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
-		}else{
-			msg = '';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Add Htmlblock</h3>
 				</div>
@@ -152,13 +152,13 @@ AddHtmlblock = createReactClass({
 						
 						<div className="custom-tab">
 							<ul className="nav nav-tabs">
-							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
-							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
-							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+								<li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+								<li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+								<li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
 							</ul>
 							<div className="tab-content">
 								{/* =======> MODULE START<======= */}
-		    						<div id="module-home" className="tab-pane active">
+	    						<div id="module-home" className="tab-pane active">
 										<div className = "form-group">
 											<label htmlFor = "firstname" className = "col-sm-2 control-label">Title</label>
 											<div className = "col-sm-10">
@@ -256,44 +256,5 @@ HTMLBlock = data => {
 		</div>
 	);
 }
-
-
-AlertMessage = (title, message, messageType) => {
-  // TODO -> change icons (a/c to your need)
-  let type = '', icon = '';
-  if(messageType == 'warning'){
-    type = 'warning-msg';
-    icon =  'fa-exclamation-triangle';
-  }else if(messageType == 'success'){
-    type = 'success-msg';
-    icon =  'fa-check';
-  }else if(messageType == 'error'){
-    type = 'error-msg';
-    icon =  'fa-remove';
-  }
-  return (
-    Bert.alert({
-      title: title,
-      message: message,
-      type: type,
-      style: 'growl-top-right',
-      icon: icon
-    })
-  );
-}
-
-/*class AlertMessageError extends Component {
-  render(){
-    return (
-      <div className="successMsg alert alert-danger">
-        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Error! </strong>
-        {this.props.data}
-      </div>
-    )
-  }
-}*/
 
 export default AddHtmlblock;

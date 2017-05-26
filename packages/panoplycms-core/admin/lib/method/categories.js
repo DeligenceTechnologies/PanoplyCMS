@@ -4,10 +4,11 @@ if(Meteor.isServer) {
 			PanoplyCMSCollections.Categories.update({ _id: id },{ $set:{ trash:true } });
 		},
 		update_category: function(id, data){
-		  PanoplyCMSCollections.Categories.update({ _id: id }, {
+		  return PanoplyCMSCollections.Categories.update({ _id: id }, {
 				$set: {
 					title: data.title,
 					alias: data.alias,
+		    	column:data.column,
 					updateAt: new Date()
 				}
 			});
@@ -18,8 +19,9 @@ if(Meteor.isServer) {
 				alias: data.alias,
 				createdAt: new Date(),
 				updateAt: '',
-		    status:1,
-		    trash:false,
+			    status:1,
+			    trash:false,
+			    column:data.column,
 				ownerId: Meteor.userId()
 			});
 		},

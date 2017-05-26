@@ -1,18 +1,24 @@
-
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../../common/heading.jsx';
-// import AlertMessage from '../../common/alertMessage.jsx';
-// import AlertMessageOfError from '../../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../../common/loadingSpinner.jsx';
 import SelectMenu from './menuSelect.jsx';
 import SelectArticle from './articleSelect.jsx';
 import SelectCategory from './categorySelect.jsx';
-import { AlertMessage } from '../../common/alertMessage.jsx';
+// import { AlertMessage } from '../../common/alertMessage.jsx';
 
 import { editMenuItem } from '../../actions/menuItem_action.js';
+
+let editMenuItemHandler = function() {
+  let onClick = function(id, obj) {
+    store.dispatch(editMenuItem(id, obj))
+  };
+  return {
+    onClick
+  };
+};
 
 class EditMenuItem extends Component {
   constructor(props) {
@@ -24,6 +30,7 @@ class EditMenuItem extends Component {
       language:i18n.getLanguage(),
       valid:'',
     };
+    this.handler = editMenuItemHandler();
   }
   selectMenuItemType(event){
     event.preventDefault();
@@ -144,34 +151,17 @@ class EditMenuItem extends Component {
         "parentId": $('#selectParentMenu').val()
       }
       let paramId = this.props.menuItemData.mainParentId;
-      Meteor.call("updateMenuItem", this.props._id, menuItemObj, (err,data)=>{
+      /*Meteor.call("updateMenuItem", this.props._id, menuItemObj, (err,data)=>{
         if(err){
           AlertMessage('ERROR', err.reason, 'error');
-          // console.log(err)
         }else{
           AlertMessage('SUCCESS', 'Successfully! updated menu item.', 'success');
         }
-      });
-      return dispatch => {
-        dispatch(editMenuItem(this.props._id, menuItemObj))
-      }
+      });*/
+      this.handler.onClick(this.props._id, menuItemObj);
     }
   }
-  /*resetSuccessMsg(){
-    this.setState({'msg': false})
-    this.setState({'errorMsg': false})
-    Session.set("msg", false)
-    Session.set("errorMsg", false)
-  }*/
   render(){
-    /*let msg = '';
-    if(this.state.msg){
-      msg = <AlertMessage data={'updated menu item.'} func={this.resetSuccessMsg.bind(this)} />
-    }else if(this.state.errorMsg){
-      msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg.bind(this)} />
-    }else{
-      msg = '';
-    }*/
     let menuId = '';
     if (this.props.pageLoading) {
       return <LoadingSpinner />;
@@ -200,7 +190,7 @@ class EditMenuItem extends Component {
       url:"/admin/menus/"+menuId+"/MenuItems",
       active:false
     },{
-      title:"Edit Menu Item",
+      title:i18n('ADMIN_MENU_MENUITEMS_EDITMENUITEM'),
       url:"/admin/menus/editMenuItem"+this.props._id,
       active:true
     }];

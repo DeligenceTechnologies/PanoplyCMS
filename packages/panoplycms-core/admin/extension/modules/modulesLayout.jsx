@@ -10,8 +10,35 @@ import NotFoundComp from '../../common/notFoundComp.jsx';
 // import Pagination from '../../pagination/pagination.jsx';
 
 import { trashModule } from '../../actions/module_action.js';
-import { removeModule } from '../../actions/module_action.js';
+import { deleteModule } from '../../actions/module_action.js';
 import { restoreModule } from '../../actions/module_action.js';
+
+let trashModuleHandler = function() {
+  let ontrashClick = function(id) {
+    store.dispatch(trashModule(id))
+  };
+  return {
+    ontrashClick
+  };
+};
+
+let deleteModuleHandler = function() {
+  let ondeleteClick = function(id) {
+    store.dispatch(deleteModule(id))
+  };
+  return {
+    ondeleteClick
+  };
+};
+
+let restoreModuleHandler = function() {
+  let onrestoreClick = function(id) {
+    store.dispatch(restoreModule(id))
+  };
+  return {
+    onrestoreClick
+  };
+};
 
 
 class ModulesLayout extends Component {
@@ -27,6 +54,10 @@ class ModulesLayout extends Component {
 		else
 			this.props.dict.set('limit',20)
 		// this.props.dict.set('currentPage', 1)
+
+		this.trashHandler = trashModuleHandler();
+		this.deleteHandler = deleteModuleHandler();
+		this.restoreHandler = restoreModuleHandler();
 	}
 	showModules(){
 		if($('#display').val()=='trash'){
@@ -50,28 +81,25 @@ class ModulesLayout extends Component {
 		FlowRouter.go(moduleArray.name,{_id:id})
 	}
 	trashModule(id) {
-		Meteor.call('trashModule', id, (err, res) => {
+		/*Meteor.call('trashModule', id, (err, res) => {
 			this.setState({ id: '' })
-		})
-		return dispatch => {
-			dispatch(trashModule(id))
-		}
+		})*/
+		this.trashHandler.ontrashClick(id);
+		this.setState({ id: '' })
 	}
 	deleteModule(id) {
-		Meteor.call('deleteModule', id, (err, res) => {
+		/*Meteor.call('deleteModule', id, (err, res) => {
 			this.setState({ id:'' })
-		})
-		return dispatch => {
-			dispatch(removeModule(id))
-		}
+		})*/
+		this.deleteHandler.ondeleteClick(id);
+		this.setState({ id: '' })
 	}
 	restoreModule(id) {
-		Meteor.call('restoreModule', id, (err, res) => {
+		/*Meteor.call('restoreModule', id, (err, res) => {
 			this.setState({ id:'' })
-		})
-		return dispatch => {
-			dispatch(restoreModule(id))
-		}
+		})*/
+		this.restoreHandler.onrestoreClick(id);
+		this.setState({ id: '' })
 	}
 	handelClick(e){
 		switch(e.action){
@@ -106,38 +134,37 @@ class ModulesLayout extends Component {
 			nodata = '';
 		}
 		let url=[{
-	      title:"Dashboard",
-	      url:"/admin/dashboard",
-	      active:false
-	    },{
-	      title:i18n('ADMIN_EXTENSION_MODULES_MANAGER'),
-	      url:"/admin/modules",
-	      active:true
-	    }];
+      title:"Dashboard",
+      url:"/admin/dashboard",
+      active:false
+    },{
+      title:i18n('ADMIN_EXTENSION_MODULES_MANAGER'),
+      url:"/admin/modules",
+      active:true
+    }];
 		return (
-			<div className="">
+			<div>
 				<Heading key={this.props.isReady} data={i18n('ADMIN_EXTENSION_MODULES_MANAGER')} url={url} />
 				<div className="custom-table">
-				   	<div className="row">
-				      	<div className="col-sm-12">
-                			<div className="controls-header form-inline ">
-               					<a className="btn custom-default-btn" onClick={this.addModules.bind(this)}>
+			   	<div className="row">
+		      	<div className="col-sm-12">
+        			<div className="controls-header form-inline ">
+       					<a className="btn custom-default-btn" onClick={this.addModules.bind(this)}>
 									<i className="fa fa-plus-circle fa-lg"></i> {i18n('ADMIN_EXTENSION_MODULES_ADDMODULE')}
 								</a>
 								<div className="dataTables_length dataTables_wrapper pull-right">
-								  	<label> Display
-
+							  	<label> Display
 										<select id="display" className="form-control input-sm" onChange={this.showModules.bind(this)}>
 											<option value="active">Active</option>
 											<option value="trash">Trash</option>
 										</select>
 									</label>
 								</div> 
-                			</div>
-				     	 </div>
-				   </div>
-            		<div className="panel panel-default panel-table">
-					    <div className="panel-body ">
+        			</div>
+		     	 	</div>
+			   	</div>
+      		<div className="panel panel-default panel-table">
+				    <div className="panel-body">
 							<div className="table-responsive" id="non-editable">
 								{
 									nodata == '' ?
@@ -180,9 +207,9 @@ class ModulesLayout extends Component {
 									: ''
 								}
 							</div>
-					    </div>
+				    </div>
 					</div>
-         		</div>
+     		</div>
 				<AddModulesPopup list={this.props.modulesList} onClick={this.addModuleAction.bind(this)} />
 				<TrashModulesPopup id={this.state.id} onClick={this.trashModule.bind(this)} />
 				<RemoveModulesPopup id={this.state.id} onClick={this.deleteModule.bind(this)} />
@@ -230,16 +257,16 @@ ModuleList = module => {
 								<i  className="fa fa-trash-o" ></i>
 
 							</div> 
-						</div> :
-					<div> 
-						<div style={style} className="btn btn-danger" onClick={() => {module.onClick({id: module._id, action:'delete'})}} data-toggle="tooltip"  title="Delete">
-							<i   className="fa fa-times"> </i>
 						</div>
-						&nbsp;&nbsp;
-						<div style={style} className="btn btn-default" onClick={() => {module.onClick({id: module._id, action:'restore'})}} data-toggle="tooltip" title="Restore">
-							<i  className="fa fa-undo" ></i>
+					:
+						<div>
+							<div style={style} className="btn btn-default" onClick={() => {module.onClick({id: module._id, action:'restore'})}} data-toggle="tooltip" title="Restore">
+								<i  className="fa fa-undo" ></i>
+							</div>&nbsp;&nbsp;
+							<div style={style} className="btn btn-danger" onClick={() => {module.onClick({id: module._id, action:'delete'})}} data-toggle="tooltip"  title="Delete">
+								<i   className="fa fa-times"> </i>
+							</div>
 						</div>
-					</div>
 				}
 			</td>
 		</tr>
@@ -273,8 +300,7 @@ AddModulesPopup = (modules) => {
 	);
 }
 
-TrashModulesPopup = (m) => {
-	
+TrashModulesPopup = (m) => {	
 	return (
 		<div id="trash" className="modal fade add-popup" role="dialog">
 			<div className="modal-dialog">
@@ -285,7 +311,7 @@ TrashModulesPopup = (m) => {
 					</div>
 					<div className="modal-footer centered">
 						<button type="button" className="btn custom-default-btn" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}}>Yes</button>
-						<button type="button" className="btn custom-default-btn" data-dismiss="modal">Cancel</button>
+						<button type="button" className="btn custom-default-btn" data-dismiss="modal">No</button>
 					</div>
 				</div>
 			</div>
@@ -304,7 +330,7 @@ RemoveModulesPopup = (m) => {
 					</div>
 					<div className="modal-footer centered">
 						<button type="button" className="btn custom-default-btn" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}}>Yes</button>
-						<button type="button" className="btn custom-default-btn" data-dismiss="modal">Cancel</button>
+						<button type="button" className="btn custom-default-btn" data-dismiss="modal">No</button>
 					</div>
 				</div>
 			</div>
@@ -323,7 +349,7 @@ RestoreModulesPopup = (m) => {
 					</div>
 					<div className="modal-footer centered">
 						<button type="button" className="btn custom-default-btn" data-dismiss="modal" onClick={()=>{m.onClick(m.id)}}>Yes</button>
-						<button type="button" className="btn custom-default-btn" data-dismiss="modal">Cancel</button>
+						<button type="button" className="btn custom-default-btn" data-dismiss="modal">No</button>
 					</div>
 				</div>
 			</div>

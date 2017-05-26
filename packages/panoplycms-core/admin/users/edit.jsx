@@ -3,27 +3,29 @@ import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Heading from '../common/heading.jsx';
-// import AlertMessage from '../common/alertMessage.jsx';
-// import AlertMessageOfError from '../common/alertMessageOfError.jsx';
 import LoadingSpinner from '../common/loadingSpinner.jsx';
 import { AlertMessage } from '../common/alertMessage.jsx';
 
+import store from '../store/store.js';
 import { editUser } from '../actions/userProfile_action.js';
+
+let editUserHandler = function() {
+	let onClick = function(id, obj) {
+		store.dispatch(editUser(id, obj))
+	};
+	return {
+		onClick
+	};
+};
 
 class EditUser extends Component {
 	constructor(props) {
     super(props);
  
-    this.state = {
-			valid:'',
-    };
+    this.handler = editUserHandler();
   }
   componentDidMount(){
 	}
-	/*resetSuccessMsg(){
-		this.setState({'msg':false})
-		this.setState({'errorMsg':false})
-	}*/
 	updateuser(event){
 		event.preventDefault();
 		let username = $('#username').val();
@@ -44,34 +46,29 @@ class EditUser extends Component {
 				Images.insert(files, (err, fileObj)=> {
 					if(fileObj){
 						userObj.profile['imageId'] = fileObj. _id;
-						// console.log(userObj, " User ==== ")
 
-						Meteor.call('updateUser', userObj, (err,data)=>{
+						/*Meteor.call('updateUser', userObj, (err,data)=>{
 							if(err){
 								AlertMessage('ERROR', err.reason, 'error');
 							}else{
 								AlertMessage('SUCCESS', 'Successfully! updated user profile.', 'success');
 							}
-						})
-						return dispatch => {
-							dispatch(editUser(userObj))
-						}
+						})*/
+						this.handler.onClick(userObj)
 					}
 				});
 			}else{
 				AlertMessage('ERROR', 'Unsupported Image format', 'error');
 			}
 		}else{
-			Meteor.call('updateUser', userObj, (err,data)=>{
+			/*Meteor.call('updateUser', userObj, (err,data)=>{
 				if(err){
 					AlertMessage('ERROR', err.reason, 'error');
 				}else{ 
 					AlertMessage('SUCCESS', 'Successfully! updated user profile.', 'success');
 				}
-			})
-			return dispatch => {
-				dispatch(editUser(userObj))
-			}
+			})*/
+			this.handler.onClick(userObj)
 		}
 	}
 	render() {
@@ -80,29 +77,21 @@ class EditUser extends Component {
 		}
 		let img = Images.findOne({ _id: Meteor.user().profile.imageId })
 
-		/*let msg = '';
-		if(this.state.msg){
-			msg = <AlertMessage data={'updated user profile.'} func={this.resetSuccessMsg} />
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageOfError data={this.state.errorMsg} func={this.resetSuccessMsg} />
-		}else{
-			msg = '';
-		}*/
 		let url=[{
-	        title:"Dashboard",
-	        url:"/admin/dashboard",
-	        active:false
-	    },{
-	        title: 'User List',
-	        url: "/admin/users",
-	        active:false
-	    },{
-	    	title:i18n('ADMIN_USERS_EDIT'),
-	    	url:"/admin/users/"+FlowRouter.getParam('_id'),
-	    	active:true
-	    }];
+			title:"Dashboard",
+			url:"/admin/dashboard",
+			active:false
+		},{
+			title: 'User List',
+			url: "/admin/users",
+			active:false
+		},{
+			title:i18n('ADMIN_USERS_EDIT'),
+			url:"/admin/users/"+FlowRouter.getParam('_id'),
+			active:true
+		}];
 		return(
-			<div className="">
+			<div>
 				<Heading key={this.props.pageLoading} data={i18n('ADMIN_USERS_EDIT')} url={url}/>
 				<form className="form-horizontal" id="userEditForm" onSubmit={this.updateuser.bind(this)}>
 				  <div className="controls-header">

@@ -6,6 +6,18 @@ import MenuItemTypes from './menuItemTypes.jsx'
 
 var createReactClass = require('create-react-class');
 
+import store from '../store/store.js';
+import { insertMenuModule } from '../actions/menumodule_action.js';
+
+let addMenuModuleHandler = function() {
+  let onClick = function(obj) {
+    store.dispatch(insertMenuModule(obj))
+  };
+  return {
+    onClick
+  };
+};
+
 AddMenuModule = createReactClass({
 	getInitialState(){
 		return {
@@ -20,6 +32,39 @@ AddMenuModule = createReactClass({
 			menuResults: PanoplyCMSCollections.Menus.find({trash:false}).fetch(),
 			templateRegister: PanoplyCMSCollections.RegisteredPackages.findOne({name:'template'})
 		};
+	},
+	componentDidMount(){
+		/*let validObj = $("#menuModule").validate({
+			rules: {
+				title: {
+					required: true
+				},
+				position: {
+					required: true
+				},
+				selectMenu: { 
+					required: true
+				}
+			},
+			submitHandler: function (form) { // for demo
+				return false;
+			},
+			errorElement : 'div',
+			errorPlacement: function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		});
+		this.setState({valid:validObj})*/
+
+		$('.options').toggleClass('active');
+		$('.option').button();
+
+		this.handler = addMenuModuleHandler();
 	},
 	checkAllPage(){
 		this.setState({
@@ -45,14 +90,14 @@ AddMenuModule = createReactClass({
 			menuItems.push($(this).val());
 		});
 
-		if(this.state.valid.form()){
+		// if(this.state.valid.form()){
 			let title=ReactDOM.findDOMNode(this.refs.title).value.trim();
 			let position=$('#position').val()
 			let menu=ReactDOM.findDOMNode(this.refs.selectMenu).value.trim()
 			let showTitle=$('input[name="options"]:checked').val() == 0?false:true;
 			let allPage=$('#allpage').is(':checked');
 
-			obj = {
+			let menuModuleObj = {
 				name: title,
 				type:'menumodule',
 				position:position,
@@ -65,7 +110,7 @@ AddMenuModule = createReactClass({
 					menuItem:menu
 				}
 			}
-			Meteor.call('addModule', obj, (error,data)=>{
+			/*Meteor.call('addModule', menuModuleObj, (error,data)=>{
 				if(error){
 					AlertMessage('ERROR', error.reason, 'error');
 				}else{
@@ -75,66 +120,24 @@ AddMenuModule = createReactClass({
 					$("input").prop("checked", false);
 					$('#position').val('')
 				}
-			})
-			return dispatch => {
-				dispatch(insertModule(obj))
-			}
-		}
+			})*/
+			this.handler.onClick(menuModuleObj);
+			this.refs.title.value='';
+			this.refs.selectMenu.value='';
+			$("input").prop("checked", false);
+			$('#position').val('');
+			$('#module-Class').val('');
+		// }
 	},
-	componentDidMount(){
-		let validObj = $("#menuModule").validate({
-			rules: {
-				title: {
-					required: true
-				},
-				position: {
-					required: true
-				},
-				selectMenu: { 
-					required: true
-				}
-			},
-			submitHandler: function (form) { // for demo
-				return false;
-			},
-			errorElement : 'div',
-			errorPlacement: function(error, element) {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
-		});
-		this.setState({valid:validObj})
-
-		$('.options').toggleClass('active');
-		$('.option').button();
-	},
-	/*resetSuccessMsg(){
-		this.setState({'successMsg':false})
-		this.setState({'errorMsg':false})
-	},*/
 	render(){
 		let c = 0;
-
-		/*let msg = '';
-		if(this.state.successMsg){
-			msg = <AlertMessageSuccess data={'added menu module.'} func={this.resetSuccessMsg}/>
-		}else if(this.state.errorMsg){
-			msg = <AlertMessageError data={this.state.errorMsg} func={this.resetSuccessMsg}/>
-		}else{
-			msg = '';
-		}*/
 		return (
-			<div className="">
+			<div>
 				<div className="page-header">
 					<h3 className="sub-header">Add Menu Module</h3>
 				</div>
 				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
 					<div className="controls-header">
-
 						<div className="form-group">
 							<div className = "col-sm-12">
 								<button className="btn custom-default-btn">SAVE</button>
@@ -147,13 +150,12 @@ AddMenuModule = createReactClass({
 						<div id="notification"></div>
 						<div className="custom-tab">
 							<ul className="nav nav-tabs">
-							    <li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
-							    <li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
-							    <li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
+								<li className="active"><a data-toggle="tab" href="#module-home">Module</a></li>
+								<li><a data-toggle="tab" href="#module-menu-assign">Menu Assignment</a></li>
+								<li><a data-toggle="tab" href="#module-advanced">Advanced</a></li>
 							</ul>
 
 							<div className="tab-content">
-
 								{/* =======> MODULE START<======= */}
 									<div id="module-home" className="tab-pane active">
 										<div className = "form-group">
@@ -229,8 +231,7 @@ AddMenuModule = createReactClass({
 											</div>
 										</div>
 									</div>
-								{/* =======> ADVANCED SETTING END<======= */}
-					
+								{/* =======> ADVANCED SETTING END<======= */}					
 							</div>
 						</div>
 					</div>
@@ -300,7 +301,7 @@ MenuModuleFront = createReactClass({
 		return getElements();
 	},
 	render(){
-		// console.log(this.props)
+		console.log(this.props)
 		showTitle = '';
 		if(this.props.module_title) showTitle = <h3>{this.props.module_title}</h3>;
 		return (
@@ -325,7 +326,6 @@ MenuModuleFront = createReactClass({
 								}
 								{item.child.length?<span><i className="fa fa-chevron-down"></i></span>:''}
 								{item.child.length?this.printMenu(item.child):''}
-
 							</li>
 						)
 					})
@@ -334,42 +334,3 @@ MenuModuleFront = createReactClass({
 		)
 	}
 })
-
-AlertMessage = (title, message, messageType) => {
-  // TODO -> change icons (a/c to your need)
-  let type = '', icon = '';
-  if(messageType == 'warning'){
-    type = 'warning-msg';
-    icon =  'fa-exclamation-triangle';
-  }else if(messageType == 'success'){
-    type = 'success-msg';
-    icon =  'fa-check';
-  }else if(messageType == 'error'){
-    type = 'error-msg';
-    icon =  'fa-remove';
-  }
-  return (
-    Bert.alert({
-      title: title,
-      message: message,
-      type: type,
-      style: 'growl-top-right',
-      icon: icon
-    })
-  );
-}
-
-/*class AlertMessageError extends Component {
-  render(){
-    return (
-      <div className="successMsg alert alert-danger">
-        <button type="button" onClick={this.props.func} className="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Error! </strong>
-        {this.props.data}
-      </div>
-    )
-  }
-
-}*/

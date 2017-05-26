@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+import NotFound from '../common/notFound.jsx';
+
+// import store from '../store/store.js';
+import { removeTag } from '../actions/tag_action.js';
+
 var createReactClass = require('create-react-class');
+
+let removeTagHandler = function() {
+  let onClick = function(id) {
+    store.dispatch(removeTag(id))
+  };
+  return {
+    onClick
+  };
+};
 
 ListTags = createReactClass({
   mixins:[ReactMeteorData],
@@ -89,11 +103,11 @@ ListTags = createReactClass({
 });
 
 var TagsItem = React.createClass({
-  editTag(){
+  /*editTag(){
     Meteor.call('editTag', this.props.data._id,(err,data)=>{
       // console.log(err,data)
     });
-  },
+  },*/
   render(){
     return(
       <tr>
@@ -116,13 +130,14 @@ var TagsItem = React.createClass({
 })
  
 TagsModal=React.createClass({
+  componentDidMount(){
+    this.handler = removeTagHandler();
+  },
   deleteTag(){
-    Meteor.call('deleteTag',this.props.data._id,(err,data)=>{
+    /*Meteor.call('deleteTag',this.props.data._id,(err,data)=>{
       // console.log(err,data)
-    });
-    return dispatch => {
-      dispatch(removeTag(this.props.data._id))
-    }
+    });*/
+    this.handler.onClick(this.props.data._id);
   },
   render:function(){
     return(
@@ -145,13 +160,3 @@ TagsModal=React.createClass({
 })
 
 export default ListTags;
-
-class NotFound extends Component {
-  render(){
-    return(
-      <div className="alert alert-danger">
-        <strong>Sorry!</strong> Data not found.
-      </div>
-    )
-  }
-}

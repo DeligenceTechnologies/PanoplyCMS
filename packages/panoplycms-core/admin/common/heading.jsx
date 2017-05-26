@@ -18,7 +18,7 @@ export default class Heading extends Component {
 							this.props.url.map((value,index)=>{
 								if(value.active){
 									return(
-										<li key={index} className="active">{value.title}</li> 
+										<li key={index} className="active">{value.title}</li>
 									)
 								}else{
 									return(

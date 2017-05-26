@@ -5,22 +5,16 @@ import { render } from 'react-dom';
 // import { removeCategory } from '../../actions/category_action.js';
 
 export default class CategoriesItem extends Component {
-  deleteCategory(){
-    // return dispatch => {
-    //   dispatch(removeCategory(this.props.data._id))
-    // }
+  /*deleteCategory(){
     Meteor.call('delete_category',this.props.data._id,function(err,data){
       // console.log(err,data)
     });
   }
   editCategory(){
-    // return dispatch => {
-    //   dispatch(editCategory(this.props.data._id))
-    // }
     Meteor.call('editCategory',this.props.data._id, (err,data)=>{
       // console.log(err,data)
     });
-  }
+  }*/
   render(){
     return(
       <tr>

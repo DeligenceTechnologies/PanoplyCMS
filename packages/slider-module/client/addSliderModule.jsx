@@ -5,6 +5,7 @@ var createReactClass = require('create-react-class');
 
 import MenuItemType from './menuItemTypes.jsx';
 import Positions from './positions.jsx';
+import Heading from '../common/heading.jsx';
 
 import store from '../store/store.js';
 import { insertSliderModule } from '../actions/slidermodule_action.js';
@@ -178,11 +179,26 @@ AddSliderModule = createReactClass({
 		}
 	},
 	render() {
+		let url=[{
+      title: 'Dashboard',
+      url:"/admin/dashboard",
+      active: false
+    },{
+      title: 'Module Manager',
+      url:"/admin/modules",
+      active: false
+    },{
+      title: 'Add Slider Module',
+      url:"/admin/modules/slidermodule/add",
+      active: true
+    }];
 		return (
 			<div>
-				<div className="page-header">
+				{/*<div className="page-header">
 					<h3 className="sub-header">Add Slider Module</h3>
-				</div>
+				</div>*/}
+				<Heading data='Add Slider Module' url={url}/>
+				
 				<form id="sliderModule" className = "form-horizontal" role = "form" onSubmit={this.handleSubmit}>
 					<div className="controls-header">
 						<div className="form-group">

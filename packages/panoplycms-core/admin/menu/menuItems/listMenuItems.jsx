@@ -108,7 +108,7 @@ class ListMenuItems extends Component {
         active:true
       }];
     return (
-      <div className="">
+      <div>
         <Heading key={this.props.pageLoading} data={i18n('ADMIN_MENU_MENUITEMS')} url={url} />
         <div className="custom-table">
           <div className="row">
@@ -151,7 +151,7 @@ class ListMenuItems extends Component {
                           <th>{i18n('ADMIN_MENU_ADDMENU_FORM_TITLE')}</th>
                           <th>{i18n('ADMIN_MENU_ADDMENU_FORM_DESCRIPTION')}</th>
                           <th>{/*i18n('ADMIN_MENU_MENUITEMS_ADDMENUITEM_DEFAULT')*/}</th>
-                          <th><em className="fa fa-cog"></em>  {i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
+                          <th>{i18n('ADMIN_MENU_ADDMENU_FORM_ACTION')}</th>
                         </tr>
                       </thead>
                       <tbody>

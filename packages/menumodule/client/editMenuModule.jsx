@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import Positionn from './positionn.jsx'
-import MenuItemTypes from './menuItemTypes.jsx'
+import Positionn from './positionn.jsx';
+import MenuItemTypes from './menuItemTypes.jsx';
+import Heading from '../common/heading.jsx';
 
 var createReactClass = require('create-react-class');
 
@@ -141,11 +142,26 @@ EditMenuModule = createReactClass({
 	render(){
 		let c = 0;
 
+		let url=[{
+      title: 'Dashboard',
+      url:"/admin/dashboard",
+      active: false
+    },{
+      title: 'Module Manager',
+      url:"/admin/modules",
+      active: false
+    },{
+      title: 'Edit Menu Module',
+      url:"admin/modules/menumodule/"+FlowRouter.getParam("_id"),
+      active: true
+    }];
+
 		return (
 			<div>
-				<div className="page-header">
+				{/*<div className="page-header">
 					<h3 className="sub-header">Edit Menu Module</h3>
-				</div>
+				</div>*/}
+				<Heading data='Edit Menu Module' url={url}/>
 				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
 					<div className="controls-header">
 						<div className="form-group">

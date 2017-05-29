@@ -51,7 +51,7 @@ class ListMenus extends Component {
       active:true
     }]
     return (
-      <div className="">
+      <div>
         <Heading data={i18n('ADMIN_MENU')} url={url}/>
         
         <div className="custom-table">

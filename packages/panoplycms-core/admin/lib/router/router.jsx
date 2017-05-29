@@ -1,4 +1,3 @@
-
 import AdminLayout from '../../../admin/adminLayout/adminLayout.jsx'
 import Dashboard from '../../../admin/dashboard/dashboard.jsx'
 
@@ -110,7 +109,6 @@ _.extend(PanoplyRouter, {
 							modules[position] = mod;
 							defaultModules[position] = defaultMod;
 						})
-						// console.log("///// >>>>>>", modules)
 						return { modules, defaultModules }
 					}
 

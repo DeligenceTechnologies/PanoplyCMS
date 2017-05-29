@@ -56,27 +56,27 @@ class ListCategories extends Component {
 	      active:true
 	    }];
 		return (
-			<div className="">
+			<div>
 				<Heading data={i18n('ADMIN_COTNENTS_CATEGORY_CATEGORY')} url={url}/>
 				<div className="custom-table">
-				   	<div className="row">
-               			<div className="col-sm-12">
-                   			<div className="controls-header form-inline ">
-                   	   			<a href={FlowRouter.path('addCategory')} className="btn custom-default-btn">
-					              <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
-						            {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
-				            	</a>
-				            	<div className="dataTables_length dataTables_wrapper pull-right">
-					            	<label> Display
-						              <select id="display" className="form-control input-sm" onChange={this.showCategories.bind(this)}>
-						              	<option value="active">Active</option>
-						              	<option value="trash">Trash</option>
-						               </select>
-						           </label>
-					           </div>
-                   			</div>
-               			</div>
-				   </div>
+			   	<div className="row">
+       			<div className="col-sm-12">
+           			<div className="controls-header form-inline ">
+           	   			<a href={FlowRouter.path('addCategory')} className="btn custom-default-btn">
+	              <i className="fa fa-plus-circle fa-lg"></i>&nbsp;
+		            {i18n('ADMIN_COTNENTS_CATEGORY_ADDCATEGORY')}
+            	</a>
+            	<div className="dataTables_length dataTables_wrapper pull-right">
+	            	<label> Display
+		              <select id="display" className="form-control input-sm" onChange={this.showCategories.bind(this)}>
+		              	<option value="active">Active</option>
+		              	<option value="trash">Trash</option>
+		               </select>
+		           </label>
+	           </div>
+           			</div>
+       			</div>
+			   	</div>
            			<div className="panel panel-default panel-table">
 			     		<div className="panel-body">
 							<div className="table-responsive">

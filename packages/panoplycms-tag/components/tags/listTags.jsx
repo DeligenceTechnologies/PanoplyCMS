@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import NotFound from '../common/notFound.jsx';
+import Heading from '../common/heading.jsx';
 
 // import store from '../store/store.js';
 import { removeTag } from '../actions/tag_action.js';
@@ -42,11 +43,19 @@ ListTags = createReactClass({
     }else{
       nodata = '';
     }
+
+    let url=[{
+      title:i18n('ADMIN_COMPONENTS_TAGS'),
+      url:"/admin/tags",
+      active: true
+    }];
     return (
       <div>
-        <div className="page-header">
+        {/*<div className="page-header">
           <h3 className="sub-header">Tags</h3>
-        </div>
+        </div>*/}
+        <Heading data={i18n('ADMIN_COMPONENTS_TAGS')} url={url}/>
+
         <div className="custom-table">
           <div className="row">
             <div className="col-sm-12">

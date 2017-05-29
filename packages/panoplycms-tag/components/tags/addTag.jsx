@@ -4,6 +4,8 @@ import { render } from 'react-dom';
 // import { AlertMessage } from '../common/alertMessage.jsx';
 var createReactClass = require('create-react-class');
 
+import Heading from '../common/heading.jsx';
+
 import store from '../store/store.js';
 import { insertTag } from '../actions/tag_action.js';
 
@@ -56,11 +58,22 @@ AddTag = createReactClass({
     this.refs.metaDesc.value='';
   },
   render:function(){
+    let url=[{
+      title: i18n('ADMIN_COMPONENTS_TAGS'),
+      url:"/admin/tags",
+      active: false
+    },{
+      title: i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS'),
+      url:"/admin/tags/add",
+      active: true
+    }];
     return(
       <div>
-        <div className="page-header">
+        {/*<div className="page-header">
           <h3 className="sub-header">{i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')}</h3>
-        </div>
+        </div>*/}
+        <Heading data={i18n('ADMIN_COMPONENTS_TAGS_ADDTAGS')} url={url}/>
+
         <form className = "form-horizontal" role = "form" onSubmit={this.submitData}>
           <div className="controls-header">
             <div className="form-group">

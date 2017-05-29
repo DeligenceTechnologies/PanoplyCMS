@@ -30,7 +30,7 @@ export default class CategoriesItem extends Component {
         </td>
         <td>
             {
-              this.props.stateVal? 
+              this.props.stateVal ? 
                 <div className="btn btn-default" data-toggle="modal" data-target={'#'+this.props.data._id+'restoreCategory'} aria-hidden="true" onClick={this.restoreArticle} title="Restore">
                   <i  className="fa fa-undo" ></i>
                 </div>
@@ -40,7 +40,7 @@ export default class CategoriesItem extends Component {
                 </a> 
           }
              &nbsp;&nbsp;
-          <div className="btn btn-danger" data-toggle="modal" data-target={"#"+this.props.data._id} >
+          <div className="btn btn-danger" data-toggle="modal" data-target={"#"+this.props.data._id}>
             {
               this.props.stateVal ? 
                 <i title="Delete" className="fa fa-times" aria-hidden="true"></i> 

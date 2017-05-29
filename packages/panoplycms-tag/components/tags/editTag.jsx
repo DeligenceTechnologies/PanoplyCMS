@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+import Heading from '../common/heading.jsx';
+
 var createReactClass = require('create-react-class');
 
 // import store from '../store/store.js';
@@ -53,15 +55,27 @@ EditTag = createReactClass({
     this.handler.onClick(this.props._id, tagObj);
   },
   render:function(){
+    let url=[{
+      title: i18n('ADMIN_COMPONENTS_TAGS'),
+      url:"/admin/tags",
+      active: false
+    },{
+      title: i18n('ADMIN_COMPONENTS_TAGS_EDITTAG'),
+      url:"/admin/tags/edit/"+FlowRouter.getParam("_id"),
+      active: true
+    }];
+
     if (this.data.pageLoading) {
       return <div>Loading...</div>;
     }
 
     return(
       <div>
-        <div className="page-header">
+        {/*<div className="page-header">
           <h3 className="sub-header">{i18n('ADMIN_COMPONENTS_TAGS_EDITTAG')}</h3>
-        </div>
+        </div>*/}
+        <Heading data={i18n('ADMIN_COMPONENTS_TAGS_EDITTAG')} url={url}/>
+        
         <form className = "form-horizontal" role = "form" onSubmit={this.submitData}>
            <div className="controls-header">
              <div className="form-group">

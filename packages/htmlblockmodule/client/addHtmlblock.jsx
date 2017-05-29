@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import MenuItemType from './menuItemTypes.jsx'
-import Positions from './positions.jsx'
+import Heading from '../common/heading.jsx';
+import MenuItemType from './menuItemTypes.jsx';
+import Positions from './positions.jsx';
 
 var createReactClass = require('create-react-class');
 
@@ -132,11 +133,25 @@ AddHtmlblock = createReactClass({
 		$('#article').summernote('destroy');
 	},
 	render(){
+		let url=[{
+      title: 'Dashboard',
+      url:"/admin/dashboard",
+      active: false
+    },{
+      title: 'Module Manager',
+      url:"/admin/modules",
+      active: false
+    },{
+      title: 'Add Htmlblock',
+      url:"/admin/modules/htmlblock/add",
+      active: true
+    }];
 		return (
 			<div>
-				<div className="page-header">
+				{/*<div className="page-header">
 					<h3 className="sub-header">Add Htmlblock</h3>
-				</div>
+				</div>*/}
+				<Heading data='Add Htmlblock' url={url}/>
 				<form id="menuModule" className = "form-horizontal" role = "form" onSubmit={this.submitData}>
 					<div className="controls-header">
 						<div className="form-group">

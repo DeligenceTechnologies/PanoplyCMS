@@ -317,7 +317,7 @@ AlertMessage = (title, message, messageType) => {
 }*/
 
 
-/*MenuList = React.createClass({
+/*MenuList = createReactClass({
 	propTypes:{
 		menu: React.PropTypes.object.isRequired,
 	},

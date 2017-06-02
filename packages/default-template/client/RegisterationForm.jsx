@@ -1,3 +1,5 @@
+// var createReactClass = require('create-react-class');
+
 // var registrationFormSchema = new SimpleSchema({
 // 	firstName: {
 // 		type: String,
@@ -32,7 +34,7 @@
 // 	}
 // });
 
-/*RegisterationForm = React.createClass({
+/*RegisterationForm = createReactClass({
 	_onSubmit(doc) {
 		console.log(doc, function(error){
 			if (error) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import Heading from '../common/heading.jsx';
+import LoadingSpinner from '../common/loadingSpinner.jsx';
 
 var createReactClass = require('create-react-class');
 
@@ -66,7 +67,7 @@ EditTag = createReactClass({
     }];
 
     if (this.data.pageLoading) {
-      return <div>Loading...</div>;
+      return <LoadingSpinner />;
     }
 
     return(

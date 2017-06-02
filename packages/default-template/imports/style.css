@@ -133,6 +133,7 @@ ul, ol, dl { list-style-position: outside; }
 }
 ::-webkit-scrollbar-thumb {
    background: #ff7302;
+   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
  background:#000;
@@ -802,23 +803,32 @@ a:hover img {
 	11. Header
 ====================================================================
 ***/
-@media(min-width: 769px) {
+
 	.header {
 	    width: 100%;
-	    z-index: 99;    
-	    height: 61px;
+	    z-index: 99;
 	    background: #2196f3;
 	}
+
+header.sticky {
+     position: fixed;
+     width: 100%;
+     background: #fff;
+	 padding:0px 0px 0px 0px;
+	 z-index:999;
+	 box-shadow: 0 1px 3px rgba(50, 50, 50, 0.4);
 }
 
-#dt-mainHeader.sticky {
-    position: fixed;
-    left: 0;
-    right: 0;
-    padding: 20px 0;
-    margin-top: -79px;
-    z-index: 9998;
+header.sticky .top-head{
+	 display:none;
 }
+header.sticky .navbar-head {
+    box-shadow: none;
+}
+header.sticky #main_nav>ul>li>a {
+   
+}
+
 /*** Top Bar Area Style****/
 .top-bar-area {
     background: #fff;
@@ -1587,6 +1597,7 @@ a:hover img {
     -webkit-transition: all .8s linear;
     transition: all .8s linear;
     width: 100%;
+    max-height: 230px;
 }
 
 .blog-image img {
@@ -1835,10 +1846,11 @@ a:hover img {
 
 
 .partner-logo{
-	 border: rgb(236, 236, 236) solid 1px;
-    padding: 20px;
-    margin: 0px 10px;
-	text-align:center;
+   	border: rgb(236, 236, 236) solid 1px;
+    padding: 10px;
+    margin: 0px 27px;
+    text-align: center;
+    width: 80%;
 }
 
 .partner-logo img{
@@ -2356,6 +2368,7 @@ footer{
 	padding-left: 60px;
 	position: relative;
 	margin-top:30px;
+	text-align: center;
 }
 
 .contact-phone{
@@ -2377,19 +2390,20 @@ footer{
 .contact-address i,
 .contact-phone i,
 .contact-email i {
-	font-size: 32px;
-	position: absolute;
-	left: -10px;
-	top: 1px;
-	width: 50px;
-	text-align: center;
-	font-size: 28px;
-	color: rgba(227,58,12,1);
-	margin-right: 20px;
-	margin-top: -3px;
-	width: 50px;
-	background: #f9f9f9;
-	padding: 10px 0px;
+ /*/ font-size: 32px; /*/
+    /*/ position: absolute; /*/
+    /*/ left: -10px; /*/
+    /*/ top: 1px; /*/
+    width: 50px;
+    /*/ text-align: center; /*/
+    font-size: 37px;
+    color: rgba(227,58,12,1);
+    /*/ margin-right: 20px; /*/
+    /*/ margin-top: -3px; /*/
+    /*/ width: 50px; /*/
+    /*/ background: #f9f9f9; /*/
+    padding: 10px 0px;
+
 }
 
 .contact-phone i {
@@ -2397,6 +2411,9 @@ footer{
 	top: 0;
 }
 
+.contact-phone p, .contact-email p>a{
+	font-size: 20px;
+}
 .contact-email i {
 	font-size: 26px;
 }
@@ -2472,9 +2489,11 @@ footer{
 	.logo{
 		text-align:center;
 	}
+	
 	.header {
 	    width: 100%;
-	    z-index: 99;
+	    z-index: 99;    
+	    height: 61px;
 	    background: #2196f3;
 	}
 	.main_nav{

@@ -1,5 +1,5 @@
 Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/panolpyimages"})]
+  stores: [new FS.Store.GridFS("images", {})]
 });
 
 export default Images;

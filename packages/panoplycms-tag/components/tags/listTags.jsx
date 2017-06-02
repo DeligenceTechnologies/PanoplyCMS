@@ -111,7 +111,7 @@ ListTags = createReactClass({
   }
 });
 
-var TagsItem = React.createClass({
+var TagsItem = createReactClass({
   /*editTag(){
     Meteor.call('editTag', this.props.data._id,(err,data)=>{
       // console.log(err,data)

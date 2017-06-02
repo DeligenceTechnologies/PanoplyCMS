@@ -17,7 +17,7 @@ DefaultTemplate = createReactClass({
 		};
 	},
 	componentDidMount: function() {
-		// console.log("componentDidMount() ---->")
+		// 
 		require('../imports/style.css')
 		require('../imports/animate.css')
 		require('../imports/flaticon.css')
@@ -77,7 +77,7 @@ DefaultTemplate = createReactClass({
 
 		$(".main_nav>div>ul>li>span>i").click(function(){
 			if($(this).hasClass("fa-chevron-down")){
-				console.log("down === > ",$(this).parent().next())
+				
 				$(".main_nav>div>ul>li>span>i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 				$(this).parent().next().slideUp("slow");
 				$(this).removeClass("fa-chevron-down").addClass("fa-chevron-up");
@@ -85,13 +85,13 @@ DefaultTemplate = createReactClass({
 			}
 			else{	
 				$(this).removeClass("fa-chevron-up").addClass("fa-chevron-down");
-				console.log("up === > ",$(this).parent().next())
+				
 				$(this).parent().next().slideUp("slow");
 			}
 		})
 		$(".main_nav>div>ul>li>ul>li>span>i").click(function(){
 			if($(this).hasClass("fa-chevron-down")){
-				console.log("down === > ",$(this).parent().next())
+				
 				$(".main_nav>div>ul>li>ul>li>span>i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 				$(this).parent().next().slideUp("slow");
 				$(this).removeClass("fa-chevron-down").addClass("fa-chevron-up");
@@ -99,7 +99,7 @@ DefaultTemplate = createReactClass({
 			}
 			else{	
 				$(this).removeClass("fa-chevron-up").addClass("fa-chevron-down");
-				console.log("up === > ",$(this).parent().next())
+				
 				$(this).parent().next().slideUp("slow");
 			}
 		})
@@ -111,10 +111,10 @@ DefaultTemplate = createReactClass({
 			
 		$(window).scroll(function() {
 	    if ($(this).scrollTop() > 1){  
-        $('#dt-mainHeader').addClass("sticky");
+        $('.header').addClass("sticky");
 	    }
 	    else{
-        $('#dt-mainHeader').removeClass("sticky");
+        $('.header').removeClass("sticky");
 	    }
 		});
 
@@ -144,10 +144,10 @@ DefaultTemplate = createReactClass({
 			singleItem : false,
 			autoPlay : 5000,
 			loop:true,
-			items : 5, //10 items above 1000px browser width
-			itemsDesktop : [1000,5], //5 items between 1000px and 901px
-			itemsDesktopSmall : [900,3], // betweem 900px and 601px
-			itemsTablet: [600,3], //2 items between 600 and 0
+			items : 6, //10 items above 1000px browser width
+			itemsDesktop : [1000,6], //5 items between 1000px and 901px
+			itemsDesktopSmall : [900,4], // betweem 900px and 601px
+			itemsTablet: [600,4], //2 items between 600 and 0
 			transitionStyle : "slide",
 			// Pagination
 			pagination : true,
@@ -261,7 +261,7 @@ DefaultTemplate = createReactClass({
 		// document.getElementsByTagName('head')[0].appendChild("<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">")
 	},
 	componentDidUpdate: function() {
-		// console.log("componentDidUpdate() ---->")
+		// 
 		require('../imports/style.css')
 		require('../imports/animate.css')
 		require('../imports/flaticon.css')
@@ -413,74 +413,76 @@ DefaultTemplate = createReactClass({
 				
 
 				{/* FRONT HEADER START */}
-					{
-						this.props.topHeader && this.props.topHeader.length?
-							<section id="dt-topHeader" className="container header">
-								<div className="top-head animated bounceInDown">
-									<div className="row">
-										{
-											this.props.topHeader.map((topHeader,index) => {
-												if(topHeader.props.gridLength){
-													grid = topHeader.props.gridLength;
-												}else{
-													grid = 12/this.props.topHeader.length;
-												}
-												return (
-													<div key={index} className={"col-sm-"+grid}>
-														{ topHeader }
-													</div>
-												);
-											})
-										}
+					<header className='header'>
+						<div className='container'>
+							{
+								this.props.topHeader && this.props.topHeader.length?
+									<div className="top-head animated bounceInDown">
+										<div className="row">
+											{
+												this.props.topHeader.map((topHeader,index) => {
+													if(topHeader.props.gridLength){
+														grid = topHeader.props.gridLength;
+													}else{
+														grid = 12/this.props.topHeader.length;
+													}
+													return (
+														<div key={index} className={"col-sm-"+grid}>
+															{ topHeader }
+														</div>
+													);
+												})
+											}
+										</div>
 									</div>
-								</div>
-							</section>
-						:
-							''
-					}
+								:
+									''
+							}
 
-					<section id="dt-mainHeader" className="container header">
-						<div className="navbar-head animated fadeInUp">
-							<div className="row">
-								<div className="col-sm-4">
-									<div className="logo animated fadeInLeft">
-										{
-											img ?
-												<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src={img.url()} /></a>
-											:
-												<div>
-													<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src="/logo.png" alt={this.data.result ? this.data.result.name:''}/></a>
-												</div>
-										}
-									</div>
-								</div>
-								<div className = "col-sm-8">
+							<div id="dt-mainHeader" className=" ">
+								<div className="navbar-head animated fadeInUp">
 									<div className="row">
-							    		{
-						      				this.props.mainHeader && this.props.mainHeader.length?
-							      				this.props.mainHeader.map((mainHeader,index) => {
-							      					if(mainHeader.props.gridLength){
-							      						grid = mainHeader.props.gridLength;
-							      					}else{
-							      						grid = 8/this.props.mainHeader.length;
-							      					}
-							      					return (
-							        					<div key={index} className={"col-sm-"+grid}>
-							        						<div id="" className="main_nav pull-right animated fadeInRight">
-							        							<button><span>Menu</span> <i className="fa fa-bars"></i></button>
-							        							{mainHeader}
-							        						</div>
-							        					</div>
-							        				);
-							        			})
-							        		:
-							        			''
-							      		}
-							      	</div>
-							    </div>
-					  		</div>
-				  		</div>
-				  	</section>
+										<div className="col-sm-4">
+											<div className="logo animated fadeInLeft">
+												{
+													img ?
+														<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src={img.url()} /></a>
+													:
+														<div>
+															<a href="javascript:void(0)" onClick={()=>PanoplyRouter.go('/')}><img src="/logo.png" alt={this.data.result ? this.data.result.name:''}/></a>
+														</div>
+												}
+											</div>
+										</div>
+										<div className = "col-sm-8">
+											<div className="row">
+									    		{
+								      				this.props.mainHeader && this.props.mainHeader.length?
+									      				this.props.mainHeader.map((mainHeader,index) => {
+									      					if(mainHeader.props.gridLength){
+									      						grid = mainHeader.props.gridLength;
+									      					}else{
+									      						grid = 8/this.props.mainHeader.length;
+									      					}
+									      					return (
+									        					<div key={index} className={"col-sm-"+grid}>
+									        						<div id="" className="main_nav pull-right animated fadeInRight">
+									        							<button><span>Menu</span> <i className="fa fa-bars"></i></button>
+									        							{mainHeader}
+									        						</div>
+									        					</div>
+									        				);
+									        			})
+									        		:
+									        			''
+									      		}
+									      	</div>
+									    </div>
+							  		</div>
+						  		</div>
+						  	</div>
+						</div>
+					</header>
 				{/* FRONT HEADER END */}
 
 
@@ -611,7 +613,7 @@ DefaultTemplate = createReactClass({
 
 				<div className="container">
 					<div className="row">
-						<div className={_.isEmpty(this.props.sidebar) ? "col-sm-12 blog-main" : "col-sm-8 blog-main"}>
+						<div className={_.isEmpty(this.props.sidebar) ? "col-sm-12 blog-main" : "col-sm-9 blog-main"}>
 							{/* FRONT CONTENT TOP START */}
 								{
 									this.props.contentTop && this.props.contentTop.length?
@@ -674,7 +676,7 @@ DefaultTemplate = createReactClass({
 								}
 							{/* FRONT CONTENT BOTTOM END */}
 						</div>
-						<div className={_.isEmpty(this.props.sidebar) ? "":"col-sm-3 col-sm-offset-1 pull-right blog-sidebar"}>
+						<div className={_.isEmpty(this.props.sidebar) ? "":"col-sm-3 pull-right blog-sidebar"}>
 							<SidePanel module={this.props.sidebar} />
 						</div>
 
@@ -875,7 +877,7 @@ DefaultTemplate = createReactClass({
 
 ModuleOnly = createReactClass({
 	render(){
-		// console.log("-------->>>", this.props)
+		// 
 		return(
 			<div></div>
 		)
@@ -934,7 +936,7 @@ DefaultArticle = createReactClass({
 		}
 	},
 	render(){
-		// console.log(" =====-----====> ",this.props)
+		// 
 		if(this.data.article){
 			if(!_.has(this.data.article, "_id") && this.data.isReady){
 				return <LoadingSpinner />;
@@ -976,13 +978,21 @@ DefaultCategory = createReactClass({
 	getMeteorData(){
 		let sub = Meteor.subscribe('articlesFind');
 		let category = Meteor.subscribe('Categories', this.props.id);
+		
+		let articles =[];
+		if(PanoplyRouter.current().path == '/' || PanoplyRouter.current().path == '/home'){
+			articles = PanoplyCMSCollections.Articles.find({category: this.props.id, trash:false},{sort:{createdAt: -1},limit: 3}).fetch()
+		}else{
+			articles = PanoplyCMSCollections.Articles.find({category: this.props.id, trash:false}).fetch();
+		}
 		return {
 			isReady: sub.ready() && category.ready(),
-			articles: PanoplyCMSCollections.Articles.find({category: this.props.id, trash:false}).fetch(),
+			articles: articles,
 			category: PanoplyCMSCollections.Categories.findOne({_id: this.props.id, trash:false})
 		}
 	},
 	render(){
+
 		if(this.data.articles && this.data.articles.length){
 			if(!this.data.articles.length && this.data.isReady){
 				return <LoadingSpinner />;
@@ -1015,6 +1025,7 @@ ArticleListView = data => {
 	let userData = Meteor.users.findOne({_id: data.ownerId})
 
 	let route = PanoplyRouter.current().route.path.split('/')
+
 	alias = ''
 	if(route[route.length - 1] != ''){
 		alias = PanoplyRouter.current().route.path+'/'+data.alias
@@ -1023,8 +1034,14 @@ ArticleListView = data => {
 	}
 	let regex = /<img.*?src=\"(.*?)\"/;
 	let url = data.article?regex.exec(data.article)[1]:'';
+	let home = false;
+	if(PanoplyRouter.current().path == '/' || PanoplyRouter.current().path == '/home'){
+		home = true;
+	}else{
+		home = false;
+	}
 	return (
-		<div key={data._id} className={"blog-box animated fadeInUp col-md-"+data.grid}>
+		<div key={data._id} className={home?"blog-box animated fadeInUp col-md-4":"blog-box animated fadeInUp col-md-"+data.grid}>
 			{
 				url!=''?
 					<div className="blog-image">

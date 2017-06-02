@@ -199,14 +199,17 @@ if(Meteor.isServer){
 			"title" : "Home",
 			"desc" : "module type",
 			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "category",
+			"MenuItemTypeId" : "KHQBBYzHo4niSBbcT",
 			"parentId" : "",
 			"homepage" : true,
 			"createdAt" : new Date(),
 			"alias" : "home",
 			"trash" : false,
-			"updatedAt" : new Date()
+			"updatedAt" : new Date(),
+			"target" : "0",
+			"link" : ""
+
 		},
 		{
 			"_id" : "NWwGpMkjoCmehFegb",
@@ -756,11 +759,10 @@ if(Meteor.isServer){
 			"_id" : "a5rghXvjjNNjvGtr9",
 			"name" : "Our Blog",
 			"type" : "htmlblock",
-			"position" : "feature",
+			"position" : "contentTop",
 			"showTitle" : false,
 			"menuItems" : [
-				"T8sgLe9oEToTApsfZ",
-				"mDopsGQLGakQJWwcf"
+				"T8sgLe9oEToTApsfZ"
 			],
 			"moduleClass" : "mainBottom",
 			"allPages" : false,
@@ -785,9 +787,9 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"contact.html\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>"
+				"html" : "<div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"/contact\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>"
 			},
-			"trash" : false,
+			"trash" : true,
 			"createdAt" : new Date(),
 			"updatedAt" : new Date()
 		},
@@ -885,8 +887,9 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"section-space our-partner\">\n<div class=\"section-heading heading-center\">\n            <span></span>\n            <h2>Our Partner</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n          <div class=\"owl-carousel\" id=\"clients\">\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/clients-1.png\" alt=\"\"></a></div>\n      </div>\n</div>"
+				"html" : "<div class=\"section-space our-partner\">\n<div class=\"section-heading heading-center\">\n            <span></span>\n            <h2>Our Partner</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n          <div class=\"owl-carousel\" id=\"clients\">\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n      </div>\n</div>"
 			},
+
 			"trash" : false,
 			"createdAt" : new Date(),
 			"updatedAt" : new Date()
@@ -926,7 +929,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"get-in-touch\">\n<div class=\"container\">\n     <div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"contact.html\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>\n</div>\n</div>"
+				"html" : "<div class=\"get-in-touch\">\n<div class=\"container\">\n     <div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"/contact\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>\n</div>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -1036,7 +1039,7 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : " <div class=\"section-space contact-us\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-sm-6\">\n       <h4>Our Office Address</h4>\n         <div class=\"contact-info\">\n             \n              <div class=\"contact-address\">\n                    <h2><i class=\"fa fa-map-marker\"></i> Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n               \n             <div class=\"contact-phone\">\n                    <h2><i class=\"fa fa-mobile\"></i> Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n               \n             <div class=\"contact-email\">\n                    <h2><i class=\"fa fa-envelope\"></i> Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n \n          </div>\n       </div>\n       <div class=\"col-sm-6\">\n         <h4>Stay Connected</h4>\n         <div class=\"blue-block \">\n       <form>    \n    <div class=\"form-group\">\n        <label>Name</label>\n        <input class=\"form-control\" placeholder=\"Your Name\" type=\"text\">\n    </div>\n    \n      <div class=\"form-group\">\n        <label>Email</label>\n        <input class=\"form-control valid\" placeholder=\"Your Email\" type=\"email\">\n    </div>\n    <div class=\"form-group\">\n        <label>Mobile</label>\n        <input class=\"form-control\" placeholder=\"Your Mobile No.\" type=\"text\">\n    </div>\n   \n    <div class=\"form-group\">\n        <label>Message</label>\n       <textarea class=\"form-control\"></textarea>\n    </div>\n    <div class=\"center-block\"><button type=\"submit\" class=\"btn submit-btn\">SUBMIT</button></div>\n</form>\n         </div>\n       </div>\n     </div>\n   </div> \n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
+				"html" : " <div class=\"section-space contact-us\">\n  <div class=\"container\">\n         <div class=\"contact-info\">\n              <h4>Our Office Address</h4>\n              <div class=\"row\">\n      <div class=\"col-sm-4\">\n        \n           <div class=\"contact-address\">\n                     <i class=\"fa fa-map-marker\"></i> \n                    <h2>Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <div class=\"contact-phone\">\n        <i class=\"fa fa-mobile\"></i> \n                    <h2>Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n      </div>\n      <div class=\"col-sm-4\">\n         <div class=\"contact-email\">\n         <i class=\"fa fa-envelope\"></i> \n                    <h2>Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n      </div>\n\n     </div>\n          </div>\n      </div>\n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),

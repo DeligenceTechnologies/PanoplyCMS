@@ -334,10 +334,17 @@ MenuModuleFront = createReactClass({
 					items.map(item => {
 						if(item.url && !/^(f|ht)tps?:\/\//i.test(item.url)) item.url = '/'+item.url;
 						// console.log(" ===> ",item)
+						let check = PanoplyCMSCollections.Modules.find({menuItems:{$in:[item._id]}}).count();
 						return (
 							<li key={item._id}>
 								{
-									item.url?<a target={item.target && item.target != 0?'_blank':''} href={item.url}>{item.title}</a> : <a target={item.target && item.target != 0?'_blank':''} onClick={()=>{ PanoplyRouter.go('/'+ item.alias) }}>{item.title}</a>
+									item.url?
+										<a target={item.target && item.target != 0?'_blank':''} href={item.url}>{item.title}</a> 
+									: 
+										check != 0?
+											<a target={item.target && item.target != 0?'_blank':''} onClick={()=>{ PanoplyRouter.go('/'+ item.alias) }}>{item.title}</a>
+										:
+											<a href="#" >{item.title}</a> 
 								}
 								{item.child.length?<span><i className="fa fa-chevron-down"></i></span>:''}
 								{item.child.length?this.printMenu(item.child):''}

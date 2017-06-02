@@ -245,9 +245,9 @@ _.extend(PanoplyRouter, {
 								} else {
 									if(route.name == 'login'){
 										route.triggersEnter = [ (context, redirect) => {
-											if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
-												redirect('/admin/dashboard');
-											}
+											// if(Roles.userIsInRole(Meteor.userId(), ['admin'])){
+											// 	redirect('/admin/dashboard');
+											// }
 										}]
 										PanoplyRouter.route(r.path, route)
 									}

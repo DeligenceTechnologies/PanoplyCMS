@@ -142,7 +142,7 @@ class AddArticle extends Component {
 		return (
 			<div>
 				<Heading key={this.props.pageLoading} data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} url={url}/>
-				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)}>
+				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)} noValidate>
 				  <div className="controls-header">
 				    <div className="form-group">
 							<div className = "col-sm-12">
@@ -152,9 +152,7 @@ class AddArticle extends Component {
 						</div>
 					</div>
 
-			  	<div className="panel-body custom-panel">
-				   	<div id="notification"></div>
-					
+			  	<div className="panel-body custom-panel">					
 						<div className="form-group">
 							<label htmlFor="title" className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TITLE')}</label>
 							<div className="col-sm-10">

@@ -85,12 +85,12 @@ class Login extends Component {
         <div className="login-header"> <img src="/logo.png" /> </div>
         <form id="loginForm" onSubmit={this.submitData.bind(this)}>
           <div className="group">
-            <input type="email" className="used" type="email" id="email" required/>
+            <input type="email" className="used" type="email" id="email" pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' required/>
             <span className="highlight"></span><span className="bar"></span>
             <label>Email Id</label>
           </div>
           <div className="group">
-            <input type="password" id="password" className="used" required/>
+            <input type="password" id="password" className="used"  required/>
             <span className="highlight"></span><span className="bar"></span>
             <label>Password</label>
           </div>

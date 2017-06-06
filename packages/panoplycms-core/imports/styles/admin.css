@@ -33,7 +33,15 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
 	font-weight: normal;
 	color: #333;
 }
-
+:not(output):-moz-ui-invalid {
+    box-shadow: 0 0 1.5px 1px red;
+}
+input:invalid {
+    box-shadow: 0 0 1.5px 1px red;
+}
+input:required {
+    box-shadow: none!important;
+}
 
 /*
 * Override Bootstrap's default container.
@@ -1635,7 +1643,7 @@ ul.listModules > li {
 .loginForm form input:focus { outline: none; }
 /* Label */
 .loginForm form label {
-    color: #65a5d7;
+    color: #615f5e;
     font-size: 21px;
     font-weight: 600;
     position: absolute;

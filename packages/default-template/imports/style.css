@@ -1132,7 +1132,7 @@ header.sticky #main_nav>ul>li>a {
 	height:1px;
 	width:28px;
 	left:9px;
-	margin: auto;
+	margin: auto!important;
 	margin-bottom:1px;
 	background-color:#e33a0c;
 }
@@ -1162,7 +1162,7 @@ header.sticky #main_nav>ul>li>a {
 	height:1px;
 	width:28px;
 	left:9px;
-	margin: auto;
+	margin: auto!important;
 	background-color:#e33a0c;
 }
 

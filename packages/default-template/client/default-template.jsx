@@ -407,6 +407,7 @@ DefaultTemplate = createReactClass({
 	render() {
 		let img = this.data.result && this.data.result.logoId?Images.findOne({ _id:this.data.result.logoId }):null
 		let grid = 12;
+		console.log(img)
 		return (
 			<div>
 				{/*<FrontHeader module={this.props.mainHeaderRight} topHeaderLeft={this.props.topHeaderLeft} topHeaderRight={this.props.topHeaderRight} siteData={this.data.result} />*/}

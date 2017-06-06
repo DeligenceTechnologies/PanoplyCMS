@@ -5,9 +5,9 @@ module.exports = {
       username: 'root',
       // pem:"/Users/saranshdevsingh/.ssh/id_rsa",
       opts: {
-          port: 22,
-      },
-      // password:
+          port: 22
+      }
+      // password: 'Pass@12345'
       // or leave blank for authenticate from ssh-agent
     }
   },

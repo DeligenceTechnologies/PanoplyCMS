@@ -23,7 +23,6 @@ Meteor.startup(function() {
 				'mainTop',
 				'sidebar',
 				'contentTop',
-				'mainbody',
 				'contentBottom',
 				'mainBottom',
 				'extension',

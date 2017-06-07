@@ -4,7 +4,7 @@
 ## Installation Method
 - Pull PanoplyCMS from GitHub Repository on you system OR you can download zip and extract it on your machine.
 - Go to folder location through terminal or command prompt
-- Type: `meteor --settings settings.json` and hit Enter key. Please wait for server to get start. It will automatically install all dependencies and will start running.
+- Type: `meteor npm install` after that type `meteor --settings settings.json` and hit Enter key. Please wait for server to get start. It will automatically install all dependencies and will start running.
 - Once it start running, go to your browser and type: http://localhost:3000
 - Thats it! You have installed PanoplyCMS on your system successfully.
 

@@ -1,5 +1,5 @@
 
-node_modules/
+
 
 
 # Windows image file caches
@@ -57,4 +57,4 @@ mup.json
 *~
 >>>>>>> dev2
 mup.json
-node_modules/
+/node_modules

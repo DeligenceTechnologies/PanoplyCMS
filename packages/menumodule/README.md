@@ -1,4 +1,4 @@
-# PanoplyCMS - menumodule 0.0.3
+# PanoplyCMS - menumodule 0.0.7
 
 MenuModule for PanoplyCMS. To install menumodule in your PanoplyCMS, Hit the following command :-
 
@@ -32,4 +32,8 @@ One can refer this package to create further menumodule for PanoplyCMS.
 			]
 		})
 		```
+***
 
+### NOTE:-
+
+We recommended to use the [gitHub repository](https://github.com/DeligenceTechnologies/PanoplyCMS) for latest updates.

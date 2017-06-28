@@ -34,3 +34,4 @@ Now go and create some categories, then articles and finally some menus. Look at
 - Menu Module that can load at any given position
 - HTML Blocks that can load at any given position
 - Slider Module that can load at any given position
+

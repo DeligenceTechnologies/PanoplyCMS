@@ -255,6 +255,13 @@ DefaultTemplate = createReactClass({
 		meta3.httpEquiv = "X-UA-Compatible";
 		meta3.content = "IE=edge";
 		document.getElementsByTagName('head')[0].appendChild(meta3);
+
+		let link = document.createElement('link');
+		link.id = 'id2';
+    link.rel = 'shortcut icon';
+    link.href = 'favicon.ico';
+    document.getElementsByTagName('head')[0].appendChild(link);
+
 		// document.getElementsByTagName('head')[0].appendChild(meta);
 		// document.getElementsByTagName('head')[0].appendChild("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">")
 		// document.getElementsByTagName('head')[0].appendChild("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">")
@@ -418,8 +425,7 @@ DefaultTemplate = createReactClass({
 						<div className='container'>
 							{
 								this.props.topHeader && this.props.topHeader.length?
-									<div className="top-head animated bounceInDown">
-										<div className="row">
+									<div className="top-head animated bounceInDown row">
 											{
 												this.props.topHeader.map((topHeader,index) => {
 													if(topHeader.props.gridLength){
@@ -434,7 +440,6 @@ DefaultTemplate = createReactClass({
 													);
 												})
 											}
-										</div>
 									</div>
 								:
 									''

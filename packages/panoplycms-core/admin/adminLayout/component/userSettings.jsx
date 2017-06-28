@@ -5,28 +5,28 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import LoadingSpinner from '../../common/loadingSpinner.jsx'
 
-export default class UserSettings extends Component {
+ class UserSettings extends Component {
 	logout(event){
 		event.preventDefault();
 		Meteor.logout();
 		FlowRouter.go('login');
 	}
 	render(){
-		/*if (this.props.pageLoading) {
+		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
-		}*/
-		let img = Images.findOne({ _id: Meteor.user().profile.imageId })
+		}
+		
 		return(
 			<div>
 				<button type="button" className="btn btn-logged" data-toggle="dropdown">
 					<span className="custom-span">
 						{
-							Meteor.user() && Meteor.user().profile && Meteor.user().profile.username ? Meteor.user().profile.username :''
+							this.props.user.profile.username
 						}
 					</span>
 					{
-						img ?
-							<img src={ img.url()} alt="Profile Picture" width="50" height="20" />
+						this.props.results ?
+							<img src={ this.props.results.url()} alt="Profile Picture" width="50" height="20" />
 						: ''
 					}
 					<span className="caret"></span>
@@ -42,11 +42,12 @@ export default class UserSettings extends Component {
 	}
 }
 
-/*export default createContainer(() => {
+export default createContainer(() => {
 	let handle = Meteor.subscribe('usersProfile')
+	let user = Meteor.user();
 	return {
 		pageLoading: !handle.ready(),
-		user: Meteor.users.findOne(),
-		results: Images.findOne({ _id:Meteor.user().profile.imageId })
+		user: user,
+		results: Images.findOne({ _id:user.profile.imageId })
 	};
-}, UserSettings);*/
+}, UserSettings);

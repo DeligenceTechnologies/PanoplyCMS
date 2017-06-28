@@ -142,11 +142,11 @@ class AddArticle extends Component {
 		return (
 			<div>
 				<Heading key={this.props.pageLoading} data={i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLES')} url={url}/>
-				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)} noValidate>
+				<form id="add-article" className="form-horizontal" role="form" onSubmit={this.submitData.bind(this)} >
 				  <div className="controls-header">
 				    <div className="form-group">
 							<div className = "col-sm-12">
-								<button className="btn custom-default-btn">SAVE</button>
+								<input type = "submit" className="btn custom-default-btn" value='SAVE' />
 								<a className="btn custom-default-btn" href={FlowRouter.path('articles')}>CANCEL</a>
 							</div>
 						</div>
@@ -175,14 +175,14 @@ class AddArticle extends Component {
 						<div className="form-group">
 							<label htmlFor="tokenfield" className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_TAGS')}</label>
 							<div className="col-sm-10" id="token"> 
-								<input type="text" className="form-control" id="tokenfield" required />
+								<input type="text" className="form-control" name="tags" placeholder="Enter Tags" id="tokenfield" required />
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="article" className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className="col-sm-10">
 								<div className="summernote">
-									<textarea id="article" className="form-control" required></textarea>
+									<textarea id="article" name="article" className="form-control" required></textarea>
 								</div>
 							</div>
 						</div>

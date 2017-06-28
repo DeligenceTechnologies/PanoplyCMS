@@ -1,4 +1,4 @@
-# PanoplyCMS - Tag 0.0.4
+# PanoplyCMS - Tag 0.0.7
 
 Tag component for PanoplyCMS. To install PanoplyCMS-tag in your PanoplyCMS, Hit the following command :-
 
@@ -31,3 +31,9 @@ One can refer this package to create further components for PanoplyCMS.
 		}
 	)
 	```
+
+***
+
+### NOTE:-
+
+We recommended to use the [gitHub repository](https://github.com/DeligenceTechnologies/PanoplyCMS) for latest updates.

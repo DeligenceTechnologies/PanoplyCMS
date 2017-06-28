@@ -75,7 +75,7 @@ class EditUser extends Component {
 		if (this.props.pageLoading) {
 			return <LoadingSpinner />;
 		}
-		let img = Images.findOne({ _id: Meteor.user().profile.imageId })
+		// let img = Images.findOne({ _id: Meteor.user().profile.imageId })
 
 		let url=[{
 			title:"Dashboard",
@@ -119,8 +119,8 @@ class EditUser extends Component {
 								<input id="profilePic" type="file" name="file" className="upload-file"/>
 								<div className="col-md-3"><br />
 								{
-									img ?
-										<img src={ img.url() } className="img-rounded" style={{maxWidth: "100%"}} />
+									this.props.image ?
+										<img src={ this.props.image.url() } className="img-rounded" style={{maxWidth: "100%"}} />
 									: ''
 								}
 								</div>
@@ -136,8 +136,10 @@ class EditUser extends Component {
 
 export default createContainer(()=>{
 	let handle = Meteor.subscribe('usersProfile')
+	let user = Meteor.users.findOne();
 	return {
 		pageLoading: ! handle.ready(),
-		user: Meteor.users.findOne()
+		user: user,
+		image : Images.findOne({ _id: user.profile.imageId })
 	};
 }, EditUser)

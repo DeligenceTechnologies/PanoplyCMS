@@ -41,19 +41,62 @@ export const editCategory = (id, params) => {
 }
 
 export const removeCategory = id => {
-	return () => {
-		Meteor.call('delete_category', id);
+	return (dispatch) => {
+		Meteor.call('delete_category', id,  (error, data)=>{
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! remove category.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', 'Internal server error or duplicate categories can not insert.', 'error');
+      }
+    });
 	};
 };
 
 export const removeCategoryParamanent = id => {
-	return () => {
-		Meteor.call('delete_category_parma', id);
+	return (dispatch) => {
+		Meteor.call('delete_category_parma', id,  (error, data)=>{
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! remove category parmanent.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', 'Internal server error or duplicate categories can not insert.', 'error');
+      }
+    });
 	};
 };
 
 export const restoreCategory = id => {
-	return () => {
-		Meteor.call('restore_category', id);
+	return (dispatch) => {
+		Meteor.call('restore_category', id,  (error, data)=>{
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				console.log("success")
+				AlertMessage('SUCCESS', 'Successfully! restore category.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', 'Internal server error or duplicate categories can not insert.', 'error');
+      }
+    });
 	};
 };

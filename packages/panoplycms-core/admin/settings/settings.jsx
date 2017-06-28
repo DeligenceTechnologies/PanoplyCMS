@@ -81,7 +81,7 @@ class SystemLayout extends Component {
 		}
 	}
 	render() {
-		let img = Images.findOne({ _id:this.props.results.logoId })
+		// let img = Images.findOne({ _id:this.props.results.logoId })
 		let url=[{
 			title:i18n('ADMIN_SETTINGS_GLOBALCONFIGURATION'),
 			url:"/admin/settings",
@@ -139,8 +139,8 @@ class SystemLayout extends Component {
 								<input id="logoId" type="file" className="validate" /><br/>
 								<div className="col-md-2">
 								{
-									img ?
-										<img src={ img.url() } className="img-rounded" style={{maxWidth: "100%"}} /> 
+									this.props.image ?
+										<img src={ this.props.image.url() } className="img-rounded" style={{maxWidth: "100%"}} /> 
 									: ''
 								}
 								</div>
@@ -154,7 +154,9 @@ class SystemLayout extends Component {
 }
 
 export default createContainer(() => {
+	let site = PanoplyCMSCollections.Sites.findOne();
 	return {
-		results: PanoplyCMSCollections.Sites.findOne()
+		results: site,
+		image : Images.findOne({ _id:site.logoId })
 	};
 }, SystemLayout)

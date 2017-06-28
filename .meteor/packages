@@ -53,4 +53,7 @@ deligencetechnologies:panoplycms-core
 deligencetechnologies:panoplycms-tag
 deligencetechnologies:sample-data
 deligencetechnologies:slidermodule
-cfs:gridfs
+#cfs:standard-packages
+#cfs:gridfs
+#cfs:filesystem
+#cfs:s3

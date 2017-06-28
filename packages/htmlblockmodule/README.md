@@ -1,4 +1,4 @@
-# PanoplyCMS - htmlblock 0.0.3
+# PanoplyCMS - htmlblock 0.0.6
 
 Htmlblock package for PanoplyCMS. To install Htmlblock Package in your PanoplyCMS, Hit the following command :-
 
@@ -32,3 +32,9 @@ One can refer this package to display custom HTML code on frontend for PanoplyCM
 			]
 		})
 		```
+
+***
+
+### NOTE:-
+
+We recommended to use the [gitHub repository](https://github.com/DeligenceTechnologies/PanoplyCMS) for latest updates.

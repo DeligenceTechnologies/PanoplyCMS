@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'cfs:gridfs',
+  name: 'custom:gridfs',
   version: '0.0.34',
   summary: 'GridFS storage adapter for CollectionFS',
   git: 'https://github.com/CollectionFS/Meteor-cfs-gridfs.git'
@@ -20,7 +20,7 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use(['cfs:gridfs', 'test-helpers', 'tinytest'], 'server');
+  api.use(['custom:gridfs', 'test-helpers', 'tinytest'], 'server');
   api.addFiles('tests/server-tests.js', 'server');
   api.addFiles('tests/client-tests.js', 'client');
 });

@@ -11,7 +11,8 @@ class UserList extends Component {
 			return <LoadingSpinner />;
 		}
 		if(this.props.user && this.props.user.profile.imageId){
-			var image = Images.findOne({_id: this.props.user.profile.imageId})
+			// var image = Images.findOne({_id: this.props.user.profile.imageId});
+			console.log(this.props.image.url()," ===> ",this.props.image)
 		}
 		let url=[{
 			title:"Dashboard",
@@ -42,8 +43,8 @@ class UserList extends Component {
 								<tr>
 									<td>
 										{
-											image ?
-												<img src={image.url()} className="img-circle" alt="Profile Picture" width="50" height="50" />
+											this.props.image ?
+												<img src={this.props.image.url()} className="img-circle" alt="Profile Picture" width="50" height="50" />
 											: 'No image'
 										}
 									</td>
@@ -53,9 +54,9 @@ class UserList extends Component {
 										<a className = "btn btn-default " data-toggle="tooltip" title="Edit" href={FlowRouter.path('editUser',{_id:this.props.user._id})}>
 											<i className="fa fa-pencil-square-o"> </i>
 										</a> &nbsp;&nbsp;
-								    	<a disabled='true' className="btn btn-danger " href={FlowRouter.path('dashboard')} data-toggle="tooltip" title="Delete"> 
+								    	<button disabled='true' className="btn btn-danger " data-toggle="tooltip" title="Delete"> 
 								      		<i className="fa fa-trash-o"></i>
-								      	</a>
+								      	</button>
 									</td>
 								</tr> 
 							</tbody>
@@ -72,9 +73,11 @@ class UserList extends Component {
 
 export default createContainer(() => {
 	let handle = Meteor.subscribe('usersProfile')
+	let user = Meteor.users.findOne()
 	return {
 		pageLoading: ! handle.ready(), 
-		user: Meteor.users.findOne()
+		user: user,
+		image :Images.findOne({_id: user.profile.imageId})
 	};
 
 }, UserList)

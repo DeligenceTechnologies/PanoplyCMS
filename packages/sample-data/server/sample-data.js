@@ -580,7 +580,7 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "6",
-				"html" : "<div class=\"footer-social\">\n              <h3><strong>Connect with us</strong></h3>\n              <ul>\n\t\t\t\t<li><a href=\"https://www.facebook.com/deligencetechnologies\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t<li><a href=\"https://twitter.com/deligence1\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t<li><a href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t<li><a href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\"></i></a></li>\n\t\t\t  </ul>\n           </div>"
+				"html" : "<div class=\"footer-social\">\n              <h3><strong>Connect with us</strong></h3>\n              <ul>\n\t\t\t\t<li><a target=\"_blank\" href=\"https://www.facebook.com/deligencetechnologies\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t<li><a target=\"_blank\" href=\"https://twitter.com/deligence1\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t<li><a target=\"_blank\" href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t<li><a target=\"_blank\" href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\"></i></a></li>\n\t\t\t  </ul>\n           </div>"
 			},
 			"menuItems" : [ ],
 			"trash" : false,
@@ -633,7 +633,7 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "9",
-				"html" : "<div class=\"top-left\">\n                    <ul class=\"top-contact-info\">\n                        <li><i class=\"fa fa-phone\"></i>+91 9910130340</li>    \n                        <li><i class=\"fa fa-envelope\"></i><a href=\"mailto:sanjay@deligence.com\">sanjay@deligence.com</a></li>    \n                        <li><i class=\"fa fa-globe\"></i>Janakpuri ,New Delhi - 110058, India</li>    \n                    </ul>   \n                 </div>"
+				"html" : "<div class=\"top-left\">\n                    <ul class=\"top-contact-info\">\n                        <li><i class=\"fa fa-phone\"></i>+91 9910130340</li>    \n                        <li><i class=\"fa fa-envelope\"></i><a href=\"mailto:sanjay@deligence.com\">sanjay@deligence.com</a></li>    \n                        <li><i class=\"fa fa-globe\"></i>Janakpuri, New Delhi - 110058, India</li>    \n                    </ul>   \n                 </div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
@@ -650,7 +650,7 @@ if(Meteor.isServer){
 			"allPages" : true,
 			"moduleData" : {
 				"gridLength" : "3",
-				"html" : "<div class=\"social-icons text-right\">\n                    <ul>\n                     <li><a href=\"https://www.facebook.com/deligencetechnologies\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n                     <li><a href=\"https://twitter.com/deligence1\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n                     <li><a href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></a></li>\n                     <li><a href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\" aria-hidden=\"true\"></i></a></li>\n                   </ul>\n              </div>"
+				"html" : "\n                    <ul class=\"social-icons text-right\">\n                     <li><a target=\"_blank\" href=\"https://www.facebook.com/deligencetechnologies\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n                     <li><a target=\"_blank\" href=\"https://twitter.com/deligence1\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n                     <li><a target=\"_blank\" href=\"https://www.linkedin.com/company/deligencetechnologies\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></a></li>\n                     <li><a target=\"_blank\" href=\"skype:sanjay.deligence\"><i class=\"fa fa-skype\" aria-hidden=\"true\"></i></a></li>\n                   </ul>\n              "
 			},
 			"trash" : false,
 			"createdAt" : new Date(),

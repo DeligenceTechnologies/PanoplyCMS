@@ -41,19 +41,61 @@ export const updateArticle = (id, params) => {
 }
 
 export const removeArticleParamanent = id => {
-	return () => {
-		Meteor.call('deleteArticleParma', id);
+	return (dispatch) => {
+		Meteor.call('deleteArticleParma', id, (error, data) => {
+			if(!error) {
+				dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! Deleted Article Parmanently.', 'success');
+			}else{
+				dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+			}
+		});
 	};
 };
 
 export const removeArticle = id => {
-	return () => {
-		Meteor.call('deleteArticle', id);
+	return (dispatch) => {
+		Meteor.call('deleteArticle', id, (error, data) => {
+			if(!error) {
+				dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! delete article.', 'success');
+			}else{
+				dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+			}
+		});
 	}
 }
 
 export const restoreArticle = id => {
-	return () => {
-		Meteor.call('restoreArticles', id);
+	return (dispatch) => {
+		Meteor.call('restoreArticles', id, (error, data) => {
+			if(!error) {
+				dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! restore article.', 'success');
+			}else{
+				dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+			}
+		});
 	}
 }

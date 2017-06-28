@@ -14,11 +14,17 @@ class AdminLayout extends Component {
 	componentDidMount(){
 		$('body').attr('style','')
 		require('../../imports/styles/admin.css')
-		let link = document.createElement('link');
-		link.id = 'id2';
-		link.rel = 'stylesheet';
-		link.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i";
-		document.getElementsByTagName('head')[0].appendChild(link);
+		let link1 = document.createElement('link');
+		link1.id = 'id2';
+		link1.rel = 'stylesheet';
+		link1.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i";
+		document.getElementsByTagName('head')[0].appendChild(link1);
+
+		let link2 = document.createElement('link');
+		link2.id = 'id2';
+    link2.rel = 'shortcut icon';
+    link2.href = 'favicon.ico';
+    document.getElementsByTagName('head')[0].appendChild(link2);
 
 		let script1 = document.createElement('script');
 		script1.type = 'text/javascript';

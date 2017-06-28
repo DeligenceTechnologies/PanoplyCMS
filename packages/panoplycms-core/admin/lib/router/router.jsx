@@ -50,7 +50,8 @@ _.extend(PanoplyRouter, {
 				})
 				let defaultModules = {};
 				/* Render offline component */
-				if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+				// if(site.siteOffline && !Roles.userIsInRole(Meteor.userId(), ['admin'])){     Site offline not showing after set offline
+				if(site.siteOffline ){
 					let offline = defaultTemplate.views.offline || 'CoreOfflineComponent';
 					PanoplyRouter.route('/', {
 						action: (p, q) => {

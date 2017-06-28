@@ -41,19 +41,61 @@ export const editMenu = (id, params) => {
 }
 
 export const removeMenu = id => {
-	return () => {
-		Meteor.call('deleteMenus', id);
+	return (dispatch) => {
+		Meteor.call('deleteMenus', id, (error, data) => {
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! remove menu.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+      }
+    });
 	};
 };
 
 export const removeMenuParamanent = id => {
-	return () => {
-		Meteor.call('deleteMenuParmanent', id);
+	return (dispatch) => {
+		Meteor.call('deleteMenuParmanent', id, (error, data) => {
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! remove menu parmanent.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+      }
+    });
 	};
 };
 
 export const restoreMenu = id => {
-	return () => {
-		Meteor.call('restoreMenus', id);
+	return (dispatch) => {
+		Meteor.call('restoreMenus', id, (error, data) => {
+      if(!error){
+      	dispatch({
+					type: 'SUCCESS',
+					data,
+				});
+				AlertMessage('SUCCESS', 'Successfully! restore menu.', 'success');
+      }else{
+      	dispatch({
+					type: 'ERROR',
+					error,
+				});
+				AlertMessage('ERROR', error.reason, 'error');
+      }
+    });
 	};
 };

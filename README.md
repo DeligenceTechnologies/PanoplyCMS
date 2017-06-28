@@ -1,36 +1,39 @@
-# PanoplyCMS 2.0
+# PanoplyCMS - menumodule 0.0.7
 
+MenuModule for PanoplyCMS. To install menumodule in your PanoplyCMS, Hit the following command :-
 
-## Installation Method
-- Pull PanoplyCMS from GitHub Repository on your system OR you can download zip and extract it on your machine.
-- Go to folder location through terminal or command prompt
-- First run: `meteor npm install` than run: `meteor --settings settings.json` . Please wait for server to get start. It will automatically install all dependencies and will start running.
-- Once it start running, go to your browser and type: http://localhost:3000
-- Thats it! You have installed PanoplyCMS on your system successfully.
+`meteor add deligencetechnologies:menumodule`
 
-- Frontend Link: http://localhost:3000
-- Backend Link: http://localhost:3000/admin
+This pacakge create module of type menumodule and display selected menu on position in frontend.
 
-- Initial Login Credentials of Backend :-<br>
-	Email: info@deligence.com<br>
-	Password: Pass@123
+One can refer this package to create further menumodule for PanoplyCMS.
 
-Now go and create some categories, then articles and finally some menus. Look at the changes at your frontend.
+# Guidelines to create new menumodule package :-
 
-## Demo
-- Frontend: http://45.55.157.253/
-- Backend: http://45.55.157.253/admin
-- Backend Login Details :-<br>
-	Email: info@deligence.com<br>
-	Password: Pass@123
+1. On startup in server there must be a pacakge registration:
+	ex. 
+	```
+		PanoplyCMSRegisterPackage({
+			"name" : "yourmodulename", // name should be lowercase, without space and special symbols.
+			"type" : "module",		// must be defined type 'module'
+			"component":"FrontendReactComponent", // react component that is render on frontend
+			"label":"Your Module", // label of yourmodulename - optional
+			"routes" : [
+				{
+					"name" : "addyourmodulename", // route name of yourmodulename
+					"path" : "/modules/yourmodulename/add", // path shuold be `/modules/yourmodulename/` add for add module and :_id for edit
+					"component" : "addyourmodulename", //react component of addyourmodulename 
+					"layout" : "AdminLayout",  // layout must be AdminLayout
+					"role"   :"add",	// role must be add or edit
+					"provides" : "dashboard", // provides must be dashboard
+					"permission" : ["admin"] // permission must be admin
+				},
+				...
+			]
+		})
+		```
+***
 
-## Features
-- Single Admin
-- Multiple Categories
-- Articles Associated With Created Categories
-- Multiple & Multilevel Menus
-- Tags associated with articles
-- Dynamic Template
-- Menu Module that can load at any given position
-- HTML Blocks that can load at any given position
-- Slider Module that can load at any given position
+### NOTE:-
+
+We recommended to use the [gitHub repository](https://github.com/DeligenceTechnologies/PanoplyCMS) for latest updates.

@@ -1039,7 +1039,7 @@ ArticleListView = data => {
 		alias = PanoplyRouter.current().route.path+data.alias
 	}
 	let regex = /<img.*?src=\"(.*?)\"/;
-	let url = data.article?regex.exec(data.article)[1]:'';
+	let url = data.article && regex.exec(data.article)?regex.exec(data.article)[1]:'';
 	let home = false;
 	if(PanoplyRouter.current().path == '/' || PanoplyRouter.current().path == '/home'){
 		home = true;

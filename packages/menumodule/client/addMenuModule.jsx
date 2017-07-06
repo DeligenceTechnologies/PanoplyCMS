@@ -282,7 +282,8 @@ MenuModuleFront = createReactClass({
 							target: elem1.target,
 							alias: elem1.alias,
 							desc:elem1.desc, 
-							child: child 
+							child: child,
+							MenuItemType:elem1.MenuItemType 
 						}
 						// console.log(elem1.title," ===> ",elem1.MenuItemType)
 						if(elem1.MenuItemType == 'link') obj.url = elem1.link
@@ -296,6 +297,7 @@ MenuModuleFront = createReactClass({
 		function getChild(parent_id){
 			var child = new Array();
 			elements.forEach(function (elem2) {
+				// console.log(elem2.title," ==> ",elem2.MenuItemType)
 				if(elem2.parentId){
 					if(parent_id == elem2.parentId){
 						let obj = { 
@@ -304,7 +306,8 @@ MenuModuleFront = createReactClass({
 							mainParentId:elem2.mainParentId, 
 							parentId:elem2.parentId,
 							alias: elem2.alias, 
-							desc:elem2.desc
+							desc:elem2.desc,
+							MenuItemType:elem2.MenuItemType
 						}
 						obj.child = getElements(elem2._id)
 						if(elem2.MenuItemType == 'url') obj.url = elem2.externalUrl
@@ -333,16 +336,21 @@ MenuModuleFront = createReactClass({
 				{
 					items.map(item => {
 						if(item.url && !/^(f|ht)tps?:\/\//i.test(item.url)) item.url = '/'+item.url;
-						// console.log(" ===> ",item)
 						let check = PanoplyCMSCollections.Modules.find({menuItems:{$in:[item._id]}}).count();
+						// console.log(PanoplyCMSCollections.Modules.find({menuItems:{$in:[item._id]}}).fetch()," ===> ",check," ===> ",item)
+						let article = false;
+						if(item.MenuItemType == "article"){
+							console.log(item)
+							article = true;
+						}
 						return (
 							<li key={item._id}>
 								{
 									item.url?
 										<a target={item.target && item.target != 0?'_blank':''} href={item.url}>{item.title}</a> 
 									: 
-										check != 0?
-											<a target={item.target && item.target != 0?'_blank':''} onClick={()=>{ PanoplyRouter.go('/'+ item.alias) }}>{item.title}</a>
+										check != 0 || article?
+											<a target={item.target && item.target != 0?'_blank':''} onClick={()=>{ PanoplyRouter.go('/'+ item.alias) }} style={{'cursor':'pointer'}}>{item.title}</a>
 										:
 											<a href="#" >{item.title}</a> 
 								}

@@ -70,7 +70,7 @@ class MenuItemsDataList extends Component {
             <a href="javascript:void(0)">
               <large style={anchorStyle}>{this.props.data.title}</large>
             </a>
-            <small style={anchorStyle}> (<span>{'Alias: '+this.props.data.alias}</span>) </small>
+            <small style={anchorStyle}> (<span>{'alias: '+this.props.data.alias.toLowerCase()}</span>) </small>
           </div>
         </td>
         <td >{this.props.data.desc}</td>

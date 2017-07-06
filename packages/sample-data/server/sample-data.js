@@ -8,14 +8,14 @@ if(Meteor.isServer){
 
 	homepageListCategory=[
 		{
-			"_id" : "qJmvAbE3zZi3ANbJJ",
-			"title" : "LIFE INSURANCE",
-			"alias" : "life-insurance",
+			"_id" : "wmPS6xzbbTmhwA889",
+			"title" : "About us",
+			"alias" : "about-us",
 			"createdAt" : new Date(),
-			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : "xo4S5G9a32RJnumwb"
+			"column" : "1",
+			"ownerId" : "PgdiH34LCYaEPtMn9"
 		},
 		{
 			"_id" : "MMrdixNaveR7vSzkm",
@@ -32,30 +32,41 @@ if(Meteor.isServer){
 			"title" : "Blog",
 			"alias" : "blog",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC",
 			"column" : "2"
+		},
+		{
+			"_id" : "bySxAvLs2WS2XNQ5i",
+			"title" : "Side bar categories",
+			"alias" : "side-bar-categories",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"column" : "2",
+			"ownerId" : "PgdiH34LCYaEPtMn9"
 		}
 	];
+
 	homepageListArticle=[
 		{
 			"_id" : "xdrSMwzaGaw4KBbPL",
 			"title" : "LIFE INSURANCE",
 			"alias" : "life-insurance",
-			"category" : "qJmvAbE3zZi3ANbJJ",
+			"category" : "bySxAvLs2WS2XNQ5i",
 			"tags" : [
 				"b8T3f4YAYfeiPMGu6"
 			],
-			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"images/blog-img2.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. </p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"/services/service-img1.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
 			"metaKeyword" : "LIFE INSURANCE",
 			"metaDescription" : "LIFE INSURANCE",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
-			"ownerId" : "KYjfJkbgimWbEbmiC"
+			"ownerId" : "PgdiH34LCYaEPtMn9"
 		},
 		{
 			"_id" : "dwWqfcHyCCakeJLmb",
@@ -71,7 +82,7 @@ if(Meteor.isServer){
 			"metaKeyword" : "Blog Details",
 			"metaDescription" : "Blog Detail",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
@@ -88,7 +99,7 @@ if(Meteor.isServer){
 			"metaKeyword" : "Aenean commodo ligula eget dolor",
 			"metaDescription" : "Aenean commodo ligula eget dolor",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
@@ -105,7 +116,7 @@ if(Meteor.isServer){
 			"metaKeyword" : "Aenean commodo ligula eget dolor",
 			"metaDescription" : "Aenean commodo ligula eget dolor",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
@@ -122,7 +133,7 @@ if(Meteor.isServer){
 			"metaKeyword" : "Aenean commodo ligula eget dolor",
 			"metaDescription" : "Aenean commodo ligula eget dolor",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
@@ -143,8 +154,94 @@ if(Meteor.isServer){
 			"status" : 1,
 			"trash" : false,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "vDvjt3ddc3vWSHFiQ",
+			"title" : "Travel Insurance",
+			"alias" : "travel-insurance",
+			"category" : "bySxAvLs2WS2XNQ5i",
+			"tags" : [
+				"BoJY6CJj8tiXkm5dk"
+			],
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"/services/service-img2.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"metaKeyword" : "Travel Insurance",
+			"metaDescription" : "Travel Insurance",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "iv7MsJxH2ypXwCiTR",
+			"title" : "Home Insurance",
+			"alias" : "home-insurance",
+			"category" : "bySxAvLs2WS2XNQ5i",
+			"tags" : [
+				"mtRXQ9FoaNshCQJXF"
+			],
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"/services/service-img3.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"metaKeyword" : "Home Insurance",
+			"metaDescription" : "Home Insurance",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "Pk7SfSEDhyYdW3FCE",
+			"title" : "Health Insurance",
+			"alias" : "health-insurance",
+			"category" : "bySxAvLs2WS2XNQ5i",
+			"tags" : [
+				"maTzEptA6sHeD7ySF"
+			],
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"/services/service-img4.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"metaKeyword" : "Health Insurance ",
+			"metaDescription" : "Health Insurance",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "9hp7nRpYfd4AQh29x",
+			"title" : "Business Insurance",
+			"alias" : "business-insurance",
+			"category" : "bySxAvLs2WS2XNQ5i",
+			"tags" : [
+				"xGtYwRqPmRxihFSuS"
+			],
+			"article" : "<div class=\"section-space services-style1\">\n<div class=\"container\">\n                \n        <div class=\"service-detail\">\n             <div class=\"row\">\n               <div class=\"col-sm-6\"><figure><img src=\"/services/service-img6.jpg\"></figure></div>\n               <div class=\"col-sm-6\">\n                   <div class=\"list-style\">\n               <ul>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                 <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</li>\n                  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>\n                 <li>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</li>\n               \n               </ul>\n             </div>\n              \n               </div>\n             </div>\n             \n             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>\n             \n            \n        </div>\n    </div>\n\n</div>",
+			"metaKeyword" : "Business Insurance",
+			"metaDescription" : "Business Insurance",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "ccS2qYW8JjemHc4Zs",
+			"title" : "WHO WE ARE",
+			"alias" : "who-we-are",
+			"category" : "wmPS6xzbbTmhwA889",
+			"tags" : [
+				"WP4KeXAQx8Wvij369"
+			],
+			"article" : "<div class=\"container\">\t<div class=\"section-heading heading-center animated fadeInLeft\">\n       \n        <h2></h2>\n        <div class=\"seperator\"></div>\n        <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n    </div>\n    <div class=\"about-content\">\t<p class=\"text-center animated fadeInLeft\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>\n    </div>\n</div>",
+			"metaKeyword" : "about Us",
+			"metaDescription" : "about us",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"trash" : false,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
 		}
 	];
+
 	homepageListMenus=[
 		{
 			"_id" : "dGBtw92nTceAkThKq",
@@ -152,16 +249,6 @@ if(Meteor.isServer){
 			"desc" : "Main Header Nevigation",
 			"createdAt" : new Date(),
 			"alias" : "main-header-nevigation",
-			"item" : [ ],
-			"trash" : false,
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "qsezyJ5C4FsDokzcN",
-			"title" : "my menu",
-			"desc" : "new menu",
-			"createdAt" : new Date(),
-			"alias" : "my-menu",
 			"item" : [ ],
 			"trash" : false
 		},
@@ -182,17 +269,9 @@ if(Meteor.isServer){
 			"alias" : "categories",
 			"item" : [ ],
 			"trash" : false
-		},
-		{
-			"_id" : "dMwW7XdXrhb43etGE",
-			"title" : "RECENT POSTS",
-			"desc" : "RECENT POSTS side bar",
-			"createdAt" : new Date(),
-			"alias" : "recent-posts",
-			"item" : [ ],
-			"trash" : false
 		}
 	];
+
 	homepageListMenuItems=[
 		{
 			"_id" : "T8sgLe9oEToTApsfZ",
@@ -206,24 +285,21 @@ if(Meteor.isServer){
 			"createdAt" : new Date(),
 			"alias" : "home",
 			"trash" : false,
-			"updatedAt" : new Date(),
 			"target" : "0",
 			"link" : ""
-
 		},
 		{
 			"_id" : "NWwGpMkjoCmehFegb",
 			"title" : "About Us",
 			"desc" : "module type",
 			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "ccS2qYW8JjemHc4Zs",
 			"parentId" : "",
 			"homepage" : false,
 			"createdAt" : new Date(),
 			"alias" : "about-us",
 			"trash" : false,
-			"updatedAt" : new Date(),
 			"target" : "0",
 			"link" : ""
 		},
@@ -239,23 +315,8 @@ if(Meteor.isServer){
 			"createdAt" : new Date(),
 			"alias" : "services",
 			"trash" : false,
-			"updatedAt" : new Date(),
 			"target" : "0",
 			"link" : ""
-		},
-		{
-			"_id" : "oc4agcZr6XLsmi9mL",
-			"title" : "Gallery",
-			"desc" : "Gallery",
-			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"parentId" : "",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"alias" : "gallery",
-			"trash" : false,
-			"updatedAt" : new Date()
 		},
 		{
 			"_id" : "mDopsGQLGakQJWwcf",
@@ -270,8 +331,7 @@ if(Meteor.isServer){
 			"alias" : "blog",
 			"trash" : false,
 			"target" : "0",
-			"link" : "",
-			"updatedAt" : new Date()
+			"link" : ""
 		},
 		{
 			"_id" : "9AwxN97eJ4EtxoJDc",
@@ -285,7 +345,8 @@ if(Meteor.isServer){
 			"createdAt" : new Date(),
 			"alias" : "services-detail",
 			"trash" : false,
-			"updatedAt" : new Date()
+			"target" : "0",
+			"link" : ""
 		},
 		{
 			"_id" : "Cu5ME64CTqDfFFFie",
@@ -312,22 +373,8 @@ if(Meteor.isServer){
 			"createdAt" : new Date(),
 			"alias" : "blog-details",
 			"trash" : false,
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "7kJYmPrAXhXo2GvBA",
-			"title" : "jhhh",
-			"desc" : "jkhkj",
 			"target" : "0",
-			"mainParentId" : "dGBtw92nTceAkThKq",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "jhhh",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : true
+			"link" : ""
 		},
 		{
 			"_id" : "kf34w98iuQHqoMbwq",
@@ -340,21 +387,6 @@ if(Meteor.isServer){
 			"link" : "",
 			"parentId" : "",
 			"alias" : "contact",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
-		},
-		{
-			"_id" : "mY2cGxG9f6ZYCjpG9",
-			"title" : "Item4",
-			"desc" : "item4",
-			"target" : "0",
-			"mainParentId" : "qsezyJ5C4FsDokzcN",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "item4",
 			"homepage" : false,
 			"createdAt" : new Date(),
 			"trash" : false
@@ -425,8 +457,8 @@ if(Meteor.isServer){
 			"desc" : "Life Insurance",
 			"target" : "0",
 			"mainParentId" : "57E9282t68emxeFT4",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "xdrSMwzaGaw4KBbPL",
 			"link" : "",
 			"parentId" : "",
 			"alias" : "life-insurance",
@@ -440,8 +472,8 @@ if(Meteor.isServer){
 			"desc" : "Travel Insurance",
 			"target" : "0",
 			"mainParentId" : "57E9282t68emxeFT4",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "vDvjt3ddc3vWSHFiQ",
 			"link" : "",
 			"parentId" : "",
 			"alias" : "travel-insurance",
@@ -455,8 +487,8 @@ if(Meteor.isServer){
 			"desc" : "Home Insurance",
 			"target" : "0",
 			"mainParentId" : "57E9282t68emxeFT4",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "iv7MsJxH2ypXwCiTR",
 			"link" : "",
 			"parentId" : "",
 			"alias" : "home-insurance",
@@ -470,8 +502,8 @@ if(Meteor.isServer){
 			"desc" : "Health Insurance",
 			"target" : "0",
 			"mainParentId" : "57E9282t68emxeFT4",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "Pk7SfSEDhyYdW3FCE",
 			"link" : "",
 			"parentId" : "",
 			"alias" : "health-insurance",
@@ -485,91 +517,17 @@ if(Meteor.isServer){
 			"desc" : "Business Insurance",
 			"target" : "0",
 			"mainParentId" : "57E9282t68emxeFT4",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
+			"MenuItemType" : "article",
+			"MenuItemTypeId" : "9hp7nRpYfd4AQh29x",
 			"link" : "",
 			"parentId" : "",
 			"alias" : "business-insurance",
 			"homepage" : false,
 			"createdAt" : new Date(),
 			"trash" : false
-		},
-		{
-			"_id" : "zYvDv5zRDn5tA3ukR",
-			"title" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",
-			"desc" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit",
-			"target" : "0",
-			"mainParentId" : "dMwW7XdXrhb43etGE",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "lorem-ipsum-dolor-sit-amet-consectetuer-adipiscing-elit",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
-		},
-		{
-			"_id" : "didGAMYj4qp3ifx4H",
-			"title" : "Aenean commodo ligula eget dolor",
-			"desc" : "Aenean commodo ligula eget dolor",
-			"target" : "0",
-			"mainParentId" : "dMwW7XdXrhb43etGE",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "aenean-commodo-ligula-eget-dolor",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
-		},
-		{
-			"_id" : "ebbxzt2xWEEMYXtLK",
-			"title" : "Etiam ultricies nisi vel augue",
-			"desc" : "Etiam ultricies nisi vel augue",
-			"target" : "0",
-			"mainParentId" : "dMwW7XdXrhb43etGE",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "etiam-ultricies-nisi-vel-augue",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
-		},
-		{
-			"_id" : "WCvFnpeGEFh8ZywSK",
-			"title" : "Aenean commodo ligula eget dolor3",
-			"desc" : "Aenean commodo ligula eget dolor",
-			"target" : "0",
-			"mainParentId" : "dMwW7XdXrhb43etGE",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "aenean-commodo-ligula-eget-dolor3",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
-		},
-		{
-			"_id" : "znAwgDsizjR93aCfA",
-			"title" : "Etiam ultricies nisi vel augue 1",
-			"desc" : "Etiam ultricies nisi vel augue",
-			"target" : "0",
-			"mainParentId" : "dMwW7XdXrhb43etGE",
-			"MenuItemType" : "module",
-			"MenuItemTypeId" : "",
-			"link" : "",
-			"parentId" : "",
-			"alias" : "etiam-ultricies-nisi-vel-augue-1",
-			"homepage" : false,
-			"createdAt" : new Date(),
-			"trash" : false
 		}
 	];
+
 	homepageListModules=[
 		{
 			"_id" : "btzfnsMesobufaaiB",
@@ -585,25 +543,8 @@ if(Meteor.isServer){
 			"menuItems" : [ ],
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date(),
+			"updatedAt" : "",
 			"moduleClass" : "Footer"
-		},
-		{
-			"_id" : "dw2MPsFDMzW4cN7F4",
-			"name" : "Footer Legal",
-			"type" : "htmlblock",
-			"position" : "mainFooter",
-			"showTitle" : false,
-			"allPages" : true,
-			"moduleData" : {
-				"gridLength" : "6",
-				"html" : "<div class=\"legal-links\">\n           <h3>Legal</h3>\n           <ul>\n\t\t\t\t\t<li><a href=\"\">Privacy Statement</a></li>\n                    <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Terms &amp; Condinition</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Disclaimer</a></li>\n                     <li>/</li>\n\t\t\t\t\t<li><a href=\"\">Legal Information</a></li>\n\t\t\t</ul>\n          </div>"
-			},
-			"menuItems" : [ ],
-			"trash" : true,
-			"createdAt" : new Date(),
-			"updatedAt" : new Date(),
-			"moduleClass" : "FooterRight"
 		},
 		{
 			"_id" : "GfBsB74mXxAAZeG9j",
@@ -619,7 +560,7 @@ if(Meteor.isServer){
 			"menuItems" : [ ],
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date(),
+			"updatedAt" : "",
 			"moduleClass" : "CopyRight"
 		},
 		{
@@ -637,7 +578,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "rtC4dqRYw573AGqQt",
@@ -654,7 +595,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "7bwkzcXSHrqiqDpSB",
@@ -671,7 +612,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "QzgvkSF3yTZLmtbeD",
@@ -690,7 +631,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "EPSbvPRQ4TKBbCZpN",
@@ -699,8 +640,7 @@ if(Meteor.isServer){
 			"position" : "feature",
 			"showTitle" : false,
 			"menuItems" : [
-				"T8sgLe9oEToTApsfZ",
-				"NWwGpMkjoCmehFegb"
+				"T8sgLe9oEToTApsfZ"
 			],
 			"moduleClass" : "feature",
 			"allPages" : false,
@@ -710,7 +650,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "tKfsfJCXjJRqKSPwg",
@@ -719,8 +659,7 @@ if(Meteor.isServer){
 			"position" : "mainTop",
 			"showTitle" : false,
 			"menuItems" : [
-				"T8sgLe9oEToTApsfZ",
-				"NWwGpMkjoCmehFegb"
+				"T8sgLe9oEToTApsfZ"
 			],
 			"moduleClass" : "mainTop",
 			"allPages" : false,
@@ -730,7 +669,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "PrhfHZ8cKJ47njZEn",
@@ -740,10 +679,7 @@ if(Meteor.isServer){
 			"showTitle" : false,
 			"menuItems" : [
 				"T8sgLe9oEToTApsfZ",
-				"KzZZECf8FZBPuYZAu",
-				"SawyKvjuzXEEYKNyD",
-				"yYMrfCohfJZFu8DR7",
-				"LiFqNSdyTyRr9crPu"
+				"KzZZECf8FZBPuYZAu"
 			],
 			"moduleClass" : "mainTop",
 			"allPages" : false,
@@ -753,7 +689,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "a5rghXvjjNNjvGtr9",
@@ -772,26 +708,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "fyQnimHojxT5ASX2s",
-			"name" : "We're Your",
-			"type" : "htmlblock",
-			"position" : "mainbody",
-			"showTitle" : false,
-			"menuItems" : [
-				"T8sgLe9oEToTApsfZ"
-			],
-			"moduleClass" : "mainBody",
-			"allPages" : false,
-			"moduleData" : {
-				"gridLength" : "12",
-				"html" : "<div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"/contact\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>"
-			},
-			"trash" : true,
-			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "qTSc2dvHmZJQuWmRJ",
@@ -832,13 +749,13 @@ if(Meteor.isServer){
 			"trash" : false,
 			"createdAt" : new Date(),
 			"moduleClass" : "",
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "5dZHMFQ2PDSqCFiyb",
 			"name" : "Our Team",
 			"type" : "htmlblock",
-			"position" : "mainTop",
+			"position" : "mainBottom",
 			"showTitle" : false,
 			"menuItems" : [
 				"NWwGpMkjoCmehFegb"
@@ -851,7 +768,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "CHF8egPKLoXSamded",
@@ -860,8 +777,7 @@ if(Meteor.isServer){
 			"position" : "mainTop",
 			"showTitle" : false,
 			"menuItems" : [
-				"T8sgLe9oEToTApsfZ",
-				"NWwGpMkjoCmehFegb"
+				"T8sgLe9oEToTApsfZ"
 			],
 			"moduleClass" : "testinomial",
 			"allPages" : false,
@@ -871,7 +787,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "TXfx7TngwTjxkscih",
@@ -889,10 +805,9 @@ if(Meteor.isServer){
 				"gridLength" : "12",
 				"html" : "<div class=\"section-space our-partner\">\n<div class=\"section-heading heading-center\">\n            <span></span>\n            <h2>Our Partner</h2>\n            <div class=\"seperator\"></div>\n            <p class=\"lead\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <br>Aenean commodo ligula eget dolor.</p>\n        </div>\n        \n          <div class=\"owl-carousel\" id=\"clients\">\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n           <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/deligence.png\" alt=\"\"></a></div>\n          <div class=\"item partner-logo\"><a href=\"#\"><img src=\"images/panoply.png\" alt=\"\"></a></div>\n      </div>\n</div>"
 			},
-
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "Cahb4T6NjymztiaEZ",
@@ -914,7 +829,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "dSJ7bEexan5xk8buW",
@@ -929,11 +844,11 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : "<div class=\"get-in-touch\">\n<div class=\"container\">\n     <div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"/contact\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>\n</div>\n</div>"
+				"html" : "<div class=\"get-in-touch\">\n<div class=\"container\">\n     <div class=\"white-bg\">\n         <div class=\"about-tagline animated fadeInLeft\">\n                         <p> <span>We're</span> Your ONE STOP SHOP <br>\n                         <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n          </div>\n           <div class=\"about-text animated fadeInUp text-center\">\n          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>\n          <a href=\"contact.html\" class=\"theme-btn btn-style-three\">Contact Us</a>\n        </div>\n     </div>\n</div>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "8gg4KmeNXWwSw3Q8Q",
@@ -952,60 +867,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "K35Dijpp6o3jwva9g",
-			"name" : "Our Gallery",
-			"type" : "htmlblock",
-			"position" : "utility",
-			"showTitle" : false,
-			"menuItems" : [
-				"oc4agcZr6XLsmi9mL"
-			],
-			"moduleClass" : "ourGallery",
-			"allPages" : false,
-			"moduleData" : {
-				"gridLength" : "12",
-				"html" : "<div class=\"internal-banner int-banner-img\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-sm-12\">\n            <h2>Our Gallery</h2>\n            <ul class=\"breadcrumb\">\n                  <li><a href=\"/ \">Home</a></li>\n                  <li class=\"active\">Gallery</li>\n             </ul>\n          </div>\n        </div>\n      </div>\n        \n    </div>"
-			},
-			"trash" : false,
-			"createdAt" : new Date()
-		},
-		{
-			"_id" : "JjpieaRKQFqoFMrMB",
-			"name" : "Our Gallery Images",
-			"type" : "htmlblock",
-			"position" : "feature",
-			"showTitle" : false,
-			"menuItems" : [
-				"oc4agcZr6XLsmi9mL"
-			],
-			"moduleClass" : "galleryImages",
-			"allPages" : false,
-			"moduleData" : {
-				"gridLength" : "12",
-				"html" : " <div class=\"section-space gallery\">\n        <div class=\"container\">       \n              <div class=\"row\">\n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                 <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                 <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img1.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n                <!--Gallery Item-->\n                <div class=\"col-sm-4 gallery-item\">\n                    <div class=\"inner-box\">\n                        <figure class=\"image-box\"><img src=\"images/blog-img2.jpg\" alt=\"\"></figure>\n                        <!--Overlay Box-->\n                        <div class=\"overlay-box\">\n                            <div class=\"overlay-inner\">\n                                <div class=\"border-box\"></div>\n                                <div class=\"content\">\n                                    <h3><a href=\"#gallery-popup\" class=\" has-gallery-popup\" >HEADING #</a></h3>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Gallery Popup Button-->\n                        <ul class=\"link-btn\">\n                            <li><a href=\"#\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n                \n          \n                       \n            </div>\n                                    \n        </div>\n    </div>\n"
-			},
-			"trash" : false,
-			"createdAt" : new Date()
-		},
-		{
-			"_id" : "Hu4h3JHs5uRs7XoAB",
-			"name" : "Our Blog Sidbar",
-			"type" : "htmlblock",
-			"position" : "sidebar",
-			"showTitle" : false,
-			"menuItems" : [ ],
-			"moduleClass" : "ourBlogSidbar",
-			"allPages" : true,
-			"moduleData" : {
-				"gridLength" : "3",
-				"html" : "<div class=\"blog-sidebar\">\n             <div class=\"categories-post widget\">\n             <h2>CATEGORIES</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Life Insurance</a>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t<a href=\"#\">Travel Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\">Home Insurance</a>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t<a href=\"#\">Health Insurance</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t<a href=\"#\"> Business Insurance </a>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n           \n           \n            \n                \n             \n                \n           </div>\n         \n"
-			},
-			"trash" : true,
-			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "waCowaD6QCsq4FoWY",
@@ -1024,13 +886,13 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "6es5uaLRCjhetbHgE",
 			"name" : "Contact Us",
 			"type" : "htmlblock",
-			"position" : "mainTop",
+			"position" : "feature",
 			"showTitle" : false,
 			"menuItems" : [
 				"kf34w98iuQHqoMbwq"
@@ -1039,29 +901,11 @@ if(Meteor.isServer){
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"html" : " <div class=\"section-space contact-us\">\n  <div class=\"container\">\n         <div class=\"contact-info\">\n              <h4>Our Office Address</h4>\n              <div class=\"row\">\n      <div class=\"col-sm-4\">\n        \n           <div class=\"contact-address\">\n                     <i class=\"fa fa-map-marker\"></i> \n                    <h2>Address </h2>\n                    <p> 106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <div class=\"contact-phone\">\n        <i class=\"fa fa-mobile\"></i> \n                    <h2>Mobile </h2>\n                    <p>  +91 9910130340 </p>\n               </div>\n      </div>\n      <div class=\"col-sm-4\">\n         <div class=\"contact-email\">\n         <i class=\"fa fa-envelope\"></i> \n                    <h2>Email</h2>\n                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n               </div>\n      </div>\n\n     </div>\n          </div>\n      </div>\n   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.026570991266!2d77.07993466516399!3d28.62896573241928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf19087279%3A0x5e3329ce2a459e33!2sJyothi+Shikhar+Tower%2C+Professor+Joginder+Singh+Marg%2C+Janakpuri+District+Center%2C+Janakpuri%2C+New+Delhi%2C+Delhi+110058!5e0!3m2!1sen!2sin!4v1493268975898\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>\n"
+				"html" : "<div class=\"section-space contact-us\">\n  \t<div class=\"container\">\n        <div class=\"contact-info\">\n            <h4>Our Office Address</h4>\n            <div class=\"row\">\n      \t\t\t<div class=\"col-sm-4\">\n        \t\t\t<div class=\"contact-address\">\n                    \t<i class=\"fa fa-map-marker\"></i> \n                    \t<h2>Address </h2>\n                    \t<p> Deligence Technologies Pvt. Ltd.\n106 &amp; 107, 1st Floor, Jyoti Shikhar Tower, <br> District Centre, Janakpuri ,<br> New Delhi - 110058, India</p>\n               \t\t</div>\n      \t\t\t</div>\n      \t\t\t<div class=\"col-sm-4\">\n        \t\t\t<div class=\"contact-phone\">\n        \t\t\t\t<i class=\"fa fa-mobile\"></i> \n                    \t<h2>Mobile </h2>\n                    \t<p>  +91 9910130340 </p>\n               \t\t</div>\n      \t\t\t</div>\n      \t\t\t<div class=\"col-sm-4\">\n         \t\t\t<div class=\"contact-email\">\n\t         \t\t\t<i class=\"fa fa-envelope\"></i> \n\t                \t<h2>Email</h2>\n\t                    <p>  <a href=\"mailto:sanjay@deligence.com\"> sanjay@deligence.com </a> </p>\n\t               </div>\n\t      \t\t</div>\n\t\t\t</div>\n        </div>\n    </div>\n</div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
-		},
-		{
-			"_id" : "PxRsE7pcHrugWdged",
-			"name" : "Our Blog Sidbar 2",
-			"type" : "htmlblock",
-			"position" : "sidebar",
-			"showTitle" : false,
-			"menuItems" : [
-				"CToCHY38NchyEccMe"
-			],
-			"moduleClass" : "ourBlogSidbar",
-			"allPages" : false,
-			"moduleData" : {
-				"gridLength" : "3",
-				"html" : "<div class=\"blog-sidebar\">\n<div class=\"recent-post widget\">\n             <h2>Recent Posts</h2>\n             \n             <ul>\n\t\t\t\t\t<li>\n\t\t\t\t      <a href=\"#\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>\n                      <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t \t        <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                          <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t         <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                           <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n                        \n                        \t<li>\n\t\t\t\t          <a href=\"#\">Aenean commodo ligula eget dolor</a>\n                            <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t        <a href=\"#\"> Etiam ultricies nisi vel augue</a>\n                         <span class=\"post-date\"><i class=\"fa fa-calendar\"></i>March 29, 2017</span>\n\t\t\t\t\t\t</li>\n\t\t\n\t\t\t\t</ul>\n                </div>\n</div>"
-			},
-			"trash" : true,
-			"createdAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "FFocjg2zgMZWEACJf",
@@ -1126,7 +970,7 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
 			"_id" : "aupQALdspGBe8trvQ",
@@ -1135,8 +979,7 @@ if(Meteor.isServer){
 			"position" : "sidebar",
 			"showTitle" : true,
 			"menuItems" : [
-				"mDopsGQLGakQJWwcf",
-				"CToCHY38NchyEccMe"
+				"mDopsGQLGakQJWwcf"
 			],
 			"moduleClass" : "categories-post widget",
 			"allPages" : false,
@@ -1146,29 +989,65 @@ if(Meteor.isServer){
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
 		},
 		{
-			"_id" : "Sfi2X4C6u9CYikBWS",
-			"name" : "RECENT POSTS",
-			"type" : "menumodule",
-			"position" : "sidebar",
-			"showTitle" : true,
+			"_id" : "zCPpTpgqR7vydteXq",
+			"name" : "Contact Us Map",
+			"type" : "htmlblock",
+			"position" : "mainTop",
+			"showTitle" : false,
 			"menuItems" : [
-				"mDopsGQLGakQJWwcf",
-				"CToCHY38NchyEccMe"
+				"kf34w98iuQHqoMbwq"
 			],
-			"moduleClass" : "recent-post widget",
+			"moduleClass" : "contactUs",
 			"allPages" : false,
 			"moduleData" : {
 				"gridLength" : "12",
-				"menuItem" : "dMwW7XdXrhb43etGE"
+				"html" : "<div class=\"section-space contact-us\">   \n   <div class=\"map\">\n     <iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14008.12770846077!2d77.0817619!3d28.6288052!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x368abbd9af45e487!2sDeligence+Technologies+Private+Limited!5e0!3m2!1sen!2sin!4v1499085529446\" style=\"border:0\" allowfullscreen=\"\" height=\"400\" frameborder=\"0\" width=\"100%\"></iframe>\n   </div>\n    \n </div>"
 			},
 			"trash" : false,
 			"createdAt" : new Date(),
-			"updatedAt" : new Date()
+			"updatedAt" : ""
+		},
+		{
+			"_id" : "a8pDnrWqqBfC57Nhj",
+			"name" : "Robert Dell (about us page)",
+			"type" : "htmlblock",
+			"position" : "extension",
+			"showTitle" : false,
+			"menuItems" : [
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "about us",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"row section-space testimonial-wrap parallax\">\n          <div class=\"col-md-8 col-md-offset-2 text-center\">\n              <div class=\"owl-carousel\" id=\"testimonial\">\n                  <div class=\"item\">\n                     <div class=\"single-testimonial\">\n                       <p class=\"quot\"><i class=\"fa fa-quote-left\"></i></p>\n                       <p class=\"comment\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis .</p>\n                       <p class=\"name\"> - Roberta  Ball</p>\n                      <p class=\"job\">Director</p>\n                     </div>\n                  </div>\n                  <div class=\"item\">\n                     <div class=\"single-testimonial\">\n                       <p class=\"quot\"><i class=\"fa fa-quote-left\"></i></p>\n                       <p class=\"comment\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis .</p>\n                       <p class=\"name\"> - Roberta  Ball</p>\n                      <p class=\"job\">Director</p>\n                     </div>\n                  </div>\n               </div>\n               <div class=\"customNavigation\">\n                 <a class=\"prev-arrow\"><i class=\"fa fa-chevron-left\"></i></a>\n                 <a class=\"next-arrow\"><i class=\"fa fa-chevron-right\"></i></a>\n             </div>\n           </div>           \n      </div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
+		},
+		{
+			"_id" : "Zgs4s9zBJTgendo8c",
+			"name" : "Who we are icos",
+			"type" : "htmlblock",
+			"position" : "contentBottom",
+			"showTitle" : false,
+			"menuItems" : [
+				"NWwGpMkjoCmehFegb"
+			],
+			"moduleClass" : "aboutUs-icon",
+			"allPages" : false,
+			"moduleData" : {
+				"gridLength" : "12",
+				"html" : "<div class=\"container\">\n    <div class=\"about-content\">\n      \t<div class=\"counter-wrap\">\n          \t<div class=\"row\">\n            \t<div class=\"col-sm-3\">\n              \t\t<div class=\"work-counter animated fadeInRight\">\n\t                   <i class=\"fa fa-users count-icon\" aria-hidden=\"true\"></i>\n\t                   <h3 class=\"Count\">200</h3>\n\t                   <p>Team Members</p>\n\t               </div>\n\t            </div>\n\t            <div class=\"col-sm-3\">\n\t               <div class=\"work-counter animated fadeInRight\">\n\t                   <i class=\"fa fa-globe count-icon\" aria-hidden=\"true\"></i>\n\t                   <h3 class=\"Count\">80</h3>\n\t                   <p>COUNTRIES</p>\n\t               </div>\n\t            </div>\n\t            <div class=\"col-sm-3\">\n\t               <div class=\"work-counter animated fadeInRight\">\n\t                   <i class=\"fa fa-smile-o count-icon\" aria-hidden=\"true\"></i>\n\t                   <h3 class=\"Count\">21930</h3>\n\t                   <p> Happy Customers </p>\n\t               </div>\n\t            </div>\n\t            <div class=\"col-sm-3\">\n\t               <div class=\"work-counter animated fadeInRight\">\n\t                   <i class=\"fa fa-coffee count-icon\" aria-hidden=\"true\"></i>\n\t                   <h3 class=\"Count\">90</h3>\n\t                   <p>Coffee</p>\n\t               </div>\n\t            </div>\n          \t</div>\n        </div>\n    \t<div class=\"about-tagline animated fadeInLeft\">\n             <p><span>We're</span> Your ONE STOP SHOP <br>\n             <span>for</span> ALL YOUR INSURANCE NEEDS</p>\n       </div>\n   </div>\n</div>"
+			},
+			"trash" : false,
+			"createdAt" : new Date()
 		}
 	];
+
 	homepageListTags=[
 		{
 			"_id" : "eAhjeGCkxYdD5ggyh",
@@ -1178,7 +1057,7 @@ if(Meteor.isServer){
 			"metaKeyword" : "Blog Detail",
 			"metaDescription" : "Blog Detail",
 			"createdAt" : new Date(),
-			"updateAt" : new Date(),
+			"updateAt" : "",
 			"status" : 1,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
 		},
@@ -1217,6 +1096,66 @@ if(Meteor.isServer){
 			"updateAt" : "",
 			"status" : 1,
 			"ownerId" : "KYjfJkbgimWbEbmiC"
+		},
+		{
+			"_id" : "BoJY6CJj8tiXkm5dk",
+			"title" : "Travel Insurance",
+			"alias" : "travel-insurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "mtRXQ9FoaNshCQJXF",
+			"title" : "Home Insurance",
+			"alias" : "home-insurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "maTzEptA6sHeD7ySF",
+			"title" : "Health Insurance",
+			"alias" : "health-insurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "xGtYwRqPmRxihFSuS",
+			"title" : "Business Insurance",
+			"alias" : "business-insurance",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
+		},
+		{
+			"_id" : "WP4KeXAQx8Wvij369",
+			"title" : "About Us",
+			"alias" : "about-us",
+			"desc" : "",
+			"metaKeyword" : "",
+			"metaDescription" : "",
+			"createdAt" : new Date(),
+			"updateAt" : "",
+			"status" : 1,
+			"ownerId" : "PgdiH34LCYaEPtMn9"
 		}
 	]
 

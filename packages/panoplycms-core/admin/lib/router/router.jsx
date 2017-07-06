@@ -116,7 +116,7 @@ _.extend(PanoplyRouter, {
 					/* Modules show on only specified menuItem */
 
 					_.each(menuItems, (i) => {
-						// console.log("========== Menu Item Id assigned ==========")
+						// console.log("========== Menu Item Id assigned ==========",i.MenuItemType," ===> ",i)
 						if(i.MenuItemType == 'url') return;
 						
 						/* Get Modules List with specified menuItem id */

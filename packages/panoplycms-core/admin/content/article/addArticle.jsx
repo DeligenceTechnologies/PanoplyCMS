@@ -182,7 +182,7 @@ class AddArticle extends Component {
 							<label htmlFor="article" className="col-sm-2 control-label">{i18n('ADMIN_COTNENTS_ARTICLES_ADDARTICLE_FORM_ARTICLE')}</label>
 							<div className="col-sm-10">
 								<div className="summernote">
-									<textarea id="article" name="article" className="form-control" required></textarea>
+									<textarea id="article" name="article" className="form-control"></textarea>
 								</div>
 							</div>
 						</div>

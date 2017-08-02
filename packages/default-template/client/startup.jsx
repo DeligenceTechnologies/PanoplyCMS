@@ -1,4 +1,2 @@
-/*Meteor.startup(function() {
-	ReactDOM.render( <DefaultTemplate /> , document.getElementById("target"));
+Meteor.startup(function() {
 });
-*/

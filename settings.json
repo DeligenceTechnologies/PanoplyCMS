@@ -1,6 +1,9 @@
 {
   "public": {
   	"limit": 20,
+  	"analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-103799656-1"}
+ 		},
   	"defaultImages": [
   		"/images/slider/banner-1.jpg",
   		"/images/slider/banner-2.jpg",

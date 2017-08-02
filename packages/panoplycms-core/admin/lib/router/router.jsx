@@ -29,10 +29,14 @@ import ModulesLayout from '../../../admin/extension/modules/modulesLayout.jsx'
 PanoplyRouter = FlowRouter;
 PanoplyRouter.wait();
 
-
 _.extend(PanoplyRouter, {
 	init: () => {
 		Tracker.autorun((c) => {
+			FlowRouter.triggers.enter([function(){
+				document.title = FlowRouter.getRouteName()||"PanoplyCMS"
+				console.log(":: current title - > ",document.title);
+			}]);
+
 			if(PanoplyCMSCollections.packageRoutes.ready() && PanoplyCMSCollections.menuItemRoutes.ready() && PanoplyCMSCollections.roles.ready()){
 
 				/*Get list of all registered packages*/

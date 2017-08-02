@@ -19,7 +19,7 @@ kadira:flow-router
 kadira:react-layout
 fortawesome:fontawesome
 twbs:bootstrap
-
+okgrow:analytics
 # teamon:tinymce
 # accounts-password
 # cfs:standard-packages

@@ -1,97 +1,112 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import PropTypes from 'prop-types';
-import { createContainer } from 'meteor/react-meteor-data';
-import { ReactiveDict } from 'meteor/reactive-dict'
 
-import AdminFooter from '../adminLayout/component/adminFooter.jsx';
-import AdminHeader from '../adminLayout/component/adminHeader.jsx';
-import AdminSidebar from '../adminLayout/component/adminSidebar.jsx';
+/*=======================================================
+	this component is used as layout of admin penal
+	where all component like adminFooter, adminHeader,
+	adminSidebar and middle page content diplay.
+========================================================*/
 
-const dict = new ReactiveDict('myDict')
 
-class AdminLayout extends Component {
-	componentDidMount(){
-		$('body').attr('style','')
-		require('../../imports/styles/admin.css')
-		let link1 = document.createElement('link');
-		link1.id = 'id2';
-		link1.rel = 'stylesheet';
-		link1.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i";
-		document.getElementsByTagName('head')[0].appendChild(link1);
 
-		let link2 = document.createElement('link');
-		link2.id = 'id2';
-    link2.rel = 'shortcut icon';
-    link2.href = 'favicon.ico';
-    document.getElementsByTagName('head')[0].appendChild(link2);
 
-		let script1 = document.createElement('script');
-		script1.type = 'text/javascript';
-		script1.src = 'http://enscrollplugin.com/releases/enscroll-0.6.1.min.js';
-		document.getElementsByTagName('head')[0].appendChild(script1);
+import('react').then(({Component})=>{
+	import AdminFooter from '../adminLayout/component/adminFooter.jsx';
+	import AdminHeader from '../adminLayout/component/adminHeader.jsx';
+	import AdminSidebar from '../adminLayout/component/adminSidebar.jsx';
+	import LoadingSpinner from '../common/loadingSpinner.jsx'
+	
+	import { ReactiveDict } from 'meteor/reactive-dict'
+	const dict = new ReactiveDict('myDict')
+	
+	class AdminLayout extends Component {
+		componentDidMount(){
+			$('body').attr('style','')
+			require('../../imports/styles/admin.css')
+			let link1 = document.createElement('link');
+			link1.id = 'id2';
+			link1.rel = 'stylesheet';
+			link1.href = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i";
+			document.getElementsByTagName('head')[0].appendChild(link1);
 
-		let script2 = document.createElement('script');
-		script2.type = 'text/javascript';
-		script2.src = 'https://code.jquery.com/jquery-1.12.4.js';
-		document.getElementsByTagName('head')[0].appendChild(script2);
+			let link2 = document.createElement('link');
+			link2.id = 'id2';
+	    link2.rel = 'shortcut icon';
+	    link2.href = 'favicon.ico';
+	    document.getElementsByTagName('head')[0].appendChild(link2);
 
-		let script3 = document.createElement('script');
-		script3.type = 'text/javascript';
-		script3.src = 'https://code.jquery.com/ui/1.12.1/jquery-ui.js';
-		document.getElementsByTagName('head')[0].appendChild(script3);
+			let script1 = document.createElement('script');
+			script1.type = 'text/javascript';
+			script1.src = 'http://enscrollplugin.com/releases/enscroll-0.6.1.min.js';
+			document.getElementsByTagName('head')[0].appendChild(script1);
 
-		  
+			let script2 = document.createElement('script');
+			script2.type = 'text/javascript';
+			script2.src = 'https://code.jquery.com/jquery-1.12.4.js';
+			document.getElementsByTagName('head')[0].appendChild(script2);
 
-		// $('#scrollbox3').enscroll({
-		//     showOnHover: true,
-		//     verticalTrackClass: 'track3',
-		//     verticalHandleClass: 'handle3'
-		// });
+			let script3 = document.createElement('script');
+			script3.type = 'text/javascript';
+			script3.src = 'https://code.jquery.com/ui/1.12.1/jquery-ui.js';
+			document.getElementsByTagName('head')[0].appendChild(script3);
 
-	}
-	componentDidUpdate(){
-		/***************************************************
-				Scroll To Top While Page Change
-		***************************************************/
-		$(window).scrollTop(0);
-	}
-	render() {
-		return (
-			<div>
-				<AdminHeader siteData = {this.props.siteData} pageLoading={this.props.pageLoading} />
-				<div className="container-fluid main-container">
-					<div className="row">
+			  
 
-						<div className="col-md-2 sidebar">
-							<div className="side-menu side-nav">
-								<AdminSidebar sideBarMenus={this.props.sideBarMenus}  dict={dict}/>
+			// $('#scrollbox3').enscroll({
+			//     showOnHover: true,
+			//     verticalTrackClass: 'track3',
+			//     verticalHandleClass: 'handle3'
+			// });
+
+		}
+		componentDidUpdate(){
+			/***************************************************
+					Scroll To Top While Page Change
+			***************************************************/
+			$(window).scrollTop(0);
+		}
+		render() {
+			if (this.props.pageLoading) {
+				return 	<LoadingSpinner />
+			}
+			return (
+				<div>
+					<AdminHeader siteData = {this.props.siteData}  />
+					<div className="container-fluid main-container">
+						<div className="row">
+
+							<div className="col-md-2 sidebar">
+								<div className="side-menu side-nav">
+									<AdminSidebar sideBarMenus={this.props.sideBarMenus}  dict={dict}/>
+								</div>
+							</div> 
+							<div className="col-md-10 col-sm-offset-2  content">
+								{ React.cloneElement(this.props.content, {dict}) }
+								<AdminFooter />
 							</div>
-						</div> 
-						<div className="col-md-10 col-sm-offset-2  content">
-							{ React.cloneElement(this.props.content, {dict}) }
-							<AdminFooter />
 						</div>
+						
 					</div>
 					
 				</div>
-				
-			</div>
-		);
+			);
+		}
 	}
-}
 
-AdminLayout.propTypes = {
-	content: PropTypes.object.isRequired,
-};
+	import('prop-types').then((PropTypes)=>{
+		AdminLayout.propTypes = {
+			content: PropTypes.object.isRequired,
+		};
+	});
 
-export default createContainer(() => {
-	let handle1 = Meteor.subscribe('siteName')
-	let handle2 = Meteor.subscribe('usersProfile')
-	return {
-		pageLoading: ! handle1.ready() && ! handle2.ready(),
-		siteData: PanoplyCMSCollections.Sites.findOne(),
-		sideBarMenus: PanoplyCMSCollections.AdminSidebarMenu.find().fetch()
-	};
-}, AdminLayout);
+	import('meteor/react-meteor-data').then(({createContainer})=>{
+		export default createContainer(() => {
+			let handle1 = Meteor.subscribe('siteName')
+			let handle2 = Meteor.subscribe('usersProfile')
+			return {
+				pageLoading: ! handle1.ready() && ! handle2.ready(),
+				siteData: PanoplyCMSCollections.Sites.findOne(),
+				sideBarMenus: PanoplyCMSCollections.AdminSidebarMenu.find().fetch()
+			};
+		}, AdminLayout);
+	});
+});
 

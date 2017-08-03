@@ -1,10 +1,18 @@
+
+/*=======================================================
+	these function will call when site is offline or page
+	not found respectively
+========================================================*/
+
+
+
 CoreOfflineComponent = () => {
-	return <div>Site Offline...!!!</div>
+	return <div>{i18n('ADMIN_SITE_OFFLINE')}</div>
 }
 
 CoreComponentNotFound = () => {
 	return <div>
-		<h3 className="sub-header">404! Page not Found</h3>
-		<p>Sorry! URL for this route is not configured.</p>
+		<h3 className="sub-header">{i18n('ADMIN_PAGE_NOT_FOUND')}</h3>
+		<p>{i18n('ADMIN_URL_NOT_CONFIGURED')}</p>
 	</div>
 }
